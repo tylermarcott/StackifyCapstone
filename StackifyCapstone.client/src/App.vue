@@ -1,13 +1,16 @@
 <template>
-  <header>
-    <Navbar />
-  </header>
+  <!-- Here is the default App.vue -->
+  <!-- <header>
+    
+  </header> -->
   <main>
+    <div class="container-fluid">
     <router-view />
+    </div>
   </main>
-   <footer class="bg-dark text-light">
+   <!-- <footer class="bg-dark text-light">
     Made with 💖 by CodeWorks
-  </footer>
+  </footer> -->
 </template>
 
 <script>
@@ -21,7 +24,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  // components: { Navbar }
 }
 </script>
 <style lang="scss">
@@ -36,5 +39,14 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+// Color Classes
+.darkgrey {
+  color: #4f4f4f;
+}
+
+.purple {
+  color: #E1289F;
 }
 </style>
