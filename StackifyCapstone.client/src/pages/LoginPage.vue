@@ -4,7 +4,9 @@
   </section>
   <section class="row welcome">
     <div class="col-12 text-center welcome-text">
-      <h2 class="login-title"><b>Welcome to <span class="stackify-accent">Stackify</span> {{ user.name }}</b></h2>
+     
+      <h2 class="login-title"><b>Welcome to  <router-link :to="{ name: 'Home' }"> <span class="stackify-accent">Stackify</span></router-link> {{ user.name }}</b></h2>
+      
       <section class="row my-3 d-flex justify-content-center">
         <div class="col-1">
           <Login/>
@@ -12,11 +14,12 @@
       </section>
     </div>
      <div class="col-12 text-center">
-       <h3 class="login-text">Let's get your Spotify Connected</h3>
-      <img class="img-fluid spotify-logo elevation-4 p-5 rounded" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="spotify-logo">
+      <h3 class="login-text">Let's get your Spotify Account Connected</h3>
+      <img class="img-fluid spotify-logo p-5 rounded" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="spotify-logo">
+      
     </div>
     <div class="col-12 text-center p-3">
-      <button class="btn connect-button"><b>Connect</b></button>
+      <router-link :to="{name: 'Application'}"><button class="btn connect-button"><b>Connect</b></button></router-link>
     </div>
   </section>
 </template>
@@ -43,7 +46,7 @@ export default {
   }
 
   .login-text {
-    color: #4f4f4f
+    color: #eeeeee;
   }
 
   .stackify-accent {
@@ -68,7 +71,6 @@ export default {
 
   .spotify-logo {
     width: 25vw;
-    background-color: #4f4f4f;
 }
 
 .connect-button {
