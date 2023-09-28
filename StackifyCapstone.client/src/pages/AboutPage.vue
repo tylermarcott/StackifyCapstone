@@ -10,7 +10,7 @@
 
   <section class="row bg-dark-grey">
     <div class="col-12 text-center mt-5">
-      <h2 class="p-3 p-title my-0">Paragraph Title</h2>
+      <h2 class="p-3 p-title my-0">Our Business</h2>
     </div>
     <div class="col-12 mb-5">
       <p class="p-3 paragraph my-5 fs-5">
