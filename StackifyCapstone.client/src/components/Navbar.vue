@@ -1,7 +1,5 @@
 <template>
-          <section class="row landing-navigation">
-
-          <div class="col-6 m-5 d-flex justify-content-end align-items-center">
+        
               <section class="row g-5">
                 <div class="col-4">
                   <router-link :to="{ name: 'About' }" class="">
@@ -14,13 +12,13 @@
                   </router-link>
                 </div>
                 <div class="col-4">
-                  <router-link :to="{ name: 'Application' }" class="">
+                  <router-link :to="{ name: '' }" class="">
                   <h2 class="purple">Application</h2>
                   </router-link>
                 </div>
               </section>
-            </div>
-        </section>
+          
+    
       
 
       
@@ -28,12 +26,12 @@
 </template>
 
 <script>
-import Login from './Login.vue';
+
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+
 }
 </script>
 

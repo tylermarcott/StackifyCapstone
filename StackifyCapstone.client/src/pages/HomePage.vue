@@ -8,17 +8,7 @@
         </div>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
-          <section class="row g-5">
-            <div class="col-4">
-              <h2 class="purple">About</h2>
-            </div>
-            <div class="col-4">
-              <h2 class="purple">Login</h2>
-            </div>
-            <div class="col-4">
-              <h2 class="purple">Application</h2>
-            </div>
-          </section>
+        <NavBar />
         </div>
     </section>
     <section class="row landing-splash">
@@ -71,10 +61,12 @@
 </template>
 
 <script>
+import NavBar from '../components/Navbar.vue'
 export default {
   setup() {
     return {}
-  }
+  },
+  components : { NavBar }
 }
 </script>
 
