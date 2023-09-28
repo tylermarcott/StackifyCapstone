@@ -23,13 +23,11 @@
     </section>
     <section class="row landing-splash">
       <div class="col-4">
-
       </div>
       <div class="col-8 text-center">
         <img class="img-fluid spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="spotify-logo">
         <div class="m-5 text-center splash-caption">
-          <p>Extend the functionality of your Spotify Premium</p>
-          <p>Something else clever and cool</p>
+          <p><b>Extend the functionality of your Spotify Premium</b></p>
         </div>
       </div>
     </section>
@@ -52,7 +50,9 @@
         <div class="cta-text">
           <h3 class="cta-title">Call To Action Title</h3>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere neque voluptatem, assumenda exercitationem impedit mollitia qui quas accusamus id pariatur sed quasi. Mollitia tenetur recusandae iste voluptate, eos tempore dolorem sunt modi voluptates necessitatibus! Quos laborum nam, repellendus quae beatae vitae accusamus labore placeat itaque cumque voluptate dignissimos ab facilis!</p>
-          <button class="btn cta-button">Launch App</button>
+          <router-link :to="{ name: 'Login' }">
+            <button class="btn cta-button" >Launch App</button>
+          </router-link>
         </div>  
       </div>
     </section>
