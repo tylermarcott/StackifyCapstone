@@ -9,11 +9,14 @@
                   </router-link>
                 </div>
                 <div class="col-4">
-                  <h2 class="purple"> <Login /> </h2>
+                  <router-link :to="{ name: 'Login' }" class="">
+                    <h2 class="purple"> Login </h2>
+                  </router-link>
                 </div>
                 <div class="col-4">
                   <router-link :to="{ name: 'Application' }" class="">
-                  <h2 class="purple">Application</h2></router-link>
+                  <h2 class="purple">Application</h2>
+                  </router-link>
                 </div>
               </section>
             </div>

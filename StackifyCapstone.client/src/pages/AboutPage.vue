@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    
+    <p>this is the about page</p>
     <Navbar />
   </div>
 </template>
