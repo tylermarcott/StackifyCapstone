@@ -2,38 +2,42 @@
   <section class="full-app-view p-0">
     <section class="row app-wrapper">
       <div class="col-3 left-panel p-0">
-        <h2 class="event-title m-0 text-center">Sample Event</h2>  
+        <h2 class="event-title m-0 text-center">Event Title Sample</h2>  
         <div class="timeblock-list">
-          <div class="timeblock-card d-flex justify-content-between">
-            <h3>Timeblock</h3>
-            <h3>0:00</h3>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
           </div>
-          <div class="timeblock-card d-flex justify-content-between">
-            <h3>Timeblock</h3>
-            <h3>0:00</h3>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
           </div>
-          <div class="timeblock-card d-flex justify-content-between">
-            <h3>Timeblock</h3>
-            <h3>0:00</h3>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
           </div>
-          <div class="timeblock-card d-flex justify-content-between">
-            <h3>Timeblock</h3>
-            <h3>0:00</h3>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
           </div>
-          <div class="timeblock-card d-flex justify-content-between">
-            <h3>Timeblock</h3>
-            <h3>0:00</h3>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
           </div>
-          <div class="timeblock-card d-flex justify-content-between">
-            <h3>Timeblock</h3>
-            <h3>0:00</h3>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
           </div>
-          <div class="timeblock-card d-flex justify-content-between">
-            <h3>Timeblock</h3>
-            <h3>0:00</h3>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
+          </div>
+          <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
+            <h3 class="timeblock-text">Timeblock</h3>
+            <h3 class="timeblock-timer">0:00</h3>
           </div>
         </div>
-        <div class="active-song">
+        <div class="active-song" type="button" data-toggle="modal" data-target="#activesongmodal">
           <section class="row h-100">
             <div class="col-4 d-flex align-items-center">
               <img class="img-fluid active-song-image p-0" src="../assets/img/StackifySVG-cta.svg">
@@ -41,7 +45,7 @@
             <div class="col-8 p-2 d-flex flex-column justify-content-center">
               <section class="row">
                 <div class="col-6 d-flex flex-column justify-content-center">
-                  <p class="song-title m-0">Song Title</p>
+                  <p class="song-title m-0"><b>Song Title</b></p>
                   <p class="song-title m-0">Album</p>
                   <p class="song-title m-0">Artist</p>
                 </div>
@@ -50,16 +54,17 @@
                     <p class="song-title m-0">100 BPM</p>
                   </div>
               </section>
-              
             </div>
           </section>
         </div>
       </div>
       <div class="col-7 center-panel p-0">
-        <div class="main justify-content-between">
-          <div class="search-bar">search bar <i class="mdi mdi-magnify"></i></div>
-          <div class="main-content">
-            <h2>text</h2>
+        <div class="main">
+          <form class="d-flex justify-content-center m-2">
+          <input type="string" class="search-bar d-flex justify-content-between"><button class="search-button"><i class="mdi mdi-magnify search-icon"></i></button>
+          </form>
+          <div class="main-content d-flex justify-content-center align-items-center">
+            <h2>Main Content</h2>
           </div>
         </div>
         <div class="player text-center">
@@ -68,23 +73,61 @@
       </div> 
       <div class="col-2 right-panel p-0 text-center">
         <div class="right-panel-spacer">
-          <i class="mdi mdi-home home-button"></i>
+          <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
         </div>
-        <h2 class="account-name">account panel</h2>
+        <img class="img-fluid profile-picture" src="../assets/img/StackifySVG-footer.svg" alt="account-picture">
+        <h2 class="account-text">Sample Name</h2>
+        <h2 class="account-text">Account Settings</h2>
+        <h2 class="account-text">Invite Collaborator</h2>
       </div>
-
     </section>
-
   </section>
+
+
+
+  <!-- Modal YOU NEED TO ON MOUNTED FUNCTIONS FOR THE MODAL TO WORK IN VUE -->
+  <div class="modal fade" id="activesongmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
+
 export default {
   setup(){
-  return {  }
+    // onMounted(() => {
+    //   state.modal_active = new bootstrap.Modal('#activeSongModal', {})
+    // })
+    // function openSongModal() {
+    //   state.modal_active.show()
+    // }
+
+    // function closeSongModal() {
+    //   state.modal_active.hide
+    // }
+  return { 
+    // openSongModal,
+    // closeSongModal
+   }
   }
 };
 </script>
@@ -130,13 +173,25 @@ export default {
 }
 
 .timeblock-card {
-  margin: 2rem;
+  margin: 1rem;
   background-color: #4f4f4f;
-  border-radius: 15px;
-  padding: 1rem;
+  border-radius: 8px;
+  padding: .5rem;
   color:#eeeeee;
 }
 
+.timeblock-card:hover {
+  transform: scale(1.01);
+}
+
+.timeblock-text {
+  font-size: 1rem;
+  margin: 0px;
+}
+
+.timeblock-timer {
+  font-size: 1rem;
+}
 .active-song {
   height:20vh;
   background-color: #eeeeee;
@@ -173,9 +228,28 @@ export default {
 
 .search-bar {
   background-color: #eeeeee;
-  margin: 1rem;
   height: 3vh;
+  width: 80%;
   border-radius: 8px;
+  border: none;
+}
+
+.search-icon {
+  background-color: #EA94FF;
+  width: 40px;
+}
+
+.search-button {
+  background-color: #EA94FF ;
+  border: none;
+}
+
+.main-content {
+  height:73vh;
+  margin: .5rem;
+  border-radius: 15px;
+  border: solid 3px #EA94FF;
+  background-color: #eeeeee;
 }
 
 .player {
@@ -194,10 +268,25 @@ export default {
   background-color: #4f4f4f;
   border: solid 8px #242424;
   border-radius: 15px;
+  color: #eeeeee;
 }
 
 .right-panel-spacer {
   height: 5vh;
+}
+
+.profile-picture {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 1px solid #EA94FF;
+  margin: 5vh 0vh;
+}
+
+.account-text {
+  color: #EA94FF;
+  font-size: 1.2rem;
+  padding: .5rem;
 }
 
 .home-button {
