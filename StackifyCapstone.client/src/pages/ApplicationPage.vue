@@ -1,6 +1,6 @@
 <template>
   <section class="full-app-view p-0">
-    <section class="row">
+    <section class="row app-wrapper">
       <div class="col-3 left-panel p-0">
         <h2 class="event-title m-0 text-center">Sample Event</h2>  
         <div class="timeblock-list">
@@ -36,18 +36,31 @@
         <div class="active-song">
           <section class="row h-100">
             <div class="col-4 d-flex align-items-center">
-              <img class="img-fluid active-song-image p-0" src="../assets/img/StackifySVG-footer.svg">
+              <img class="img-fluid active-song-image p-0" src="../assets/img/StackifySVG-cta.svg">
             </div>
-            <div class="col-8">
-              <p class="song-title m-0">Active Song</p>
+            <div class="col-8 p-2 d-flex flex-column justify-content-center">
+              <section class="row">
+                <div class="col-6 d-flex flex-column justify-content-center">
+                  <p class="song-title m-0">Song Title</p>
+                  <p class="song-title m-0">Album</p>
+                  <p class="song-title m-0">Artist</p>
+                </div>
+                <div class="col-6">
+                    <p class="song-title my-2">0:00</p>
+                    <p class="song-title m-0">100 BPM</p>
+                  </div>
+              </section>
+              
             </div>
           </section>
-          
         </div>
       </div>
       <div class="col-7 center-panel p-0">
         <div class="main justify-content-between">
           <div class="search-bar">search bar <i class="mdi mdi-magnify"></i></div>
+          <div class="main-content">
+            <h2>text</h2>
+          </div>
         </div>
         <div class="player text-center">
           <h2>Player</h2>
@@ -55,7 +68,7 @@
       </div> 
       <div class="col-2 right-panel p-0 text-center">
         <div class="right-panel-spacer">
-
+          <i class="mdi mdi-home home-button"></i>
         </div>
         <h2 class="account-name">account panel</h2>
       </div>
@@ -79,6 +92,10 @@ export default {
 
 <style lang="scss" scoped>
 .full-app-view {
+  background-color: #242424;
+}
+
+.app-wrapper {
   background-color: #242424;
 }
 
@@ -122,7 +139,7 @@ export default {
 
 .active-song {
   height:20vh;
-  background-color: #4f4f4f;
+  background-color: #eeeeee;
   border: solid 8px #242424;
   border-top: none;
   border-radius: 15px;
@@ -135,8 +152,9 @@ export default {
   margin: 1rem;
 }
 
-.active-song-title {
-  color:#EA94FF;
+.song-title {
+  color:#4f4f4f;
+  font-size: 1.2rem;
 }
 
 .center-panel {
@@ -174,11 +192,16 @@ export default {
 .right-panel {
   height: 100vh;
   background-color: #4f4f4f;
-    border: solid 8px #242424;
-  border-radius: 8px;
+  border: solid 8px #242424;
+  border-radius: 15px;
 }
 
 .right-panel-spacer {
   height: 5vh;
+}
+
+.home-button {
+  font-size: 2rem;
+  color: #eeeeee;
 }
 </style>
