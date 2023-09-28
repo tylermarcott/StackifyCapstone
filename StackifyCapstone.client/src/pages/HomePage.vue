@@ -46,13 +46,9 @@
         </div>  
       </div>
     </section>
-    <section class="row landing-footer d-flex">
-      <div class="col-6 footer-links d-flex justify-content-between align-items-end">
-        <p>Footer Link</p>
-        <p>Footer Link</p>
-        <p>Footer Link</p>
-      </div>
-    </section>
+
+    <Foot />
+
  </header>
 
   
@@ -62,11 +58,12 @@
 
 <script>
 import NavBar from '../components/Navbar.vue'
+import Foot from '../components/Foot.vue'
 export default {
   setup() {
     return {}
   },
-  components : { NavBar }
+  components : { NavBar, Foot }
 }
 </script>
 

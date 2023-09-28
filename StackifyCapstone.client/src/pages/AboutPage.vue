@@ -1,7 +1,9 @@
 <template>
+
+<div class="main">
   
   <section class="row landing-navigation">
-    <div class="about col-11 d-flex justify-content-end align-items-center">
+    <div class="about col-10 d-flex justify-content-end align-items-center">
       <Navbar />
     </div>
   </section>
@@ -11,7 +13,7 @@
       <h3 class="p-3 p-title my-0">Paragraph Title</h3>
     </div>
     <div class="col-12">
-      <p class="p-3 paragraph mt-5">
+      <p class="p-3 paragraph my-5">
       "Stackify is a music application tailored for event planners and amateur DJs.  It sets the stage for effortless music management. With an intuitive interface, it simplifies music selection, curation, and playback, offering dynamic features such as genre-based recommendations and sorting by BPM, Key, or dance-ability. This innovative approach to playlist curation serves as an invaluable tool for seamlessly identifying tracks that harmonize beautifully. Stackify is meticulously crafted to cater to the precise requirements of event organizers and budding DJs, empowering them to effortlessly elevate event ambiance and entertainment quality."
       <br><br>
       "Our concept is elegantly straightforward: Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion."
@@ -21,9 +23,11 @@
     </div>
   </section>
 
-  <section class="row d-flex justify-content-between text-center bg-dark-grey">
+  <div class="">
+
+    <section class="row d-flex justify-content-between text-center bg-dark-grey">
       <div class="col-3">
-        <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LG8XL8NA-e5f49bb82361-512" alt="">
+        <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LNQW85JP-3a23bed14dbc-512" alt="">
       </div>
       <div class="col-3">
         <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LNTZ1ULS-eaef7b01235f-512" alt="">
@@ -34,42 +38,44 @@
       <div class="col-3">
         <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LG8XL8NA-e5f49bb82361-512" alt="">
       </div>
-  </section>
-
-  <section class="row d-flex justify-content-between text-center bg-dark-grey text-pink">
+    </section>
+    
+    <section class="row d-flex justify-content-between text-center bg-dark-grey text-pink">
       <div class="col-3">
-      <h5>Austin Perry</h5>
+        <h5>Austin Perry</h5>
       </div>
       <div class="col-3">
-      <h5>Everett Smith</h5>
+        <h5>Everett Smith</h5>
       </div>
       <div class="col-3">
-      <h5>Lance Fontanilla</h5>
+        <h5>Lance Fontanilla</h5>
       </div>
       <div class="col-3">
-      <h5>Tyler Marcott</h5>
+        <h5>Tyler Marcott</h5>
       </div>
-  </section>
-  <section class="row d-flex justify-content-between text-center bg-dark-grey text-light-blue">
+    </section>
+    <section class="row d-flex justify-content-between text-center bg-dark-grey text-light-blue">
       <div class="col-3">
-      <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
-      </div>
-      <div class="col-3">
-      <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
       </div>
       <div class="col-3">
-      <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
       </div>
       <div class="col-3">
-      <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
       </div>
-  </section>
-
-  <section>
+      <div class="col-3">
+        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+      </div>
+    </section>
+  </div>
+    
+    <section>
     <Foot />
   </section>
 
-
+  </div>
+  
 </template>
 
 <script>
@@ -119,6 +125,13 @@ export default {
     border-radius: 50em;
 }
 
+.profiles{
+  margin: 10vh;
+  background-color: #4f4f4f;
+}
 
+.main{
+  background-color: #4f4f4f;
+}
 
 </style>
