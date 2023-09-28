@@ -1,19 +1,19 @@
 <template>
 
-<div class="main">
+<div class="">
   
   <section class="row landing-navigation">
-    <div class="about col-10 d-flex justify-content-end align-items-center">
+    <div class="col-10 d-flex justify-content-end align-items-center">
       <Navbar />
     </div>
   </section>
 
   <section class="row bg-dark-grey">
     <div class="col-12 text-center mt-5">
-      <h3 class="p-3 p-title my-0">Paragraph Title</h3>
+      <h2 class="p-3 p-title my-0">Paragraph Title</h2>
     </div>
-    <div class="col-12">
-      <p class="p-3 paragraph my-5">
+    <div class="col-12 mb-5">
+      <p class="p-5 paragraph my-5 fs-4">
       "Stackify is a music application tailored for event planners and amateur DJs.  It sets the stage for effortless music management. With an intuitive interface, it simplifies music selection, curation, and playback, offering dynamic features such as genre-based recommendations and sorting by BPM, Key, or dance-ability. This innovative approach to playlist curation serves as an invaluable tool for seamlessly identifying tracks that harmonize beautifully. Stackify is meticulously crafted to cater to the precise requirements of event organizers and budding DJs, empowering them to effortlessly elevate event ambiance and entertainment quality."
       <br><br>
       "Our concept is elegantly straightforward: Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion."
@@ -23,9 +23,12 @@
     </div>
   </section>
 
-  <div class="">
 
-    <section class="row d-flex justify-content-between text-center bg-dark-grey">
+
+
+  <div class="profiles  mt-5 mb-0 p-5">
+    
+    <section class="row d-flex justify-content-between text-center ">
       <div class="col-3">
         <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LNQW85JP-3a23bed14dbc-512" alt="">
       </div>
@@ -40,7 +43,7 @@
       </div>
     </section>
     
-    <section class="row d-flex justify-content-between text-center bg-dark-grey text-pink">
+    <section class="row d-flex justify-content-between text-center  text-pink">
       <div class="col-3">
         <h5>Austin Perry</h5>
       </div>
@@ -54,21 +57,22 @@
         <h5>Tyler Marcott</h5>
       </div>
     </section>
-    <section class="row d-flex justify-content-between text-center bg-dark-grey text-light-blue">
+    <section class="row d-flex justify-content-between text-center  text-light-blue">
       <div class="col-3">
-        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+        <h5><a class="links" href="https://github.com/AustinPerry22"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/austin-perry22/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
       <div class="col-3">
-        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+        <h5><a class="links" href="https://github.com/everettsmith928"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/everett-smith-811b57132/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
       <div class="col-3">
-        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+        <h5><a class="links" href="https://github.com/LanceFontanilla"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/lancefontanilla/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
       <div class="col-3">
-        <h5><span class="mdi mdi-github fs-2"></span> <span class="mdi mdi-linkedin fs-2"></span></h5>
+        <h5><a class="links" href="https://github.com/tylermarcott"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/tyler-marcott-225277204/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
     </section>
   </div>
+
     
     <section>
     <Foot />
@@ -98,11 +102,13 @@ export default {
 }
 
 .p-title{
-  background-color: #eeeeee;
+  background-color: #4f4f4f;
+  color: #eeeeee;
   margin: 30vw
 }
 .paragraph {
-  background-color: #eeeeee;
+  background-color: #4f4f4f;
+  color: #eeeeee;
   margin: 10vw
 }
 .bg-dark-grey{
@@ -126,11 +132,16 @@ export default {
 }
 
 .profiles{
-  margin: 10vh;
-  background-color: #4f4f4f;
+  margin: 5vw; 
+  background-color: #eeeeee;
 }
 
-.main{
+.links{
+  text-decoration: none;
+  color:#63FAF5 ;
+}
+
+.body{
   background-color: #4f4f4f;
 }
 
