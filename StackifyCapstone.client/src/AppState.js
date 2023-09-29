@@ -10,5 +10,8 @@ export const AppState = reactive({
   /** @type {Device[]} */
   devices: [],
   /** @type {Device} */
-  activeDevice: {}
+  activeDevice: {},
+
+  /** @type {Track[]} */
+  tracks: []
 })

@@ -1,7 +1,5 @@
 import { logger } from "../utils/Logger.js";
 import { ref } from "vue";
-import { spotifyLoginService } from "./SpotifyLoginService.js";
-import { spotifyApi } from "./AxiosService.js";
 import axios from "axios";
 import { AppState } from "../AppState.js";
 import { Device } from "../models/Device.js";
@@ -42,7 +40,7 @@ class SpotifyPlayerService{
     async initializeListeners() {
       try {
 
-        this.player.value.setName("Mick is da Bomb")
+        this.player.value.setName("Stackify Device")
 
         this.player.value.addListener('ready', ({ device_id }) => {
           logger.log('Ready with Device ID', device_id);
