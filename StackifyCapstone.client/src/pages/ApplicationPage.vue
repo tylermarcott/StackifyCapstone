@@ -82,7 +82,8 @@
               <button class="previous elevation-3">
                 <i class="mdi mdi-skip-previous"></i>
               </button>
-              <button class="play elevation-3">
+              <!-- NOTE play button -->
+              <button @click="togglePlay" class="play elevation-3">
                 <i class="mdi mdi-play"></i>
                 <!-- <i class="mdi mdi-pause"></i> -->
               </button>
@@ -120,13 +121,41 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, ref } from 'vue';
+import { spotifyPlayerService } from "../services/SpotifyPlayerService.js";
+import { spotifyLoginService } from "../services/SpotifyLoginService.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   setup(){
+    async function refreshToken(){
+      try {
+        await spotifyLoginService.refreshAccessToken()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+    async function startPlayer(){
+      try {
+        await spotifyPlayerService.StartPlayer()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+    onMounted(()=>{
+      refreshToken()
+      startPlayer()
+      // NOTE call this function with the track id to load song spotifyPlayerService.loadSong(trackId)
+    })
     
   return { 
-
+    async togglePlay(){
+      try {
+        await spotifyPlayerService.togglePlay()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
    }
   }
 };
