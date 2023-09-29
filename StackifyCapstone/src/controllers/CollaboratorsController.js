@@ -9,4 +9,27 @@ export class CollaboratorsController extends BaseController {
 
       .use(Auth0Provider.getAuthorizedUserInfo)
   }
+
+  async addCollaborator(req, res, next) {
+    try {
+
+      res.send()
+    } catch (error) {
+      next.error(error)
+    }
+  }
+
+
+
+
+
+  async removeCollaborator(req, res, next) {
+    try {
+
+      res.send()
+    } catch (error) {
+      next.error(error)
+    }
+  }
+
 }

@@ -9,4 +9,64 @@ export class EventsController extends BaseController {
 
       .use(Auth0Provider.getAuthorizedUserInfo)
   }
+
+  async getEvents(req, res, next) {
+    try {
+
+      res.send()
+    } catch (error) {
+      next.error(error)
+    }
+  }
+
+
+
+
+
+  async getEventById(req, res, next) {
+    try {
+
+      res.send()
+    } catch (error) {
+      next.error(error)
+    }
+  }
+
+
+
+
+  async createEvent(req, res, next) {
+    try {
+
+      res.send()
+    } catch (error) {
+      next.error(error)
+    }
+  }
+
+
+
+
+
+  async editEvent(req, res, next) {
+    try {
+
+      res.send()
+    } catch (error) {
+      next.error(error)
+    }
+  }
+
+
+
+
+
+  async deleteEvent(req, res, next) {
+    try {
+
+      res.send()
+    } catch (error) {
+      next.error(error)
+    }
+  }
 }
