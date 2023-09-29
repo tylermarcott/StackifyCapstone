@@ -85,11 +85,29 @@
 
 
 
+          <!-- TODO: ok so we have songs populated on the page from our search result. Next, we need to add a button on each song card that allows you to add a song. This button will have an onclick that will fire a get track request so we can get the song itself and save it to our DB.
+          -->
+
+          <!-- FIXME: BUT FIRST, we need to create timeblocks and do a bunch of other prereq stuff before we can create an event, add a timeblock and add a song to a timeblock.  -->
 
 
         </div>
-        <div class="main-content d-flex justify-content-center align-items-center">
+        <div class="row main-content d-flex justify-content-center align-items-center">
+
+          <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 create-track-card">
+            <TrackCard :track="track"/>
+          </div>
+
           <h2>Main Content</h2>
+
+
+
+
+
+
+
+
+
         </div>
         <div class="col-12 player d-flex justify-content-center align-items-center">
           <section class="row">
@@ -173,6 +191,7 @@ export default {
     
   return {
     searchData,
+    tracks: computed(() => AppState.tracks),
     async togglePlay(){
       try {
         await spotifyPlayerService.togglePlay()
@@ -440,6 +459,11 @@ input {
 
 .account-text:hover {
   color: #63FAAA;
+}
+
+.create-track-card{
+  border-radius: 5px;
+  background-color: #92946B;
 }
 
 .home-button {
