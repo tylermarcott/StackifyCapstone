@@ -1,9 +1,14 @@
 import Axios from 'axios'
-import { baseURL } from '../env'
+import { baseURL, spotifyUrl } from '../env'
 import { logger } from '../utils/Logger.js'
 
 export const api = Axios.create({
   baseURL,
+  timeout: 8000
+})
+
+export const spotifyApi = Axios.create({
+  spotifyUrl,
   timeout: 8000
 })
 

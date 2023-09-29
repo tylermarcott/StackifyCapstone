@@ -1,12 +1,15 @@
 import { logger } from "../utils/Logger.js";
 import { ref } from "vue";
 import { spotifyLoginService } from "./SpotifyLoginService.js";
+import { spotifyApi } from "./AxiosService.js";
+import axios from "axios";
+import { AppState } from "../AppState.js";
+import { Device } from "../models/Device.js";
 
 
 class SpotifyPlayerService{
 
     player = ref(null)
-
     // call this onMounted
     async StartPlayer() {
       //NOTE: we don't need to call requestToken bc it's already in local storage
@@ -27,7 +30,7 @@ class SpotifyPlayerService{
       logger.log('registering')
       const token = localStorage.getItem('access_token');
       // eslint-disable-next-line no-undef
-      player.value = new Spotify.Player({
+        this.player.value = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); },
         volume: 0.5
@@ -52,6 +55,7 @@ class SpotifyPlayerService{
 
         await this.player.value.connect()
         logger.log('connected')
+        this.getDevices()
       } catch (error) {
         logger.error(error)
       }
@@ -84,12 +88,24 @@ class SpotifyPlayerService{
         }
       }
 
+    async getDevices() {
+      const bearerToken = localStorage.getItem('access_token')
+      const res = await axios.get("https://api.spotify.com/v1/me/player/devices", { headers: { Authorization: `Bearer ${bearerToken}` } })
+      logger.log('here is the list of devices pulled from the api:', res.data)
+      AppState.devices = res.data.devices.map(device => new Device(device))
+      logger.log('here is appstate devices', AppState.devices)
+      // TODO store devices in array so we can select where to play from
+    // localStorage.setItem('device', res.data.devices[1].id)
+    // this.playSong()
+  }
+      
+
 
       // NOTE: we need to be able to call play song with the right track. We need to pass in 'track' as a param to playSong and set const contextUri = track.
-  playSong() {
+  loadSong(trackId) {
     const token = localStorage.getItem('access_token');
     logger.log(token)
-    const contextUri = 'spotify:album:5ht7ItJgpBH7W6vJ5BqpPr';  //TODO: this is where the track id goes
+    const contextUri = trackId;
     const offsetPosition = 5;
     const positionMs = 0;
     const url = `https://api.spotify.com/v1/me/player/play`;    //?device_id=${device}
