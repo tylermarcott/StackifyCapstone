@@ -1,11 +1,11 @@
 import { logger } from "../utils/Logger.js";
-import { clientId, redirectUri } from "../env.js";
+import { spotifyClientId, redirectUri } from "../env.js";
 
 
 
 
 
-const codeVerifier = this.generateRandomString(128);
+
 
 class SpotifyLoginService{
   
@@ -41,7 +41,7 @@ class SpotifyLoginService{
     return base64encode(digest);
   }
 
-
+    const codeVerifier = this.generateRandomString(128);
   // NOTE don't call this just add scopes
   generateCodeChallenge(codeVerifier).then(codeChallenge => {
     let state = this.generateRandomString(16);
@@ -52,7 +52,7 @@ class SpotifyLoginService{
 
     let args = new URLSearchParams({
       response_type: 'code',
-      client_id: clientId,
+      client_id: spotifyClientId,
       scope: scope,
       redirect_uri: redirectUri,
       state: state,
@@ -83,8 +83,9 @@ class SpotifyLoginService{
   let body = new URLSearchParams({
     grant_type: 'authorization_code',
     code: code,
+    // TODO if we are making a first event page need some logic here
     redirect_uri: redirectUri,
-    client_id: clientId,
+    client_id: spotifyClientId,
     code_verifier: codeVerifier
   });
 
@@ -122,12 +123,12 @@ refreshAccessToken() {
   const refreshToken = localStorage.getItem('refresh_token');
   logger.log('here is our refresh token:', refreshToken)
   const spotifyTokenUrl = 'https://accounts.spotify.com/api/token'
-  const clientId = 'f60d41d8f71b48e59709254f06a045e8'
+  const spotifyClientId = 'f60d41d8f71b48e59709254f06a045e8'
 
   let formData = new FormData();
   formData.append('grant_type', 'refresh_token');
   formData.append('refresh_token', refreshToken);
-  formData.append('client_id', clientId)
+  formData.append('client_id', spotifyClientId)
 
   return fetch(spotifyTokenUrl, {
     method: 'POST',

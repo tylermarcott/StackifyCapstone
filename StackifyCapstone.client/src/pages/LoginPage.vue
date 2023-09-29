@@ -19,7 +19,8 @@
       
     </div>
     <div class="col-12 text-center p-3">
-      <router-link :to="{name: 'Application'}"><button class="btn connect-button"><b>Connect</b></button></router-link>
+      <button @click="spotifyConnect()" class="btn connect-button"><b>Connect</b></button>
+      <!-- <router-link :to="{name: 'Application'}"><button class="btn connect-button"><b>Connect</b></button></router-link> -->
     </div>
   </section>
 </template>
@@ -27,11 +28,20 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
+import Pop from "../utils/Pop.js";
+import { spotifyLoginService } from "../services/SpotifyLoginService.js";
 export default {
   setup(){
   return { 
     user: computed(() => AppState.user),
-    account: computed(() => AppState.account)
+    account: computed(() => AppState.account),
+    async spotifyConnect(){
+      try {
+        await spotifyLoginService.spotifyConnect()
+      } catch (error) {
+        Pop.error('connection to spotify failed', error)
+      }
+    }
    }
   }
 };
