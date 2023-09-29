@@ -2,9 +2,11 @@
   <section class="full-app-view p-0">
     <section class="row app-wrapper">
       <div class="col-3 left-panel p-0">
-        <div class="d-flex justify-content-center align-items-center">
-          <h2 class="event-title m-0 text-center w-100">Event Title Sample</h2>  
+        <section class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+          <h2 class="event-title m-0 text-center w-100">Event Title Sample</h2> 
         </div>
+        </section>
         <div class="timeblock-list">
           <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
             <h3 class="timeblock-text">Timeblock</h3>
@@ -64,7 +66,7 @@
         <div class="search d-flex justify-content-center align-items-center">
           <form class="w-100 row">
             <div class="col-12 d-flex justify-content-center align-items-center">
-              <input class="search-bar"><div class="text-center"><i class="mdi mdi-magnify search-icon"></i></div>
+              <input class="search-bar"><div class="text-center"><button class="search-button"><i class="mdi mdi-magnify search-icon"></i></button></div>
            </div>
           </form>
         </div>
@@ -90,6 +92,7 @@
             </div>
             <div class="col-3 devices d-flex justify-content-center align-items-center">
               <i class="devices-icon mdi mdi-devices"></i>
+              <i class="devices-icon mdi mdi-volume-high"></i>
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center">
               <p class="duration-text m-0">2:50</p>
@@ -154,6 +157,7 @@ export default {
   border-bottom: 0px;
   border-radius: 15px;
   height: 5vh;
+  padding-top: 4px !important;
 }
 
 .timeblock-list {
@@ -236,16 +240,20 @@ input {
 }
 
 .search-icon {
-  background-color: #EA94FF;
-  width: 40px;
   border-radius: 8px;
 }
 
 .search-button {
-  background-color: #EA94FF ;
+  background-color: #63FAAA ;
   border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  transition: .1s;
 }
 
+.search-button:hover {
+  transform: scale(1.1);
+}
 
 .main-content {
   height: 75vh;
@@ -285,7 +293,7 @@ input {
   }
 
   button:hover {
-    background-color: #EA94FF;
+    background-color: #63FAAA;
   }
 }
 
@@ -303,6 +311,11 @@ input {
 .devices-icon {
   color: #EA94FF;
   font-size: 2rem;
+  margin-left: 2rem;
+}
+
+.devices-icon:hover {
+  transform: scale(1.1);
 }
 
 .song-duration-slot {
@@ -352,6 +365,11 @@ input {
   color: #EA94FF;
   font-size: 1.2rem;
   padding: .5rem;
+  transition: .3s;
+}
+
+.account-text:hover {
+  color: #63FAAA;
 }
 
 .home-button {
