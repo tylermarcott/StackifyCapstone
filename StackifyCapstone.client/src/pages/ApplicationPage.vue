@@ -64,11 +64,29 @@
       </div>
       <div class="col-7 center-panel p-0">
         <div class="search d-flex justify-content-center align-items-center">
-          <form class="w-100 row">
+
+
+
+
+
+<!-- NOTE: this is the search for song form at the top of the page -->
+<!-- TODO: make sure you clear this form after entry -->
+          <form @submit.prevent="searchSong" class="w-100 row">
             <div class="col-12 d-flex justify-content-center align-items-center">
-              <input class="search-bar"><div class="text-center"><button class="search-button"><i class="mdi mdi-magnify search-icon"></i></button></div>
+              <input v-model="searchData.query" class="search-bar"><div class="text-center">
+                <button class="search-button">
+                <i class="mdi mdi-magnify search-icon"></i>
+              </button></div>
            </div>
           </form>
+
+
+
+
+
+
+
+
         </div>
         <div class="main-content d-flex justify-content-center align-items-center">
           <h2>Main Content</h2>
@@ -125,9 +143,14 @@ import { computed, reactive, onMounted, ref } from 'vue';
 import { spotifyPlayerService } from "../services/SpotifyPlayerService.js";
 import { spotifyLoginService } from "../services/SpotifyLoginService.js";
 import Pop from "../utils/Pop.js";
+import {spotifyApiService} from '../services/SpotifyApiService.js'
+import { logger } from "../utils/Logger.js";
 
 export default {
   setup(){
+    // NOTE: this is the data submitted from the upper search bar to search for a song, album or artist
+    const searchData = ref({});
+
     async function refreshToken(){
       try {
         await spotifyLoginService.refreshAccessToken()
@@ -148,10 +171,28 @@ export default {
       // NOTE call this function with the track id to load song spotifyPlayerService.loadSong(trackId)
     })
     
-  return { 
+  return {
+    searchData,
     async togglePlay(){
       try {
         await spotifyPlayerService.togglePlay()
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+
+    resetForm(){
+      searchData.value = { type: '' }
+    },
+
+    async searchSong(){
+      try {
+        let searchValue = searchData.value.query
+        logger.log('our search value is this:', searchValue)
+        let formattedSearch = searchValue.replace(' ', '+')
+        await spotifyApiService.searchSong(formattedSearch)
+        Pop.toast('Search successful', 'success')
+        this.resetForm()
       } catch (error) {
         Pop.error(error)
       }

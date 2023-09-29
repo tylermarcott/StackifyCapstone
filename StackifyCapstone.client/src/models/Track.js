@@ -1,18 +1,20 @@
 
 export class Track {
     constructor(data){
-        this.id = data.id
-        this.albumImg = data.album.images.url
+        this.albumImg = data.album.images
         this.album = data.album.name
-        this.artist = data.artists.name
-        this.track = data.name
-        this.popularity = data.popularity
+        this.artist = data.artists
         this.duration = data.duration_ms
-        
-        this.key = data.key
-        this.valence = data.valence
-        this.danceability = data.danceability
-        this.bpm = data.tempo
+        this.id = data.id
+        this.name = data.name
+        this.popularity = data.popularity
+
+
+        // NOTE: these are for 'Get track's audio features', will implement this once we ae able to add songs to our timeblock.
+        // this.key = data.key
+        // this.valence = data.valence
+        // this.danceability = data.danceability
+        // this.bpm = data.tempo
         
     }
 }
