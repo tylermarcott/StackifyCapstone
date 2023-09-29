@@ -4,7 +4,7 @@
             <img class="img-fluid" src="https://live.staticflickr.com/4119/4830613898_c064479b2a_n.jpg" alt="">
         </div>
         <div class="card bg-dark-grey text-white elevation-5 mt-5">
-            <p class="card-header bg-pink song-title text-center my-2">Song Details: The Good Left Undone</p>
+            <p class="card-header bg-pink song-title text-center my-2">Track Details: The Good Left Undone</p>
             <div class="card-body text-pink song-details-card row justify-content-evenly my-3">
                 <div class="col-12 col-md-5">
                     <p>Artist: Rise Against</p>
