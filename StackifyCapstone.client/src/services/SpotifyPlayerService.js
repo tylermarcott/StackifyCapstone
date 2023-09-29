@@ -1,0 +1,133 @@
+import { logger } from "../utils/Logger.js";
+import { ref } from "vue";
+import { spotifyLoginService } from "./SpotifyLoginService.js";
+
+
+class SpotifyPlayerService{
+
+    player = ref(null)
+
+    // call this onMounted
+    async StartPlayer() {
+      //NOTE: we don't need to call requestToken bc it's already in local storage
+      // await spotifyLoginService.requestToken()
+
+      const script = await document.createElement('script');
+      script.src = "https://sdk.scdn.co/spotify-player.js";
+      script.addEventListener('load', () => {
+      })
+      window.onSpotifyWebPlaybackSDKReady = () => {
+        logger.log('SPOTIFY WEB PLAYBACK READY')
+        this.registerWebPlayback()
+      }
+      document.body.appendChild(script)
+    }
+
+    async registerWebPlayback() {
+      logger.log('registering')
+      const token = localStorage.getItem('access_token');
+      // eslint-disable-next-line no-undef
+      player.value = new Spotify.Player({
+        name: 'Web Playback SDK Quick Start Player',
+        getOAuthToken: cb => { cb(token); },
+        volume: 0.5
+      })
+      this.initializeListeners()
+      // Ready
+    }
+
+    async initializeListeners() {
+      try {
+
+        this.player.value.setName("Mick is da Bomb")
+
+        this.player.value.addListener('ready', ({ device_id }) => {
+          logger.log('Ready with Device ID', device_id);
+        });
+
+        // Not Ready
+        this.player.value.addListener('not_ready', ({ device_id }) => {
+          logger.log('Device ID has gone offline', device_id);
+        });
+
+        await this.player.value.connect()
+        logger.log('connected')
+      } catch (error) {
+        logger.error(error)
+      }
+    }
+
+
+
+      togglePlay() {
+        try {
+          this.player.value.togglePlay().then(() => {
+            logger.log('Toggled playback!');
+          });
+
+          this.player.value.getCurrentState().then(state => {
+            if (!state) {
+              logger.error('User is not playing music through the Web Playback SDK');
+              return;
+            }
+
+            var current_track = state.track_window.current_track;
+            var next_track = state.track_window.next_tracks[0];
+
+            logger.log('Currently Playing', current_track);
+            logger.log('Playing Next', next_track);
+          });
+
+
+        } catch (error) {
+          logger.error(error)
+        }
+      }
+
+
+      // NOTE: we need to be able to call play song with the right track. We need to pass in 'track' as a param to playSong and set const contextUri = track.
+  playSong() {
+    const token = localStorage.getItem('access_token');
+    logger.log(token)
+    const contextUri = 'spotify:album:5ht7ItJgpBH7W6vJ5BqpPr';  //TODO: this is where the track id goes
+    const offsetPosition = 5;
+    const positionMs = 0;
+    const url = `https://api.spotify.com/v1/me/player/play`;    //?device_id=${device}
+
+    const headers = new Headers({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    const body = JSON.stringify({
+      context_uri: contextUri,
+      offset: {
+        position: offsetPosition
+      },
+      position_ms: positionMs,
+      // active_device: device
+    });
+
+    fetch(url, {
+      method: 'PUT',
+      headers: headers,
+      body: body
+    }).then(response => {
+      if (response.ok) {
+        logger.log('Song played successfully.');
+      } else {
+        logger.log('Error playing the song.');
+        return response.json();
+      }
+    }).then(data => {
+      if (data) {
+        logger.log(data); // Log any error message returned by Spotify API
+      }
+    }).catch(error => {
+      logger.error('There was an error:', error);
+    });
+  }
+
+}
+
+export const spotifyPlayerService = new SpotifyPlayerService
