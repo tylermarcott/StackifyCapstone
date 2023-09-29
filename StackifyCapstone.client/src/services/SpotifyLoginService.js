@@ -77,6 +77,8 @@ class SpotifyLoginService{
   async requestToken() {
   const urlParams = new URLSearchParams(window.location.search);
   let code = urlParams.get('code');
+  logger.log('👩‍💻', code)
+  localStorage.setItem('THECODE', code)
 
   let codeVerifier = localStorage.getItem('code_verifier');
 

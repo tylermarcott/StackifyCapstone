@@ -11,8 +11,6 @@
         </div>
     </section>
 
-    
-
     <section class="row landing-splash">
       <div class="col-4">
       </div>
@@ -63,7 +61,7 @@ export default {
   setup() {
     return {}
   },
-  components : { NavBar, Foot, Logo }
+  components : { NavBar, Foot, Logo, }
 }
 </script>
 
