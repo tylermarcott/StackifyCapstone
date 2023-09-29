@@ -1,19 +1,15 @@
 <template>
   <header>
-
-
     <section class="row landing-navigation">
       <div class="col-4 d-flex align-items-center justify-content-center">
-        <Logo class="purple"/>
+        <Logo/>
         <div class="backdrop-circle">
-
         </div>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
         <NavBar />
         </div>
     </section>
-
     <section class="row landing-splash">
       <div class="col-4">
       </div>
@@ -33,7 +29,6 @@
       </div>
     </section>
     <section class="row spacer">
-
     </section>
     <section class="row cta d-flex align-items-center">
       <div class="col-6">
@@ -49,9 +44,7 @@
         </div>  
       </div>
     </section>
-
     <Foot />
-
   </header>
 
 

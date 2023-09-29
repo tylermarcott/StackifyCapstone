@@ -1,11 +1,11 @@
 <template> 
 
     <section class="row landing-footer d-flex">
-    <div class="col-8 footer-links d-flex justify-content-between align-items-end">
+    <div class="col-6 footer-links d-flex justify-content-between align-items-end">
       <!-- //TODO - change Learn More Link  -->
-        <router-link :to="{ name: 'About' }" class="" style="color: #e1289f;"><p> Learn More</p></router-link>
-        <p> <a style="color: #e1289f;" href="https://github.com/tylermarcott/StackifyCapstone">GitHub Repo</a> </p>
-        <p> <a style="color: #e1289f;" href="https://github.com/tylermarcott/StackifyCapstone">Spotify Developer Terms</a> </p>
+        <router-link :to="{ name: 'About' }" class="" style="color: #EA94FF;"><p> Learn More</p></router-link>
+        <p> <a style="color: #EA94FF;" href="https://github.com/tylermarcott/StackifyCapstone">GitHub Repo</a> </p>
+        <p> <a style="color: #EA94FF;" href="https://github.com/tylermarcott/StackifyCapstone">Spotify Developer Terms</a> </p>
     </div>
     </section>
 
@@ -34,7 +34,7 @@ setup() {
   margin-bottom: 5vh; 
   text-decoration: none;
   color:#E1289F;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .footer-link-style{
