@@ -10,6 +10,9 @@
         <NavBar />
         </div>
     </section>
+
+    
+
     <section class="row landing-splash">
       <div class="col-4">
       </div>

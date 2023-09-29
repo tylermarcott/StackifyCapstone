@@ -7,9 +7,9 @@ export class Track {
         this.artist = data.artists.name
         this.track = data.name
         this.popularity = data.popularity
+        this.duration = data.duration_ms
         
         this.key = data.key
-        this.duration = data.duration_ms
         this.valence = data.valence
         this.danceability = data.danceability
         this.bpm = data.tempo
