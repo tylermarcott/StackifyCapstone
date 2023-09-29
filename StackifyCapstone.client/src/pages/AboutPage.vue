@@ -4,19 +4,19 @@
   
   <section class="row landing-navigation">
       <div class="col-4 d-flex align-items-center justify-content-center">
-      <Logo class="purple"/>
+      <Logo class="text-dark-grey"/>
         <div class="backdrop-circle">
 
       </div>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <Navbar />
+      <Navbar class="text-dark-grey"/>
     </div>
   </section>
 
-  <section class="row bg-dark-grey">
+  <section class="row ">
     <div class="col-12 text-center mt-5">
-      <h2 class="p-3 p-title mt-5 mb-0">Our Business</h2>
+      <h2 class="p-3 p-title mt-5 mb-0">Our Project</h2>
     </div>
     <div class="col-12 mb-5">
       <p class="p-3 paragraph my-5">
@@ -86,17 +86,17 @@ export default {
 <style scoped lang="scss">
 .landing-navigation {
   height: 20vh;
-  background-color: #4f4f4f;
+ 
 }
 
 .p-title{
-  background-color: #4f4f4f;
-  color: #eeeeee;
+  background-color:#eeeeee  ;
+  color: #4f4f4f ;
   margin: 30vw
 }
 .paragraph {
-  background-color: #4f4f4f;
-  color: #eeeeee;
+  background-color: #eeeeee;
+  color:  #4f4f4f ;
   margin: 10vw;
   font-size: 1.75rem;
 }
