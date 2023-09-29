@@ -19,5 +19,6 @@ setup() {
   z-index: 5;
   font-size: 5rem;
   margin: 3rem;
+  color: #EA94FF;
 }
 </style>

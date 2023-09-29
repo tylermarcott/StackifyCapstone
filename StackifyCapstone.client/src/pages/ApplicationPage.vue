@@ -2,7 +2,9 @@
   <section class="full-app-view p-0">
     <section class="row app-wrapper">
       <div class="col-3 left-panel p-0">
-        <h2 class="event-title m-0 text-center">Event Title Sample</h2>  
+        <div class="d-flex justify-content-center align-items-center">
+          <h2 class="event-title m-0 text-center w-100">Event Title Sample</h2>  
+        </div>
         <div class="timeblock-list">
           <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
             <h3 class="timeblock-text">Timeblock</h3>
@@ -59,16 +61,44 @@
         </div>
       </div>
       <div class="col-7 center-panel p-0">
-        <div class="main">
-          <form class="d-flex justify-content-center m-2">
-          <input type="string" class="search-bar d-flex justify-content-between"><button class="search-button"><i class="mdi mdi-magnify search-icon"></i></button>
+        <div class="search d-flex justify-content-center align-items-center">
+          <form class="w-100 row">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+              <input class="search-bar"><div class="text-center"><i class="mdi mdi-magnify search-icon"></i></div>
+           </div>
           </form>
-          <div class="main-content d-flex justify-content-center align-items-center">
-            <h2>Main Content</h2>
-          </div>
         </div>
-        <div class="player text-center">
-          <h2>Player</h2>
+        <div class="main-content d-flex justify-content-center align-items-center">
+          <h2>Main Content</h2>
+        </div>
+        <div class="col-12 player d-flex justify-content-center align-items-center">
+          <section class="row">
+            <div class="col-3 devices d-flex justify-content-center align-items-center">
+                <i class="devices-icon mdi mdi-shuffle-variant"></i>
+            </div>
+            <div class="col-6 player-controls d-flex justify-content-center p-0">
+              <button class="previous elevation-3">
+                <i class="mdi mdi-skip-previous"></i>
+              </button>
+              <button class="play elevation-3">
+                <i class="mdi mdi-play"></i>
+                <!-- <i class="mdi mdi-pause"></i> -->
+              </button>
+              <button class="next elevation-3">
+                <i class="mdi mdi-skip-next"></i>
+              </button>
+            </div>
+            <div class="col-3 devices d-flex justify-content-center align-items-center">
+              <i class="devices-icon mdi mdi-devices"></i>
+            </div>
+            <div class="col-12 d-flex justify-content-center align-items-center">
+              <p class="duration-text m-0">2:50</p>
+              <div class="song-duration-slot elevation-5">
+                <div class="song-duration-bar"></div>
+              </div>
+              <p class="duration-text m-0">4:20</p>
+            </div>
+          </section>
         </div>
       </div> 
       <div class="col-2 right-panel p-0 text-center">
@@ -82,29 +112,6 @@
       </div>
     </section>
   </section>
-
-
-
-  <!-- Modal YOU NEED TO ON MOUNTED FUNCTIONS FOR THE MODAL TO WORK IN VUE -->
-  <div class="modal fade" id="activesongmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 
@@ -114,19 +121,9 @@ import { computed, reactive, onMounted } from 'vue';
 
 export default {
   setup(){
-    // onMounted(() => {
-    //   state.modal_active = new bootstrap.Modal('#activeSongModal', {})
-    // })
-    // function openSongModal() {
-    //   state.modal_active.show()
-    // }
-
-    // function closeSongModal() {
-    //   state.modal_active.hide
-    // }
+    
   return { 
-    // openSongModal,
-    // closeSongModal
+
    }
   }
 };
@@ -151,6 +148,7 @@ export default {
 
 .event-title {
   background-color: #4f4f4f;
+  font-size: 1.5rem;
   color: #EA94FF;
   border: solid 8px #242424;
   border-bottom: 0px;
@@ -212,24 +210,27 @@ export default {
   font-size: 1.2rem;
 }
 
+// This is the Center Panel Section (SEARCH, MAIN, PLAYER)
+
 .center-panel {
   height: 100vh;
 }
 
-// This is the Center Panel Section (SEARCH, MAIN, PLAYER)
-.main {
-  height: 80vh;
+input {
+}
+.search {
   background-color: #4f4f4f;
   border: solid 8px #242424;
   border-left: none;
   border-right: none;
+  border-bottom: 0px;
   border-radius: 15px;
+  height: 5vh;
 }
 
 .search-bar {
+  width: 100%;
   background-color: #eeeeee;
-  height: 3vh;
-  width: 80%;
   border-radius: 8px;
   border: none;
 }
@@ -237,6 +238,7 @@ export default {
 .search-icon {
   background-color: #EA94FF;
   width: 40px;
+  border-radius: 8px;
 }
 
 .search-button {
@@ -244,13 +246,23 @@ export default {
   border: none;
 }
 
+
 .main-content {
-  height:73vh;
-  margin: .5rem;
-  border-radius: 15px;
-  border: solid 3px #EA94FF;
+  height: 75vh;
   background-color: #eeeeee;
+  border: solid 8px #242424;
+  border-left: none;
+  border-right: none;
+  border-radius: 15px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
 }
+
+.main-content::-webkit-scrollbar {
+  display: none;
+}
+
 
 .player {
   height: 20vh;
@@ -260,6 +272,59 @@ export default {
   border-left: none;
   border-right: none;
   border-radius: 15px;
+  button {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    margin: 1rem;
+    background-color: #eeeeee;
+    border: none;
+    color: #242424;
+    font-size: 2rem;
+    transition: .3s;
+  }
+
+  button:hover {
+    background-color: #EA94FF;
+  }
+}
+
+.previous {
+  transform: scale(.75);
+}
+
+.play {
+}
+
+.next {
+  transform: scale(.75);
+}
+
+.devices-icon {
+  color: #EA94FF;
+  font-size: 2rem;
+}
+
+.song-duration-slot {
+  height: 1vh;
+  border-radius: 8px;
+  width: 50vw;
+  background-color: #eeeeee;
+  position: relative;
+}
+
+.song-duration-bar {
+  height: 1vh;
+  border-radius: 8px;
+  width: 60%;
+  background-color: #EA94FF;
+  position: absolute;
+}
+
+.duration-text {
+  color: #eeeeee;
+  padding: .5rem;
+  font-size: .75rem;
 }
 
 // This is the Right Panel Section (ACCOUNT, SPACER)

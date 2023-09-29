@@ -29,7 +29,8 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/application',
+    // NOTE: use a bind on the application path to accept additional parameters that are sent in the URL. IF you are having redirect issues, consider using a bind.
+    path: '/:application',
     name: 'Application',
     component: loadPage('ApplicationPage')
   },
