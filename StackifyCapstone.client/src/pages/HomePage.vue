@@ -1,9 +1,11 @@
 <template>
- <header>
+  <header>
+
+
     <section class="row landing-navigation">
       <div class="col-4 d-flex align-items-center justify-content-center">
-        <h2 class="m-5 site-logo purple">Stackify</h2>
-         <div class="backdrop-circle">
+        <Logo class="purple"/>
+        <div class="backdrop-circle">
 
         </div>
       </div>
@@ -11,6 +13,7 @@
         <NavBar />
         </div>
     </section>
+
     <section class="row landing-splash">
       <div class="col-4">
       </div>
@@ -26,7 +29,7 @@
         <h3 class="overview-title my-5">Concept</h3>
       </div>
       <div class="col-6">
-        <p class="overview-body">New concept for how you manage your spotify playlists, something about how it is useful to use timeblocks, gain control over the event, random marketing stuff that makes sense for what we are doing or maybe appeals to someone that might use the app. Potentially event planners and or DJs and stuff like that.</p>
+        <p class="overview-body">Our concept is elegantly straightforward.  Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists with timeblocks effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion.</p>
       </div>
     </section>
     <section class="row spacer">
@@ -38,8 +41,8 @@
       </div>
       <div class="col-6">
         <div class="cta-text">
-          <h3 class="cta-title">Call To Action Title</h3>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere neque voluptatem, assumenda exercitationem impedit mollitia qui quas accusamus id pariatur sed quasi. Mollitia tenetur recusandae iste voluptate, eos tempore dolorem sunt modi voluptates necessitatibus! Quos laborum nam, repellendus quae beatae vitae accusamus labore placeat itaque cumque voluptate dignissimos ab facilis!</p>
+          <h3 class="cta-title">Don't Wait Any Longer</h3>
+          <p>Are you ready to elevate your music game and take your events to the next level? Discover Stackify, the ultimate music application for event planners and amateur DJs. Say goodbye to the hassle of managing music and hello to effortless music curation and playback. Don't miss out on this invaluable tool that's meticulously crafted to cater to your precise requirements. Join the ranks of those who are already using Stackify to seamlessly identify tracks that harmonize beautifully and elevate event ambiance and entertainment quality. </p>
           <router-link :to="{ name: 'Login' }">
             <button class="btn cta-button" >Launch App</button>
           </router-link>
@@ -49,46 +52,28 @@
 
     <Foot />
 
- </header>
+  </header>
 
-  
-  
+
+
 
 </template>
 
 <script>
 import NavBar from '../components/Navbar.vue'
 import Foot from '../components/Foot.vue'
+import Logo from '../components/Logo.vue'
 export default {
   setup() {
     return {}
   },
-  components : { NavBar, Foot }
+  components : { NavBar, Foot, Logo }
 }
 </script>
 
 <style scoped lang="scss">
 
 
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
-}
 
 .spacer {
   height: 20vh;
@@ -128,7 +113,7 @@ export default {
 
 .overview-body {
   color: #eeeeee;
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 
 .cta {
@@ -194,9 +179,5 @@ export default {
   z-index: -1;
 }
 
-.site-logo {
-  z-index: 5;
-  font-size: 5rem;
-  margin: 3rem;
-}
+
 </style>

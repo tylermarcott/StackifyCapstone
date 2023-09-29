@@ -1,22 +1,27 @@
 <template>
 
-<div class="">
+
   
   <section class="row landing-navigation">
-    <div class="col-10 d-flex justify-content-end align-items-center">
+      <div class="col-4 d-flex align-items-center justify-content-center">
+      <Logo class="purple"/>
+        <div class="backdrop-circle">
+
+      </div>
+    </div>
+    <div class="col-6 d-flex justify-content-end align-items-center">
       <Navbar />
     </div>
   </section>
 
   <section class="row bg-dark-grey">
     <div class="col-12 text-center mt-5">
-      <h2 class="p-3 p-title my-0">Our Business</h2>
+      <h2 class="p-3 p-title mt-5 mb-0">Our Business</h2>
     </div>
     <div class="col-12 mb-5">
-      <p class="p-3 paragraph my-5 fs-5">
-      "Stackify is a music application tailored for event planners and amateur DJs.  It sets the stage for effortless music management. With an intuitive interface, it simplifies music selection, curation, and playback, offering dynamic features such as genre-based recommendations and sorting by BPM, Key, or dance-ability. This innovative approach to playlist curation serves as an invaluable tool for seamlessly identifying tracks that harmonize beautifully. Stackify is meticulously crafted to cater to the precise requirements of event organizers and budding DJs, empowering them to effortlessly elevate event ambiance and entertainment quality."
-      <br><br>
-      "Our concept is elegantly straightforward: Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion."
+      <p class="p-3 paragraph my-5">
+      Stackify is a music application tailored for event planners and amateur DJs.  It sets the stage for effortless music management. With an intuitive interface, it simplifies music selection, curation, and playback, offering dynamic features such as genre-based recommendations and sorting by BPM, Key, or dance-ability. This innovative approach to playlist curation serves as an invaluable tool for seamlessly identifying tracks that harmonize beautifully. Stackify is meticulously crafted to cater to the precise requirements of event organizers and budding DJs, empowering them to effortlessly elevate event ambiance and entertainment quality.
+      
       <br><br>
       Languages and tools used: HTML, JavaScript, Vue, NodeJS, Spotify API
       </p>
@@ -60,20 +65,21 @@
     <Foot />
   </section>
 
-  </div>
+
   
 </template>
 
 <script>
 import Navbar from '../components/Navbar.vue'
 import Foot from '../components/Foot.vue'
+import Logo from '../components/Logo.vue'
 export default {
   setup() {
     return {
 
     }
   },
-  components: { Navbar, Foot }
+  components: { Navbar, Foot, Logo }
 }
 </script>
 
@@ -91,12 +97,16 @@ export default {
 .paragraph {
   background-color: #4f4f4f;
   color: #eeeeee;
-  margin: 10vw
+  margin: 10vw;
+  font-size: 1.75rem;
 }
 .bg-dark-grey{
   background-color: #4f4f4f;
 }
 
+.text-dark-grey{
+  color: #4f4f4f
+}
 .text-pink{
   color: #e1289F
 }
@@ -125,6 +135,17 @@ export default {
 
 .body{
   background-color: #4f4f4f;
+}
+
+.backdrop-circle {
+  height: 70vh;
+  width: 70vh;
+  background-color: #e1289f;
+  border-radius: 50%;
+  position: absolute;
+  top: -40vh;
+  left: -10vh;
+  z-index: -1;
 }
 
 </style>
