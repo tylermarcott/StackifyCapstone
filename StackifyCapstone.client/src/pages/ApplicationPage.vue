@@ -163,32 +163,49 @@ import { spotifyLoginService } from "../services/SpotifyLoginService.js";
 import Pop from "../utils/Pop.js";
 import {spotifyApiService} from '../services/SpotifyApiService.js'
 import { logger } from "../utils/Logger.js";
+import { start } from "@popperjs/core";
 
 export default {
   setup(){
     // NOTE: this is the data submitted from the upper search bar to search for a song, album or artist
     const searchData = ref({});
-
-    async function refreshToken(){
-      try {
-        await spotifyLoginService.refreshAccessToken()
-      } catch (error) {
-        Pop.error(error)
+    async function refreshToken() {
+      if (AppState.tokenExpire == null || Date.now() > AppState.tokenExpire) {
+        try {
+          logger.log('Refreshing token..')
+          await spotifyLoginService.refreshAccessToken()
+        } catch (error) {
+          Pop.error(error)
+        }
       }
     }
-    async function startPlayer(){
+    async function startPlayer() {
       try {
         await spotifyPlayerService.StartPlayer()
       } catch (error) {
         Pop.error(error)
       }
     }
-    onMounted(()=>{
-      refreshToken()
+    async function initializePlayer() {
+      if (localStorage.getItem('access_token')) {
+        AppState.accessToken = localStorage.getItem('access_token')
+        AppState.refreshToken = localStorage.getItem('refresh_token')
+        logger.log('Access Token', AppState.accessToken, AppState.refreshToken)
+      }
+      else {
+        try {
+          logger.log(AppState.accessToken)
+          await spotifyLoginService.requestAuthCode()
+        } catch (error) {
+          logger.error(error)
+        }
+      }
       startPlayer()
+    }
+    onMounted(()=>{
+      initializePlayer()
       // NOTE call this function with the track id to load song spotifyPlayerService.loadSong(trackId)
     })
-    
   return {
     searchData,
     tracks: computed(() => AppState.tracks),

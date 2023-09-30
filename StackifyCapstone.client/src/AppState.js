@@ -13,5 +13,9 @@ export const AppState = reactive({
   activeDevice: {},
 
   /** @type {Track[]} */
-  tracks: []
+  tracks: [],
+  authCode: null,
+  accessToken: null,
+  refreshToken: null,
+  tokenExpire: null
 })
