@@ -17,5 +17,7 @@ export const AppState = reactive({
   authCode: null,
   accessToken: null,
   refreshToken: null,
-  tokenExpire: null
+  tokenExpire: null,
+
+  myTimeblocks: null
 })
