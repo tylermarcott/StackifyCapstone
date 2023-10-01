@@ -23,5 +23,6 @@ export const AppState = reactive({
   accessToken: null,
   refreshToken: null,
   tokenExpire: null,
-  myTimeblocks: null
+  myTimeblocks: null,
+  playlists: []
 })
