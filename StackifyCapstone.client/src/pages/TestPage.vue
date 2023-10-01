@@ -10,6 +10,7 @@
   </div>
 </header>
 
+    <!-- NOTE: event create form -->
 <section class="container">
   <div class="row justify-content-center">
     <div class="col-6">
@@ -19,15 +20,43 @@
 </section>
 
 
+<!-- NOTE: getting list of events for logged in user -->
+<section>
+  <div v-for="event in events" :key="event.id" class="col-12 col-md-10 elevation-2 m-2 p-2 card">
+    <EventCard event="event"/>
+  </div>
+</section>
+
+
+
 </template>
 
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, watchEffect } from 'vue';
+import Pop from "../utils/Pop.js";
+import { eventsService } from "../services/EventsService.js";
+import { logger } from "../utils/Logger.js";
 export default {
   setup(){
-  return {  }
+    watchEffect(()=> {
+      getEvents();
+
+
+      async function getEvents(){
+        try {
+          const accountId = AppState.account.id
+          logger.log('we are going to get all events with the following id:', accountId)
+          // await eventsService.getEventsByAccount()
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
+    })
+  return {
+    events: computed(()=> AppState.events)
+    }
   }
 };
 </script>
