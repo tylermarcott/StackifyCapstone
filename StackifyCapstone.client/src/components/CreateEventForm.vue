@@ -21,11 +21,9 @@
 
 
 <script>
-import { AppState } from '../AppState';
 import { ref } from 'vue';
 import Pop from "../utils/Pop.js";
 import {eventsService} from '../services/EventsService.js'
-import { logger } from "../utils/Logger.js";
 export default {
   setup(){
     const eventData = ref({})
