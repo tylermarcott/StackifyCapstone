@@ -45,7 +45,7 @@ export default {
       try {
         await spotifyLoginService.checkExpired()
       } catch (error) {
-        Pop.error(error)
+        return true
       }
     }
     return {

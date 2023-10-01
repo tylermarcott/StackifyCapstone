@@ -39,21 +39,58 @@ class SpotifyPlayerService {
 
   async initializeListeners() {
     try {
-      this.player.value.setName("Mick is da Bomb")
+      this.player.value.setName("Stackify")
       this.player.value.addListener('ready', ({ device_id }) => {
         logger.log('Ready with Device ID', device_id);
+        this.setActiveDevice(device_id)
       });
-
       // Not Ready
       this.player.value.addListener('not_ready', ({ device_id }) => {
         logger.log('Device ID has gone offline', device_id);
       });
-
       await this.player.value.connect()
       logger.log('connected')
       this.getDevices()
     } catch (error) {
       logger.error(error)
+    }
+  }
+
+  async setActiveDevice(deviceId) {
+    try {
+      logger.log('Setting as active device..', deviceId)
+      const bearerToken = localStorage.getItem('access_token')
+      logger.log(bearerToken)
+      const headers = new Headers({
+        Authorization: `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json'
+      });
+      const url = 'https://api.spotify.com/v1/me/player'
+      const body = JSON.stringify({
+        device_ids: [`${deviceId}`],
+        play: true
+      });
+      fetch(url, {
+        method: 'PUT',
+        headers: headers,
+        body: body
+      }).then(response => {
+        if (response.ok) {
+          logger.log('Set the active device as current');
+        } else {
+          logger.log('error setting the device');
+          return response.json();
+        }
+      }).then(data => {
+        if (data) {
+          logger.log(data); // Log any error message returned by Spotify API
+        }
+      }).catch(error => {
+        logger.error('There was an error:', error);
+      });
+      }
+    catch (error) {
+      logger.log(error)
     }
   }
 
@@ -77,6 +114,72 @@ class SpotifyPlayerService {
       });
     } catch (error) {
       logger.error(error)
+    }
+  }
+
+  async playNext() {
+    try {
+      logger.log('Skipping to next track')
+      const bearerToken = localStorage.getItem('access_token')
+      logger.log(bearerToken)
+      const headers = new Headers({
+        Authorization: `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json'
+      });
+      const url = 'https://api.spotify.com/v1/me/player/next'
+      fetch(url, {
+        method: 'POST',
+        headers: headers,
+      }).then(response => {
+        if (response.ok) {
+          logger.log('Skipped Song');
+        } else {
+          logger.log('Could not skip');
+          return response.json();
+        }
+      }).then(data => {
+        if (data) {
+          logger.log(data); // Log any error message returned by Spotify API
+        }
+      }).catch(error => {
+        logger.error('There was an error:', error);
+      });
+    }
+    catch (error) {
+      logger.log(error)
+    }
+  }
+
+  async playPrevious() {
+    try {
+      logger.log('Skipping to previous track')
+      const bearerToken = localStorage.getItem('access_token')
+      logger.log(bearerToken)
+      const headers = new Headers({
+        Authorization: `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json'
+      });
+      const url = 'https://api.spotify.com/v1/me/player/previous'
+      fetch(url, {
+        method: 'POST',
+        headers: headers,
+      }).then(response => {
+        if (response.ok) {
+          logger.log('Skipped Song previous');
+        } else {
+          logger.log('Could not skip back');
+          return response.json();
+        }
+      }).then(data => {
+        if (data) {
+          logger.log(data); // Log any error message returned by Spotify API
+        }
+      }).catch(error => {
+        logger.error('There was an error:', error);
+      });
+    }
+    catch (error) {
+      logger.log(error)
     }
   }
 

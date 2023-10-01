@@ -5,15 +5,15 @@
             <i class="devices-icon mdi mdi-shuffle-variant"></i>
         </div>
         <div class="col-6 player-controls d-flex justify-content-center p-0">
-            <button class="previous elevation-3">
+            <button @click="playPrevious()" class="previous elevation-3">
             <i class="mdi mdi-skip-previous"></i>
             </button>
             <!-- NOTE play button -->
-            <button @click="togglePlay" class="play elevation-3">
+            <button @click="togglePlay()" class="play elevation-3">
             <i class="mdi mdi-play"></i>
             <!-- <i class="mdi mdi-pause"></i> -->
             </button>
-            <button class="next elevation-3">
+            <button @click="playNext()" class="next elevation-3">
             <i class="mdi mdi-skip-next"></i>
             </button>
         </div>
@@ -40,13 +40,27 @@ export default {
 setup() {
   return {
     async togglePlay() {
-        try {
-            await spotifyPlayerService.togglePlay();
-        }
-        catch (error) {
-            Pop.error(error);
-        }
+      try {
+          await spotifyPlayerService.togglePlay();
+      }
+      catch (error) {
+          Pop.error(error);
+      }
     },
+    async playNext() {
+      try {
+        await spotifyPlayerService.playNext()
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+    async playPrevious() {
+      try {
+        await spotifyPlayerService.playPrevious()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
   };
 },
 };
