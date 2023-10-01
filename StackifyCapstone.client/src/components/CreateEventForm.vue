@@ -13,7 +13,7 @@
       </select>
       <div class="mb-3">
         <label for="eventDescription" class="form-label">Event Description</label>
-        <textarea v-model="eventData.description" class="form-control" id="eventDescription" rows="5"></textarea>
+        <textarea v-model="eventData.eventDescription" class="form-control" id="eventDescription" rows="5"></textarea>
       </div>
       <button class="btn btn-dark">Create Event</button>
     </form>
