@@ -19,5 +19,5 @@ export const AppState = reactive({
   refreshToken: null,
   tokenExpire: null,
 
-  myTimeblocks: null
+  myTimeblocks: null,
 })

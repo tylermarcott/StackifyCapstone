@@ -4,7 +4,7 @@
       <div class="col-3 left-panel p-0">
         <section class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
-          <h2 class="event-title m-0 text-center w-100">Event Title Sample</h2> 
+          <EventDropdown/> 
         </div>
         </section>
         <div class="timeblock-list">
@@ -74,6 +74,7 @@ import ActiveSong from '../components/ActiveSong.vue'
 import SongSearchBar from '../components/SongSearchBar.vue';
 import Player from '../components/Player.vue';
 import Profile from '../components/Profile.vue'
+import EventDropdown from '../components/EventDropdown.vue';
 
 export default {
     setup() {
@@ -123,7 +124,7 @@ export default {
             tracks: computed(() => AppState.tracks),
         };
     },
-    components: { SongSearchBar, Player}
+    components: { SongSearchBar, Player, EventDropdown }
 };
 </script>
 
@@ -142,17 +143,6 @@ export default {
 .left-panel {
   height: 100vh;
   background-color: #242424;
-}
-
-.event-title {
-  background-color: #4f4f4f;
-  font-size: 1.5rem;
-  color: #EA94FF;
-  border: solid 8px #242424;
-  border-bottom: 0px;
-  border-radius: 15px;
-  height: 5vh;
-  padding-top: 4px !important;
 }
 
 .timeblock-list {
