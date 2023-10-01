@@ -1,29 +1,40 @@
 <template>
-    <section class="row h-100">
-        <div class="col-4 d-flex align-items-center">
-            <img class="img-fluid active-song-image p-0" src="../assets/img/StackifySVG-cta.svg">
-        </div>
-        <div class="col-8 p-2 d-flex flex-column justify-content-center">
-            <section class="row">
-            <div class="col-6 d-flex flex-column justify-content-center">
-                <p class="song-title m-0"><b>Song Title</b></p>
-                <p class="song-title m-0">Album</p>
-                <p class="song-title m-0">Artist</p>
-            </div>
-            <div class="col-6">
-                <p class="song-title my-2">0:00</p>
-                <p class="song-title m-0">100 BPM</p>
-                </div>
-            </section>
-        </div>
-    </section>
+  <ModalWrapper id="create-event">
+    <template #button>   
+      <section class="row h-100">
+          <div class="col-4 d-flex align-items-center">
+              <img class="img-fluid active-song-image p-0" src="../assets/img/StackifySVG-cta.svg">
+          </div>
+          <div class="col-8 p-2 d-flex flex-column justify-content-center">
+              <section class="row">
+              <div class="col-6 d-flex flex-column justify-content-center">
+                  <p class="song-title m-0"><b>Song Title</b></p>
+                  <p class="song-title m-0">Album</p>
+                  <p class="song-title m-0">Artist</p>
+              </div>
+              <div class="col-6">
+                  <p class="song-title my-2">0:00</p>
+                  <p class="song-title m-0">100 BPM</p>
+                  </div>
+              </section>
+          </div>
+      </section>
+    </template>
+    
+    <template #body>
+    <TrackDetailsModal/>
+    </template>
+  </ModalWrapper>
 </template>
 
 <script>
+import TrackDetailsModal from './TrackDetailsModal.vue';
+
 export default {
-setup() {
-  return {};
-},
+    setup() {
+        return {};
+    },
+    components: { TrackDetailsModal }
 };
 </script>
 
