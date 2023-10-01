@@ -1,11 +1,14 @@
 <template>
+  
     <div class="right-panel-spacer">
         <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
     </div>
+  <div v-if="profile.name">
     <img class="img-fluid profile-picture" :src="profile.picture" alt="account-picture">
     <h2 class="account-text">{{ profile.name }}</h2>
     <router-link :to="{name: 'Account'}"><h2 class="account-text">Account Settings</h2></router-link>
     <h2 class="account-text">Invite Collaborator</h2>
+  </div>
 </template>
 
 

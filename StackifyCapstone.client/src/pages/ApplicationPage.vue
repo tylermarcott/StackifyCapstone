@@ -74,10 +74,19 @@ import ActiveSong from '../components/ActiveSong.vue'
 import SongSearchBar from '../components/SongSearchBar.vue';
 import Player from '../components/Player.vue';
 import Profile from '../components/Profile.vue'
+import { spotifyPlaylistService } from "../services/SpotifyPlaylistService.js";
 
 export default {
     setup() {
         // NOTE: this is the data submitted from the upper search bar to search for a song, album or artist
+        async function getUserPlaylists() {
+          try {
+            logger.log('Fetching User Playlists')
+            await spotifyPlaylistService.getUserPlaylists()
+          } catch (error) {
+            Pop.error(error)
+          }
+        }
         async function refreshToken() {
             if (AppState.tokenExpire == null || Date.now() > AppState.tokenExpire) {
                 try {
@@ -116,6 +125,7 @@ export default {
         }
         onMounted(() => {
             initializePlayer();
+            getUserPlaylists();
             // NOTE call this function with the track id to load song spotifyPlayerService.loadSong(trackId)
         });
         return {
