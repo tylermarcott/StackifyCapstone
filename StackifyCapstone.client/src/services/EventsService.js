@@ -11,6 +11,11 @@ class EventsService {
     const res = await api.post('api/events', eventData)
     AppState.events.push(new Event(res.data))
   }
+
+  async getMyEvents(){
+    const res = await api.get('api/events')
+    AppState.events = res.data.map(event=> new Event(event))
+  }
 }
 
 export const eventsService = new EventsService()
