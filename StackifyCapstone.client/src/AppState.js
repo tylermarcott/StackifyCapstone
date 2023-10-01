@@ -9,15 +9,20 @@ export const AppState = reactive({
 
   /** @type {Device[]} */
   devices: [],
+
   /** @type {Device} */
   activeDevice: {},
 
   /** @type {Track[]} */
   tracks: [],
+
+  /**@type {Event[]} */
+  events: [],
+
   authCode: null,
   accessToken: null,
   refreshToken: null,
   tokenExpire: null,
 
-  myTimeblocks: null,
+  myTimeblocks: null
 })
