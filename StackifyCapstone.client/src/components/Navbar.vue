@@ -16,6 +16,12 @@
                   <h2 class="purple">Application</h2>
                   </router-link>
                 </div>
+
+                <div class="col-4">
+                  <router-link :to="{ name: 'Test' }" class="">
+                  <h2 class="purple">Test Page</h2>
+                  </router-link>
+                </div>
               </section>
           
     

@@ -34,6 +34,11 @@ const routes = [
     name: 'Application',
     component: loadPage('ApplicationPage')
   },
+  {
+    path: '/testpage',
+    name: 'Test',
+    component: loadPage('TestPage'),
+  },
 ]
 
 export const router = createRouter({
