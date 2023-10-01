@@ -2,17 +2,22 @@
     <div class="right-panel-spacer">
         <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
     </div>
-    <img class="img-fluid profile-picture" src="../assets/img/StackifySVG-footer.svg" alt="account-picture">
-    <h2 class="account-text">Sample Name</h2>
-    <h2 class="account-text">Account Settings</h2>
+    <img class="img-fluid profile-picture" :src="profile.picture" alt="account-picture">
+    <h2 class="account-text">{{ profile.name }}</h2>
+    <router-link :to="{name: 'Account'}"><h2 class="account-text">Account Settings</h2></router-link>
     <h2 class="account-text">Invite Collaborator</h2>
 </template>
 
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState";
+
 export default {
     setup(){
-    return {  }
+    return { 
+      profile: computed(() => AppState.account)
+     }
     }
 };
 </script>

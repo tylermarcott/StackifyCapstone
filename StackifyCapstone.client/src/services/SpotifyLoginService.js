@@ -131,6 +131,7 @@ class SpotifyLoginService{
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('refresh_token', data.refresh_token);
             AppState.tokenExpire = Date.now() + data.expires_in * 1000
+            logger.log('Refresh token set in Local Storage')
           } else {
             throw new Error('No access token found')
           }

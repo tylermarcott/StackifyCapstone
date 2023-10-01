@@ -5,7 +5,7 @@
   <section class="row welcome">
     <div class="col-12 text-center welcome-text">
      
-      <h2 class="login-title"><b>Welcome to  <router-link :to="{ name: 'Home' }"> <span class="stackify-accent">Stackify</span></router-link> {{ user.name }}</b></h2>
+      <h2 class="login-title"><b>Welcome to  <router-link :to="{ name: 'Home' }"> <span class="stackify-accent">Stackify</span></router-link> {{ account.name }}</b></h2>
       
       <section class="row my-3 d-flex justify-content-center">
         <div class="col-1">
@@ -14,7 +14,7 @@
       </section>
     </div>
      <div class="col-12 text-center">
-      <h3 class="login-text">Let's get your Spotify Account Connected</h3>
+      <h3 class="login-text">Let's get your Spotify Premium Account Connected</h3>
       <img class="img-fluid spotify-logo p-5 rounded" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="spotify-logo">
       
     </div>

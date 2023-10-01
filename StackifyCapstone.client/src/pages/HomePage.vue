@@ -1,7 +1,7 @@
 <template>
   <header>
     <section class="row landing-navigation">
-      <div class="col-4 d-flex align-items-center justify-content-center">
+      <div class="col-4 d-flex align-items-center">
         <Logo/>
         <div class="backdrop-circle">
         </div>
