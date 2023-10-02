@@ -10,7 +10,7 @@ import { dbContext } from '../db/DbContext'
 async function createAccountIfNeeded(account, user) {
   if (!account) {
     user._id = user.id
-    if(typeof user.name == 'string' && user.name.includes('@')){
+    if (typeof user.name == 'string' && user.name.includes('@')) {
       user.name = user.nickname
     }
     account = await dbContext.Account.create({
@@ -46,6 +46,18 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+  async editAccountDetails(updates, accountId) {
+    const originalDetails = await dbContext.Account.findById(accountId)
+
+    originalDetails.name = updates.name || originalDetails.name
+    originalDetails.picture = updates.picture || originalDetails.picture
+    originalDetails.email = updates.email || originalDetails.email
+
+    await originalDetails.save()
+    return originalDetails
+  }
+
+
   /**
    * Returns a user account from the Auth0 user object
    *
