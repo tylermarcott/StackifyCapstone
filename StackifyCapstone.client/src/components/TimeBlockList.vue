@@ -2,12 +2,20 @@
     <div class="timeblock-list"> 
         <section class="timeblocks-section">
             <div v-for="timeblock in myTimeblocks" :key="timeblock.id">
-                <Timeblock :timeblock="timeblock"/>
+                <TimeBlockCard :timeblock="timeblock"/>
             </div>
         </section>
         <section class="timeblock-imports d-flex-column align-items-center">
             <!-- TODO add the timeblock create model here -->
-            <button class="btn btn-outline-success w-100 my-2">+</button>
+            <ModalWrapper id="create-timeblock">
+              <template #button> 
+                <button class="btn btn-outline-success w-100 my-2">+</button>
+              </template>
+                  <template #body>
+                  <CreateTimeblockForm/>
+              </template>
+          </ModalWrapper>
+            
             <!-- TODO add the all TimeblocksModel here -->
             <button class="btn btn-outline-success w-100">import timeblock</button>
         </section>
@@ -18,10 +26,11 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted, watchEffect } from 'vue';
-import Timeblock from '../components/Timeblock.vue'
+import TimeBlockCard from '../components/TimeBlockCard.vue'
 import Pop from '../utils/Pop';
 import {timeBlocksService} from '../services/TimeBlocksService'
 import { logger } from '../utils/Logger';
+import CreateTimeblockForm from './CreateTimeblockForm.vue';
 export default {
     setup(){
         watchEffect(()=> {
@@ -34,6 +43,9 @@ export default {
                 if(!AppState.account.id){
                     return
                 }
+                if(!AppState.activeEvent){
+                    return
+                }
                 await timeBlocksService.getMyTimeBlocks()
             } catch (error) {
                 Pop.error(error)
@@ -44,7 +56,7 @@ export default {
      }
     },
     
-    components: {Timeblock}
+    components: {TimeBlockCard, CreateTimeblockForm}
 };
 </script>
 

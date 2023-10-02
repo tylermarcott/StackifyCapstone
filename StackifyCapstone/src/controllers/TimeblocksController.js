@@ -15,6 +15,7 @@ export class TimeblocksController extends BaseController {
     async createTimeblock(req, res, next) {
         try {
             const timeblockBody = req.body
+            timeblockBody.ownerId = req.userInfo.id
             const timeblock = await timeblocksService.createTimeblock(timeblockBody)
             res.send(timeblock)
         } catch (error) {
