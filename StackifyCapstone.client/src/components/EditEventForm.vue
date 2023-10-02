@@ -1,5 +1,6 @@
 <template>
-    <form @submit.prevent="createEvent">
+  <div>
+    <form @submit.prevent="editEvent()">
       <div class="mb-3">
         <label for="eventTitle" class="form-label">Event Title</label>
         <input v-model="eventData.title" type="title" class="form-control" id="eventTitle" placeholder="event title" required="true">
@@ -15,34 +16,41 @@
         <label for="eventDescription" class="form-label">Event Description</label>
         <textarea v-model="eventData.eventDescription" class="form-control" id="eventDescription" rows="5" required="true"></textarea>
       </div>
-      <button class="btn btn-dark">Create Event</button>
+      <button class="btn btn-dark">Edit Event</button>
     </form>
+  </div>
+
 </template>
 
 
 <script>
 import { ref } from 'vue';
-import Pop from "../utils/Pop.js";
 import {eventsService} from '../services/EventsService.js'
+import Pop from "../utils/Pop.js";
+import { logger } from "../utils/Logger.js";
+import { AppState } from "../AppState.js";
 export default {
   setup(){
     const eventData = ref({});
     function resetForm() {
       eventData.value = { type: '' }
     }
-  return {
-    eventData,
-    resetForm,
-    async createEvent(){
-      try {
-        await eventsService.createEvent(eventData.value)
-        Pop.success('Event Created!', 'success')
-        resetForm()
-      } catch (error) {
-        Pop.error(error)
+  return { 
+      eventData,
+      resetForm,
+      async editEvent() {
+        try {
+          const eventId = AppState.activeEvent.id
+          const body = eventData.value
+          logger.log('here is our edit body:', body)
+          await eventsService.editEvent(body, eventId)
+          Pop.success('Event Edited!', 'success')
+          resetForm()
+        } catch (error) {
+          Pop.error(error)
+        }
       }
-    }
-    }
+   }
   }
 };
 </script>
