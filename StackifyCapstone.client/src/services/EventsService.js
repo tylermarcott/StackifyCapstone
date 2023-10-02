@@ -12,9 +12,9 @@ class EventsService {
     AppState.events.push(new Event(res.data))
   }
 
-  async getMyEvents(){
-    const res = await api.get('api/events')
-    AppState.events = res.data.map(event=> new Event(event))
+  async getEventsByAccount(accountId) {
+    const res = await api.get(`api/events/?_id=${accountId}`)
+    AppState.events = res.data.map(event => new Event(event))
   }
 }
 
