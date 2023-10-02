@@ -3,6 +3,7 @@ import { logger } from "../utils/Logger.js"
 import { api, spotifyApi } from "./AxiosService.js"
 import { Track } from "../models/Track.js"
 import { ActiveTrack } from "../models/ActiveTrack.js"
+import { ActiveTrackDetails } from "../models/ActiveTrackDetails.js"
 
 
 class SpotifyApiService{
@@ -36,7 +37,14 @@ class SpotifyApiService{
     logger.log(AppState.activeTrack)
   }
 
-
+async getActiveTrackDetails(activeTrackId){
+  const bearerToken = localStorage.getItem('access_token')
+  const url = (`https://api.spotify.com/v1/audio-features/${activeTrackId}`)
+  const res = await spotifyApi.get(url, { headers: { Authorization: `Bearer ${bearerToken}` } })
+  logger.log('Currently Playing Track', res.data)
+  AppState.activeTrackDetails = new ActiveTrackDetails(res.data)
+  logger.log(AppState.activeTrack)
+}
 
 }
 

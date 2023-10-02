@@ -26,6 +26,7 @@ class EventsService {
         if (foundEvent.ownerId != ownerId) throw new Forbidden("You don't own this event")
         foundEvent.title = eventBody.title || foundEvent.title
         foundEvent.eventType = eventBody.eventType || foundEvent.eventType
+        foundEvent.eventDescription = eventBody.eventDescription || eventBody.eventDescription
         await foundEvent.save()
         return foundEvent
     }

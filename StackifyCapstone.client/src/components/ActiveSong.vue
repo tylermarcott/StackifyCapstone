@@ -31,12 +31,15 @@
 import { computed, onMounted } from "vue";
 import { spotifyApiService } from "../services/SpotifyApiService";
 import Pop from "../utils/Pop";
-import TrackDetailsModal from './TrackDetailsModal.vue';
+
 import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
+import { useRoute } from "vue-router";
 
 export default {
     setup() {
+
+      const route = useRoute()
        async function getActiveTrack() {
       try {
         logger.log('getting the active track')
@@ -45,6 +48,16 @@ export default {
         Pop.error(error)
       }
     }
+        async function getActiveTrackDetails(){
+          try {
+            const activeTrackId = route.params.activeTrackId
+            logger.log('getting active track audio features')
+            await spotifyApiService.getActiveTrackDetails(activeTrackId)
+          } catch (error) {
+            Pop.error(error)
+          }
+        }
+
     onMounted(() => {
       // getActiveTrack()
     })

@@ -10,9 +10,17 @@
         <h5>
           {{ event.eventType }}
         </h5>
-        <div @click="editEvent(event.id)" class="text-primary fs-1">
-          <i class="mdi mdi-pencil"></i>
-        </div>
+      
+          <ModalWrapper id="create-event">
+            <template #button> 
+              <div class="text-primary fs-1" @click="setActiveEvent(event.id)">
+                <i class="mdi mdi-pencil"></i>
+              </div>
+            </template>
+              <template #body>
+                <EditEventForm :event="event"/>
+            </template>
+          </ModalWrapper>
       </div>
     </div>
     <div class="row">
@@ -47,19 +55,6 @@ export default {
         Pop.error(error)
       }
     }
-
-    // TODO: have to create a modal that will pop it onclick of edit button. Take data from this form, pass it as body for put request
-
-    async function editEvent(eventId){
-      try {
-        // TODO: add body from modal form for edit
-        await eventsService.editEvent(eventId)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
-
-
   return {
     deleteEvent,
     async setActiveEvent(eventId){
