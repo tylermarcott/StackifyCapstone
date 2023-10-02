@@ -18,8 +18,9 @@
             </button>
         </div>
         <div class="col-3 devices d-flex justify-content-center align-items-center">
-            <i class="devices-icon mdi mdi-devices"></i>
+            <!-- <i class="devices-icon mdi mdi-devices"></i> -->
             <i class="devices-icon mdi mdi-volume-high"></i>
+            <input type="range" :v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
         </div>
         <div class="col-12 d-flex justify-content-center align-items-center">
             <p class="duration-text m-0">2:50</p>
@@ -33,12 +34,16 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import { spotifyPlayerService } from '../services/SpotifyPlayerService';
 import Pop from '../utils/Pop';
+import { logger } from "../utils/Logger";
 
 export default {
 setup() {
+  const volume = ref(0)
   return {
+    volume,
     async togglePlay() {
       try {
           await spotifyPlayerService.togglePlay();
@@ -60,7 +65,16 @@ setup() {
       } catch (error) {
         Pop.error(error)
       }
-    }
+    },
+    async setVolume() {
+      try {
+        logger.log('setting volume..', volume.value)
+        await spotifyPlayerService.setVolume(volume.value)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+
   };
 },
 };
@@ -93,6 +107,17 @@ setup() {
   }
 }
 
+// input[type="range"]::-webkit-slider-runnable-track {
+//   background: #eeeeee;
+//   border-radius: 8px;
+//   color: #EA94FF;
+//   height: 10px;
+// }
+
+// input[type="range"]::-webkit-slider-thumb {
+//   margin-top: -3px;
+//   background-color:#63FAAA;
+// }
 .previous {
   transform: scale(.75);
 }
@@ -126,7 +151,7 @@ setup() {
   height: 1vh;
   border-radius: 8px;
   width: 60%;
-  background-color: #EA94FF;
+  background: #EA94FF;
   position: absolute;
 }
 

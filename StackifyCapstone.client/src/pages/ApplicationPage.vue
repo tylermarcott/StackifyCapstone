@@ -127,6 +127,7 @@ export default {
         onMounted(() => {
             initializePlayer();
             getUserPlaylists();
+            setInterval(this.refresh_token(), 360000);
             // NOTE call this function with the track id to load song spotifyPlayerService.loadSong(trackId)
         });
         return {
