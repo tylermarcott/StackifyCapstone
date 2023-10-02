@@ -100,6 +100,7 @@ class SpotifyPlayerService {
     try {
       this.player.value.togglePlay().then(() => {
         logger.log('Toggled playback!');
+        // NOTE: appstate holder for changing play and pause icons
       });
 
       this.player.value.getCurrentState().then(state => {
@@ -243,6 +244,12 @@ class SpotifyPlayerService {
   async setVolume(volume) {
     await this.changeVolume(volume).then(() => {
     });
+  }
+
+  async changeState(){
+    AppState.isPlaying = !AppState.isPlaying
+    logger.log('is a song playing (changeState fxn):', AppState.isPlaying)
+    return AppState.isPlaying
   }
 
   async changeVolume(volume) {

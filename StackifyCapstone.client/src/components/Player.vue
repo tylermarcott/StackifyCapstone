@@ -10,8 +10,8 @@
             </button>
             <!-- NOTE play button -->
             <button @click="togglePlay()" class="play elevation-3">
-            <i class="mdi mdi-play"></i>
-            <!-- <i class="mdi mdi-pause"></i> -->
+              <i v-if="isPlaying" class="mdi mdi-play"></i>
+              <i v-if="!isPlaying" class="mdi mdi-pause"></i>
             </button>
             <button @click="playNext()" class="next elevation-3">
             <i class="mdi mdi-skip-next"></i>
@@ -34,23 +34,31 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { spotifyPlayerService } from '../services/SpotifyPlayerService';
 import Pop from '../utils/Pop';
 import { logger } from "../utils/Logger";
 import { spotifyApiService } from "../services/SpotifyApiService";
+import { AppState } from "../AppState.js";
 
 export default {
 setup() {
   const volume = ref({
-
   })
+  onMounted(() => AppState.isPlaying = true)
+  async function changeState(){
+      await spotifyPlayerService.changeState()
+      logger.log('is a song playing (changeState fxn):', AppState.isPlaying)
+    }
   return {
+    isPlaying: computed(()=> AppState.isPlaying),
     volume,
+    changeState,
     async togglePlay() {
       try {
           await spotifyPlayerService.togglePlay();
           await spotifyApiService.getActiveTrack()
+          changeState()
       }
       catch (error) {
           Pop.error(error);

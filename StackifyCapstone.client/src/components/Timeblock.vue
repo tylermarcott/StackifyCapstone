@@ -1,14 +1,27 @@
 <template>
-    <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
-        <h3 class="timeblock-text">Timeblock</h3>
-        <h3 class="timeblock-timer">0:00</h3>
+    <div class="timeblock-card row justify-content-between align-items-center elevation-4">
+        <h3 class="timeblock-text col-7">{{ timeblock.title }}</h3>
+        <h3 class="timeblock-timer col-3">{{ timeblock.duration }}</h3>
+        <div class="col-2">
+          <i  v-if="topTimeBlock != timeblock.id" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
+          <i  v-if="bottomTimeBlock != timeblock.id" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
+        </div>
     </div>
 </template>
 
 <script>
+import { computed} from 'vue';
+import { Timeblock } from '../models/Timeblock';
+import { AppState } from '../AppState';
+
 export default {
-setup() {
-  return {};
+  props: {timeblock: {type: Timeblock || Object, required: true}},
+setup(props) {
+  
+  return {
+    topTimeBlock : computed(()=> AppState.myTimeBlocks[0].id),
+    bottomTimeBlock : computed(()=> AppState.myTimeBlocks[AppState.myTimeBlocks.length-1].id),
+  };
 },
 };
 </script>
@@ -34,5 +47,12 @@ setup() {
 
 .timeblock-timer {
   font-size: 1rem;
+}
+
+.change-spot-icon{
+  font-size: 1.75rem;
+}
+.change-spot-icon:hover{
+  color: #EA94FF;
 }
 </style>
