@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-12 d-flex justify-content-between">
         {{ event.eventDescription }}
-        <div @click="deleteEvent" class="text-danger fs-1">
+        <div @click="deleteEvent(event.id)" class="text-danger fs-1">
           <i class="mdi mdi-delete"></i>
         </div>
       </div>
@@ -30,10 +30,23 @@ import { computed, reactive, onMounted } from 'vue';
 import { Event } from "../models/Event.js";
 import { logger } from "../utils/Logger.js";
 import {eventsService} from "../services/EventsService.js"
+import Pop from "../utils/Pop.js";
 export default {
   props: {event: {type: Event || Object, required: true}},
   setup(){
-  return { 
+
+    async function deleteEvent(eventId){
+      try {
+        await eventsService.deleteEvent(eventId)
+        Pop.success('Event deleted!', 'success')
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
+
+  return {
+    deleteEvent,
     async setActiveEvent(eventId){
       await eventsService.setActiveEvent(eventId)
     }

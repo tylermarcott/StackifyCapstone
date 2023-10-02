@@ -33,6 +33,7 @@ export default {
     async createEvent(){
       try {
         await eventsService.createEvent(eventData.value)
+        Pop.success('Event Created!', 'success')
       } catch (error) {
         Pop.error(error)
       }

@@ -23,6 +23,14 @@ class EventsService {
     const activeEvent = AppState.events.find(event => eventId == event.id)
     AppState.activeEvent = activeEvent
   }
+
+  async deleteEvent(eventId){
+    const res = await api.delete(`api/events/${eventId}`)
+    const eventToDelete = AppState.events.findIndex(event => eventId == event.id)
+    AppState.events.splice(eventToDelete, 1)
+
+    return res.data
+  }
 }
 
 export const eventsService = new EventsService()
