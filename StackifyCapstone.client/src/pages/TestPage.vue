@@ -23,7 +23,7 @@
 <!-- NOTE: getting list of events for logged in user -->
 <section>
   <div v-for="event in events" :key="event.id" class="col-12 col-md-10 elevation-2 m-2 p-2 card">
-    <EventCard event="event"/>
+    <EventCard :event="event"/>
   </div>
 </section>
 
@@ -48,7 +48,7 @@ export default {
         try {
           const accountId = AppState.account.id
           logger.log('we are going to get all events with the following id:', accountId)
-          // await eventsService.getEventsByAccount()
+          await eventsService.getEventsByAccount(accountId)
         } catch (error) {
           Pop.error(error)
         }

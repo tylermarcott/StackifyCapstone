@@ -4,12 +4,12 @@
         <label for="eventTitle" class="form-label">Event Title</label>
         <input v-model="eventData.title" type="title" class="form-control" id="eventTitle" placeholder="event title">
       </div>
-      <select v-model="eventData.type" class="form-select mb-3" aria-label="Choose an event">
+      <select v-model="eventData.eventType" class="form-select mb-3" aria-label="Choose an event">
         <option selected>Event Type</option>
-        <option value="Wedding">Wedding</option>
-        <option value="Birthday">Birthday</option>
-        <option value="Club">Club</option>
-        <option value="Party">Party</option>
+        <option value="wedding">Wedding</option>
+        <option value="birthday">Birthday</option>
+        <option value="club">Club</option>
+        <option value="party">Party</option>
       </select>
       <div class="mb-3">
         <label for="eventDescription" class="form-label">Event Description</label>
