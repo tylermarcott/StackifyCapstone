@@ -15,7 +15,6 @@
                   <p class="song-title m-0">{{ activeTrack.artist }}</p>
               </div>
               <div class="col-6">
-                  <p class="song-title my-2">{{ activeTrack.duration }}</p>
                     <p class="song-title my-2">{{ duration }} mins</p>
                   </div>
                 </section>
