@@ -16,7 +16,7 @@ import { AppState } from '../AppState';
 
 export default {
   props: {timeblock: {type: Timeblock || Object, required: true}},
-setup(props) {
+setup() {
   
   return {
     topTimeBlock : computed(()=> AppState.myTimeBlocks[0].id),
