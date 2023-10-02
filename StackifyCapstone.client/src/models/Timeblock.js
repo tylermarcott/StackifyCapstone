@@ -2,6 +2,7 @@
 
 export class Timeblock{
   constructor(data){
+    this.id = data.id
     this.ownerId = data.ownerId
     this.eventId = data.eventId
     this.title = data.title
@@ -10,5 +11,6 @@ export class Timeblock{
     this.isCompleted = data.completed
     this.notes = data.notes
     this.isSilent = data.silent
+    this.position = data.position
   }
 }
