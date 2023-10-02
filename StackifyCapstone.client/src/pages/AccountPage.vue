@@ -14,6 +14,7 @@
             <router-link class="text-center" :to="{ name: 'Application', params: {application: 'application'} }"><i class="home-button mdi mdi-application text-center"></i></router-link>
           </section>
         </div>
+        <div class="col-12">
           <section class="row py-2 text-center justify-content-center">
             <div class="col-6  about">
               <h2 class="welcome-text">{{ account.name }}</h2>
@@ -24,7 +25,7 @@
                 <form @submit.prevent="editAccount()">
                 <div class="col-12 my-5">
                   <label for="name" class="label-text"><b>Name</b></label>
-                  <input class="w-100 rounded my-1" type="text" v-model="name" id="name">
+                  <input name="name" class="w-100 rounded my-1" type="text" v-model="formData.name" id="name">
                 </div>
                 <!-- <div class="col-12 my-5">
                   <label for="bio"><b>Bio</b></label>
@@ -32,13 +33,14 @@
                 </div> -->
                   <div class="col-12 my-5">
                     <label for="imgUrl" class="label-text"><b>Image Url</b></label>
-                  <input class="w-100 rounded my-1" type="url" v-model="picture" id="imgUrl">
+                  <input name="picture" class="w-100 rounded my-1" type="url" v-model="formData.picture" id="imgUrl">
                   <button type="submit" class="connect-button submit-button"><b>Submit</b></button>
                 </div>
                 </form>
               </section>
             </div>
             </section>
+            </div>
             <!-- Modal -->
         <div class="col-6 event-list">
           <h2 class="text-center event-category-text">Event Playlists</h2>

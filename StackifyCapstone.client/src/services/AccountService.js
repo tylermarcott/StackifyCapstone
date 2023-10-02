@@ -1,3 +1,4 @@
+import axios from "axios"
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
@@ -14,8 +15,8 @@ class AccountService {
   }
 
   async editAccount(formData) {
-    logger.log('Editing Account')
-    const res = await api.put('/account', formData)
+    logger.log('Editing Account', formData)
+    const res = await api.put('http://localhost:3000/account', formData)
     AppState.account = new Account(res.data)
   }
 }
