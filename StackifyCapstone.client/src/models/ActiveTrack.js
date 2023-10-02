@@ -1,5 +1,6 @@
 export class ActiveTrack{
   constructor(data) {
+    this.id = data.item.id
     this.name = data.item.name
     this.artist = data.item.artists[0].name
     this.album = data.item.album.name
