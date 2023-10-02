@@ -31,57 +31,34 @@ import { AppState } from "../AppState";
 export default {
     setup() {
 
-        // let key = computed(() => AppState.activeTrackDetails.key)
-        // switch (key.value){
-        //     case 0: 
-        //     key.value = 'C'
-        //     break;
-        //     case 1: 
-        //     key.value = 'C#'
-        //     break;
-        //     case 2: 
-        //     key.value = 'D'
-        //     break;
-        //     case 3: 
-        //     key.value = 'D#'
-        //     break;
-        //     case 4: 
-        //     key.value = 'E'
-        //     break;
-        //     case 5: 
-        //     key.value = 'F'
-        //     break;
-        //     case 6: 
-        //     key.value = 'F#'
-        //     break;
-        //     case 7: 
-        //     key.value = 'G'
-        //     break;
-        //     case 8: 
-        //     key.value = 'G#'
-        //     break;
-        //     case 9: 
-        //     key.value = 'A'
-        //     break;
-        //     case 10: 
-        //     key.value = 'A#'
-        //     break;
-        //     case 12: 
-        //     key.value = 'B'
-        //     break;
-        // }
-
         onMounted(() => {
-            
+        
         })
         return {
+            
             activeTrack: computed(() => AppState.activeTrack),
             activeTrackDetails: computed(() => AppState.activeTrackDetails),
             duration: computed(() => (AppState.activeTrack.duration / 1000 / 60 ).toFixed(2)),
-            key: computed(() => AppState.activeTrackDetails.key ),
-        };
-    },
-};
+            key: computed(()=> 
+                { 
+                if (AppState.activeTrackDetails.key == 0) return 'C'
+                if (AppState.activeTrackDetails.key == 1) return 'C#'
+                if (AppState.activeTrackDetails.key == 2) return 'D'
+                if (AppState.activeTrackDetails.key == 3) return 'D#'
+                if (AppState.activeTrackDetails.key == 4) return 'E'
+                if (AppState.activeTrackDetails.key == 5) return 'F'
+                if (AppState.activeTrackDetails.key == 6) return 'F#'
+                if (AppState.activeTrackDetails.key == 7) return 'G'
+                if (AppState.activeTrackDetails.key == 8) return 'G#'
+                if (AppState.activeTrackDetails.key == 9) return 'A'
+                if (AppState.activeTrackDetails.key == 10) return 'A#'
+                if (AppState.activeTrackDetails.key == 11) return 'B'
+                return 'Unknown Key'
+                })
+            }
+        }
+    };
+
 </script>
 
 
