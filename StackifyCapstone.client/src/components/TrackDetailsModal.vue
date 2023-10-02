@@ -1,20 +1,20 @@
 <template>
     
     <section v-if="activeTrackDetails" class="bg-dark-grey modal-active-song ">
-        <div class="p-5 pb-0 d-flex justify-content-center align-items-center">
-            <img class="img-fluid" :src="activeTrack.picture" alt="">
+        <div class="p-5 pb-0 d-flex justify-content-center align-items-center ">
+            <img class="album-cover img-fluid" :src="activeTrack.picture" alt="">
         </div>
         <div class="card bg-dark-grey text-white elevation-5 mt-5">
             <p class="card-header bg-pink song-title text-center my-2">Track Details: {{ activeTrack.name}}</p>
             <div class="card-body text-pink song-details-card row justify-content-evenly my-3">
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-md-6">
                     <p>Artist: {{ activeTrack.artist }}</p>
                     <p>Album: {{ activeTrack.album}}</p>
                     <p>Year: {{ activeTrack.year }}</p>
-                    <p>Key: {{ activeTrackDetails.key }}</p>
+                    <p>Key: {{ key }}</p>
                     <p>Duration: {{ duration }} mins </p>
                 </div>
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-md-6">
                     <p>Valence: {{ activeTrackDetails.valence }}</p>
                     <p>Dance-ability: {{ activeTrackDetails.danceability }}</p>
                     <p>BPM: {{ activeTrackDetails.bpm }}</p>
@@ -27,31 +27,69 @@
 
 <script>
 import { computed, onMounted } from "vue";
-import { spotifyApiService } from "../services/SpotifyApiService";
-import Pop from "../utils/Pop";
-
-import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 export default {
     setup() {
 
+        // let key = computed(() => AppState.activeTrackDetails.key)
+        // switch (key.value){
+        //     case 0: 
+        //     key.value = 'C'
+        //     break;
+        //     case 1: 
+        //     key.value = 'C#'
+        //     break;
+        //     case 2: 
+        //     key.value = 'D'
+        //     break;
+        //     case 3: 
+        //     key.value = 'D#'
+        //     break;
+        //     case 4: 
+        //     key.value = 'E'
+        //     break;
+        //     case 5: 
+        //     key.value = 'F'
+        //     break;
+        //     case 6: 
+        //     key.value = 'F#'
+        //     break;
+        //     case 7: 
+        //     key.value = 'G'
+        //     break;
+        //     case 8: 
+        //     key.value = 'G#'
+        //     break;
+        //     case 9: 
+        //     key.value = 'A'
+        //     break;
+        //     case 10: 
+        //     key.value = 'A#'
+        //     break;
+        //     case 12: 
+        //     key.value = 'B'
+        //     break;
+        // }
+
         onMounted(() => {
-       
+            
         })
         return {
             activeTrack: computed(() => AppState.activeTrack),
             activeTrackDetails: computed(() => AppState.activeTrackDetails),
-            duration : computed(() =>AppState.activeTrack.duration / 1000 / 60 ),
+            duration: computed(() => (AppState.activeTrack.duration / 1000 / 60 ).toFixed(2)),
+            key: computed(() => AppState.activeTrackDetails.key ),
         };
     },
 };
 </script>
 
 
+
 <style lang="scss" scoped>
 .album-cover {
-    height: 50%;
-    width: 50%;
+    height: 300px;
+    width: 300px;
     object-fit: contain;
     object-position: center;
 }
