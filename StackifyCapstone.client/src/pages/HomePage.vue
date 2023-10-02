@@ -1,6 +1,6 @@
 <template>
   <header>
-    <section class="row landing-navigation">
+    <section class="row d-flex landing-navigation">
       <div class="col-4 d-flex justify-content-center align-items-center">
         <Logo/>
         <div class="backdrop-circle">

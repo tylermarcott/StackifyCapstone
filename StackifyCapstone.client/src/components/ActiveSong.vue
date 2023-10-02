@@ -6,17 +6,17 @@
               <img class="img-fluid active-song-image p-0" :src="activeTrack.picture">
           </div>
           <div class="col-8 p-2 d-flex flex-column justify-content-center">
-              <section class="row">
+            <section class="row">
               <div class="col-6 d-flex flex-column justify-content-center">
                   <p class="song-title m-0"><b>{{ activeTrack.name }}</b></p>
                   <p class="song-title m-0">{{ activeTrack.album }}</p>
                   <p class="song-title m-0">{{ activeTrack.artist }}</p>
               </div>
               <div class="col-6">
-                  <p class="song-title my-2">{{ activeTrack.duration }}</p>
-                  <p class="song-title m-0">100 BPM</p>
-                  </div>
-                </section>
+                <p class="song-title my-2">{{ activeTrack.duration }}</p>
+                <p class="song-title m-0">100 BPM</p>
+              </div>
+            </section>
           </div>
       </section>
     </template>

@@ -7,7 +7,6 @@
             open {{ id }} modal
         </slot>
     </div>
-
     <div class="modal fade" :id="id" tabindex="-1" data-bs-keyboard="false" role="dialog"
         aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
@@ -26,8 +25,6 @@
         </div>
     </div>
 </template>
-
-
 <script>
 
 export default {
@@ -41,4 +38,9 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modal-wrapper {
+    background-color: #4f4f4f;
+    padding: 0px;
+}
+</style>
