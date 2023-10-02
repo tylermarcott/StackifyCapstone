@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-dark-grey">
+    <section class="bg-dark-grey modal-active-song ">
         <div class="p-5 pb-0 d-flex justify-content-center align-items-center">
             <img class="img-fluid" src="https://live.staticflickr.com/4119/4830613898_c064479b2a_n.jpg" alt="">
         </div>
@@ -69,4 +69,9 @@ export default {
     color: #E1289F;
     font-size: 1.75rem;
 }
+
+.modal-active-song{
+    cursor: default;
+}
+
 </style>

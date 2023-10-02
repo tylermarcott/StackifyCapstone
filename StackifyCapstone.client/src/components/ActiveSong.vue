@@ -1,7 +1,7 @@
 <template>
   <ModalWrapper id="create-event">
-    <template #button>   
-      <section class="row h-100">
+  <template #button>   
+    <section class="row h-100">
           <div class="col-4 d-flex align-items-center">
               <img class="img-fluid active-song-image p-0" src="../assets/img/StackifySVG-cta.svg">
           </div>
@@ -11,30 +11,35 @@
                   <p class="song-title m-0"><b>Song Title</b></p>
                   <p class="song-title m-0">Album</p>
                   <p class="song-title m-0">Artist</p>
-              </div>
-              <div class="col-6">
+                </div>
+                <div class="col-6">
                   <p class="song-title my-2">0:00</p>
                   <p class="song-title m-0">100 BPM</p>
                   </div>
-              </section>
+                </section>
           </div>
       </section>
     </template>
     
     <template #body>
-    <TrackDetailsModal/>
+      <TrackDetailsModal/>
     </template>
   </ModalWrapper>
 </template>
 
 <script>
-import TrackDetailsModal from './TrackDetailsModal.vue';
+import { computed } from 'vue';
+
+import { AppState } from '../AppState'
 
 export default {
     setup() {
-        return {};
+        return {
+          current_song: computed(() => AppState.current_song),
+
+        };
     },
-    components: { TrackDetailsModal }
+    
 };
 </script>
 
