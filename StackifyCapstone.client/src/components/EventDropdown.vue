@@ -1,5 +1,5 @@
 <template>
-    <h2 class="event-title selectable m-0 text-center w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent ? activeEvent.title : "Select An Event"}}</h2>
+    <h2 class="event-title selectable text-center mb-0 w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent ? activeEvent.title : "Select An Event"}}</h2>
     <ul class="dropdown-menu col-3 bg-dark">
         <li v-for="event in myEvents" :key="event.id">
             <h2 @click="setActiveEvent(event)" class="event-title selectable text-center">{{ event.title }}</h2>
@@ -13,6 +13,7 @@ import { AppState } from '../AppState';
 import { computed, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
 import {eventsService} from '../services/EventsService'
+import {Event} from '../models/Event.js'
 export default {
     setup(){
         
@@ -54,5 +55,16 @@ export default {
   border-radius: 15px;
   height: 5vh;
   padding-top: 4px !important;
+}
+
+.add-button {
+  background-color: #63FAAA ;
+  border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  margin-right: 12px;
+  font-size: 30px;
+  transition: .1s;
+  padding: 4px;
 }
 </style>

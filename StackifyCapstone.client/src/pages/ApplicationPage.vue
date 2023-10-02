@@ -3,8 +3,17 @@
     <section class="row app-wrapper">
       <div class="col-3 left-panel p-0">
         <section class="row">
-        <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center align-items-end">
           <EventDropdown/> 
+          <ModalWrapper id="create-event">
+              <!-- FIXME: formatting is off for this compared to the item to the left of it. -->
+              <template #button> 
+                      <i class="mdi mdi-plus add-button"></i>
+              </template>
+                  <template #body>
+                  <CreateEventForm/>
+              </template>
+          </ModalWrapper>
         </div>
         </section>
         <TimeBlockList/>
@@ -175,6 +184,16 @@ input {
 //   height: 5vh;
 // }
 
+.add-button {
+  background-color: #63FAAA ;
+  border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  margin-right: 12px;
+  font-size: 27px;
+  transition: .1s;
+  padding: 4px;
+}
 
 
 .main-content {
