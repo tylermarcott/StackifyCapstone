@@ -28,20 +28,21 @@
         -->
         <SongSearchBar/>
 
-        <div class="main-content d-flex justify-content-center align-items-center">
+        <div class="main-content row d-flex justify-content-center align-items-center container">
           <!-- NOTE use a row on the search songs component-->
-          <!-- <div v-if>
-            search songs
-            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 create-track-card">
-              <TrackCard :track="track"/>
-            </div>
+
+          <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 song-card">
+            <TrackCard :track="track"/>
           </div>
-          <div v-else>
+
+
+          
+          <!-- <div v-else>
             active Timeblock
-          </div> -->
+          </div>
 
 
-          <h2>Main Content</h2>
+          <h2>Main Content</h2> -->
 
         </div>
         <Player/>
@@ -133,6 +134,7 @@ export default {
         return {
             tracks: computed(() => AppState.tracks),
             activeTrack: computed(() => AppState.activeTrack)
+            
         };
     },
     components: { SongSearchBar, Player, EventDropdown, TimeBlockList }
@@ -212,6 +214,12 @@ input {
   display: none;
 }
 
+.song-card{
+  padding: 0.5em;
+  background-color: #4F4F4F;
+  color: #FFFFFF;
+  font-size: 18px;
+}
 
 // This is the Right Panel Section (ACCOUNT, SPACER)
 .right-panel {

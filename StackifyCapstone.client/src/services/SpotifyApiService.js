@@ -11,8 +11,6 @@ class SpotifyApiService{
     const bearerToken = localStorage.getItem('access_token')
     const res = await spotifyApi.get("https://api.spotify.com/v1/tracks/11dFghVXANMlKmJXsNCbNl", { headers: { Authorization: `Bearer ${bearerToken}` } })
     logger.log('here is our track:', res.data)
-    // this.playSong()
-    // this.getDevice()
   }
 
 // TODO: ok, so we have to find a way to append + between the user's search. 
