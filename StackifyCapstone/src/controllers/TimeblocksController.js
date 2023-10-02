@@ -26,9 +26,9 @@ export class TimeblocksController extends BaseController {
 
     async editTimeblock(req, res, next) {
         try {
-            const updates = req.body
-            const timeblockId = req.params.timeblockId
-            const editedTimeblock = await timeblocksService.editTimeblock(timeblockId, updates, req.ownerInfo.id)
+            let updates = req.body
+            updates.ownerId = req.userInfo.id
+            const editedTimeblock = await timeblocksService.editTimeblock(req.params.timeblockId, updates, updates.ownerId)
             res.send(editedTimeblock)
         } catch (error) {
             next(error)

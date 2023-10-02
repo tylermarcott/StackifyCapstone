@@ -3,8 +3,8 @@
         <h3 class="timeblock-text col-7">{{ timeblock.title }}</h3>
         <h3 class="timeblock-timer col-3">{{ timeblock.duration }}</h3>
         <div class="col-2">
-          <i  v-if="topTimeBlock != timeblock.id" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
-          <i  v-if="bottomTimeBlock != timeblock.id" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
+          <i v-if="topTimeBlock != timeblock.id" @click="moveTimeblock('up')" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
+          <i v-if="bottomTimeBlock != timeblock.id" @click="moveTimeblock('down')" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
         </div>
     </div>
 </template>
@@ -13,14 +13,24 @@
 import { computed} from 'vue';
 import { Timeblock } from '../models/Timeblock';
 import { AppState } from '../AppState';
+import { timeBlocksService } from '../services/TimeBlocksService';
+import Pop from '../utils/Pop';
 
 export default {
   props: {timeblock: {type: Timeblock || Object, required: true}},
-setup() {
+setup(props) {
   
   return {
     topTimeBlock : computed(()=> AppState.myTimeBlocks[0].id),
     bottomTimeBlock : computed(()=> AppState.myTimeBlocks[AppState.myTimeBlocks.length-1].id),
+
+    async moveTimeblock(upOrDown){
+      try {
+        await timeBlocksService.moveTimeblock(props.timeblock, upOrDown)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
   };
 },
 };
