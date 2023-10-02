@@ -1,63 +1,89 @@
 <template>
-  <section v-if="account.name" class="row account-wrapper p-2">
-    <div class="col-12 landing-navigation landing-navigation d-flex justify-content-center align-items-center">
-      <section class="row">
-       <h2 class="settings-title text-center">Account Settings</h2>
-         <router-link class="text-center" :to="{ name: 'Application', params: {application: 'application'} }"><i class="home-button mdi mdi-application text-center"></i></router-link>
+    <!-- <ModalWrapper id="edit-account">
+      <template #button> 
+        
+      </template>
+      <template #body>
+        <TrackDetailsModal/>
+      </template>
+      </ModalWrapper>  -->
+      <section v-if="account.name" class="row account-wrapper p-2">
+        <div class="col-12 landing-navigation landing-navigation d-flex justify-content-center align-items-center">
+          <section class="row">
+          <h2 class="settings-title text-center">Account Settings</h2>
+            <router-link class="text-center" :to="{ name: 'Application', params: {application: 'application'} }"><i class="home-button mdi mdi-application text-center"></i></router-link>
+          </section>
+        </div>
+          <section class="row py-2 text-center justify-content-center">
+            <div class="col-6  about">
+              <h2 class="welcome-text">{{ account.name }}</h2>
+              <img class="rounded" :src="account.picture" alt="" />
+              <p class="email-text">{{ account.email }}</p>
+              <button type="button" @click="toggleCollapseForm()" class="connect-button elevation-3"><b>Edit Account</b></button>
+              <section class="row" id="edit-form" hidden>
+                <form @submit.prevent="editAccount()">
+                <div class="col-12 my-5">
+                  <label for="name" class="label-text"><b>Name</b></label>
+                  <input class="w-100 rounded my-1" type="text" v-model="name" id="name">
+                </div>
+                <!-- <div class="col-12 my-5">
+                  <label for="bio"><b>Bio</b></label>
+                  <textarea class="w-100 rounded my-2" type="text" v-model="bio" id="bio"></textarea>
+                </div> -->
+                  <div class="col-12 my-5">
+                    <label for="imgUrl" class="label-text"><b>Image Url</b></label>
+                  <input class="w-100 rounded my-1" type="url" v-model="picture" id="imgUrl">
+                  <button type="submit" class="connect-button submit-button"><b>Submit</b></button>
+                </div>
+                </form>
+              </section>
+            </div>
+            </section>
+            <!-- Modal -->
+        <div class="col-6 event-list">
+          <h2 class="text-center event-category-text">Event Playlists</h2>
+          <div v-for="playlist in playlists" :key="playlist.id">
+            <section class="row m-1" >
+            <div class="text-center event-card elevation-5" :playlist="playlist">
+              <div class="col-12 event-title">
+                <b>{{ playlist.name }}</b>
+              </div>
+              <p>Songs: {{ playlist.trackCount }}</p>
+              <p>{{ playlist.description }}</p>
+            </div>
+            </section>
+          </div>
+        </div>
+        <div class="col-6 event-list">
+          <h2 class="text-center event-category-text">Spotify Playlists</h2>
+          <div v-for="playlist in playlists" :key="playlist.id">
+            <section class="row m-1" >
+            <div class="text-center event-card elevation-5" :playlist="playlist">
+              <div class="col-12 event-title">
+                <b>{{ playlist.name }}</b>
+              </div>
+              <div class="col-12">
+                <p>Songs: {{ playlist.trackCount }}</p>
+                <p>{{ playlist.description }}</p>
+              </div>
+            </div>
+            </section>
+          </div>
+        </div>
       </section>
     
-    </div>
-      <section class="row py-2 text-center justify-content-center">
-        <div class="col-6  about">
-          <h2 class="welcome-text">{{ account.name }}</h2>
-        <img class="rounded" :src="account.picture" alt="" />
-        <p class="email-text">{{ account.email }}</p>
-        
-        <button type="button" data-toggle="collapse" data-target="#editAccount" aria-expanded="false" aria-controls="collapseExample" class="connect-button elevation-3"><b>Edit Account</b></button>
-        </div>
-      </section>
- 
-    <div class="col-6 event-list">
-      <h2 class="text-center event-category-text">Event Playlists</h2>
-      <div v-for="playlist in playlists" :key="playlist.id">
-        <section class="row m-1" >
-        <div class="text-center event-card elevation-5" :playlist="playlist">
-          <div class="col-12 event-title">
-            <b>{{ playlist.name }}</b>
-          </div>
-          <p>Songs: {{ playlist.trackCount }}</p>
-          <p>{{ playlist.description }}</p>
-        </div>
-        </section>
-      </div>
-    </div>
-    <div class="col-6 event-list">
-      <h2 class="text-center event-category-text">Spotify Playlists</h2>
-      <div v-for="playlist in playlists" :key="playlist.id">
-        <section class="row m-1" >
-        <div class="text-center event-card elevation-5" :playlist="playlist">
-          <div class="col-12 event-title">
-            <b>{{ playlist.name }}</b>
-          </div>
-          <div class="col-12">
-            <p>Songs: {{ playlist.trackCount }}</p>
-            <p>{{ playlist.description }}</p>
-          </div>
-        </div>
-        </section>
-      </div>
-    </div>
-  </section>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { AppState } from '../AppState';
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService";
+import { accountService } from "../services/AccountService";
 export default {
   setup() {
+    const formData = ref({})
     async function getUserPlaylists() {
       try {
         logger.log('Fetching User Playlists')
@@ -70,8 +96,26 @@ export default {
       getUserPlaylists()
     })
     return {
+      formData,
       account: computed(() => AppState.account),
-      playlists: computed(() => AppState.playlists)
+      playlists: computed(() => AppState.playlists),
+      toggleCollapseForm() {
+        let form = document.getElementById('edit-form')
+        if(form.attributes.hidden){
+          form.removeAttribute('hidden')
+
+        }
+        else {
+          form.setAttribute('hidden', '')
+        }
+      },
+      async editAccount() {
+        try {
+          await accountService.editAccount(formData.value)
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
     }
   }
 }
@@ -89,6 +133,15 @@ export default {
   background-color: #2f2f2f;
 }
 a {
+}
+
+.modal-wrapper {
+  background-color: #4f4f4f;
+  width: 100%;
+}
+
+#edit-form {
+  transition: .5s;
 }
 img {
   max-width: 100px;
@@ -114,7 +167,15 @@ img {
   border: none;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
 
+.submit-button {
+  background-color: #63FAAA;
+  margin-bottom: 0px;
+}
+
+.label-text {
+  color: #eeeeee;
 }
 .connect-button:hover {
   color: #4f4f4f;
