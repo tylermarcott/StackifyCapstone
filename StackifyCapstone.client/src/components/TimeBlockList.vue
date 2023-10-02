@@ -34,6 +34,9 @@ export default {
                 if(!AppState.account.id){
                     return
                 }
+                if(!AppState.activeEvent){
+                    return
+                }
                 await timeBlocksService.getMyTimeBlocks()
             } catch (error) {
                 Pop.error(error)
