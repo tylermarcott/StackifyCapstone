@@ -1,7 +1,8 @@
 <template>
-    <section class="bg-dark-grey modal-active-song ">
+    
+    <section v-if="activeTrackDetails" class="bg-dark-grey modal-active-song ">
         <div class="p-5 pb-0 d-flex justify-content-center align-items-center">
-            <img class="img-fluid" src="https://live.staticflickr.com/4119/4830613898_c064479b2a_n.jpg" alt="">
+            <img class="img-fluid" :src="activeTrack.picture" alt="">
         </div>
         <div class="card bg-dark-grey text-white elevation-5 mt-5">
             <p class="card-header bg-pink song-title text-center my-2">Track Details: {{ activeTrack.name}}</p>
@@ -9,15 +10,15 @@
                 <div class="col-12 col-md-5">
                     <p>Artist: {{ activeTrack.artist }}</p>
                     <p>Album: {{ activeTrack.album}}</p>
-                    <p>Year: 2006</p>
-                    <p>Key: C# Minor</p>
-                    <p>Duration: 3:01 </p>
+                    <p>Year: {{ activeTrack.year }}</p>
+                    <p>Key: {{ activeTrackDetails.key }}</p>
+                    <p>Duration: {{ duration }} mins </p>
                 </div>
                 <div class="col-12 col-md-5">
-                    <p>Valence: 52</p>
-                    <p>Dance-ability: 18</p>
-                    <p>BPM: 197</p>
-                    <p>Popularity: 60</p>
+                    <p>Valence: {{ activeTrackDetails.valence }}</p>
+                    <p>Dance-ability: {{ activeTrackDetails.danceability }}</p>
+                    <p>BPM: {{ activeTrackDetails.bpm }}</p>
+                    <p>Popularity: {{ activeTrack.popularity }}</p>
                 </div>
             </div>
         </div>
@@ -33,19 +34,14 @@ import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 export default {
     setup() {
-        async function getActiveTrack() {
-            try {
-                logger.log('getting the active track')
-                await spotifyApiService.getActiveTrack()
-            } catch (error) {
-                Pop.error(error)
-            }
-        }
+
         onMounted(() => {
-            // getActiveTrack()
+       
         })
         return {
-            activeTrack: computed(() => AppState.activeTrack)
+            activeTrack: computed(() => AppState.activeTrack),
+            activeTrackDetails: computed(() => AppState.activeTrackDetails),
+            duration : computed(() =>AppState.activeTrack.duration / 1000 / 60 ),
         };
     },
 };

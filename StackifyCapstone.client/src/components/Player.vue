@@ -92,7 +92,6 @@ setup() {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .player {
   height: 20vh;
