@@ -1,13 +1,4 @@
 <template>
-  <!-- <section class="row landing-navigation">
-    <div class="col-4 d-flex justify-content-center align-items-center">
-      <Logo/>
-       <div class="backdrop-circle"></div>
-    </div>
-    <div class="col-6 d-flex justify-content-end align-items-center">
-      <Navbar/>
-      </div>
-  </section> -->
   <section v-if="account.name" class="row account-wrapper p-2">
     <div class="col-12 landing-navigation landing-navigation d-flex justify-content-center align-items-center">
       <section class="row">
@@ -16,20 +7,21 @@
       </section>
     
     </div>
-    <div class="col-12 py-2 about text-center">
-      <h2 class="welcome-text">{{ account.name }}</h2>
-      <img class="rounded" :src="account.picture" alt="" />
-      <p class="email-text">{{ account.email }}</p>
-      <button type="button" data-toggle="collapse" data-target="#editAccount" aria-expanded="false" aria-controls="collapseExample" class="connect-button elevation-3"><b>Edit Account</b></button>
-      <div>
-  </div>
-    </div>
+      <section class="row py-2 text-center justify-content-center">
+        <div class="col-6  about">
+          <h2 class="welcome-text">{{ account.name }}</h2>
+        <img class="rounded" :src="account.picture" alt="" />
+        <p class="email-text">{{ account.email }}</p>
+        
+        <button type="button" data-toggle="collapse" data-target="#editAccount" aria-expanded="false" aria-controls="collapseExample" class="connect-button elevation-3"><b>Edit Account</b></button>
+        </div>
+      </section>
  
     <div class="col-6 event-list">
       <h2 class="text-center event-category-text">Event Playlists</h2>
       <div v-for="playlist in playlists" :key="playlist.id">
         <section class="row m-1" >
-        <div class="text-center event-card" :playlist="playlist">
+        <div class="text-center event-card elevation-5" :playlist="playlist">
           <div class="col-12 event-title">
             <b>{{ playlist.name }}</b>
           </div>
@@ -43,7 +35,7 @@
       <h2 class="text-center event-category-text">Spotify Playlists</h2>
       <div v-for="playlist in playlists" :key="playlist.id">
         <section class="row m-1" >
-        <div class="text-center event-card" :playlist="playlist">
+        <div class="text-center event-card elevation-5" :playlist="playlist">
           <div class="col-12 event-title">
             <b>{{ playlist.name }}</b>
           </div>
@@ -86,10 +78,18 @@ export default {
 </script>
 
 <style scoped>
+
+.landing-navigation {
+  height: 15vh;
+  background-color: #4f4f4f;
+  border-radius: 15px;
+ 
+}
 .account-wrapper {
   background-color: #2f2f2f;
 }
-
+a {
+}
 img {
   max-width: 100px;
 }
@@ -102,7 +102,7 @@ img {
 .email-text {
   font-size: 2rem;
   margin: 2rem 1rem;
-  color: #63FAAA;
+  color: #EA94FF;
 }
 
 .connect-button {
@@ -129,7 +129,8 @@ img {
 }
 
 .settings-title {
-  color:#EA94FF;
+  font-size: 3rem;
+  color:#63FAAA;
 }
 
 .event-card {
@@ -166,23 +167,7 @@ img {
     border-radius: 15px;
   }
 
-.backdrop-circle {
-  height: 70vh;
-  width: 70vh;
-  background-color: #4f4f4f;
-  border-radius: 50%;
-  position: absolute;
-  top: -40vh;
-  left: -10vh;
-  z-index: -1;
-}
 
-.landing-navigation {
-  height: 10vh;
-  background-color: #4f4f4f;
-  border-radius: 15px;
- 
-}
 
 
 </style>

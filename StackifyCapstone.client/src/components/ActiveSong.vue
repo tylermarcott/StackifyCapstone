@@ -1,5 +1,5 @@
 <template>
-  <ModalWrapper id="create-event">
+  <ModalWrapper id="active-song">
     <template #button>   
       <section @click="getActiveTrack()" v-if="activeTrack" class="row h-100">
           <div class="col-4 d-flex align-items-center">
