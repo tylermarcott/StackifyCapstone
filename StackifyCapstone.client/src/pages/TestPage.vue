@@ -19,6 +19,11 @@
   </div>
 </section>
 
+<h3>Song card</h3>
+<section>
+  <SongCardComponent/>
+</section>
+
 
 <!-- NOTE: getting list of events for logged in user -->
 <section>
