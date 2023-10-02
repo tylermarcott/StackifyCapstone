@@ -35,15 +35,17 @@ class SpotifyApiService{
     logger.log('Currently Playing Track', res.data)
     AppState.activeTrack = new ActiveTrack(res.data)
     logger.log(AppState.activeTrack)
+    return AppState.activeTrack.id
   }
 
-async getActiveTrackDetails(activeTrackId){
+async getActiveTrackDetails(id){
   const bearerToken = localStorage.getItem('access_token')
-  const url = (`https://api.spotify.com/v1/audio-features/${activeTrackId}`)
+  logger.log('this is the activeTrackId', id)
+  const url = (`https://api.spotify.com/v1/audio-features/${id}`)
   const res = await spotifyApi.get(url, { headers: { Authorization: `Bearer ${bearerToken}` } })
-  logger.log('Currently Playing Track', res.data)
+  logger.log('Currently Playing Track Details', res.data)
   AppState.activeTrackDetails = new ActiveTrackDetails(res.data)
-  logger.log(AppState.activeTrack)
+  logger.log(AppState.activeTrackDetails)
 }
 
 }

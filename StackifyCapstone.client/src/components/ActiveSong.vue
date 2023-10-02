@@ -1,7 +1,7 @@
 <template>
   <ModalWrapper id="create-event">
     <template #button>   
-      <section v-if="activeTrack" class="row h-100">
+      <section @click="getActiveTrack()" v-if="activeTrack" class="row h-100">
           <div class="col-4 d-flex align-items-center">
               <img class="img-fluid active-song-image p-0" :src="activeTrack.picture">
           </div>
@@ -14,7 +14,6 @@
               </div>
               <div class="col-6">
                   <p class="song-title my-2">{{ activeTrack.duration }}</p>
-                  <p class="song-title m-0">100 BPM</p>
                   </div>
                 </section>
           </div>
@@ -25,7 +24,12 @@
       <TrackDetailsModal/>
     </template>
   </ModalWrapper>
+
+
+
 </template>
+
+
 
 <script>
 import { computed, onMounted } from "vue";
@@ -38,31 +42,37 @@ import { useRoute } from "vue-router";
 
 export default {
     setup() {
-
-      const route = useRoute()
+      const activeTrack = computed(() => AppState.activeTrack)
+      
        async function getActiveTrack() {
       try {
         logger.log('getting the active track')
-        await spotifyApiService.getActiveTrack()
+        let id = await spotifyApiService.getActiveTrack()
+        await getActiveTrackDetails(id)
       } catch (error) {
         Pop.error(error)
       }
     }
-        async function getActiveTrackDetails(){
+        async function getActiveTrackDetails(id){
           try {
-            const activeTrackId = route.params.activeTrackId
-            logger.log('getting active track audio features')
-            await spotifyApiService.getActiveTrackDetails(activeTrackId)
+              
+              logger.log('getting active track audio features', id)
+              await spotifyApiService.getActiveTrackDetails(id)
+           
           } catch (error) {
             Pop.error(error)
           }
         }
 
     onMounted(() => {
-      // getActiveTrack()
+       //getActiveTrack()
+
     })
     return {
-      activeTrack: computed(() => AppState.activeTrack)
+      getActiveTrack,
+      getActiveTrackDetails,
+      activeTrack,
+      activeTrackDetails: computed(() => AppState.activeTrackDetails)
     };
       
     },

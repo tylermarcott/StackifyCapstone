@@ -1,11 +1,12 @@
 export class ActiveTrackDetails {
     constructor(data) {
-        this.id = data.item.id
-        this.name = data.item.name
-        this.artist = data.item.artists[0].name
-        this.album = data.item.album.name
-        this.progress = data.progress_ms
-        this.duration = data.item.duration_ms
-        this.picture = data.item.album.images[0].url
+        //this.id = data.id
+        this.key = data.key
+        this.bpm = data.tempo
+        this.duration = data.duration_ms
+        this.danceability = data.danceability
+        this.valence = data.valence
+
+        
     }
 }
