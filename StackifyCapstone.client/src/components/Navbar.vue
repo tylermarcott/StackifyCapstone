@@ -22,12 +22,13 @@
                   <h2 class="purple">Test Page</h2>
                   </router-link>
                 </div>
-              </section>
-          
-    
-      
 
-      
+                <div class="col-4">
+                    <router-link :to="{ name: 'Account' }" class="">
+                    <h2 class="purple">Account Page</h2>
+                    </router-link>
+                  </div>
+              </section>
 
 </template>
 

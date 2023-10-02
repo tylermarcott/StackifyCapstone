@@ -22,7 +22,7 @@
 
 <!-- NOTE: getting list of events for logged in user -->
 <section>
-  <div v-for="event in events" :key="event.id" class="col-12 col-md-10 elevation-2 m-2 p-2 card">
+  <div v-for="event in events" :key="event.id" class="col-12 col-md-10 elevation-2 m-2 p-2 card clickable">
     <EventCard :event="event"/>
   </div>
 </section>
@@ -47,7 +47,6 @@ export default {
       async function getEvents(){
         try {
           const accountId = AppState.account.id
-          logger.log('we are going to get all events with the following id:', accountId)
           await eventsService.getEventsByAccount(accountId)
         } catch (error) {
           Pop.error(error)
@@ -66,6 +65,10 @@ export default {
 
 .test-button{
   font-size: 50px;
+}
+
+.clickable{
+  cursor: pointer;
 }
 
 </style>
