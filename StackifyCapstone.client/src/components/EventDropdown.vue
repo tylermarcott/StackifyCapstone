@@ -1,6 +1,5 @@
 <template>
-    <h2 v-if="activeEvent" class="event-title selectable m-0 text-center w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent.title}}</h2>
-    <h2 v-else class="event-title selectable m-0 text-center w-100" type="button" data-bs-toggle="dropdown">No active event</h2>
+    <h2 class="event-title selectable m-0 text-center w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent ? activeEvent.title : "Select An Event"}}</h2>
     <ul class="dropdown-menu col-3 bg-dark">
         <li v-for="event in myEvents" :key="event.id">
             <h2 @click="setActiveEvent(event)" class="event-title selectable text-center">{{ event.title }}</h2>
@@ -24,13 +23,14 @@ export default {
 
         async function getMyEvents(){
             try {
-                await eventsService.getMyEvents()
+                if(!AppState.account) return
+                await eventsService.getEventsByAccount()
             } catch (error) {
                 Pop.error(error)
             }
         }
     return { 
-        myEvents: computed(()=> AppState.Events),
+        myEvents: computed(()=> AppState.events),
         activeEvent: computed(()=> AppState.activeEvent),
 
         setActiveEvent(event){
