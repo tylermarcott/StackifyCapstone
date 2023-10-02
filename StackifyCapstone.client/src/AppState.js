@@ -34,5 +34,6 @@ export const AppState = reactive({
   refreshToken: null,
   tokenExpire: null,
 
-  activeTrack: null
+  activeTrack: null,
+  activeTrackDetails: null,
 })
