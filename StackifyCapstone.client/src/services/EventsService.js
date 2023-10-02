@@ -31,6 +31,10 @@ class EventsService {
 
     return res.data
   }
+
+  async editEvent(eventId){
+    const res = await api.put(`api/events/${eventId}`)
+  }
 }
 
 export const eventsService = new EventsService()

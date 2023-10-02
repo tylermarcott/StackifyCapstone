@@ -26,14 +26,18 @@ import Pop from "../utils/Pop.js";
 import {eventsService} from '../services/EventsService.js'
 export default {
   setup(){
-    const eventData = ref({})
+    const eventData = ref({});
+    function resetForm() {
+      eventData.value = { type: '' }
+    }
   return {
     eventData,
-
+    resetForm,
     async createEvent(){
       try {
         await eventsService.createEvent(eventData.value)
         Pop.success('Event Created!', 'success')
+        resetForm()
       } catch (error) {
         Pop.error(error)
       }

@@ -6,10 +6,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 d-flex justify-content-between">
         <h5>
           {{ event.eventType }}
         </h5>
+        <div @click="editEvent(event.id)" class="text-primary fs-1">
+          <i class="mdi mdi-pencil"></i>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -35,10 +38,22 @@ export default {
   props: {event: {type: Event || Object, required: true}},
   setup(){
 
+    // TODO: forgot syntax to add 'are you sure you want to delete?' popup. Add this.
     async function deleteEvent(eventId){
       try {
         await eventsService.deleteEvent(eventId)
         Pop.success('Event deleted!', 'success')
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
+    // TODO: have to create a modal that will pop it onclick of edit button. Take data from this form, pass it as body for put request
+
+    async function editEvent(eventId){
+      try {
+        // TODO: add body from modal form for edit
+        await eventsService.editEvent(eventId)
       } catch (error) {
         Pop.error(error)
       }
