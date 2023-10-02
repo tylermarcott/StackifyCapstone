@@ -38,6 +38,7 @@ import { ref } from "vue";
 import { spotifyPlayerService } from '../services/SpotifyPlayerService';
 import Pop from '../utils/Pop';
 import { logger } from "../utils/Logger";
+import { spotifyApiService } from "../services/SpotifyApiService";
 
 export default {
 setup() {
@@ -49,6 +50,7 @@ setup() {
     async togglePlay() {
       try {
           await spotifyPlayerService.togglePlay();
+          await spotifyApiService.getActiveTrack()
       }
       catch (error) {
           Pop.error(error);
@@ -109,17 +111,17 @@ setup() {
   }
 }
 
-// input[type="range"]::-webkit-slider-runnable-track {
-//   background: #eeeeee;
-//   border-radius: 8px;
-//   color: #EA94FF;
-//   height: 10px;
-// }
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #eeeeee;
+  border-radius: 8px;
+  color: #EA94FF;
+  height: 10px;
+}
 
-// input[type="range"]::-webkit-slider-thumb {
-//   margin-top: -3px;
-//   background-color:#63FAAA;
-// }
+input[type="range"]::-webkit-slider-thumb {
+  margin-top: -3px;
+  background:#63FAAA;
+}
 .previous {
   transform: scale(.75);
 }

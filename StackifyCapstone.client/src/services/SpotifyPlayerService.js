@@ -6,6 +6,7 @@ import axios from "axios";
 import { AppState } from "../AppState.js";
 import { Device } from "../models/Device.js";
 import Pop from "../utils/Pop.js";
+import { spotifyApiService } from "./SpotifyApiService.js";
 
 class SpotifyPlayerService {
 
@@ -149,6 +150,7 @@ class SpotifyPlayerService {
     catch (error) {
       logger.log(error)
     }
+    // setTimeout(spotifyApiService.getActiveTrack(), 2000)
   }
 
   async playPrevious() {
@@ -182,6 +184,8 @@ class SpotifyPlayerService {
     catch (error) {
       logger.log(error)
     }
+    // setTimeout(await spotifyApiService.getActiveTrack(), 2000)
+
   }
 
   async getDevices() {
@@ -196,7 +200,7 @@ class SpotifyPlayerService {
   }
 
   // NOTE: we need to be able to call play song with the right track. We need to pass in 'track' as a param to playSong and set const contextUri = track.
-  loadSong(trackId) {
+  async loadSong(trackId) {
     const token = localStorage.getItem('access_token');
     logger.log(token)
     const contextUri = trackId;
@@ -245,11 +249,6 @@ class SpotifyPlayerService {
     try {
       logger.log('Changing the Volume')
       const bearerToken = localStorage.getItem('access_token')
-      logger.log(bearerToken)
-      // const body = {
-      //   device_id: this.deviceId,
-      //   volume: volume
-      // }
       const headers = new Headers({
         Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json'
@@ -258,7 +257,6 @@ class SpotifyPlayerService {
       fetch(url, {
         method: 'PUT',
         headers: headers,
-        // body: body
       }).then(response => {
         if (response.ok) {
           logger.log('Changed Volume');
