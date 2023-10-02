@@ -10,11 +10,11 @@
               <div class="col-6 d-flex flex-column justify-content-center">
                   <p class="song-title m-0"><b>{{ activeTrack.name }}</b></p>
                   <p class="song-title m-0">{{ activeTrack.album }}</p>
+                </div>
+                <div class="col-6">
                   <p class="song-title m-0">{{ activeTrack.artist }}</p>
-              </div>
-              <div class="col-6">
-                  <p class="song-title my-2">{{ activeTrack.duration }}</p>
-                  </div>
+                  <p class="song-title my-2">{{ duration }} mins</p>
+                </div>
                 </section>
           </div>
       </section>
@@ -72,7 +72,8 @@ export default {
       getActiveTrack,
       getActiveTrackDetails,
       activeTrack,
-      activeTrackDetails: computed(() => AppState.activeTrackDetails)
+      activeTrackDetails: computed(() => AppState.activeTrackDetails),
+      duration: computed(() => (AppState.activeTrack.duration / 1000 / 60).toFixed(2)),
     };
       
     },
