@@ -1,13 +1,15 @@
 <template>
-    <div class="timeblock-list d-flex">
-        <div v-for="timeblock in myTimeblocks" :key="timeblock.id">
-        <Timeblock :timeblock="timeblock"/>
-        </div>
-        <section class="w-100 align-self-end">
+    <div class="timeblock-list"> 
+        <section class="timeblocks-section">
+            <div v-for="timeblock in myTimeblocks" :key="timeblock.id">
+                <Timeblock :timeblock="timeblock"/>
+            </div>
+        </section>
+        <section class="timeblock-imports d-flex-column align-items-center">
             <!-- TODO add the timeblock create model here -->
-            <button class="btn btn-dark w-100 my-2">+</button>
+            <button class="btn btn-outline-success w-100 my-2">+</button>
             <!-- TODO add the all TimeblocksModel here -->
-            <button class="btn btn-dark w-100">import timeblock</button>
+            <button class="btn btn-outline-success w-100">import timeblock</button>
         </section>
     </div>
 </template>
@@ -19,6 +21,7 @@ import { computed, reactive, onMounted, watchEffect } from 'vue';
 import Timeblock from '../components/Timeblock.vue'
 import Pop from '../utils/Pop';
 import {timeBlocksService} from '../services/TimeBlocksService'
+import { logger } from '../utils/Logger';
 export default {
     setup(){
         watchEffect(()=> {
@@ -37,7 +40,7 @@ export default {
             }
         }
     return { 
-        myTimeblocks: computed(() => AppState.myTimeblocks),
+        myTimeblocks: computed(() => AppState.myTimeBlocks),
      }
     },
     
@@ -52,12 +55,23 @@ export default {
   background-color: #eeeeee;
   border: solid 8px #242424;
   border-radius: 15px;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none; 
+  position: relative;
 }
 
-.timeblock-list::-webkit-scrollbar {
+.timeblocks-section{
+    height: 63vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+.timeblock-imports { 
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
+.timeblocks-section::-webkit-scrollbar {
   display: none;
 }
 </style>
