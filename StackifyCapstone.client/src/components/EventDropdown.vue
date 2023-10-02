@@ -23,8 +23,10 @@ export default {
 
         async function getMyEvents(){
             try {
-                if(!AppState.account) return
-                await eventsService.getEventsByAccount()
+                if(!AppState.account.id){
+                    return
+                }
+                await eventsService.getMyEvents()
             } catch (error) {
                 Pop.error(error)
             }

@@ -22,7 +22,7 @@
 
 <!-- NOTE: getting list of events for logged in user -->
 <section>
-  <div v-for="event in events" :key="event.id" class="col-12 col-md-10 elevation-2 m-2 p-2 card">
+  <div v-for="event in events" :key="event.id" class="col-12 col-md-10 elevation-2 m-2 p-2 card clickable">
     <EventCard :event="event"/>
   </div>
 </section>
@@ -41,19 +41,20 @@ import { logger } from "../utils/Logger.js";
 export default {
   setup(){
     watchEffect(()=> {
-      getEvents();
+      AppState.account;
+      getMyEvents();
+    })
 
-
-      async function getEvents(){
+      async function getMyEvents(){
         try {
-          const accountId = AppState.account.id
-          logger.log('we are going to get all events with the following id:', accountId)
-          await eventsService.getEventsByAccount(accountId)
+          if(!AppState.account.id){
+            return
+          }
+          await eventsService.getMyEvents()
         } catch (error) {
           Pop.error(error)
         }
       }
-    })
   return {
     events: computed(()=> AppState.events)
     }
@@ -66,6 +67,10 @@ export default {
 
 .test-button{
   font-size: 50px;
+}
+
+.clickable{
+  cursor: pointer;
 }
 
 </style>

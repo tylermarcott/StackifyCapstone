@@ -16,7 +16,7 @@
             <h3 class="timeblock-timer">0:00</h3>
           </div> -->
         </div>
-        <div class="active-song" type="button" data-toggle="modal" data-target="#activesongmodal">
+        <div v-if="activeTrack" class="active-song" type="button" data-toggle="modal" data-target="#activesongmodal">
           <ActiveSong/>
         </div>
       </div>
@@ -132,6 +132,7 @@ export default {
         return {
             myTimeblocks: computed(() => AppState.myTimeblocks),
             tracks: computed(() => AppState.tracks),
+            activeTrack: computed(() => AppState.activeTrack)
         };
     },
     components: { SongSearchBar, Player, EventDropdown }

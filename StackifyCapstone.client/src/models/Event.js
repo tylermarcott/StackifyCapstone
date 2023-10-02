@@ -7,5 +7,6 @@ export class Event{
     this.title = data.title
     this.eventType = data.eventType
     this.eventDescription = data.eventDescription
+    this.id = data.id
   }
 }

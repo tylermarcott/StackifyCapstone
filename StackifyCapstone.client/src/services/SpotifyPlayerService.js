@@ -5,6 +5,8 @@ import { spotifyApi } from "./AxiosService.js";
 import axios from "axios";
 import { AppState } from "../AppState.js";
 import { Device } from "../models/Device.js";
+import Pop from "../utils/Pop.js";
+import { spotifyApiService } from "./SpotifyApiService.js";
 
 class SpotifyPlayerService {
 
@@ -148,6 +150,7 @@ class SpotifyPlayerService {
     catch (error) {
       logger.log(error)
     }
+    // setTimeout(spotifyApiService.getActiveTrack(), 2000)
   }
 
   async playPrevious() {
@@ -181,6 +184,8 @@ class SpotifyPlayerService {
     catch (error) {
       logger.log(error)
     }
+    // setTimeout(await spotifyApiService.getActiveTrack(), 2000)
+
   }
 
   async getDevices() {
@@ -195,7 +200,7 @@ class SpotifyPlayerService {
   }
 
   // NOTE: we need to be able to call play song with the right track. We need to pass in 'track' as a param to playSong and set const contextUri = track.
-  loadSong(trackId) {
+  async loadSong(trackId) {
     const token = localStorage.getItem('access_token');
     logger.log(token)
     const contextUri = trackId;
@@ -234,6 +239,45 @@ class SpotifyPlayerService {
     });
   }
 
+  // Volume is controlled by a number between 0 and 1.0
+  async setVolume(volume) {
+    await this.changeVolume(volume).then(() => {
+    });
+  }
+
+  async changeVolume(volume) {
+    try {
+      logger.log('Changing the Volume')
+      const bearerToken = localStorage.getItem('access_token')
+      const headers = new Headers({
+        Authorization: `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json'
+      });
+      const url = `https://api.spotify.com/v1/me/player/volume?volume_percent=${volume}`
+      fetch(url, {
+        method: 'PUT',
+        headers: headers,
+      }).then(response => {
+        if (response.ok) {
+          logger.log('Changed Volume');
+        } else {
+          logger.log('error');
+          return response.json();
+        }
+      }).then(data => {
+        if (data) {
+          logger.log(data); // Log any error message returned by Spotify API
+        }
+      }).catch(error => {
+        logger.error('There was an error:', error);
+      });
+    }
+    catch (error) {
+      logger.log(error)
+    }
+    } catch(error) {
+      Pop.error(error)
+    }
 }
 
 export const spotifyPlayerService = new SpotifyPlayerService

@@ -2,7 +2,7 @@ import { AppState } from "../AppState.js"
 import { logger } from "../utils/Logger.js"
 import { api, spotifyApi } from "./AxiosService.js"
 import { Track } from "../models/Track.js"
-
+import { ActiveTrack } from "../models/ActiveTrack.js"
 
 
 class SpotifyApiService{
@@ -25,6 +25,15 @@ class SpotifyApiService{
     AppState.tracks = res.data.tracks.items.map(track => new Track(track))
 
     logger.log('here are the following items in our appstate now:', AppState.tracks)
+  }
+
+  async getActiveTrack() {
+    const bearerToken = localStorage.getItem('access_token')
+    const url = 'https://api.spotify.com/v1/me/player/currently-playing'
+    const res = await spotifyApi.get(url, { headers: { Authorization: `Bearer ${bearerToken}` } })
+    logger.log('Currently Playing Track', res.data)
+    AppState.activeTrack = new ActiveTrack(res.data)
+    logger.log(AppState.activeTrack)
   }
 
 

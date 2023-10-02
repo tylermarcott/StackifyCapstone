@@ -1,19 +1,19 @@
 <template>
   <ModalWrapper id="create-event">
-  <template #button>   
-    <section class="row h-100">
+    <template #button>   
+      <section v-if="activeTrack" class="row h-100">
           <div class="col-4 d-flex align-items-center">
-              <img class="img-fluid active-song-image p-0" src="../assets/img/StackifySVG-cta.svg">
+              <img class="img-fluid active-song-image p-0" :src="activeTrack.picture">
           </div>
           <div class="col-8 p-2 d-flex flex-column justify-content-center">
               <section class="row">
               <div class="col-6 d-flex flex-column justify-content-center">
-                  <p class="song-title m-0"><b>Song Title</b></p>
-                  <p class="song-title m-0">Album</p>
-                  <p class="song-title m-0">Artist</p>
-                </div>
-                <div class="col-6">
-                  <p class="song-title my-2">0:00</p>
+                  <p class="song-title m-0"><b>{{ activeTrack.name }}</b></p>
+                  <p class="song-title m-0">{{ activeTrack.album }}</p>
+                  <p class="song-title m-0">{{ activeTrack.artist }}</p>
+              </div>
+              <div class="col-6">
+                  <p class="song-title my-2">{{ activeTrack.duration }}</p>
                   <p class="song-title m-0">100 BPM</p>
                   </div>
                 </section>
@@ -28,16 +28,30 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-
-import { AppState } from '../AppState'
+import { computed, onMounted } from "vue";
+import { spotifyApiService } from "../services/SpotifyApiService";
+import Pop from "../utils/Pop";
+import TrackDetailsModal from './TrackDetailsModal.vue';
+import { logger } from "../utils/Logger";
+import { AppState } from "../AppState";
 
 export default {
     setup() {
-        return {
-          current_song: computed(() => AppState.current_song),
-
-        };
+       async function getActiveTrack() {
+      try {
+        logger.log('getting the active track')
+        await spotifyApiService.getActiveTrack()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+    onMounted(() => {
+      // getActiveTrack()
+    })
+    return {
+      activeTrack: computed(() => AppState.activeTrack)
+    };
+      
     },
     
 };

@@ -39,7 +39,7 @@ class SpotifyLoginService{
     const codeChallenge = await generateCodeChallenge(codeVerifier)
     let state = this.generateRandomString(16);
     // NOTE NEED TO ADD SCOPES WHEN ADDING FUNCTIONALITY
-    let scope = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state streaming app-remote-control playlist-read-private';
+    let scope = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing streaming app-remote-control playlist-read-private';
     logger.log(codeVerifier)
     localStorage.setItem('code_verifier', codeVerifier);
     localStorage.setItem('connect_code', codeVerifier)

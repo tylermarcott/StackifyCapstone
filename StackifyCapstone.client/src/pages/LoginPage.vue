@@ -19,8 +19,9 @@
       
     </div>
     <div class="col-12 text-center p-3">
+      <!-- <router-link v-if="token" :to="{name: 'Application' }"><button class="btn connect-button"><b>Connect</b></button></router-link> -->
       <button @click="spotifyConnect()" class="btn connect-button"><b>Connect</b></button>
-      <!-- <router-link :to="{name: 'Application'}"><button class="btn connect-button"><b>Connect</b></button></router-link> -->
+      
     </div>
   </section>
 </template>
@@ -35,6 +36,7 @@ export default {
   return { 
     user: computed(() => AppState.user),
     account: computed(() => AppState.account),
+    token: computed(() => localStorage.getItem('access_token')),
     async spotifyConnect(){
       try {
         await spotifyLoginService.spotifyConnect()
