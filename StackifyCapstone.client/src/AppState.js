@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 import { Device } from "./models/Device.js"
+import { Timeblock } from './models/Timeblock.js'
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -22,11 +23,16 @@ export const AppState = reactive({
   /**@type {Event} */
   activeEvent: null,
 
+  /**@type {Timeblock[]} */
+ myTimeBlocks: null,
+
+ /**@type {Timeblock} */
+ activeTimeBlock: null,
+
   authCode: null,
   accessToken: null,
   refreshToken: null,
   tokenExpire: null,
 
-  myTimeblocks: null,
   activeTrack: null
 })
