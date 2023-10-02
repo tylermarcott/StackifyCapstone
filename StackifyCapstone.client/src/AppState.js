@@ -24,10 +24,12 @@ export const AppState = reactive({
   activeEvent: null,
 
   /**@type {Timeblock[]} */
- myTimeBlocks: null,
+  myTimeBlocks: null,
 
  /**@type {Timeblock} */
- activeTimeBlock: null,
+  activeTimeBlock: null,
+
+  isPlaying: null,
 
   authCode: null,
   accessToken: null,
