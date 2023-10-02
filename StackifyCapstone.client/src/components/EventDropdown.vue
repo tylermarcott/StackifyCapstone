@@ -24,7 +24,7 @@ export default {
 
         async function getMyEvents(){
             try {
-                await eventsService.getMyEvents()
+                await eventsService.getEventsByAccount()
             } catch (error) {
                 Pop.error(error)
             }
