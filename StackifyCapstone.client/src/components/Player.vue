@@ -20,7 +20,7 @@
         <div class="col-3 devices d-flex justify-content-center align-items-center">
             <!-- <i class="devices-icon mdi mdi-devices"></i> -->
             <i class="devices-icon mdi mdi-volume-high"></i>
-            <input type="range" :v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
+            <input type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
         </div>
         <div class="col-12 d-flex justify-content-center align-items-center">
             <p class="duration-text m-0">2:50</p>
@@ -41,7 +41,9 @@ import { logger } from "../utils/Logger";
 
 export default {
 setup() {
-  const volume = ref(0)
+  const volume = ref({
+
+  })
   return {
     volume,
     async togglePlay() {

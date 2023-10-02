@@ -27,6 +27,11 @@ class SpotifyApiService{
     logger.log('here are the following items in our appstate now:', AppState.tracks)
   }
 
+  async getActiveSong() {
+    const bearerToken = localStorage.getItem('access_token')
+    
+  }
+
 
 
 }

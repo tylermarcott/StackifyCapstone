@@ -28,10 +28,23 @@
 </template>
 
 <script>
+import { onMounted } from "vue";
+import { spotifyApiService } from "../services/SpotifyApiService";
+import Pop from "../utils/Pop";
 import TrackDetailsModal from './TrackDetailsModal.vue';
 
 export default {
     setup() {
+      async function getActiveTrack() {
+        try {
+          await spotifyApiService.getActiveTrack()
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
+      onMounted(() => {
+        getActiveTrack()
+      })
         return {};
     },
     components: { TrackDetailsModal }
