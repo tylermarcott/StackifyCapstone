@@ -19,6 +19,9 @@ export const AppState = reactive({
   /**@type {Event[]} */
   events: [],
 
+  /**@type {Event} */
+  activeEvent: null,
+
   authCode: null,
   accessToken: null,
   refreshToken: null,

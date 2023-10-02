@@ -1,9 +1,9 @@
 <template>
     <h2 v-if="activeEvent" class="event-title selectable m-0 text-center w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent.title}}</h2>
     <h2 v-else class="event-title selectable m-0 text-center w-100" type="button" data-bs-toggle="dropdown">No active event</h2>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu col-3 bg-dark">
         <li v-for="event in myEvents" :key="event.id">
-            <h2 class="event-title selectable m-0 text-center w-100">{{ event.title }}</h2>
+            <h2 @click="setActiveEvent(event)" class="event-title selectable text-center">{{ event.title }}</h2>
         </li>
     </ul>
 </template>
@@ -11,22 +11,31 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
+import {eventsService} from '../services/EventsService'
 export default {
     setup(){
-        // onMounted(()=> getMyEvents())
+        
+        watchEffect(()=> {
+            AppState.account;
+            getMyEvents();
+        });
 
-        // async function getMyEvents(){
-        //     try {
-                
-        //     } catch (error) {
-        //         Pop.error(error)
-        //     }
-        // }
+        async function getMyEvents(){
+            try {
+                await eventsService.getMyEvents()
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
     return { 
-        myEvents: computed(()=> AppState.myEvents),
-        activeEvent: computed(()=> AppState.activeEvent)
+        myEvents: computed(()=> AppState.Events),
+        activeEvent: computed(()=> AppState.activeEvent),
+
+        setActiveEvent(event){
+            AppState.activeEvent = event
+        }
      }
     }
 };
