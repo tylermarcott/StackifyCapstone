@@ -13,8 +13,8 @@ class EventsService {
     AppState.events.push(new Event(res.data))
   }
 
-  async getEventsByAccount(accountId) {
-    const res = await api.get(`api/events/?_id=${accountId}`)
+  async getMyEvents() {
+    const res = await api.get('api/events')
     AppState.events = res.data.map(event => new Event(event))
     logger.log('here are our events stored in appstate:', AppState.events)
   }

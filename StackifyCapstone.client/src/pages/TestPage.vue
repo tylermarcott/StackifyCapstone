@@ -41,18 +41,20 @@ import { logger } from "../utils/Logger.js";
 export default {
   setup(){
     watchEffect(()=> {
-      getEvents();
+      AppState.account;
+      getMyEvents();
+    })
 
-
-      async function getEvents(){
+      async function getMyEvents(){
         try {
-          const accountId = AppState.account.id
-          await eventsService.getEventsByAccount(accountId)
+          if(!AppState.account.id){
+            return
+          }
+          await eventsService.getMyEvents()
         } catch (error) {
           Pop.error(error)
         }
       }
-    })
   return {
     events: computed(()=> AppState.events)
     }
