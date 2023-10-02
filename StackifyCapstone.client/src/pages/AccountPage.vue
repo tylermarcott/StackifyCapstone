@@ -1,5 +1,5 @@
 <template>
-  <section class="row landing-navigation">
+  <!-- <section class="row landing-navigation">
     <div class="col-4 d-flex justify-content-center align-items-center">
       <Logo/>
        <div class="backdrop-circle"></div>
@@ -7,30 +7,53 @@
     <div class="col-6 d-flex justify-content-end align-items-center">
       <Navbar/>
       </div>
-  </section>
-  <section class="row">
-    <div class="about text-center">
-      <h1>Welcome {{ account.name }}</h1>
-      <img class="rounded" :src="account.picture" alt="" />
-      <p>{{ account.email }}</p>
+  </section> -->
+  <section v-if="account.name" class="row account-wrapper p-2">
+    <div class="col-12 landing-navigation landing-navigation d-flex justify-content-center align-items-center">
+      <section class="row">
+       <h2 class="settings-title text-center">Account Settings</h2>
+         <router-link class="text-center" :to="{ name: 'Application', params: {application: 'application'} }"><i class="home-button mdi mdi-application text-center"></i></router-link>
+      </section>
+    
     </div>
-    <h2 class="text-center">Event Playlists</h2>
-      <div class="col-6" v-for="playlist in playlists" :key="playlist.id">
+    <div class="col-12 py-2 about text-center">
+      <h2 class="welcome-text">{{ account.name }}</h2>
+      <img class="rounded" :src="account.picture" alt="" />
+      <p class="email-text">{{ account.email }}</p>
+      <button type="button" data-toggle="collapse" data-target="#editAccount" aria-expanded="false" aria-controls="collapseExample" class="connect-button elevation-3"><b>Edit Account</b></button>
+      <div>
+  </div>
+    </div>
+ 
+    <div class="col-6 event-list">
+      <h2 class="text-center event-category-text">Event Playlists</h2>
+      <div v-for="playlist in playlists" :key="playlist.id">
         <section class="row m-1" >
-        <div class="col-12 text-center" :playlist="playlist">
-          <b>{{ playlist.name }}</b>
+        <div class="text-center event-card" :playlist="playlist">
+          <div class="col-12 event-title">
+            <b>{{ playlist.name }}</b>
+          </div>
           <p>Songs: {{ playlist.trackCount }}</p>
+          <p>{{ playlist.description }}</p>
         </div>
         </section>
       </div>
-    <h2 class="text-center">Playlists</h2>
-    <div class="col-6" v-for="playlist in playlists" :key="playlist.id">
-      <section class="row m-1" >
-      <div class="col-12 text-center" :playlist="playlist">
-        <b>{{ playlist.name }}</b>
-        <p>Songs: {{ playlist.trackCount }}</p>
+    </div>
+    <div class="col-6 event-list">
+      <h2 class="text-center event-category-text">Spotify Playlists</h2>
+      <div v-for="playlist in playlists" :key="playlist.id">
+        <section class="row m-1" >
+        <div class="text-center event-card" :playlist="playlist">
+          <div class="col-12 event-title">
+            <b>{{ playlist.name }}</b>
+          </div>
+          <div class="col-12">
+            <p>Songs: {{ playlist.trackCount }}</p>
+            <p>{{ playlist.description }}</p>
+          </div>
+        </div>
+        </section>
       </div>
-      </section>
     </div>
   </section>
 </template>
@@ -63,13 +86,85 @@ export default {
 </script>
 
 <style scoped>
+.account-wrapper {
+  background-color: #2f2f2f;
+}
+
 img {
   max-width: 100px;
 }
 
-.about {
-  margin-bottom: 10vh;
+.home-button {
+   font-size: 2rem;
+   color: #eeeeee;
+ }
+
+.email-text {
+  font-size: 2rem;
+  margin: 2rem 1rem;
+  color: #63FAAA;
 }
+
+.connect-button {
+  color: #4f4f4f;
+  background-color: #EA94FF;
+  transition: .5s;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+}
+.connect-button:hover {
+  color: #4f4f4f;
+  background-color: #63FAF5;
+}
+
+.about {
+  background-color: #4f4f4f;
+  border-top: solid 8px #2f2f2f;
+  border-radius: 15px;
+  margin: 0px;
+}
+
+.settings-title {
+  color:#EA94FF;
+}
+
+.event-card {
+  background-color: #eeeeee;
+  border-radius: 8px;
+  margin: .5rem 0px;
+  padding: 0px;
+}
+
+.event-title {
+  background-color: #4f4f4f;
+  color: #EA94FF;
+  font-size: 1.5rem;
+  padding: .5rem;
+  border: solid 1px #EA94FF;
+}
+
+.welcome-text {
+  font-size: 4rem;
+  color: #EA94FF;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  }
+
+  .event-category-text {
+    color: #63FAAA;
+    margin: 2rem 0rem;
+    font-size: 3rem;
+  }
+
+  .event-list {
+    border: solid 8px #2f2f2f;
+    background-color: #4f4f4f;
+    border-radius: 15px;
+  }
 
 .backdrop-circle {
   height: 70vh;
@@ -83,6 +178,11 @@ img {
 }
 
 .landing-navigation {
-  height: 20vh;
+  height: 10vh;
+  background-color: #4f4f4f;
+  border-radius: 15px;
+ 
 }
+
+
 </style>
