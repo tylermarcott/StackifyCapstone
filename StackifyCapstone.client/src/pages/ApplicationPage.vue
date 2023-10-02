@@ -7,15 +7,7 @@
           <EventDropdown/> 
         </div>
         </section>
-        <div class="timeblock-list">
-          <div v-for="timeblock in myTimeblocks" :key="timeblock.id">
-            <Timeblock :timeblock="timeblock"/>
-          </div>
-          <!-- <div class="timeblock-card d-flex justify-content-between align-items-center elevation-4">
-            <h3 class="timeblock-text">Timeblock</h3>
-            <h3 class="timeblock-timer">0:00</h3>
-          </div> -->
-        </div>
+        <TimeBlockList/>
         <div v-if="activeTrack" class="active-song" type="button" data-toggle="modal" data-target="#activesongmodal">
           <ActiveSong/>
         </div>
@@ -69,13 +61,13 @@ import Pop from "../utils/Pop.js";
 import {spotifyApiService} from '../services/SpotifyApiService.js'
 import { logger } from "../utils/Logger.js";
 import { start } from "@popperjs/core";
-import Timeblock from '../components/Timeblock.vue'
 import ActiveSong from '../components/ActiveSong.vue'
 import SongSearchBar from '../components/SongSearchBar.vue';
 import Player from '../components/Player.vue';
 import Profile from '../components/Profile.vue'
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService.js";
 import EventDropdown from '../components/EventDropdown.vue';
+import TimeBlockList from '../components/TimeBlockList.vue';
 
 export default {
     setup() {
@@ -130,12 +122,11 @@ export default {
             // NOTE call this function with the track id to load song spotifyPlayerService.loadSong(trackId)
         });
         return {
-            myTimeblocks: computed(() => AppState.myTimeblocks),
             tracks: computed(() => AppState.tracks),
             activeTrack: computed(() => AppState.activeTrack)
         };
     },
-    components: { SongSearchBar, Player, EventDropdown }
+    components: { SongSearchBar, Player, EventDropdown, TimeBlockList }
 };
 </script>
 
@@ -155,21 +146,6 @@ export default {
   height: 100vh;
   background-color: #242424;
 }
-
-.timeblock-list {
-  height: 75vh;
-  background-color: #eeeeee;
-  border: solid 8px #242424;
-  border-radius: 15px;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none; 
-}
-
-.timeblock-list::-webkit-scrollbar {
-  display: none;
-}
-
 
 .active-song {
   height:20vh;
