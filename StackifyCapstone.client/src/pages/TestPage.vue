@@ -19,9 +19,9 @@
   </div>
 </section>
 
-<h3>Song card</h3>
-<section>
-  <SongCardComponent/>
+<h3>Searched Song Card</h3>
+<section class="mb-5 song-card">
+  <SearchedTrackCard/>
 </section>
 
 
@@ -76,6 +76,13 @@ export default {
 
 .clickable{
   cursor: pointer;
+}
+
+.song-card{
+  padding: 0.5em;
+  background-color: #4F4F4F;
+  color: #FFFFFF;
+  font-size: 18px;
 }
 
 </style>
