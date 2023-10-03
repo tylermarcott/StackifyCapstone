@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container song-card">
     <div class="row">
       <div class="col-4">
         {{ track.name }}
@@ -53,5 +53,11 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.song-card{
+  padding: 0.5em;
+  background-color: #4F4F4F;
+  color: #FFFFFF;
+  font-size: 18px;
+  border-radius: 5px;
+}
 </style>
