@@ -43,7 +43,8 @@
           </div>     
         </div>
         <div class="row">
-          <h2>not sure lol</h2>
+          <h2>triple dot thingy to open song details modal</h2>
+          add bpm
         </div>
       </div>
     </div>
@@ -79,8 +80,8 @@ export default {
 <style lang="scss" scoped>
 
 .album-img{
-  max-height: 20vh;
-  max-width: 100%;
+  max-height: 300px;
+  max-width: 300px;
 }
 
 .add-button {

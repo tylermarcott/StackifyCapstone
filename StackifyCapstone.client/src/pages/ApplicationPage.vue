@@ -28,11 +28,13 @@
         -->
         <SongSearchBar/>
 
-        <div class="main-content row d-flex justify-content-center align-items-center container">
+        <div class="main-content justify-content-center align-items-center">
           <!-- NOTE use a row on the search songs component-->
 
-          <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 song-card">
-            <TrackCard :track="track"/>
+          <div class="row justify-content-center">
+            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 song-card">
+              <TrackCard :track="track"/>
+            </div>
           </div>
 
 
