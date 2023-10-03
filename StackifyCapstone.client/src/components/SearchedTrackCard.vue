@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <div class="row">
+  <section class="mb-2 pb-3">
+    <div class="row row-height pt-3">
       <div class="col-3 max-height">
         <img class="album-img img-fluid" :src="track.albumImg[0].url" alt="">
       </div>
@@ -8,7 +8,12 @@
       <div class="col-7">
         <div class="row">
           <div class="col-5">
-            <h1>{{ track.name }}</h1>
+            <div v-if="track.name.length > 18">
+              <h1>{{ track.name.substring(0, 18) + '...' }}</h1>
+            </div>
+            <div v-else>
+              <h1>{{ track.name }}</h1>
+            </div>
           </div>
           <div class="col-7 d-flex justify-content-center">
             <div class="row">
@@ -23,7 +28,12 @@
 
           </div>
           <div class="col-5 text-end">
-            <h5>{{ track.album }}</h5>
+            <div v-if="track.album.length > 20">
+              <p>{{ track.album.substring(0, 20) + '...' }}</p>
+            </div>
+            <div v-else>
+              <p>{{ track.album }}</p>
+            </div>
           </div>
         </div>
 
@@ -36,7 +46,7 @@
           </div>
         </div> 
 
-        <div class="row">
+        <div class="row mt-4">
           <div class="col-6">
             <h5>
               bpm: 302
@@ -121,6 +131,10 @@ export default {
 
 .max-height{
   max-height: 20vh;
+}
+
+.row-height{
+  min-height: 24vh;
 }
 
 
