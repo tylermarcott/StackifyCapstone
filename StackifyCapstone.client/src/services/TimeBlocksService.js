@@ -38,6 +38,14 @@ class TimeBlocksService{
         const activeTimeBlock = AppState.myTimeBlocks.find(timeblock => timeblock.id == timeblockId)
         AppState.activeTimeBlock = activeTimeBlock
       }
+
+      prevTimeblock(){
+        AppState.activeTimeBlock = AppState.myTimeBlocks[AppState.activeTimeBlock.position-1]
+      }
+
+      nextTimeblock(){
+        AppState.activeTimeBlock = AppState.myTimeBlocks[AppState.activeTimeBlock.position+1]
+      }
 }
 
 export const timeBlocksService = new TimeBlocksService()
