@@ -1,5 +1,5 @@
 <template>
-    <div class="timeblock-card row justify-content-between align-items-center elevation-4">
+    <div v-on:dblclick="setActiveTimeblock()" class="timeblock-card row justify-content-between align-items-center elevation-4">
         <h3 class="timeblock-text col-7">{{ timeblock.title }}</h3>
         <h3 class="timeblock-timer col-3">{{ timeblock.duration }}</h3>
         <div class="col-2">
@@ -10,19 +10,26 @@
 </template>
 
 <script>
-import { computed} from 'vue';
+import { computed, watchEffect} from 'vue';
 import { Timeblock } from '../models/Timeblock';
 import { AppState } from '../AppState';
 import { timeBlocksService } from '../services/TimeBlocksService';
 import Pop from '../utils/Pop';
+import { logger } from '../utils/Logger';
 
 export default {
   props: {timeblock: {type: Timeblock || Object, required: true}},
 setup(props) {
-  
   return {
     topTimeBlock : computed(()=> AppState.myTimeBlocks[0].id),
     bottomTimeBlock : computed(()=> AppState.myTimeBlocks[AppState.myTimeBlocks.length-1].id),
+    cardColor: computed(()=>{
+      if(AppState.activeTimeBlock.id == props.timeblock.id){
+        return '#EA94FF'
+      }else{
+        return '#4f4f4f'
+      }
+    }),
 
     async moveTimeblock(upOrDown){
       try {
@@ -31,6 +38,10 @@ setup(props) {
         Pop.error(error)
       }
     },
+
+    setActiveTimeblock(){
+      timeBlocksService.setActiveTimeblock(props.timeblock.id)
+    }
   };
 },
 };
@@ -40,7 +51,7 @@ setup(props) {
 <style lang="scss" scoped>
 .timeblock-card {
   margin: 1rem;
-  background-color: #4f4f4f;
+  background-color: v-bind(cardColor);
   border-radius: 8px;
   padding: .5rem;
   color:#eeeeee;
@@ -63,6 +74,6 @@ setup(props) {
   font-size: 1.75rem;
 }
 .change-spot-icon:hover{
-  color: #EA94FF;
+  color: #63FAAA;
 }
 </style>
