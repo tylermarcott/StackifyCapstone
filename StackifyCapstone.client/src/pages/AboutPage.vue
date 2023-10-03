@@ -40,7 +40,7 @@
       </div>
 
       <div class="col-12 col-md-3">
-        <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LNTZ1ULS-eaef7b01235f-512" alt="">
+        <img class="profile-pic" src="https://avatars.githubusercontent.com/u/36865028?v=4" alt="">
         <h5 class="text-pink mt-2">Everett Smith</h5>
         <h5><a class="links" href="https://github.com/everettsmith928"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/everett-smith-811b57132/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
