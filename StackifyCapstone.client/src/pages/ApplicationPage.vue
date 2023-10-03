@@ -91,8 +91,8 @@ import Profile from '../components/Profile.vue'
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService.js";
 import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
-import ActiveTimeblockMusic from './ActiveTimeblockMusic.vue';
-import ActiveTimeblockSilent from './ActiveTimeblockSilent.vue';
+import ActiveTimeblockMusic from '../components/ActiveTimeblockMusic.vue';
+import ActiveTimeblockSilent from '../components/ActiveTimeblockSilent.vue';
 
 export default {
     setup() {
