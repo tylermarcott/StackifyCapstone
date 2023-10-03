@@ -28,4 +28,11 @@
 
 <div>
   <h2>Contributors</h2>
+        <div class="col-12 col-md-3">
+        <img src="../assets/img/everett1.jpg" alt="">
+        <h5>Everett Smith</h5>
+        <h5><a href="https://github.com/everettsmith928">Github</a> 
+        <a href="https://www.linkedin.com/in/everett-smith-811b57132/">LinkedIn</a>
+        </h5>
+      </div>
 </div>
