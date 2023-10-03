@@ -32,7 +32,7 @@
           <!-- NOTE use a row on the search songs component-->
 
           <div v-if="tracks[0]" class="row justify-content-center">
-            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 searched-song-card">
+            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 searched-song-card">
               <SearchedTrackCard :track="track"/>
             </div>
           </div>
@@ -184,7 +184,7 @@ export default {
 
 
 .searched-song-card{
-  padding: 0.5em;
+  padding: 1em;
   background-color: #4F4F4F;
   color: #FFFFFF;
   font-size: 18px;

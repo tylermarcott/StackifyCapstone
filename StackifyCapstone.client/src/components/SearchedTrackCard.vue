@@ -5,48 +5,66 @@
         <img class="album-img" src="https://cdn.mos.cms.futurecdn.net/ffXURUVLGY85rnXnnqHChb-480-80.jpg" alt="">
       </div>
       <div class="col-7">
+
+
         <div class="row">
-          <div class="col-6">
+          <div class="col-5">
             <h1>Mikasa</h1>
           </div>
-          <div class="col-6">
-            <h1>Veil of Maya</h1>
+          <div class="col-7 d-flex justify-content-center">
+            <div class="row">
+              by <h1>Veil of Maya</h1>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-6">
+
+
+        <div class="row justify-content-between">
+          <div class="col-5 ms-2">
+
+          </div>
+          <div class="col-5 text-end">
             <h5>Matriarch</h5>
           </div>
-          <div class="col-6">
-            <h5>3:10</h5>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-6">
-            <h5>Alt Metal</h5>
+
+
+        <div class="row justify-content-between">
+          <div class="col-5 ms-2">
           </div>
-          <div class="col-6">
+          <div class="col-5 text-end me-3">
             <h5>2015</h5>
           </div>
         </div> 
-        <div class="row">
-          possible additional info down here?
+
+        <div class="row mt-5 ms-3">
+
+          <div class="col-4">
+            <h5>Alt Metal</h5>
+          </div>
+          <div class="col-4">
+          </div>
+          <div class="col-4">
+            BPM: 302
+          </div>
         </div>     
       </div>
-      <div class="col-2">
-        <div class="row text-center add-button d-flex">
+
+      <div class="col-2 text-center">
+        <h5>
+            3:10
+        </h5>
+        <div class="row add-button">
           <div class="col-6">
-            <i class="mdi mdi-plus"></i>
+            <i class="mdi mdi-plus">
+            </i>
           </div>
           <div class="col-6">
-            <h2>add</h2>    
+            <h3 class="mt-1">add</h3>
           </div>     
         </div>
-        <div class="row">
-          <h2>
+        <div class="row text-center fs-2">
             <i class="mdi mdi-dots-horizontal"></i>
-          </h2>
-          add bpm
         </div>
       </div>
     </div>
@@ -87,6 +105,7 @@ export default {
   object-fit: cover;
   object-position: center;
   border-radius: 5px;
+  margin-top: 0.7em;
 }
 
 .add-button {
@@ -95,9 +114,12 @@ export default {
   border-radius: 8px;
   margin-left: 5px;
   margin-right: 12px;
+  margin-top: 50px;
   font-size: 30px;
   transition: .1s;
   padding: 4px;
+  padding-right: 40px;
+  cursor: pointer;
 }
 
 

@@ -5,7 +5,7 @@
       <!-- //TODO - change Learn More Link  -->
         <router-link :to="{ name: 'About' }" class="" style="color: #EA94FF;"><p> Learn More</p></router-link>
         <p> <a style="color: #EA94FF;" href="https://github.com/tylermarcott/StackifyCapstone">GitHub Repo</a> </p>
-        <p> <a style="color: #EA94FF;" href="https://github.com/tylermarcott/StackifyCapstone">Spotify Developer Terms</a> </p>
+        <p> <a style="color: #EA94FF;" href="https://developer.spotify.com/terms">Spotify Developer Terms</a> </p>
     </div>
     </section>
 

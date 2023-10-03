@@ -21,7 +21,6 @@ import { spotifyApiService } from '../services/SpotifyApiService';
 import Pop from '../utils/Pop';
 import { logger } from '../utils/Logger';
 import {tracksService} from '../services/TracksService.js'
-import { AppState } from "../AppState.js";
 export default {
 setup() {
     const searchData = ref({});
@@ -47,7 +46,6 @@ setup() {
 
         if(formattedSearch){
             await spotifyApiService.searchSong(formattedSearch)
-            Pop.toast('Search successful', 'success')
         }
         this.resetForm()
       } catch (error) {
@@ -69,6 +67,7 @@ setup() {
   border-bottom: 0px;
   border-radius: 15px;
   height: 5vh;
+  padding-left: 0.4em;
 }
 
 .search-bar {
@@ -83,11 +82,14 @@ setup() {
 }
 
 .clear-button{
-   background-color: red ;
+  background-color: #E1289F ;
   border: none;
   border-radius: 8px;
   margin-left: 5px;
   transition: .1s;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin-right: 0.4em;
 }
 
 .search-button {
