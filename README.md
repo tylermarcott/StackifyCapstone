@@ -28,11 +28,19 @@
 
 <div>
   <h2>Contributors</h2>
-        <div class="col-12 col-md-3">
-        <img src="../assets/img/everett1.jpg" alt="">
-        <h5>Everett Smith</h5>
-        <h5><a href="https://github.com/everettsmith928">Github</a> 
-        <a href="https://www.linkedin.com/in/everett-smith-811b57132/">LinkedIn</a>
-        </h5>
-      </div>
-</div>
+    <h5>Austin Perry</h5>
+    <h5><a class="links" href="https://github.com/AustinPerry22">Austin's GitHub</a><br>
+    <a href="https://www.linkedin.com/in/austin-perry22/">Austin's LinkedIn
+    </h5>        
+    <h5>Everett Smith</h5>
+    <h5><a href="https://github.com/everettsmith928">Everett's Github</a><br> 
+    <a href="https://www.linkedin.com/in/everett-smith-811b57132/">Everett's LinkedIn</a>
+    </h5>
+    <h5 class="text-pink mt-2">Lance Fontanilla</h5>
+    <h5><a class="links" href="https://github.com/LanceFontanilla">Lance's Github</a><br> 
+    <a class="links" href="https://www.linkedin.com/in/lancefontanilla/">Lance's LinkedIn</a> 
+    </h5>
+    <h5 class="text-pink mt-2">Tyler Marcott</h5>
+    <h5><a class="links" href="https://github.com/tylermarcott">Tyler's Github</a><br> 
+    <a class="links" href="https://www.linkedin.com/in/tyler-marcott-225277204/">Tyler's LinkedIn</a> 
+    </h5>
