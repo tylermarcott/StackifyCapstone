@@ -29,6 +29,9 @@ export const AppState = reactive({
  /**@type {Timeblock} */
   activeTimeBlock: null,
 
+  /**@type {Track} */
+  trackToAdd: null,
+
   isPlaying: null,
 
   authCode: null,

@@ -61,7 +61,7 @@
       </div>
 
       <div class="col-2 text-center">
-        <div class="row add-button">
+        <div @click="addTrackToActiveTimeblock(track.id)" class="row add-button">
           <div class="col-6">
             <i class="mdi mdi-plus">
             </i>
@@ -80,10 +80,10 @@
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed} from 'vue';
 import { Track } from "../models/Track.js";
-import { logger } from "../utils/Logger.js";
+import Pop from "../utils/Pop.js";
+import { tracksService } from "../services/TracksService.js";
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props) {
@@ -97,7 +97,15 @@ export default {
     return {
       totalSeconds,
       computedMinutes,
-      computedSeconds
+      computedSeconds,
+      // TODO: need to be able to save the song that's clicked on, it needs to be saved to the appstate in trackToAdd with all the data points that are stored on the page
+      async addTrackToActiveTimeblock(trackId){
+        try {
+          await tracksService.addTrackToActiveTimeblock(trackId)
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
     }
   }
 };
