@@ -221,6 +221,7 @@ input {
   background-color: #4F4F4F;
   color: #FFFFFF;
   font-size: 18px;
+  max-height: 5vh;
 }
 
 // This is the Right Panel Section (ACCOUNT, SPACER)
