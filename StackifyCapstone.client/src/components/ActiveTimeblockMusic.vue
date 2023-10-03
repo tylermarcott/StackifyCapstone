@@ -13,10 +13,10 @@
     <section class="row">
         <div class="col-10">
             <h5 class="text-end">Total Duration: {{ totalDuration }}</h5>
-            <div v-for="track in timeblock.trackList" :key="track.id">
-              <TrackCard :track="track"/>
+                <div v-for="track in timeblock.trackList" :key="track.id">
+                <TrackCard :track="track"/>
+                </div>
             </div>
-        </div>
         <div class="col-2 text-center">
             <button class="btn btn-danger my-3"><i class="mdi mdi-lock"></i></button>
         </div>

@@ -34,6 +34,12 @@ class TimeBlocksService{
         await api.put(`api/timeblocks/${newTimeblock.id}`, newTimeblock)
       }
 
+      async saveNotes(timeblockId, timeblockData){
+        const res = await api.put(`api/timeblocks/${timeblockId}`, timeblockData)
+        logger.log('this is the put request', res.data)
+        AppState.activeTimeBlock.notes = res.data.notes
+      }
+
       setActiveTimeblock(timeblockId){
         const activeTimeBlock = AppState.myTimeBlocks.find(timeblock => timeblock.id == timeblockId)
         AppState.activeTimeBlock = activeTimeBlock
