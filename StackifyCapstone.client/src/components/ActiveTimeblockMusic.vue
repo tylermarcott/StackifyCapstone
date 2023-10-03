@@ -12,13 +12,14 @@
     </section>
     <section class="row">
         <div class="col-10">
-            <h5 class="text-end">Total Duration: {{ totalDuration }}</h5>
-                <div v-for="track in timeblock.trackList" :key="track.id">
+            <h5 class="text-end">Total Duration: {{ msToTime(totalDuration) }}</h5>
+            <div v-for="track in timeblock.trackList" :key="track.id" class="my-2">
                 <TrackCard :track="track"/>
-                </div>
+            </div>
             </div>
         <div class="col-2 text-center">
-            <button class="btn btn-danger my-3"><i class="mdi mdi-lock"></i></button>
+            <button v-if="timeblock.locked" @click="toggleLock()" class="btn btn-danger my-3"><i class="mdi mdi-lock"></i></button>
+            <button v-else @click="toggleLock()" class="btn btn-success my-3"><i class="mdi mdi-lock-open"></i></button>
         </div>
     </section>
 </template>
@@ -44,11 +45,26 @@ export default {
                 return duration
             }),
 
+            msToTime(ms) {
+                const totalSeconds = Math.floor(ms / 1000)
+                const computedMinutes =  Math.floor(totalSeconds / 60)
+                let computedSeconds = totalSeconds % 60;
+                if(computedSeconds < 10) {
+                    computedSeconds = `0${computedSeconds}`
+                }
+                return computedMinutes + ':' + computedSeconds
+            },
+
+
             prevTimeblock(){
                 timeBlocksService.prevTimeblock()
             },
             nextTimeblock(){
                 timeBlocksService.nextTimeblock()
+            },
+
+            toggleLock(){
+                timeBlocksService.toggleLock()
             }
 
         };

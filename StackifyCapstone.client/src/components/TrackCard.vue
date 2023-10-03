@@ -1,11 +1,15 @@
 <template>
-  <section class="container song-card">
+  <section class="song-card">
     <div class="row">
-      <div class="col-4">
+      <div v-if="!locked" class="col-1">
+        <button class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
+        <button class="btn btn-light"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
+      </div>
+      <div class="col-3">
         {{ track.name }}
       </div>
       <div class="col-2">
-        {{ track.artist[0].name }}
+        {{ track.artist }}
       </div>
 
       <div class="col-3">
@@ -17,6 +21,9 @@
       </div>
       <div class="col-2">
         {{ computedMinutes }}:{{ computedSeconds }}
+        <div v-if="!locked">
+          <button  class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
+        </div>
       </div>
     </div>
   </section>
@@ -26,10 +33,10 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
-import { Track } from "../models/Track.js";
 import { logger } from "../utils/Logger.js";
+import { MyTrack } from '../models/MyTrack';
 export default {
-  props: { track: { type: Track || Object, required: true } },
+  props: { track: { type: MyTrack || Object, required: true } },
   setup(props){
     const totalSeconds = computed(()=> Math.floor(props.track.duration/1000))
     const computedMinutes = computed(()=> Math.floor(totalSeconds.value/60))
@@ -37,13 +44,14 @@ export default {
       const seconds = totalSeconds.value % 60;
       return seconds.toString().padStart(2, '0')
     })
+    
 
   return { 
     totalSeconds,
     computedMinutes,
-    computedSeconds
-    // computedMinutes: computed(()=> ((props.track.duration/1000)/60).toFixed(0)),
-    // computedSeconds: computed(()=> ((props.track.duration / 1000) / 60).toFixed(2))
+    computedSeconds,
+    locked: computed(()=> AppState.activeTimeBlock.locked)
+    
     
    }
   }

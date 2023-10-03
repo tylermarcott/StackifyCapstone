@@ -10,7 +10,7 @@ export const TimeBlocksSchema = new Schema({
     completed: { type: Boolean, default: false },
     notes: { type: String, maxLength: 9999 },
     silent: { type: Boolean, default: false },
-    position: { type: Number, max: 99999 }
+    position: { type: Number, max: 99999 },
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 
