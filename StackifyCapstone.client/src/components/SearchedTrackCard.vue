@@ -43,7 +43,9 @@
           </div>     
         </div>
         <div class="row">
-          <h2>triple dot thingy to open song details modal</h2>
+          <h2>
+            <i class="mdi mdi-dots-horizontal"></i>
+          </h2>
           add bpm
         </div>
       </div>
@@ -80,12 +82,15 @@ export default {
 <style lang="scss" scoped>
 
 .album-img{
-  max-height: 300px;
-  max-width: 300px;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
 }
 
 .add-button {
-  background-color: #63FAAA ;
+  background-color: #E1289F ;
   border: none;
   border-radius: 8px;
   margin-left: 5px;

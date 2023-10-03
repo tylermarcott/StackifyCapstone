@@ -4,10 +4,14 @@
         <div class="col-12 d-flex justify-content-center align-items-center">
             <input v-model="searchData.query" class="search-bar"><div class="text-center">
             <button class="search-button">
-            <i class="mdi mdi-magnify search-icon"></i>
-            </button></div>
+              <i class="mdi mdi-magnify search-icon"></i>
+            </button>
+          </div>
         </div>
         </form>
+        <button @click="clearSearchedTracks" class="clear-button">
+          <i class="mdi mdi-alpha-x-box search-icon"></i>
+        </button>
     </div>
 </template>
 
@@ -16,6 +20,8 @@ import { ref } from 'vue';
 import { spotifyApiService } from '../services/SpotifyApiService';
 import Pop from '../utils/Pop';
 import { logger } from '../utils/Logger';
+import {tracksService} from '../services/TracksService.js'
+import { AppState } from "../AppState.js";
 export default {
 setup() {
     const searchData = ref({});
@@ -25,13 +31,24 @@ setup() {
       searchData.value = { type: '' }
     },
 
+    async clearSearchedTracks(){
+      try {
+        await tracksService.clearSearchedTracks()
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+
     async searchSong(){
       try {
         let searchValue = searchData.value.query
         logger.log('our search value is this:', searchValue)
         let formattedSearch = searchValue.replace(' ', '+')
-        await spotifyApiService.searchSong(formattedSearch)
-        Pop.toast('Search successful', 'success')
+
+        if(formattedSearch){
+            await spotifyApiService.searchSong(formattedSearch)
+            Pop.toast('Search successful', 'success')
+        }
         this.resetForm()
       } catch (error) {
         Pop.error(error)
@@ -63,6 +80,14 @@ setup() {
 
 .search-icon {
   border-radius: 8px;
+}
+
+.clear-button{
+   background-color: red ;
+  border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  transition: .1s;
 }
 
 .search-button {
