@@ -2,20 +2,20 @@
   <ModalWrapper id="active-song">
     <template #button>   
       <section @click="getActiveTrack()" v-if="activeTrack" class="row h-100">
-          <div class="col-4 d-flex align-items-center">
+          <div class="col-4 d-flex align-items-center mt-3">
               <img class="img-fluid active-song-image p-0" :src="activeTrack.picture">
           </div>
-          <div class="col-8 p-2 d-flex flex-column justify-content-center">
+          <div class="col-8 p-2 d-flex flex-column align-items-between justify-content-center">
             <section class="row">
-              <div class="col-6 d-flex flex-column justify-content-center">
+              <div class="col-12 d-flex flex-column justify-content-center">
                   <p class="song-title m-0"><b>{{ activeTrack.name }}</b></p>
-                  <p class="song-title m-0">{{ activeTrack.album }}</p>
+
                 </div>
-                <div class="col-6">
-                  <p class="song-title m-0">{{ activeTrack.artist }}</p>
-              </div>
-              <div class="col-6">
-                    <p class="song-title my-2">{{ duration }} mins</p>
+                <div class="col-6 mt-1">
+                  <p class="song-title my-0">{{ activeTrack.artist }}</p>                    
+                </div>
+                <div class="col-6 mt-1">
+                  <p class="song-title m-0">{{ computedMinutes }}:{{ computedSeconds }}</p>
                   </div>
                 </section>
           </div>
@@ -75,7 +75,13 @@ export default {
       getActiveTrackDetails,
       activeTrack,
       activeTrackDetails: computed(() => AppState.activeTrackDetails),
-      duration: computed(() => (AppState.activeTrack.duration / 1000 / 60).toFixed(2)),
+      
+      computedMinutes: computed(() => Math.floor(AppState.activeTrack.duration / 1000 / 60)),
+
+      computedSeconds: computed(() => Math.floor(AppState.activeTrack.duration / 1000 % 60).toString().padStart(2, '0')),
+
+
+
     };
       
     },

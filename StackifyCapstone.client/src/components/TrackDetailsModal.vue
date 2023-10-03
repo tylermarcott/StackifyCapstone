@@ -12,12 +12,12 @@
                     <p>Album: {{ activeTrack.album}}</p>
                     <p>Year: {{ activeTrack.year }}</p>
                     <p>Key: {{ key }}</p>
-                    <p>Duration: {{ duration }} mins </p>
+                    <p>Duration: {{ computedMinutes }}:{{ computedSeconds }} </p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <p>Valence: {{ activeTrackDetails.valence }}</p>
-                    <p>Dance-ability: {{ activeTrackDetails.danceability }}</p>
-                    <p>BPM: {{ activeTrackDetails.bpm }}</p>
+                    <p>Valence: {{ valence }}%</p>
+                    <p>Dance-ability: {{ danceability }}%</p>
+                    <p>BPM: {{ bpm }}</p>
                     <p>Popularity: {{ activeTrack.popularity }}</p>
                 </div>
             </div>
@@ -38,7 +38,13 @@ export default {
             
             activeTrack: computed(() => AppState.activeTrack),
             activeTrackDetails: computed(() => AppState.activeTrackDetails),
-            duration: computed(() => (AppState.activeTrack.duration / 1000 / 60 ).toFixed(2)),
+            
+            computedMinutes: computed(() => Math.floor(AppState.activeTrack.duration/1000/60)),
+            computedSeconds: computed(() => Math.floor(AppState.activeTrack.duration/1000 % 60).toString().padStart(2, '0')),
+            valence: computed(() => (AppState.activeTrackDetails.valence * 100).toFixed(0)),
+            danceability: computed(() => (AppState.activeTrackDetails.danceability * 100).toFixed(0)),
+            bpm: computed(() => (AppState.activeTrackDetails.bpm).toFixed(0)),
+            
             key: computed(()=> 
                 { 
                 if (AppState.activeTrackDetails.key == 0) return 'C'
@@ -76,7 +82,7 @@ export default {
 }
 
 .bg-pink {
-    background-color: #e1289F;
+    background-color: #EA94FF
 }
 
 .text-white {
@@ -84,7 +90,7 @@ export default {
 }
 
 .text-pink {
-    color: #e1289F
+    color: #EA94FF;
 }
 
 .song-title {
@@ -96,7 +102,7 @@ export default {
     margin-left: 8vw;
     margin-bottom: 5vh;
     text-decoration: none;
-    color: #E1289F;
+    color: #EA94FF;
     font-size: 1.75rem;
 }
 
