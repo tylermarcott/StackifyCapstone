@@ -31,10 +31,21 @@
         <div class="main-content justify-content-center align-items-center">
           <!-- NOTE use a row on the search songs component-->
 
-          <div class="row justify-content-center">
+          <div v-if="tracks[0]" class="row justify-content-center">
             <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 searched-song-card">
               <SearchedTrackCard :track="track"/>
             </div>
+          </div>
+          <div v-if="activeTimeblock">
+            <div v-if="activeTimeblock.isSilent">
+              <ActiveTimeblockSilent/>
+            </div>
+            <div v-if="!activeTimeblock.isSilent">
+              <ActiveTimeblockMusic/>
+            </div>
+          </div>
+          <div v-else>
+            no active timeblock or searched song
           </div>
 
 
@@ -80,6 +91,8 @@ import Profile from '../components/Profile.vue'
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService.js";
 import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
+import ActiveTimeblockMusic from '../components/ActiveTimeblockMusic.vue';
+import ActiveTimeblockSilent from '../components/ActiveTimeblockSilent.vue';
 
 export default {
     setup() {
@@ -135,11 +148,12 @@ export default {
         });
         return {
             tracks: computed(() => AppState.tracks),
-            activeTrack: computed(() => AppState.activeTrack)
+            activeTrack: computed(() => AppState.activeTrack),
+            activeTimeblock: computed(()=> AppState.activeTimeBlock)
             
         };
     },
-    components: { SongSearchBar, Player, EventDropdown, TimeBlockList }
+    components: { SongSearchBar, Player, EventDropdown, TimeBlockList, ActiveTimeblockMusic, ActiveTimeblockSilent }
 };
 </script>
 
