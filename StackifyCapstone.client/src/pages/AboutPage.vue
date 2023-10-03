@@ -23,7 +23,7 @@
       Stackify is a music application tailored for event planners and amateur DJs.  It sets the stage for effortless music management. With an intuitive interface, it simplifies music selection, curation, and playback, offering dynamic features such as genre-based recommendations and sorting by BPM, Key, or dance-ability. This innovative approach to playlist curation serves as an invaluable tool for seamlessly identifying tracks that harmonize beautifully. Stackify is meticulously crafted to cater to the precise requirements of event organizers and budding DJs, empowering them to effortlessly elevate event ambiance and entertainment quality.
       
       <br><br>
-      Languages and tools used: HTML, JavaScript, Vue, NodeJS, Spotify API
+      Languages and tools used: HTML, JavaScript, Vue, NodeJS, Spotify API, MongoDB
       </p>
     </div>
   </section>
