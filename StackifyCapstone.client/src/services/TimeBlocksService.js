@@ -33,6 +33,11 @@ class TimeBlocksService{
         await api.put(`api/timeblocks/${timeblock.id}`, timeblock)
         await api.put(`api/timeblocks/${newTimeblock.id}`, newTimeblock)
       }
+
+      setActiveTimeblock(timeblockId){
+        const activeTimeBlock = AppState.myTimeBlocks.find(timeblock => timeblock.id == timeblockId)
+        AppState.activeTimeBlock = activeTimeBlock
+      }
 }
 
 export const timeBlocksService = new TimeBlocksService()
