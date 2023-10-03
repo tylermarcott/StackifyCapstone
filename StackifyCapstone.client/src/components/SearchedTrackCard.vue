@@ -10,12 +10,12 @@
             <h1>Mikasa</h1>
           </div>
           <div class="col-6">
-            <h3>Veil of Maya</h3>
+            <h1>Veil of Maya</h1>
           </div>
         </div>
         <div class="row">
           <div class="col-6">
-            <h5>Matriarch (album)</h5>
+            <h5>Matriarch</h5>
           </div>
           <div class="col-6">
             <h5>3:10</h5>

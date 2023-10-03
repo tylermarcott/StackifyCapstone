@@ -20,7 +20,7 @@
 </section>
 
 <h3>Searched Song Card</h3>
-<section class="mb-5 song-card">
+<section class="mb-5 song-card rounded p-4">
   <SearchedTrackCard/>
 </section>
 
