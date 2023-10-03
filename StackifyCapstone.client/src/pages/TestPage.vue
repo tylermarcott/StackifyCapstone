@@ -19,10 +19,15 @@
   </div>
 </section>
 
-<h3>Searched Song Card</h3>
-<section class="mb-5 song-card rounded p-4">
-  <SearchedTrackCard/>
-</section>
+<div class="row m-5">
+  <div class="col-7">
+    <section class="mb-5 searched-song-card rounded p-4">
+      <SearchedTrackCard/>
+    </section>
+  </div>
+</div>
+
+
 
 
 <!-- NOTE: getting list of events for logged in user -->
@@ -78,11 +83,12 @@ export default {
   cursor: pointer;
 }
 
-.song-card{
-  padding: 0.5em;
+.searched-song-card{
+  padding: 1em;
   background-color: #4F4F4F;
   color: #FFFFFF;
   font-size: 18px;
+  border-radius: 5px;
 }
 
 </style>

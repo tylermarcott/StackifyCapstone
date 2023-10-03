@@ -21,7 +21,6 @@ import { spotifyApiService } from '../services/SpotifyApiService';
 import Pop from '../utils/Pop';
 import { logger } from '../utils/Logger';
 import {tracksService} from '../services/TracksService.js'
-import { AppState } from "../AppState.js";
 export default {
 setup() {
     const searchData = ref({});
@@ -47,7 +46,6 @@ setup() {
 
         if(formattedSearch){
             await spotifyApiService.searchSong(formattedSearch)
-            Pop.toast('Search successful', 'success')
         }
         this.resetForm()
       } catch (error) {

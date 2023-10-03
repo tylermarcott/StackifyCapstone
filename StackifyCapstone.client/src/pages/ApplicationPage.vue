@@ -170,7 +170,7 @@ export default {
 
 
 .searched-song-card{
-  padding: 0.5em;
+  padding: 1em;
   background-color: #4F4F4F;
   color: #FFFFFF;
   font-size: 18px;
