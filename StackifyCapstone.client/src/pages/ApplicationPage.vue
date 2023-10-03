@@ -31,10 +31,21 @@
         <div class="main-content justify-content-center align-items-center">
           <!-- NOTE use a row on the search songs component-->
 
-          <div class="row justify-content-center">
-            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 p-2 song-card">
-              <TrackCard :track="track"/>
+          <div v-if="tracks[0]" class="row justify-content-center">
+            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 searched-song-card">
+              <SearchedTrackCard :track="track"/>
             </div>
+          </div>
+          <div v-else-if="activeTimeblock">
+            <div v-if="activeTimeblock.isSilent">
+              <ActiveTimeblockSilent/>
+            </div>
+            <div v-if="!activeTimeblock.isSilent">
+              <ActiveTimeblockMusic/>
+            </div>
+          </div>
+          <div v-else>
+            no active timeblock or searched song
           </div>
 
 
@@ -80,6 +91,8 @@ import Profile from '../components/Profile.vue'
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService.js";
 import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
+import ActiveTimeblockMusic from '../components/ActiveTimeblockMusic.vue';
+import ActiveTimeblockSilent from '../components/ActiveTimeblockSilent.vue';
 
 export default {
     setup() {
@@ -135,11 +148,12 @@ export default {
         });
         return {
             tracks: computed(() => AppState.tracks),
-            activeTrack: computed(() => AppState.activeTrack)
+            activeTrack: computed(() => AppState.activeTrack),
+            activeTimeblock: computed(()=> AppState.activeTimeBlock)
             
         };
     },
-    components: { SongSearchBar, Player, EventDropdown, TimeBlockList }
+    components: { SongSearchBar, Player, EventDropdown, TimeBlockList, ActiveTimeblockMusic, ActiveTimeblockSilent }
 };
 </script>
 
@@ -169,6 +183,15 @@ export default {
 }
 
 
+.searched-song-card{
+  padding: 1em;
+  background-color: #4F4F4F;
+  color: #FFFFFF;
+  font-size: 18px;
+  border-radius: 5px;
+  max-height: 60vh;
+}
+
 
 // This is the Center Panel Section (SEARCH, MAIN, PLAYER)
 
@@ -176,17 +199,6 @@ export default {
   height: 100vh;
 }
 
-input {
-}
-// .search {
-//   background-color: #4f4f4f;
-//   border: solid 8px #242424;
-//   border-left: none;
-//   border-right: none;
-//   border-bottom: 0px;
-//   border-radius: 15px;
-//   height: 5vh;
-// }
 
 .add-button {
   background-color: #63FAAA ;
@@ -197,6 +209,10 @@ input {
   font-size: 27px;
   transition: .1s;
   padding: 4px;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
 }
 
 
@@ -216,13 +232,6 @@ input {
   display: none;
 }
 
-.song-card{
-  padding: 0.5em;
-  background-color: #4F4F4F;
-  color: #FFFFFF;
-  font-size: 18px;
-  max-height: 5vh;
-}
 
 // This is the Right Panel Section (ACCOUNT, SPACER)
 .right-panel {
@@ -232,38 +241,4 @@ input {
   border-radius: 15px;
   color: #eeeeee;
 }
-
-// .right-panel-spacer {
-//   height: 5vh;
-// }
-
-// .profile-picture {
-//   height: 100px;
-//   width: 100px;
-//   border-radius: 50%;
-//   border: 1px solid #EA94FF;
-//   margin: 5vh 0vh;
-// }
-
-// .account-text {
-//   color: #EA94FF;
-//   font-size: 1.2rem;
-//   padding: .5rem;
-//   transition: .3s;
-// }
-
-// .account-text:hover {
-//   color: #63FAAA;
-// }
-
-// NOTE UNCOMMENT THIS MAYBE
-// .create-track-card{
-//   border-radius: 5px;
-//   background-color: #92946B;
-// }
-
-// .home-button {
-//   font-size: 2rem;
-//   color: #eeeeee;
-// }
 </style>

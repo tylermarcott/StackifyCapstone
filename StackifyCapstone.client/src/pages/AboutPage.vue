@@ -23,7 +23,7 @@
       Stackify is a music application tailored for event planners and amateur DJs.  It sets the stage for effortless music management. With an intuitive interface, it simplifies music selection, curation, and playback, offering dynamic features such as genre-based recommendations and sorting by BPM, Key, or dance-ability. This innovative approach to playlist curation serves as an invaluable tool for seamlessly identifying tracks that harmonize beautifully. Stackify is meticulously crafted to cater to the precise requirements of event organizers and budding DJs, empowering them to effortlessly elevate event ambiance and entertainment quality.
       
       <br><br>
-      Languages and tools used: HTML, JavaScript, Vue, NodeJS, Spotify API
+      Languages and tools used: HTML, JavaScript, Vue, NodeJS, Spotify API, MongoDB
       </p>
     </div>
   </section>
@@ -40,7 +40,7 @@
       </div>
 
       <div class="col-12 col-md-3">
-        <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LNTZ1ULS-eaef7b01235f-512" alt="">
+        <img class="profile-pic" src="https://avatars.githubusercontent.com/u/36865028?v=4" alt="">
         <h5 class="text-pink mt-2">Everett Smith</h5>
         <h5><a class="links" href="https://github.com/everettsmith928"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/everett-smith-811b57132/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
