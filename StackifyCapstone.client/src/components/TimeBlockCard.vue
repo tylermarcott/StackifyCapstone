@@ -24,11 +24,13 @@ setup(props) {
     topTimeBlock : computed(()=> AppState.myTimeBlocks[0].id),
     bottomTimeBlock : computed(()=> AppState.myTimeBlocks[AppState.myTimeBlocks.length-1].id),
     cardColor: computed(()=>{
-      if(AppState.activeTimeBlock.id == props.timeblock.id){
-        return '#EA94FF'
-      }else{
-        return '#4f4f4f'
+      let color = '#4f4f4f'
+      if(AppState.activeTimeBlock){
+        if(AppState.activeTimeBlock.id == props.timeblock.id){
+          color = '#EA94FF'
+        } 
       }
+      return color
     }),
 
     async moveTimeblock(upOrDown){
