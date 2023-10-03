@@ -16,7 +16,6 @@
         <i class="mdi mdi-dots-horizontal"></i>
       </div>
       <div class="col-2">
-        <!-- TODO: fix this up, need to convert a percentage of 100 to seconds in a minute -->
         {{ computedMinutes }}:{{ computedSeconds }}
       </div>
     </div>

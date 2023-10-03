@@ -73,7 +73,7 @@ setup() {
 .search-bar {
   width: 100%;
   background-color: #eeeeee;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
 }
 
@@ -87,7 +87,7 @@ setup() {
   border-radius: 8px;
   margin-left: 5px;
   transition: .1s;
-  font-size: 18px;
+  font-size: 17px;
   color: #FFFFFF;
   margin-right: 0.4em;
 }
@@ -101,6 +101,9 @@ setup() {
 }
 
 .search-button:hover {
+  transform: scale(1.1);
+}
+.clear-button:hover {
   transform: scale(1.1);
 }
 </style>

@@ -189,6 +189,7 @@ export default {
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;
+  max-height: 60vh;
 }
 
 
@@ -208,6 +209,10 @@ export default {
   font-size: 27px;
   transition: .1s;
   padding: 4px;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
 }
 
 
