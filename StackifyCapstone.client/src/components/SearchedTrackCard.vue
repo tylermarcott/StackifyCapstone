@@ -84,6 +84,8 @@ import { computed} from 'vue';
 import { Track } from "../models/Track.js";
 import Pop from "../utils/Pop.js";
 import { tracksService } from "../services/TracksService.js";
+import { logger } from "../utils/Logger.js";
+import {AppState} from '../AppState.js'
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props) {
@@ -101,7 +103,19 @@ export default {
       // TODO: need to be able to save the song that's clicked on, it needs to be saved to the appstate in trackToAdd with all the data points that are stored on the page
       async addTrackToActiveTimeblock(trackId){
         try {
+          logger.log('here is our active timeblock:', AppState.activeTimeBlock)
           await tracksService.addTrackToActiveTimeblock(trackId)
+          this.editTimeblockTracklist()
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async editTimeblockTracklist(){
+        try {
+          const updatedTimeblock = AppState.activeTimeBlock
+          const timeblockId = AppState.activeTimeBlock.id
+          await tracksService.editTimeblockTracklist(updatedTimeblock, timeblockId)
         } catch (error) {
           Pop.error(error)
         }

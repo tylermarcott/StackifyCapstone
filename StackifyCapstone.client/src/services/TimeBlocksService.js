@@ -52,6 +52,11 @@ class TimeBlocksService{
       nextTimeblock(){
         AppState.activeTimeBlock = AppState.myTimeBlocks[AppState.activeTimeBlock.position+1]
       }
+
+      toggleLock(){
+        AppState.activeTimeBlock.locked = !AppState.activeTimeBlock.locked
+        logger.log('toggle lock', AppState.activeTimeBlock.locked)
+      }
 }
 
 export const timeBlocksService = new TimeBlocksService()

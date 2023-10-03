@@ -12,5 +12,6 @@ export class Timeblock{
     this.notes = data.notes
     this.isSilent = data.silent
     this.position = data.position
+    this.locked = true
   }
 }
