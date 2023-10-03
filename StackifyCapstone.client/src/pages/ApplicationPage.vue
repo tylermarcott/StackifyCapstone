@@ -36,7 +36,7 @@
               <SearchedTrackCard :track="track"/>
             </div>
           </div>
-          <div v-if="activeTimeblock">
+          <div v-else-if="activeTimeblock">
             <div v-if="activeTimeblock.isSilent">
               <ActiveTimeblockSilent/>
             </div>

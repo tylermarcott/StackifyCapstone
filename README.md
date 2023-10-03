@@ -23,7 +23,7 @@
 
 <div>
   <h2>Languages/Tools Used</h2>
-  <p>HTML, JavaScript, Vue, NodeJS, Spotify API</p>
+  <p>HTML, JavaScript, Vue, NodeJS, Spotify API, MongoDB</p>
 </div>
 
 <div>
