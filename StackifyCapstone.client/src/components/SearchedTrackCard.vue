@@ -84,6 +84,8 @@ import { computed} from 'vue';
 import { Track } from "../models/Track.js";
 import Pop from "../utils/Pop.js";
 import { tracksService } from "../services/TracksService.js";
+import { logger } from "../utils/Logger.js";
+import {AppState} from '../AppState.js'
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props) {
@@ -102,6 +104,19 @@ export default {
       async addTrackToActiveTimeblock(trackId){
         try {
           await tracksService.addTrackToActiveTimeblock(trackId)
+          this.editTimeblockTracklist()
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async editTimeblockTracklist(){
+        try {
+          const updatedTrackList = AppState.activeTimeBlock.trackList
+          const timeblockId = AppState.activeTimeBlock.id
+          logger.log('here is our updated track list on our active timeblock:', updatedTrackList)
+          logger.log('this is the id of the timeblock we are editing:', timeblockId)
+          await tracksService.editTimeblockTracklist(updatedTrackList, timeblockId)
         } catch (error) {
           Pop.error(error)
         }
