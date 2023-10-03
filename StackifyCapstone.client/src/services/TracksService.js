@@ -23,14 +23,20 @@ class TracksService{
   }
 
   async editTimeblockTracklist(body, timeblockId){
+
+    logger.log('this is what myTimeblocks looks like before the edits:', AppState.myTimeBlocks.find(timeblock => timeblock.id == timeblockId))
+
     const res = await api.put(`api/timeblocks/${timeblockId}`, body)
+
     logger.log('edited the following timeblock to this:', res.data)
 
-    const foundIndex = AppState.myTimeBlocks.findIndex(timeblock => timeblockId == timeblockId)
+    const foundIndex = AppState.myTimeBlocks.findIndex(timeblock => timeblockId == timeblock.id)
 
     const editedTimeblock = new Timeblock(res.data)
 
     AppState.myTimeBlocks.splice(foundIndex, 1, editedTimeblock)
+
+    logger.log('now myTimeblocks looks like this:', AppState.myTimeBlocks)
   }
 }
 

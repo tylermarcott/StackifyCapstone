@@ -103,6 +103,7 @@ export default {
       // TODO: need to be able to save the song that's clicked on, it needs to be saved to the appstate in trackToAdd with all the data points that are stored on the page
       async addTrackToActiveTimeblock(trackId){
         try {
+          logger.log('here is our active timeblock:', AppState.activeTimeBlock)
           await tracksService.addTrackToActiveTimeblock(trackId)
           this.editTimeblockTracklist()
         } catch (error) {
@@ -112,11 +113,9 @@ export default {
 
       async editTimeblockTracklist(){
         try {
-          const updatedTrackList = AppState.activeTimeBlock.trackList
+          const updatedTimeblock = AppState.activeTimeBlock
           const timeblockId = AppState.activeTimeBlock.id
-          logger.log('here is our updated track list on our active timeblock:', updatedTrackList)
-          logger.log('this is the id of the timeblock we are editing:', timeblockId)
-          await tracksService.editTimeblockTracklist(updatedTrackList, timeblockId)
+          await tracksService.editTimeblockTracklist(updatedTimeblock, timeblockId)
         } catch (error) {
           Pop.error(error)
         }
