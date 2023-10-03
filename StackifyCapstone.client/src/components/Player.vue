@@ -10,8 +10,8 @@
             </button>
             <!-- NOTE play button -->
             <button @click="togglePlay()" class="play elevation-3">
-              <i v-if="isPlaying" class="mdi mdi-play"></i>
-              <i v-if="!isPlaying" class="mdi mdi-pause"></i>
+              <i v-if="!isPlaying" class="mdi mdi-play"></i>
+              <i v-if="isPlaying" class="mdi mdi-pause"></i>
             </button>
             <button @click="playNext()" class="next elevation-3">
             <i class="mdi mdi-skip-next"></i>
@@ -22,19 +22,20 @@
             <i class="devices-icon mdi mdi-volume-high"></i>
             <input type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
         </div>
-        <div class="col-12 d-flex justify-content-center align-items-center">
-            <p class="duration-text m-0">2:50</p>
+        <div  class="col-12 d-flex justify-content-center align-items-center">
+            <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.progress) }}</p>
             <div class="song-duration-slot elevation-5">
-            <div class="song-duration-bar"></div>
+            <input class="song-duration-bar" type="range" min="0" max="100" step="1" id="song-duration-bar" @input="changeTrackPosition()">
+            <!-- <div class="song-duration-bar" id="song-duration-bar"></div> -->
             </div>
-            <p class="duration-text m-0">4:20</p>
+            <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.duration) }}</p>
         </div>
         </section>
     </div>
 </template>
 
 <script>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watchEffect } from "vue";
 import { spotifyPlayerService } from '../services/SpotifyPlayerService';
 import Pop from '../utils/Pop';
 import { logger } from "../utils/Logger";
@@ -43,17 +44,58 @@ import { AppState } from "../AppState.js";
 
 export default {
 setup() {
+  const trackPosition = ref({})
   const volume = ref({
   })
-  onMounted(() => AppState.isPlaying = true)
+  async function currentPosition() {
+    try {
+      logger.log('[PLAYER COMPONENT] AppState.isPlaying:', AppState.isPlaying)
+      // if(AppState.isPlaying == true) {
+        logger.log('Grabbing the Current Position...')
+        await spotifyPlayerService.currentPosition()
+      // }
+    } catch (error) {
+      Pop.error(error)
+    }
+  }
+
+  function calculateBar() {
+    logger.log('changing class')
+      let percent = Math.floor(AppState.activeTrack.progress / AppState.activeTrack.duration * 100)
+      logger.log(percent)
+      let bar = document.getElementById('song-duration-bar')
+      // bar.classList.add(`w-${percent}`)
+      bar.setAttribute('value', `${percent}` )
+      // bar.setAttribute('max', `${AppState.activeTrack}`)
+    }
+
+  watchEffect(() => currentPosition(AppState.isPlaying))
+  watchEffect(() => {
+    if(AppState.activeTrack != null)
+    calculateBar(AppState.activeTrack
+    )})
+  onMounted(() => {
+    AppState.isPlaying = false
+    }
+  )
   async function changeState(){
       await spotifyPlayerService.changeState()
       logger.log('is a song playing (changeState fxn):', AppState.isPlaying)
-    }
+  }
+    
   return {
     isPlaying: computed(()=> AppState.isPlaying),
+    activeTrack: computed(() => AppState.activeTrack),
     volume,
+    trackPosition,
     changeState,
+    async changeTrackPosition() {
+      try {
+        await spotifyPlayerService.changeTrackPosition(trackPosition.value)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
     async togglePlay() {
       try {
           await spotifyPlayerService.togglePlay();
@@ -67,6 +109,7 @@ setup() {
     async playNext() {
       try {
         await spotifyPlayerService.playNext()
+        changeState()
       } catch (error) {
         Pop.error(error)
       }
@@ -86,6 +129,20 @@ setup() {
         Pop.error(error)
       }
     },
+
+    msToTime(ms) {
+      const totalSeconds = Math.floor(ms / 1000)
+      const computedMinutes =  Math.floor(totalSeconds / 60)
+      let computedSeconds = totalSeconds % 60;
+      logger.log('Seconds before padding', computedSeconds)
+      if(computedSeconds < 10) {
+      computedSeconds = `0${computedSeconds}`
+      logger.log('Seconds after padding..', computedSeconds)
+      }
+      return computedMinutes + ':' + computedSeconds
+    },
+
+    
 
   };
 },
@@ -161,7 +218,7 @@ input[type="range"]::-webkit-slider-thumb {
 .song-duration-bar {
   height: 1vh;
   border-radius: 8px;
-  width: 60%;
+  width: 100%;
   background: #EA94FF;
   position: absolute;
 }

@@ -32,7 +32,6 @@ class SpotifyApiService{
     const res = await spotifyApi.get(url, { headers: { Authorization: `Bearer ${bearerToken}` } })
     logger.log('Currently Playing Track', res.data)
     AppState.activeTrack = new ActiveTrack(res.data)
-    logger.log(AppState.activeTrack)
     return AppState.activeTrack.id
   }
 

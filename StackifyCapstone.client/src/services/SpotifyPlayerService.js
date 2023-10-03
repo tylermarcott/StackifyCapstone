@@ -7,7 +7,6 @@ import { AppState } from "../AppState.js";
 import { Device } from "../models/Device.js";
 import Pop from "../utils/Pop.js";
 import { spotifyApiService } from "./SpotifyApiService.js";
-
 class SpotifyPlayerService {
 
   player = ref(null)
@@ -95,12 +94,74 @@ class SpotifyPlayerService {
       logger.log(error)
     }
   }
+  async second() {
+    await spotifyApiService.getActiveTrack()
+    logger.log('Grabbing Current Position of Active Track by the second', AppState.activeTrack.duration, AppState.activeTrack.progress)
+  }
 
-  togglePlay() {
+  async getInterval() {
+    let intervalId = this.currentPosition()
+    logger.log('RETURNED INTERVAL ID', intervalId)
+  }
+
+  intervalId = 0
+   async currentPosition() {
+    if(AppState.isPlaying == true) {
+      let interval = setInterval(this.second, 1000)
+      this.intervalId = interval
+      logger.log('in the if true', interval)
+    }
+    else {
+      logger.log(this.intervalId)
+      clearInterval(this.intervalId)
+    }
+    logger.log(this.intervalId)
+  }
+
+  async changeTrackPosition(position) {
+    // try {
+      let trackPosition = AppState.activeTrack.duration / 100 * position
+      logger.log('Changing Track Position to', trackPosition)
+    //   const bearerToken = localStorage.getItem('access_token')
+    //   const headers = new Headers({
+    //     Authorization: `Bearer ${bearerToken}`,
+    //     'Content-Type': 'application/json'
+    //   });
+    //   const url = 'https://api.spotify.com/v1/me/player/seek'
+    //   const body = JSON.stringify({
+    //     position_ms: trackPosition
+    //   });
+    //   fetch(url, {
+    //     method: 'PUT',
+    //     headers: headers,
+    //     body: body
+    //   }).then(response => {
+    //     if (response.ok) {
+    //       logger.log('Changed Song Position');
+    //     } else {
+    //       logger.log('Could not skip');
+    //       return response.json();
+    //     }
+    //   }).then(data => {
+    //     if (data) {
+    //       logger.log(data); // Log any error message returned by Spotify API
+    //     }
+    //   }).catch(error => {
+    //     logger.error('There was an error:', error);
+    //   });
+    // }
+    // catch (error) {
+    //   logger.log(error)
+    // }
+  }
+
+  async togglePlay() {
     try {
+      
       this.player.value.togglePlay().then(() => {
         logger.log('Toggled playback!');
         // NOTE: appstate holder for changing play and pause icons
+        
       });
 
       this.player.value.getCurrentState().then(state => {
@@ -285,6 +346,11 @@ class SpotifyPlayerService {
     } catch(error) {
       Pop.error(error)
     }
+
+    
+
+    
 }
+
 
 export const spotifyPlayerService = new SpotifyPlayerService
