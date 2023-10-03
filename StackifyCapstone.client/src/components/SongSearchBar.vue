@@ -67,6 +67,7 @@ setup() {
   border-bottom: 0px;
   border-radius: 15px;
   height: 5vh;
+  padding-left: 0.4em;
 }
 
 .search-bar {
@@ -81,11 +82,14 @@ setup() {
 }
 
 .clear-button{
-   background-color: red ;
+  background-color: #E1289F ;
   border: none;
   border-radius: 8px;
   margin-left: 5px;
   transition: .1s;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin-right: 0.4em;
 }
 
 .search-button {

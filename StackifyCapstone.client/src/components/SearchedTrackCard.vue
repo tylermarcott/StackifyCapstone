@@ -105,6 +105,7 @@ export default {
   object-fit: cover;
   object-position: center;
   border-radius: 5px;
+  margin-top: 0.7em;
 }
 
 .add-button {
