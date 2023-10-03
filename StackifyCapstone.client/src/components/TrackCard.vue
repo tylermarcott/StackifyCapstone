@@ -17,7 +17,7 @@
       </div>
       <div class="col-2">
         <!-- TODO: fix this up, need to convert a percentage of 100 to seconds in a minute -->
-        {{ computedMinutes }}:{{ computedMinutes - computedSeconds }}
+        {{ computedMinutes }}:{{ computedSeconds }}
       </div>
     </div>
   </section>
@@ -32,10 +32,20 @@ import { logger } from "../utils/Logger.js";
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props){
+    const totalSeconds = computed(()=> Math.floor(props.track.duration/1000))
+    const computedMinutes = computed(()=> Math.floor(totalSeconds.value/60))
+    const computedSeconds = computed(()=> {
+      const seconds = totalSeconds.value % 60;
+      return seconds.toString().padStart(2, '0')
+    })
 
   return { 
-    computedMinutes: computed(()=> ((props.track.duration/1000)/60).toFixed(0)),
-    computedSeconds: computed(()=> ((props.track.duration / 1000) / 60))
+    totalSeconds,
+    computedMinutes,
+    computedSeconds
+    // computedMinutes: computed(()=> ((props.track.duration/1000)/60).toFixed(0)),
+    // computedSeconds: computed(()=> ((props.track.duration / 1000) / 60).toFixed(2))
+    
    }
   }
 };
