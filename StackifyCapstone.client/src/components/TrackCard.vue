@@ -1,5 +1,5 @@
 <template>
-  <section class="song-card">
+  <section class="song-card pointer" @dblclick="playTrack(track.id)">
     <div class="row">
       <div v-if="!locked" class="col-1">
         <button v-if="topTrack != track.id" @click="moveTrack('up')" class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
@@ -24,9 +24,6 @@
         <div v-if="!locked">
           <button @click="deleteTrack()" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
         </div>
-      </div>
-      <div v-if="locked" class="col-1">
-        <i @click="playTrack(track.id)" class="mdi mdi-play play-button"></i>
       </div>
     </div>
   </section>
@@ -87,7 +84,6 @@ export default {
 
     async playTrack(trackId){
       try {
-        logger.log('our track id:', trackId)
         await spotifyPlayerService.loadSong(trackId);
         // await spotifyPlayerService.togglePlay();
         setTimeout(await spotifyApiService.getActiveTrack, 3000)
@@ -110,6 +106,7 @@ export default {
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;
+  min-height: 8vh;
 }
 
 .play-button {
@@ -123,5 +120,10 @@ export default {
   padding: 4px;
   color: rgb(19, 18, 18);
   cursor: pointer;
+}
+
+.song-card:hover{
+  cursor: pointer;
+  transform: scale(1.01);
 }
 </style>

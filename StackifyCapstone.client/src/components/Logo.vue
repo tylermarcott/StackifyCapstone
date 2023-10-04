@@ -1,6 +1,6 @@
 <template>
     <router-link :to="{ name: 'Home' }" class="">
-    <h2 class="m-5 site-logo ">Stackify</h2>
+    <h2 class="site-logo ">Stackify</h2>
     </router-link>
 </template>
 

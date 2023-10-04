@@ -64,7 +64,7 @@ export default {
 }
 
 main {
-  background-color: #eeeeee;
+  // background-color: #eeeeee;
 }
 
 

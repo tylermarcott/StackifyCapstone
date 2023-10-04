@@ -268,6 +268,7 @@ class SpotifyPlayerService {
     }).then(response => {
       if (response.ok) {
         logger.log('Song played successfully.');
+        AppState.isPlaying = true
       } else {
         logger.log('Error playing the song.');
         return response.json();
