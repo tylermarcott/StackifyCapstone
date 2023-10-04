@@ -92,7 +92,7 @@ export default {
 }
 
 .spotify-logo {
-  width: 25vw;
+  width: 15vw;
 }
 
 .landing-overview {

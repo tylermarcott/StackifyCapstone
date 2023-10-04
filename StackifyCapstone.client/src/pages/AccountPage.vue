@@ -43,8 +43,17 @@
             </div>
             <!-- Modal -->
         <div class="col-6 event-list">
-          <h2 class="text-center event-category-text">Event Playlists</h2>
-          <div v-for="playlist in playlists" :key="playlist.id">
+          <h2 class="text-center event-category-text">Events</h2>
+          <div v-for="event in myEvents" :key="event.id">
+            <section class="row m-1">
+              <div class="text-center event-card elevation-5" :event="event">
+                <h2 class="col-12 event-title selectable text-center">{{ event.title }}</h2>
+                <p class="col-12">{{ event.eventType }}</p>
+            </div>
+              
+            </section>
+          </div>
+          <!-- <div v-for="playlist in playlists" :key="playlist.id">
             <section class="row m-1" >
             <div class="text-center event-card elevation-5" :playlist="playlist">
               <div class="col-12 event-title">
@@ -54,7 +63,7 @@
               <p>{{ playlist.description }}</p>
             </div>
             </section>
-          </div>
+          </div> -->
         </div>
         <div class="col-6 event-list">
           <h2 class="text-center event-category-text">Spotify Playlists</h2>
@@ -77,12 +86,13 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService";
 import { accountService } from "../services/AccountService";
+import { eventsService } from "../services/EventsService";
 export default {
   setup() {
     const formData = ref({})
@@ -94,13 +104,25 @@ export default {
         Pop.error(error)
       }
     }
-    onMounted(() => {
+    async function getMyEvents() {
+      try {
+        if (!AppState.account.id) {
+          return
+        }
+        await eventsService.getMyEvents()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+    watchEffect(() => {
       getUserPlaylists()
+      getMyEvents()
     })
     return {
       formData,
       account: computed(() => AppState.account),
       playlists: computed(() => AppState.playlists),
+      myEvents: computed(() => AppState.events),
       toggleCollapseForm() {
         let form = document.getElementById('edit-form')
         if(form.attributes.hidden){

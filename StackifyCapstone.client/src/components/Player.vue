@@ -1,4 +1,5 @@
 <template>
+  <section class="row m-0 p-0">
     <div class="col-12 player d-flex justify-content-center align-items-center">
         <section class="row">
         <div class="col-3 devices d-flex justify-content-center align-items-center">
@@ -20,18 +21,17 @@
         <div class="col-3 devices d-flex justify-content-center align-items-center">
             <!-- <i class="devices-icon mdi mdi-devices"></i> -->
             <i @click="showVolume()" class="devices-icon mdi mdi-volume-high"></i>
-            <input id="volume-slider" class="mx-2" hidden type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
+            <input id="volume-slider" class="volume-bar mx-2" hidden type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
         </div>
         <div class="col-12 d-flex justify-content-center align-items-center">
             <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.progress) }}</p>
-            <div class="song-duration-slot elevation-5">
             <input v-if="activeTrack" class="song-duration-bar" v-model="trackPosition" type="range" min="0" step="100" id="song-duration-bar" @click.prevent="() => {if(isPlaying){togglePlay()}}" @mouseup="changeTrackPosition()">
             <!-- <div class="song-duration-bar" id="song-duration-bar"></div> -->
-            </div>
             <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.duration) }}</p>
         </div>
         </section>
     </div>
+    </section>
 </template>
 
 <script>
@@ -172,6 +172,8 @@ setup() {
 <style lang="scss" scoped>
 .player {
   height: 20vh;
+  min-width: 100%;
+  padding: 1rem;
   background-color: #4f4f4f;
   border: solid 8px #242424;
   border-top: none;
@@ -195,17 +197,29 @@ setup() {
   }
 }
 
+input[type="range"] {
+  -webkit-appearance: none;
+}
+
 input[type="range"]::-webkit-slider-runnable-track {
-  background: #eeeeee;
   border-radius: 8px;
-  color: #EA94FF;
+  background-color: #eeeeee;
   height: 10px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  margin-top: -3px;
-  background-color:#63FAAA;
-  color: red;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  background-color:#2f2f2f;
+  border: solid 3px #EA94FF;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
 }
 .previous {
   transform: scale(.75);
@@ -228,21 +242,18 @@ input[type="range"]::-webkit-slider-thumb {
   transform: scale(1.1);
 }
 
-.song-duration-slot {
-  height: 1vh;
-  border-radius: 8px;
-  width: 50vw;
-  background-color: #eeeeee;
-  position: relative;
-}
-
 .song-duration-bar {
   height: 1vh;
   border-radius: 8px;
-  width: 100%;
-  background: #EA94FF;
-  position: absolute;
+  min-width: 100%;
+  position: static;
+  cursor: pointer;
 }
+
+// .volume-bar {
+//   border-radius: 8px;
+//   width: 50%;
+// }
 
 .duration-text {
   color: #eeeeee;

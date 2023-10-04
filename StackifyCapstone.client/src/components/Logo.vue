@@ -17,7 +17,8 @@ setup() {
 
 .site-logo {
   z-index: 5;
-  font-size: 5rem;
+  font-size: 6rem;
+  font-weight: 800;
   margin: 3rem;
   color: #EA94FF;
 }
