@@ -1,7 +1,7 @@
 <template>
   <section class="row m-0 p-0">
     <div class="col-12 player d-flex justify-content-center align-items-center">
-        <section class="row">
+        <section class="row w-100 m-0 p-0">
         <div class="col-3 devices d-flex justify-content-center align-items-center">
             <i class="devices-icon mdi mdi-shuffle-variant"></i>
         </div>
@@ -26,7 +26,7 @@
         <div class="col-12 d-flex justify-content-center align-items-center">
             <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.progress) }}</p>
             <input v-if="activeTrack" class="song-duration-bar" v-model="trackPosition" type="range" min="0" step="100" id="song-duration-bar" @click.prevent="() => {if(isPlaying){togglePlay()}}" @mouseup="changeTrackPosition()">
-            <!-- <div class="song-duration-bar" id="song-duration-bar"></div> -->
+            <div v-else class="song-duration-bar song-duration-placeholder"></div>
             <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.duration) }}</p>
         </div>
         </section>
@@ -58,7 +58,8 @@ setup() {
   }
 
   function calculateBar() {
-    if(AppState.activeTrack) {
+    if(AppState.activeTrack != null && document.getElementById('song-duration-bar')) {
+      logger.log('running calc bar')
         let bar = document.getElementById('song-duration-bar')
         bar.setAttribute('value', `${AppState.activeTrack.progress}`)
         bar.setAttribute('max', `${AppState.activeTrack.duration}`)
@@ -75,7 +76,6 @@ setup() {
     AppState.isPlaying = false
     }
   )
-  onUnmounted(() => AppState.activeTrack = null)
   async function changeState(){
       await spotifyPlayerService.changeState()
       logger.log('is a song playing (changeState fxn):', AppState.isPlaying)
@@ -172,7 +172,6 @@ setup() {
 <style lang="scss" scoped>
 .player {
   height: 20vh;
-  min-width: 100%;
   padding: 1rem;
   background-color: #4f4f4f;
   border: solid 8px #242424;
@@ -181,8 +180,8 @@ setup() {
   border-right: none;
   border-radius: 15px;
   button {
-    height: 4rem;
-    width: 4rem;
+    min-height: 4rem;
+    min-width: 4rem;
     border-radius: 50%;
     margin: 1rem;
     background-color: #eeeeee;
@@ -244,16 +243,22 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .song-duration-bar {
   height: 1vh;
+  background-color: #63FAAA;
   border-radius: 8px;
-  min-width: 100%;
+  min-width: 80%;
   position: static;
   cursor: pointer;
 }
 
-// .volume-bar {
-//   border-radius: 8px;
-//   width: 50%;
-// }
+.song-duration-placeholder {
+  cursor: default;
+  position: static;
+}
+
+.volume-bar {
+  border-radius: 8px;
+  width: 100%;
+}
 
 .duration-text {
   color: #eeeeee;

@@ -20,7 +20,7 @@
               </section>
           </div>
       </section>
-       <section else class="row h-100">
+       <section v-else class="row h-100">
             <div class="col-4 d-flex align-items-center mt-3">
                 <!-- <img class="img-fluid active-song-image p-0" :src="activeTrack.picture"> -->
             </div>
@@ -69,7 +69,7 @@ export default {
       try {
         logger.log('getting the active track')
         let id = await spotifyApiService.getActiveTrack()
-        await getActiveTrackDetails(id)
+        if(id != undefined)await getActiveTrackDetails(id)
       } catch (error) {
         Pop.error(error)
       }
@@ -86,7 +86,7 @@ export default {
         }
 
     onMounted(() => {
-       //getActiveTrack()
+       getActiveTrack()
 
     })
     return {
