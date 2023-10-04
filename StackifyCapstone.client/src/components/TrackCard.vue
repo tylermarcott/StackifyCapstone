@@ -25,10 +25,9 @@
           <button @click="deleteTrack()" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
         </div>
       </div>
-      <div class="col-1">
-        <i @click="playTrack" class="mdi mdi-play play-button"></i>
+      <div v-if="locked" class="col-1">
+        <i @click="playTrack(track.id)" class="mdi mdi-play play-button"></i>
       </div>
-
     </div>
   </section>
 </template>
@@ -86,11 +85,12 @@ export default {
       tracksService.deleteTrack(props.track.id)
     },
 
-    async playTrack(){
+    async playTrack(trackId){
       try {
-        logger.log('here is our active song:', AppState.activeTrack)
-        await spotifyPlayerService.togglePlay();
-        await spotifyApiService.getActiveTrack();
+        logger.log('our track id:', trackId)
+        await spotifyPlayerService.loadSong(trackId);
+        // await spotifyPlayerService.togglePlay();
+        setTimeout(await spotifyApiService.getActiveTrack, 3000)
       } catch (error) {
         Pop.error(error)
       }
@@ -122,5 +122,6 @@ export default {
   transition: .1s;
   padding: 4px;
   color: rgb(19, 18, 18);
+  cursor: pointer;
 }
 </style>
