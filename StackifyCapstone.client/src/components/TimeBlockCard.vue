@@ -1,10 +1,10 @@
 <template>
-    <div v-on:dblclick="setActiveTimeblock()" class="timeblock-card row justify-content-between align-items-center elevation-4">
+    <div @click="setActiveTimeblock()" class="timeblock-card row selectable justify-content-between align-items-center elevation-4">
         <h3 class="timeblock-text col-7">{{ timeblock.title }}</h3>
         <h3 class="timeblock-timer col-3">{{ timeblock.duration }}</h3>
         <div class="col-2">
-          <i v-if="topTimeBlock != timeblock.id" @click="moveTimeblock('up')" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
-          <i v-if="bottomTimeBlock != timeblock.id" @click="moveTimeblock('down')" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
+          <i v-if="topTimeBlock != timeblock.id" @click.stop="moveTimeblock('up')" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
+          <i v-if="bottomTimeBlock != timeblock.id" @click.stop="moveTimeblock('down')" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
         </div>
     </div>
 </template>

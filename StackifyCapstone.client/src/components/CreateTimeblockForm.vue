@@ -8,6 +8,10 @@
         <label for="timeblockSilent" class="form-label">Check if this is silent</label>
         <input v-model="timeblockData.silent" type="checkbox" id="timeblockSilent"/>
       </div>
+      <div v-if="timeblockData.silent" class="mb-3">
+        <label for="timeblockduration" class="form-label">How long?</label>
+        <input v-model="timeblockData.duration" type="number" id="timeblockduration" class="form-control"/>
+      </div>
       <button class="btn btn-dark">Create Playlist</button>
     </form>
 </template>
