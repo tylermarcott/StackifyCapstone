@@ -244,8 +244,9 @@ class SpotifyPlayerService {
   // NOTE: we need to be able to call play song with the right track. We need to pass in 'track' as a param to playSong and set const contextUri = track.
   async loadSong(trackId) {
     const token = localStorage.getItem('access_token');
-    const contextUri = trackId;
-    const offsetPosition = 5;
+    const uris = [`spotify:track:${trackId}`];
+    // logger.log('here is our context uri:', contextUri)
+    const offsetPosition = 0; //NOTE: will have to change offset to accommodate for sending more than 1 track (eg a playlist)
     const positionMs = 0;
     const url = `https://api.spotify.com/v1/me/player/play`;    //?device_id=${device}
     const headers = new Headers({
@@ -253,7 +254,7 @@ class SpotifyPlayerService {
       'Content-Type': 'application/json'
     });
     const body = JSON.stringify({
-      context_uri: contextUri,
+      uris: uris,
       offset: {
         position: offsetPosition
       },
