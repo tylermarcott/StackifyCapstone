@@ -9,6 +9,7 @@
           </div>
         </div>
         </form>
+        <!-- TODO: add v-if so this is not visible when there aren't any searched tracks. -->
         <button @click="clearSearchedTracks" class="clear-button">
           <i class="mdi mdi-alpha-x-box search-icon"></i>
         </button>
