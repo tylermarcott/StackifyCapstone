@@ -6,15 +6,15 @@
             <i class="devices-icon mdi mdi-shuffle-variant"></i>
         </div>
         <div class="col-6 player-controls d-flex justify-content-center p-0">
-            <button @click="playPrevious()" class="previous elevation-3">
+            <button @click="playPrevious()" class="previous elevation-5">
             <i class="mdi mdi-skip-previous"></i>
             </button>
             <!-- NOTE play button -->
-            <button @click="togglePlay()" class="play elevation-3">
+            <button @click="togglePlay()" class="play elevation-5">
               <i v-if="!isPlaying" class="mdi mdi-play"></i>
               <i v-if="isPlaying" class="mdi mdi-pause"></i>
             </button>
-            <button @click="playNext()" class="next elevation-3">
+            <button @click="playNext()" class="next elevation-5">
             <i class="mdi mdi-skip-next"></i>
             </button>
         </div>
@@ -243,7 +243,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .song-duration-bar {
   height: 1vh;
-  background-color: #63FAAA;
   border-radius: 8px;
   min-width: 80%;
   position: static;
@@ -251,6 +250,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .song-duration-placeholder {
+  background-color: #eeeeee;
   cursor: default;
   position: static;
 }
