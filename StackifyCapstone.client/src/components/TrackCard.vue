@@ -25,6 +25,9 @@
           <button @click="deleteTrack()" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
         </div>
       </div>
+      <div v-if="locked" class="col-1">
+        <i @click="playTrack(track.id)" class="mdi mdi-play play-button"></i>
+      </div>
     </div>
   </section>
 </template>
@@ -34,9 +37,12 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { logger } from "../utils/Logger.js";
-import { Track } from '../models/Track';
+import { MyTrack } from '../models/MyTrack';
+import { Track } from "../models/Track.js";
 import { tracksService } from '../services/TracksService';
-import Pop from '../utils/Pop';
+import Pop from "../utils/Pop.js";
+import { spotifyApiService } from "../services/SpotifyApiService.js";
+import {spotifyPlayerService} from "../services/SpotifyPlayerService.js"
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props){
@@ -56,6 +62,15 @@ export default {
     locked: computed(()=> AppState.activeTimeBlock.locked),
     topTrack : computed(()=> AppState.activeTimeBlock.trackList[0].id),
     bottomTrack : computed(()=> AppState.activeTimeBlock.trackList[AppState.activeTimeBlock.trackList.length-1].id),
+    cardColor: computed(()=>{
+      let color = '#4f4f4f'
+      if(AppState.activeTrack){
+        if(AppState.activeTrack.id == props.track.id){
+          color = '#EA94FF'
+        } 
+      }
+      return color
+    }),
 
     async moveTrack(upOrDown){
       try {
@@ -68,6 +83,17 @@ export default {
 
     async deleteTrack(){
       tracksService.deleteTrack(props.track.id)
+    },
+
+    async playTrack(trackId){
+      try {
+        logger.log('our track id:', trackId)
+        await spotifyPlayerService.loadSong(trackId);
+        // await spotifyPlayerService.togglePlay();
+        setTimeout(await spotifyApiService.getActiveTrack, 3000)
+      } catch (error) {
+        Pop.error(error)
+      }
     }
     
     
@@ -80,9 +106,22 @@ export default {
 <style lang="scss" scoped>
 .song-card{
   padding: 0.5em;
-  background-color: #4F4F4F;
+  background-color: v-bind(cardColor);
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;
+}
+
+.play-button {
+  background-color: #63FAAA ;
+  border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  margin-right: 12px;
+  font-size: 27px;
+  transition: .1s;
+  padding: 4px;
+  color: rgb(19, 18, 18);
+  cursor: pointer;
 }
 </style>
