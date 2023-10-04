@@ -12,14 +12,7 @@ class TracksService{
 
   async addTrackToActiveTimeblock(trackId){
     const foundTrack = AppState.tracks.find(track => trackId == track.id)
-
-    logger.log('found track', foundTrack)
-
     AppState.activeTimeBlock.trackList.push(new MyTrack(foundTrack))
-
-    logger.log('here is the track that we added to the active timeblock:', AppState.activeTimeBlock.trackList)
-
-    // TODO: need to make a put request that edits the timeblock to add a new track to the tracklist in DB
   }
 
   async editTimeblockTracklist(body, timeblockId){
@@ -30,11 +23,25 @@ class TracksService{
     logger.log('now myTimeblocks looks like this:', AppState.myTimeBlocks)
   }
 
+  async moveTrack(trackId, upOrDown){
+    let ogIndex = AppState.activeTimeBlock.trackList.findIndex(track => track.id == trackId)
+    let newIndex = ogIndex
+    if(upOrDown == "up") newIndex--
+    else newIndex ++
+    let newTrack = AppState.activeTimeBlock.trackList[newIndex]
+    let oldTrack = AppState.activeTimeBlock.trackList[ogIndex]
+    AppState.activeTimeBlock.trackList.splice(ogIndex, 1, newTrack)
+    AppState.activeTimeBlock.trackList.splice(newIndex, 1, oldTrack)
+    await this.editTimeblockTracklist(AppState.activeTimeBlock, AppState.activeTimeBlock.id)
+  }
+
   async deleteTrack(trackId){
     const trackIndex = AppState.activeTimeBlock.trackList.findIndex(track=> track.id == trackId)
     AppState.activeTimeBlock.trackList.splice(trackIndex, 1)
     await this.editTimeblockTracklist(AppState.activeTimeBlock, AppState.activeTimeBlock.id)
   }
+
+
 }
 
 

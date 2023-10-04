@@ -2,8 +2,8 @@
   <section class="song-card">
     <div class="row">
       <div v-if="!locked" class="col-1">
-        <button class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
-        <button class="btn btn-light"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
+        <button v-if="topTrack != track.id" @click="moveTrack('up')" class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
+        <button v-if="bottomTrack != track.id" @click="moveTrack('down')" class="btn btn-light"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
       </div>
       <div class="col-3">
         {{ track.name }}
@@ -34,11 +34,13 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { logger } from "../utils/Logger.js";
-import { MyTrack } from '../models/MyTrack';
+import { Track } from '../models/Track';
 import { tracksService } from '../services/TracksService';
+import Pop from '../utils/Pop';
 export default {
-  props: { track: { type: MyTrack || Object, required: true } },
+  props: { track: { type: Track || Object, required: true } },
   setup(props){
+    
     const totalSeconds = computed(()=> Math.floor(props.track.duration/1000))
     const computedMinutes = computed(()=> Math.floor(totalSeconds.value/60))
     const computedSeconds = computed(()=> {
@@ -52,6 +54,17 @@ export default {
     computedMinutes,
     computedSeconds,
     locked: computed(()=> AppState.activeTimeBlock.locked),
+    topTrack : computed(()=> AppState.activeTimeBlock.trackList[0].id),
+    bottomTrack : computed(()=> AppState.activeTimeBlock.trackList[AppState.activeTimeBlock.trackList.length-1].id),
+
+    async moveTrack(upOrDown){
+      try {
+        await tracksService.moveTrack(props.track.id, upOrDown)
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
+
 
     async deleteTrack(){
       tracksService.deleteTrack(props.track.id)
