@@ -43,4 +43,12 @@ export default {
     background-color: #4f4f4f;
     padding: 0px;
 }
+
+.modal-header {
+    cursor: default;
+}
+
+.modal {
+    cursor: default;
+}
 </style>

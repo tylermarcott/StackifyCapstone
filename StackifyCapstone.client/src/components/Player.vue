@@ -19,13 +19,13 @@
         </div>
         <div class="col-3 devices d-flex justify-content-center align-items-center">
             <!-- <i class="devices-icon mdi mdi-devices"></i> -->
-            <i class="devices-icon mdi mdi-volume-high"></i>
-            <input type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
+            <i @click="showVolume()" class="devices-icon mdi mdi-volume-high"></i>
+            <input id="volume-slider" class="mx-2" hidden type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
         </div>
-        <div  class="col-12 d-flex justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center align-items-center">
             <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.progress) }}</p>
             <div class="song-duration-slot elevation-5">
-            <input class="song-duration-bar" type="range" min="0" max="100" step="1" id="song-duration-bar" @input="changeTrackPosition()">
+            <input v-if="activeTrack" class="song-duration-bar" v-model="trackPosition" type="range" min="0" step="100" id="song-duration-bar" @click.prevent="() => {if(isPlaying){togglePlay()}}" @mouseup="changeTrackPosition()">
             <!-- <div class="song-duration-bar" id="song-duration-bar"></div> -->
             </div>
             <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.duration) }}</p>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed, watchEffect } from "vue";
+import { ref, onMounted, computed, watchEffect, onUnmounted } from "vue";
 import { spotifyPlayerService } from '../services/SpotifyPlayerService';
 import Pop from '../utils/Pop';
 import { logger } from "../utils/Logger";
@@ -50,23 +50,20 @@ setup() {
   async function currentPosition() {
     try {
       logger.log('[PLAYER COMPONENT] AppState.isPlaying:', AppState.isPlaying)
-      // if(AppState.isPlaying == true) {
         logger.log('Grabbing the Current Position...')
         await spotifyPlayerService.currentPosition()
-      // }
     } catch (error) {
       Pop.error(error)
     }
   }
 
   function calculateBar() {
-    logger.log('changing class')
-      let percent = Math.floor(AppState.activeTrack.progress / AppState.activeTrack.duration * 100)
-      logger.log(percent)
-      let bar = document.getElementById('song-duration-bar')
-      // bar.classList.add(`w-${percent}`)
-      bar.setAttribute('value', `${percent}` )
-      // bar.setAttribute('max', `${AppState.activeTrack}`)
+    if(AppState.activeTrack) {
+        let bar = document.getElementById('song-duration-bar')
+        bar.setAttribute('value', `${AppState.activeTrack.progress}`)
+        bar.setAttribute('max', `${AppState.activeTrack.duration}`)
+        trackPosition.value = AppState.activeTrack.progress
+      }
     }
 
   watchEffect(() => currentPosition(AppState.isPlaying))
@@ -78,6 +75,7 @@ setup() {
     AppState.isPlaying = false
     }
   )
+  onUnmounted(() => AppState.activeTrack = null)
   async function changeState(){
       await spotifyPlayerService.changeState()
       logger.log('is a song playing (changeState fxn):', AppState.isPlaying)
@@ -109,7 +107,10 @@ setup() {
     async playNext() {
       try {
         await spotifyPlayerService.playNext()
-        changeState()
+        if(this.isPlaying == false) {
+          changeState()
+        }
+        // changeState()
       } catch (error) {
         Pop.error(error)
       }
@@ -117,6 +118,9 @@ setup() {
     async playPrevious() {
       try {
         await spotifyPlayerService.playPrevious()
+        if(this.isPlaying == false) {
+          changeState()
+        }
       } catch (error) {
         Pop.error(error)
       }
@@ -130,17 +134,33 @@ setup() {
       }
     },
 
+    showVolume() {
+      let slider = document.getElementById('volume-slider')
+      if(slider.hasAttribute('hidden')){
+        slider.removeAttribute('hidden')
+      } else {
+        slider.setAttribute('hidden', '')
+      }
+    },
+
     msToTime(ms) {
       const totalSeconds = Math.floor(ms / 1000)
       const computedMinutes =  Math.floor(totalSeconds / 60)
       let computedSeconds = totalSeconds % 60;
-      logger.log('Seconds before padding', computedSeconds)
       if(computedSeconds < 10) {
       computedSeconds = `0${computedSeconds}`
-      logger.log('Seconds after padding..', computedSeconds)
       }
       return computedMinutes + ':' + computedSeconds
     },
+
+    spaceBar() {
+      window.addEventListener('keydown', (event) => {
+        let key = event.keycode
+        if(key == 32){
+          this.togglePlay()
+        }
+      })
+      }
 
     
 
@@ -184,7 +204,8 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 input[type="range"]::-webkit-slider-thumb {
   margin-top: -3px;
-  background:#63FAAA;
+  background-color:#63FAAA;
+  color: red;
 }
 .previous {
   transform: scale(.75);

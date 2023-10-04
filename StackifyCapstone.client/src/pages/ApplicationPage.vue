@@ -17,7 +17,7 @@
         </div>
         </section>
         <TimeBlockList/>
-        <div v-if="activeTrack" class="active-song" type="button" data-toggle="modal" data-target="#activesongmodal">
+        <div class="active-song d-flex align-items-center justify-content-center" type="button" data-toggle="modal" data-target="#activesongmodal">
           <ActiveSong/>
         </div>
       </div>
@@ -144,12 +144,14 @@ export default {
         onMounted(() => {
             initializePlayer();
             getUserPlaylists();
-            // NOTE call this function with the track id to load song spotifyPlayerService.loadSong(trackId)
+            setInterval(refreshToken, 600000);
         });
         return {
             tracks: computed(() => AppState.tracks),
             activeTrack: computed(() => AppState.activeTrack),
             activeTimeblock: computed(()=> AppState.activeTimeBlock)
+            
+
             
         };
     },

@@ -61,7 +61,6 @@ class SpotifyPlayerService {
     try {
       logger.log('Setting as active device..', deviceId)
       const bearerToken = localStorage.getItem('access_token')
-      logger.log(bearerToken)
       const headers = new Headers({
         Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json'
@@ -96,12 +95,7 @@ class SpotifyPlayerService {
   }
   async second() {
     await spotifyApiService.getActiveTrack()
-    logger.log('Grabbing Current Position of Active Track by the second', AppState.activeTrack.duration, AppState.activeTrack.progress)
-  }
-
-  async getInterval() {
-    let intervalId = this.currentPosition()
-    logger.log('RETURNED INTERVAL ID', intervalId)
+    logger.log('Grabbing Current Position of Active Track by the second', AppState.activeTrack.progress)
   }
 
   intervalId = 0
@@ -109,50 +103,42 @@ class SpotifyPlayerService {
     if(AppState.isPlaying == true) {
       let interval = setInterval(this.second, 1000)
       this.intervalId = interval
-      logger.log('in the if true', interval)
     }
     else {
-      logger.log(this.intervalId)
       clearInterval(this.intervalId)
     }
-    logger.log(this.intervalId)
   }
 
   async changeTrackPosition(position) {
-    // try {
-      let trackPosition = AppState.activeTrack.duration / 100 * position
-      logger.log('Changing Track Position to', trackPosition)
-    //   const bearerToken = localStorage.getItem('access_token')
-    //   const headers = new Headers({
-    //     Authorization: `Bearer ${bearerToken}`,
-    //     'Content-Type': 'application/json'
-    //   });
-    //   const url = 'https://api.spotify.com/v1/me/player/seek'
-    //   const body = JSON.stringify({
-    //     position_ms: trackPosition
-    //   });
-    //   fetch(url, {
-    //     method: 'PUT',
-    //     headers: headers,
-    //     body: body
-    //   }).then(response => {
-    //     if (response.ok) {
-    //       logger.log('Changed Song Position');
-    //     } else {
-    //       logger.log('Could not skip');
-    //       return response.json();
-    //     }
-    //   }).then(data => {
-    //     if (data) {
-    //       logger.log(data); // Log any error message returned by Spotify API
-    //     }
-    //   }).catch(error => {
-    //     logger.error('There was an error:', error);
-    //   });
-    // }
-    // catch (error) {
-    //   logger.log(error)
-    // }
+    try {
+      logger.log(position)
+      const bearerToken = localStorage.getItem('access_token')
+      const headers = new Headers({
+        Authorization: `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json'
+      });
+      const url = `https://api.spotify.com/v1/me/player/seek?position_ms=${position}`
+      fetch(url, {
+        method: 'PUT',
+        headers: headers,
+      }).then(response => {
+        if (response.ok) {
+          logger.log('Changed Song Position');
+        } else {
+          logger.log('Could not change position in active song');
+          return response.json();
+        }
+      }).then(data => {
+        if (data) {
+          logger.log(data); // Log any error message returned by Spotify API
+        }
+      }).catch(error => {
+        logger.error('There was an error:', error);
+      });
+    }
+    catch (error) {
+      logger.log(error)
+    }
   }
 
   async togglePlay() {
@@ -185,7 +171,6 @@ class SpotifyPlayerService {
     try {
       logger.log('Skipping to next track')
       const bearerToken = localStorage.getItem('access_token')
-      logger.log(bearerToken)
       const headers = new Headers({
         Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json'
@@ -219,7 +204,6 @@ class SpotifyPlayerService {
     try {
       logger.log('Skipping to previous track')
       const bearerToken = localStorage.getItem('access_token')
-      logger.log(bearerToken)
       const headers = new Headers({
         Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json'
@@ -253,18 +237,13 @@ class SpotifyPlayerService {
   async getDevices() {
     const bearerToken = localStorage.getItem('access_token')
     const res = await axios.get("https://api.spotify.com/v1/me/player/devices", { headers: { Authorization: `Bearer ${bearerToken}` } })
-    logger.log('here is the list of devices pulled from the api:', res.data)
     AppState.devices = res.data.devices.map(device => new Device(device))
-    logger.log('here is appstate devices', AppState.devices)
-    // TODO store devices in array so we can select where to play from
     // localStorage.setItem('device', res.data.devices[1].id)
-    // this.playSong()
   }
 
   // NOTE: we need to be able to call play song with the right track. We need to pass in 'track' as a param to playSong and set const contextUri = track.
   async loadSong(trackId) {
     const token = localStorage.getItem('access_token');
-    logger.log(token)
     const contextUri = trackId;
     const offsetPosition = 5;
     const positionMs = 0;
@@ -346,10 +325,6 @@ class SpotifyPlayerService {
     } catch(error) {
       Pop.error(error)
     }
-
-    
-
-    
 }
 
 

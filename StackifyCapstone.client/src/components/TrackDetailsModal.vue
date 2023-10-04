@@ -4,17 +4,16 @@
         <div class="p-5 pb-0 d-flex justify-content-center align-items-center ">
             <img class="album-cover img-fluid" :src="activeTrack.picture" alt="">
         </div>
-        <div class="card bg-dark-grey text-white elevation-5 mt-5">
-            <p class="card-header bg-pink song-title text-center my-2">Track Details: {{ activeTrack.name}}</p>
+        <div class="bg-dark-grey text-white mt-5">
+            <p class="card-header bg-pink song-title text-center my-2 p-3"><b>{{ activeTrack.name }} - {{ activeTrack.artist }}</b></p>
             <div class="card-body text-pink song-details-card row justify-content-evenly my-3">
-                <div class="col-12 col-md-6">
-                    <p>Artist: {{ activeTrack.artist }}</p>
+                <div class="col-12 col-md-6 my-5">
                     <p>Album: {{ activeTrack.album}}</p>
-                    <p>Year: {{ activeTrack.year }}</p>
+                    <p>Release: {{ activeTrack.year }}</p>
                     <p>Key: {{ key }}</p>
                     <p>Duration: {{ computedMinutes }}:{{ computedSeconds }} </p>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 my-5">
                     <p>Valence: {{ valence }}%</p>
                     <p>Dance-ability: {{ danceability }}%</p>
                     <p>BPM: {{ bpm }}</p>
@@ -75,6 +74,7 @@ export default {
     width: 300px;
     object-fit: contain;
     object-position: center;
+    border: solid 1px #EA94FF;
 }
 
 .bg-dark-grey {
@@ -94,7 +94,7 @@ export default {
 }
 
 .song-title {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
 }
 
