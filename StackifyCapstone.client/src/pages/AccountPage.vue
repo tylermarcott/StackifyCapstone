@@ -49,6 +49,9 @@
               <div class="text-center event-card elevation-5" :event="event">
                 <h2 class="col-12 event-title selectable text-center">{{ event.title }}</h2>
                 <p class="col-12">{{ event.eventType }}</p>
+                <button @click="deleteEvent(event.id)" class="btn btn-danger">
+                  <i class="mdi mdi-delete"></i>
+                </button>
             </div>
               
             </section>
@@ -136,6 +139,16 @@ export default {
       async editAccount() {
         try {
           await accountService.editAccount(formData.value)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
+      async deleteEvent(eventId){
+        try {
+          if(await Pop.confirm('Are you sure you want to delete this event..?')){
+            await eventsService.deleteEvent(eventId)
+          }
         } catch (error) {
           Pop.error(error)
         }
