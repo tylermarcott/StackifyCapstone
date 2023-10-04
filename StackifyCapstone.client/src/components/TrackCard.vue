@@ -25,6 +25,10 @@
           <button @click="deleteTrack()" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
         </div>
       </div>
+      <div class="col-1">
+        <i @click="playTrack" class="mdi mdi-play play-button"></i>
+      </div>
+
     </div>
   </section>
 </template>
@@ -32,10 +36,14 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
-import { logger } from "../utils/Logger.js";
+import { computed} from 'vue';
 import { MyTrack } from '../models/MyTrack';
 import { tracksService } from '../services/TracksService';
+import Pop from "../utils/Pop.js";
+import { spotifyApiService } from "../services/SpotifyApiService.js";
+import { spotifyPlayerService } from "../services/SpotifyPlayerService.js";
+import { logger } from "../utils/Logger.js";
+
 export default {
   props: { track: { type: MyTrack || Object, required: true } },
   setup(props){
@@ -55,6 +63,16 @@ export default {
 
     async deleteTrack(){
       tracksService.deleteTrack(props.track.id)
+    },
+
+    async playTrack(){
+      try {
+        logger.log('here is our active song:', AppState.activeTrack)
+        await spotifyPlayerService.togglePlay();
+        await spotifyApiService.getActiveTrack();
+      } catch (error) {
+        Pop.error(error)
+      }
     }
     
     
@@ -71,5 +89,17 @@ export default {
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;
+}
+
+.play-button {
+  background-color: #63FAAA ;
+  border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  margin-right: 12px;
+  font-size: 27px;
+  transition: .1s;
+  padding: 4px;
+  color: rgb(19, 18, 18);
 }
 </style>

@@ -32,7 +32,7 @@
           <!-- NOTE use a row on the search songs component-->
 
           <div v-if="tracks[0]" class="row justify-content-center">
-            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 searched-song-card">
+            <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 searched-song-card ms-2">
               <SearchedTrackCard :track="track"/>
             </div>
           </div>

@@ -78,7 +78,6 @@ setup() {
   onUnmounted(() => AppState.activeTrack = null)
   async function changeState(){
       await spotifyPlayerService.changeState()
-      logger.log('is a song playing (changeState fxn):', AppState.isPlaying)
   }
     
   return {
