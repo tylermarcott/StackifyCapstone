@@ -22,7 +22,7 @@
       <div class="col-2">
         {{ computedMinutes }}:{{ computedSeconds }}
         <div v-if="!locked">
-          <button  class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
+          <button @click="deleteTrack()" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
         </div>
       </div>
     </div>
@@ -35,6 +35,7 @@ import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { logger } from "../utils/Logger.js";
 import { MyTrack } from '../models/MyTrack';
+import { tracksService } from '../services/TracksService';
 export default {
   props: { track: { type: MyTrack || Object, required: true } },
   setup(props){
@@ -50,7 +51,11 @@ export default {
     totalSeconds,
     computedMinutes,
     computedSeconds,
-    locked: computed(()=> AppState.activeTimeBlock.locked)
+    locked: computed(()=> AppState.activeTimeBlock.locked),
+
+    async deleteTrack(){
+      tracksService.deleteTrack(props.track.id)
+    }
     
     
    }
