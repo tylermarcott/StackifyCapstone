@@ -12,6 +12,7 @@
     </section>
     <section class="row">
         <div class="col-10">
+            <h5>play playlist button</h5>
             <h5 class="text-end">Total Duration: {{ msToTime(totalDuration) }}</h5>
             <div v-for="track in timeblock.trackList" :key="track.id" class="my-2 ms-2">
                 <TrackCard :track="track"/>
