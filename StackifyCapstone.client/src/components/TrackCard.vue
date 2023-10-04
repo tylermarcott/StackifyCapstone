@@ -79,7 +79,13 @@ export default {
 
 
     async deleteTrack(){
-      tracksService.deleteTrack(props.track.id)
+      try {
+        if(await Pop.confirm('Are you sure you want to remove this song from your playlist?')){
+        tracksService.deleteTrack(props.track.id)
+        }
+      } catch (error) {
+        Pop.error(error)
+      }
     },
 
     async playTrack(trackId){
