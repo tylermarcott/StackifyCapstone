@@ -12,7 +12,7 @@
     </section>
     <section class="row text-center">
         <div class="col-12">
-            <h1>{{ msToTime(timeLeft) }}</h1>
+            <h1>{{msToTime(duration)}}</h1>
         </div>
     </section>
     <section class="row text-center">
@@ -46,6 +46,14 @@ import { logger } from '../utils/Logger';
 export default {
     setup(){
         const notesData = ref({});
+        const timeblock = computed(() => AppState.activeTimeBlock)
+        const timeblocksLength = computed(()=> AppState.myTimeBlocks.length)
+        function prevTimeblock(){
+            timeBlocksService.prevTimeblock()
+        }
+        function nextTimeblock(){
+            timeBlocksService.nextTimeblock()
+        }
         onMounted(()=> startInterval())
         let intervalId = 0
         function startInterval(){
@@ -53,29 +61,23 @@ export default {
             intervalId = timerInterval
         }
         let paused = false
-        let timeLeft = computed(()=>AppState.activeTimeBlock.duration)
+        let duration = computed(()=>AppState.activeTimeBlock.duration)
         function minusTime(){
-            if(!paused){
-                timeLeft.effect.computed._value -= 1000
-            }
-            logger.log(timeLeft.effect.computed._value)
-            
+            if(!paused && duration.value > 0){
+                 AppState.activeTimeBlock.duration -= 1000
+            } 
         }
         onUnmounted(()=> {
             clearInterval(intervalId)
         })
     return { 
         notesData,
-        timeblock: computed(() => AppState.activeTimeBlock),
-        timeblocksLength: computed(()=> AppState.myTimeBlocks.length),
-        prevTimeblock(){
-            timeBlocksService.prevTimeblock()
-        },
-        nextTimeblock(){
-            timeBlocksService.nextTimeblock()
-        },
+        timeblocksLength,
+        timeblock,
+        prevTimeblock,
+        nextTimeblock,
         paused,
-        timeLeft,
+        duration,
         
         msToTime(ms) {
             const totalSeconds = Math.floor(ms / 1000)
