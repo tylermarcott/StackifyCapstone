@@ -56,6 +56,15 @@ export default {
     locked: computed(()=> AppState.activeTimeBlock.locked),
     topTrack : computed(()=> AppState.activeTimeBlock.trackList[0].id),
     bottomTrack : computed(()=> AppState.activeTimeBlock.trackList[AppState.activeTimeBlock.trackList.length-1].id),
+    cardColor: computed(()=>{
+      let color = '#4f4f4f'
+      if(AppState.activeTrack){
+        if(AppState.activeTrack.id == props.track.id){
+          color = '#EA94FF'
+        } 
+      }
+      return color
+    }),
 
     async moveTrack(upOrDown){
       try {
@@ -80,7 +89,7 @@ export default {
 <style lang="scss" scoped>
 .song-card{
   padding: 0.5em;
-  background-color: #4F4F4F;
+  background-color: v-bind(cardColor);
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;
