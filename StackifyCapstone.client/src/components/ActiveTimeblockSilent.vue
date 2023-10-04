@@ -12,7 +12,7 @@
     </section>
     <section class="row text-center">
         <div class="col-12">
-            <h1>{{ msToTime(timeblock.duration) }}</h1>
+            <h1>{{ msToTime(timeLeft) }}</h1>
         </div>
     </section>
     <section class="row text-center">
@@ -51,11 +51,15 @@ export default {
         function startInterval(){
             let timerInterval = setInterval(minusTime, 1000)
             intervalId = timerInterval
-            logger.log(timerInterval)
         }
+        let paused = false
+        let timeLeft = computed(()=>AppState.activeTimeBlock.duration)
         function minusTime(){
-            logger.log('1 second')
-            // clearInterval(intervalId)
+            if(!paused){
+                timeLeft.effect.computed._value -= 1000
+            }
+            logger.log(timeLeft.effect.computed._value)
+            
         }
         onUnmounted(()=> {
             clearInterval(intervalId)
@@ -70,10 +74,8 @@ export default {
         nextTimeblock(){
             timeBlocksService.nextTimeblock()
         },
-        
-        
-        paused: false,
-        timeLeft: computed(()=>AppState.activeTimeBlock.duration),
+        paused,
+        timeLeft,
         
         msToTime(ms) {
             const totalSeconds = Math.floor(ms / 1000)

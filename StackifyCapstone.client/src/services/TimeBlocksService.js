@@ -14,6 +14,7 @@ class TimeBlocksService{
 
     async createTimeblock(timeBlockData){
         timeBlockData.position = AppState.myTimeBlocks.length
+        timeBlockData.duration = timeBlockData.duration*1000
         const res = await api.post('api/timeblocks', timeBlockData)
         const activeTimeblock = AppState.myTimeBlocks.push(new Timeblock(res.data))
         AppState.activeTimeBlock = activeTimeblock
