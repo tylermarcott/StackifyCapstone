@@ -42,7 +42,7 @@ import { MyTrack } from '../models/MyTrack';
 import { Track } from "../models/Track.js";
 import { tracksService } from '../services/TracksService';
 import Pop from "../utils/Pop.js";
-import { spotifyApiService } from "../services/AxiosService.js";
+import { spotifyApiService } from "../services/SpotifyApiService.js";
 import {spotifyPlayerService} from "../services/SpotifyPlayerService.js"
 export default {
   props: { track: { type: Track || Object, required: true } },
