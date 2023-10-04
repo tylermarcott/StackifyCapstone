@@ -8,6 +8,7 @@ export class Track {
         this.id = data.id
         this.name = data.name
         this.popularity = data.popularity
+        this.year = data.album.release_date //new Date (data.item.album.release_date).toLocaleDateString()
 
 
         // NOTE: these are for 'Get track's audio features', will implement this once we ae able to add songs to our timeblock.

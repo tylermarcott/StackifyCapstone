@@ -42,7 +42,7 @@
           <div class="col-5 ms-2">
           </div>
           <div class="col-5 text-end me-3">
-            <h5>2015</h5>
+            <h5>{{ track.year.substring(0, 4) }}</h5>
           </div>
         </div> 
 

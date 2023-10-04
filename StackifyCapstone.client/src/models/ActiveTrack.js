@@ -7,7 +7,7 @@ export class ActiveTrack{
     this.progress = data.progress_ms
     this.duration = data.item.duration_ms
     this.picture = data.item.album.images[0].url
-    this.year = new Date (data.item.album.release_date).toLocaleDateString()
+    this.year = data.item.album.release_date //new Date (data.item.album.release_date).toLocaleDateString()
     this.popularity = data.item.popularity
   }
 }
