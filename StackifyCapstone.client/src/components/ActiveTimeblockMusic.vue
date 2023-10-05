@@ -64,7 +64,7 @@ export default {
             async loadSong(trackId){
                 try {
                     logger.log('starting song with the following track Id:', trackId)
-                    // await spotifyPlayerService.loadSong()
+                    await spotifyPlayerService.loadSong(trackId)
                 } catch (error) {
                     Pop.error(error)
                 }
