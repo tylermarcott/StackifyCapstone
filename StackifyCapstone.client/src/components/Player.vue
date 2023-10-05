@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed, watchEffect, onUnmounted } from "vue";
+import { ref, onMounted, computed, watchEffect } from "vue";
 import { spotifyPlayerService } from '../services/SpotifyPlayerService';
 import Pop from '../utils/Pop';
 import { logger } from "../utils/Logger";
@@ -237,9 +237,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 .previous {
   transform: scale(.75);
-}
-
-.play {
 }
 
 .next {

@@ -28,7 +28,7 @@
         -->
         <SongSearchBar/>
 
-        <div class="main-content justify-content-center align-items-center">
+        <div class="main-content justify-content-center align-items-center background-img">
           <!-- NOTE use a row on the search songs component-->
 
           <div v-if="tracks[0]" class="row justify-content-center">
@@ -45,7 +45,9 @@
             </div>
           </div>
           <div v-else>
-            no active timeblock or searched song
+            <h1 class="text-light mt-5 ms-5">
+              No active timeblock or searched song...
+            </h1>
           </div>
 
 
@@ -62,13 +64,6 @@
       </div> 
       <div class="col-2 right-panel p-0 text-center">
         <Profile/>
-        <!-- <div class="right-panel-spacer">
-          <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
-        </div>
-        <img class="img-fluid profile-picture" src="../assets/img/StackifySVG-footer.svg" alt="account-picture">
-        <h2 class="account-text">Sample Name</h2>
-        <h2 class="account-text">Account Settings</h2>
-        <h2 class="account-text">Invite Collaborator</h2> -->
       </div>
     </section>
   </section>
@@ -77,17 +72,13 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, ref } from 'vue';
+import { computed, onMounted} from 'vue';
 import { spotifyPlayerService } from "../services/SpotifyPlayerService.js";
 import { spotifyLoginService } from "../services/SpotifyLoginService.js";
 import Pop from "../utils/Pop.js";
-import {spotifyApiService} from '../services/SpotifyApiService.js'
 import { logger } from "../utils/Logger.js";
-import { start } from "@popperjs/core";
-import ActiveSong from '../components/ActiveSong.vue'
 import SongSearchBar from '../components/SongSearchBar.vue';
 import Player from '../components/Player.vue';
-import Profile from '../components/Profile.vue'
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService.js";
 import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
@@ -194,11 +185,19 @@ export default {
   max-height: 60vh;
 }
 
+.background-img{
+  background-image: url('https://images.unsplash.com/photo-1594623930572-300a3011d9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGolMjBjb250cm9sbGVyfGVufDB8fDB8fHww&w=1000&q=80');
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(10px);
+}
+
 
 // This is the Center Panel Section (SEARCH, MAIN, PLAYER)
 
 .center-panel {
   height: 100vh;
+  
 }
 
 

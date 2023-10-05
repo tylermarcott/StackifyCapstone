@@ -1,9 +1,10 @@
 <template>
   <section class="song-card pointer" @dblclick="playTrack(track.id)">
+    
     <div class="row">
       <div v-if="!locked" class="col-1">
         <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
-        <button title="Move Track Down" v-if="bottomTrack != track.id" @click="moveTrack('down')" class="btn btn-light"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
+        <button title="Move Track Down" v-if="bottomTrack != track.id" @click="moveTrack('down')" class="btn btn-light mt-2"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
       </div>
       <div class="col-3">
         {{ track.name }}
@@ -17,7 +18,7 @@
       </div>
 
       <div class="col-1">
-        <i class="mdi mdi-dots-horizontal"></i>
+        <SongDetailsButton :track="track"/>
       </div>
       <div class="col-2">
         {{ computedMinutes }}:{{ computedSeconds }}
@@ -27,19 +28,20 @@
       </div>
     </div>
   </section>
+  
+  
 </template>
 
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
-import { logger } from "../utils/Logger.js";
-import { MyTrack } from '../models/MyTrack';
+import { computed } from 'vue';
 import { Track } from "../models/Track.js";
 import { tracksService } from '../services/TracksService';
 import Pop from "../utils/Pop.js";
 import { spotifyApiService } from "../services/SpotifyApiService.js";
 import {spotifyPlayerService} from "../services/SpotifyPlayerService.js"
+import SongDetailsButton from './SongDetailsButton.vue';
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props){
@@ -96,7 +98,15 @@ export default {
       } catch (error) {
         Pop.error(error)
       }
-    }
+    },
+
+    // async openTrackDetails(trackId, track){
+    //   try {
+    //     await spotifyApiService.getTimeblockTrackDetails(trackId, track);
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // }
     
     
    }
@@ -126,11 +136,6 @@ export default {
   padding: 4px;
   color: rgb(19, 18, 18);
   cursor: pointer;
-}
-
-.song-card:hover{
-  cursor: pointer;
-  transform: scale(1.01);
 }
 .bg-dark-pink{
     background-color: #E1289F;    
