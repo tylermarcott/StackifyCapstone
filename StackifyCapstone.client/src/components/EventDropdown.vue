@@ -13,7 +13,8 @@ import { AppState } from '../AppState';
 import { computed, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
 import {eventsService} from '../services/EventsService'
-import {Event} from '../models/Event.js'
+import { timeBlocksService } from "../services/TimeBlocksService.js";
+import { logger } from "../utils/Logger.js";
 export default {
     setup(){
         
@@ -38,6 +39,22 @@ export default {
 
         setActiveEvent(event){
             AppState.activeEvent = event
+            this.setActiveTimeblock()
+        },
+
+        // FIXME: now when I create a timeblock on an event, it doesn't add the timeblock to the list reactively
+        async setActiveTimeblock(){
+            try {
+                await timeBlocksService.getMyTimeBlocks()
+                const firstTimeblock = AppState.myTimeBlocks[0]
+                if(firstTimeblock){
+                    timeBlocksService.setActiveTimeblock(firstTimeblock.id)    
+                } else{
+                    AppState.activeTimeBlock = null;
+                }
+            } catch (error) {
+                Pop.error(error)
+            }
         }
      }
     }
@@ -48,25 +65,25 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Julius+Sans+One&family=Nixie+One&family=Rampart+One&display=swap');
 .event-title {
-  background-color: #4f4f4f;
-  font-size: 1.5rem;
-  color: #EA94FF;
-  border: solid 8px #242424;
-  border-bottom: 0px;
-  border-radius: 15px;
-  height: 5vh;
-  padding-top: 4px !important;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #4f4f4f;
+    font-size: 1.5rem;
+    color: #EA94FF;
+    border: solid 8px #242424;
+    border-bottom: 0px;
+    border-radius: 15px;
+    height: 5vh;
+    padding-top: 4px !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .add-button {
-  background-color: #63FAAA ;
-  border: none;
-  border-radius: 8px;
-  margin-left: 5px;
-  margin-right: 12px;
-  font-size: 30px;
-  transition: .1s;
-  padding: 4px;
+    background-color: #63FAAA ;
+    border: none;
+    border-radius: 8px;
+    margin-left: 5px;
+    margin-right: 12px;
+    font-size: 30px;
+    transition: .1s;
+    padding: 4px;
 }
 </style>
