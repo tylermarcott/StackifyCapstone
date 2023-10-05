@@ -280,6 +280,61 @@ class SpotifyPlayerService {
     }).catch(error => {
       logger.error('There was an error:', error);
     });
+    // When we load a song, we want to store the next song in the Appstate so we can add it to queue as the song ends..
+    logger.log(AppState.activeTimeBlock)
+    // let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == trackId)
+    // logger.log(index)
+    // if(AppState.activeTimeBlock.trackList[index + 1]) {
+    //   let nextTrack = AppState.activeTimeBlock.trackList[index + 1]
+    //   AppState.nextTrack = nextTrack
+    //   logger.log('Added next song to Appstate', nextTrack)
+    // }
+  }
+
+  async addNextTrackToQueue() {
+    // if() If there is a next song in the appstate, add it to queue.. else do nothing.
+    let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
+    logger.log(index)
+    if (AppState.activeTimeBlock.trackList[index + 1]) {
+      let nextTrack = AppState.activeTimeBlock.trackList[index + 1]
+      AppState.nextTrack = nextTrack
+      logger.log('Added next song to Appstate', nextTrack)
+    }
+
+    try {
+      logger.log('Adding next song to queue..')
+      const bearerToken = localStorage.getItem('access_token')
+      const headers = new Headers({
+        Authorization: `Bearer ${bearerToken}`,
+      });
+      // const uri = [`spotify:track:${AppState.nextTrack.id}`]
+      // const body = JSON.stringify({
+      //   uri: uri
+      // })
+      const url = `https://api.spotify.com/v1/me/player/queue?uri=spotify%3Atrack%3A${AppState.nextTrack.id}`
+      fetch(url, {
+        method: 'POST',
+        headers: headers,
+        // body: body
+      }).then(response => {
+        if (response.ok) {
+          logger.log('Added Song to Queue', AppState.nextTrack);
+        } else {
+          logger.log('Could not add song to queue');
+          return response.json();
+        }
+      }).then(data => {
+        if (data) {
+          logger.log(data); // Log any error message returned by Spotify API
+        }
+      }).catch(error => {
+        logger.error('There was an error:', error);
+      });
+    }
+    catch (error) {
+      logger.log(error)
+    }
+   
   }
 
   // Volume is controlled by a number between 0 and 1.0

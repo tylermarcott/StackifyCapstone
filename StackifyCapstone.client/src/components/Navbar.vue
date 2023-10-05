@@ -10,11 +10,16 @@
         <h2 class="purple"> Login </h2>
       </router-link>
     </div>
-    <div class="col-4">
-      <router-link :to="{ name: '' }" class="">
+    <div v-if="tokenOk == true" class="col-4">
+      <router-link :to="{ name: 'Application', params: { application: 'application' } }" class="">
       <h2 class="purple">Application</h2>
       </router-link>
     </div>
+    <div v-else class="col-4">
+        <router-link :to="{ name: 'Login' }" class="">
+        <h2 class="purple">Connect Spotify</h2>
+        </router-link>
+      </div>
     <div class="col-4">
 
     </div>
@@ -29,11 +34,46 @@
 </template>
 
 <script>
+import { onMounted, watchEffect } from "vue"
+import { AppState } from "../AppState"
+import { spotifyLoginService } from "../services/SpotifyLoginService"
+import { logger } from "../utils/Logger"
+
 
 export default {
   setup() {
-    return {}
-  },
+    
+    let tokenOk = false
+
+    async function accessTokenCheck() {
+      if (localStorage.getItem('access_token')) {
+        AppState.accessToken = localStorage.getItem('access_token')
+        AppState.refreshToken = localStorage.getItem('refresh_token')
+        logger.log('Access Token', AppState.accessToken, AppState.refreshToken)
+        // Now we need to see if this token is expired by sending a simple request with a function
+        if (await checkExpired()) {
+          logger.log('Token is expired.. Refreshing')
+          await spotifyLoginService.refreshAccessToken()
+          tokenOk = false
+        }
+      }
+    }
+
+    // This checks if the token is expired
+    async function checkExpired() {
+      try {
+        await spotifyLoginService.checkExpired()
+      } catch (error) {
+        return true
+      }
+    }
+    watchEffect(() => tokenOk)
+    onMounted(() => accessTokenCheck())
+    return {
+      tokenOk,
+      
+    }
+  }
 
 }
 </script>

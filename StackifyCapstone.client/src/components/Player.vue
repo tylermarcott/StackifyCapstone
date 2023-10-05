@@ -57,6 +57,15 @@ setup() {
     }
   }
 
+  async function addNextTrackToQueue() {
+      try {
+          logger.log('Setting the next track in queue', AppState.activeTrack.progress)
+          await spotifyPlayerService.addNextTrackToQueue()
+        } catch (error) {
+          Pop.error(error)
+        }
+  }
+
   function calculateBar() {
     if(AppState.activeTrack != null && document.getElementById('song-duration-bar')) {
       logger.log('running calc bar')
@@ -66,7 +75,14 @@ setup() {
         trackPosition.value = AppState.activeTrack.progress
       }
     }
-
+  watchEffect(() => {
+  if (AppState.isPlaying && AppState.activeTrack.duration - AppState.activeTrack.progress < 1001 ) {
+    addNextTrackToQueue()
+  } else {
+    logger.log('Below 95%')
+  }
+  }
+  )
   watchEffect(() => currentPosition(AppState.isPlaying))
   watchEffect(() => {
     if(AppState.activeTrack != null)
