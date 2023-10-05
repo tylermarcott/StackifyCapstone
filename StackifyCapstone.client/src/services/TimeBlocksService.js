@@ -61,15 +61,12 @@ class TimeBlocksService{
 
       toggleLock(){
         AppState.activeTimeBlock.locked = !AppState.activeTimeBlock.locked
-        logger.log('toggle lock', AppState.activeTimeBlock.locked)
       }
 
-      async deleteActiveTimeblock(timeblockId){
-        const res = await api.delete(`api/timeblocks/${timeblockId}`)
-        logger.log('delete timeblock', res.data)
-        // const timeblockToDelete = AppState.activeTimeBlock.findIndex(timeblock => timeblockId == timeblock.id)
-        // AppState.activeTimeblock.splice(timeblockToDelete, 1)      
-        return res.data
+      async deleteTimeblock(timeblockId){
+        const timeblockToDelete = AppState.myTimeBlocks.findIndex(timeblock => timeblockId == timeblock.id)
+        AppState.myTimeBlocks.splice(timeblockToDelete, 1)      
+        await api.delete(`api/timeblocks/${timeblockId}`)
       }
 }
 
