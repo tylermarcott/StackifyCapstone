@@ -104,9 +104,14 @@ export default {
       async addTrackToActiveTimeblock(trackId){
         try {
           if(await Pop.confirm('Add this song to your playlist?')){
-            await tracksService.addTrackToActiveTimeblock(trackId)
-            this.editTimeblockTracklist()
-            this.clearSearchedTracks()
+            if(AppState.activeTimeBlock){
+              await tracksService.addTrackToActiveTimeblock(trackId)
+              this.editTimeblockTracklist()
+              this.clearSearchedTracks()
+            } else{
+              Pop.toast('Please choose a playlist before adding a song!', 'warning')
+            }
+
           }
         } catch (error) {
           Pop.error(error)

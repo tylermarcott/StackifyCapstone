@@ -11,7 +11,7 @@
         </form>
         <!-- TODO: add v-if so this is not visible when there aren't any searched tracks. -->
         <button @click="clearSearchedTracks" class="clear-button">
-          <i class="mdi mdi-delete-forever search-icon"></i>
+          <p class="search-icon">Clear</p>
         </button>
     </div>
 </template>
@@ -22,6 +22,7 @@ import { spotifyApiService } from '../services/SpotifyApiService';
 import Pop from '../utils/Pop';
 import { logger } from '../utils/Logger';
 import {tracksService} from '../services/TracksService.js'
+import { AppState } from "../AppState.js";
 export default {
 setup() {
     const searchData = ref({});
@@ -41,12 +42,21 @@ setup() {
 
     async searchSong(){
       try {
-        let searchValue = searchData.value.query
-        logger.log('our search value is this:', searchValue)
-        let formattedSearch = searchValue.replace(' ', '+')
 
-        if(formattedSearch){
-            await spotifyApiService.searchSong(formattedSearch)
+        let searchValue = searchData.value.query
+        if(searchValue){
+          logger.log('our search value is this:', searchValue)
+          let formattedSearch = searchValue.replace(' ', '+')
+          
+          if (formattedSearch) {
+            if (AppState.activeTimeBlock) {
+              await spotifyApiService.searchSong(formattedSearch)
+            } else {
+              Pop.toast('Please select a playlist to search songs!', 'warning')
+            }
+          }
+        } else{
+          Pop.toast('Please enter a song name into the field.', 'warning')
         }
         this.resetForm()
       } catch (error) {
@@ -88,9 +98,10 @@ setup() {
   border-radius: 8px;
   margin-left: 5px;
   transition: .1s;
-  font-size: 17px;
+  font-size: 18px;
   color: #FFFFFF;
   margin-right: 0.4em;
+  max-height: 1.7em;
 }
 
 .search-button {

@@ -1,5 +1,6 @@
 <template>
   <section class="song-card pointer" @dblclick="playTrack(track.id)">
+    
     <div class="row">
       <div v-if="!locked" class="col-1">
         <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
@@ -17,7 +18,7 @@
       </div>
 
       <div class="col-1">
-        <i class="mdi mdi-dots-horizontal"></i>
+        <SongDetailsButton :track="track"/>
       </div>
       <div class="col-2">
         {{ computedMinutes }}:{{ computedSeconds }}
@@ -27,6 +28,8 @@
       </div>
     </div>
   </section>
+  
+  
 </template>
 
 
@@ -38,6 +41,7 @@ import { tracksService } from '../services/TracksService';
 import Pop from "../utils/Pop.js";
 import { spotifyApiService } from "../services/SpotifyApiService.js";
 import {spotifyPlayerService} from "../services/SpotifyPlayerService.js"
+import SongDetailsButton from './SongDetailsButton.vue';
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props){
@@ -94,7 +98,15 @@ export default {
       } catch (error) {
         Pop.error(error)
       }
-    }
+    },
+
+    // async openTrackDetails(trackId, track){
+    //   try {
+    //     await spotifyApiService.getTimeblockTrackDetails(trackId, track);
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // }
     
     
    }
@@ -124,11 +136,6 @@ export default {
   padding: 4px;
   color: rgb(19, 18, 18);
   cursor: pointer;
-}
-
-.song-card:hover{
-  cursor: pointer;
-  transform: scale(1.01);
 }
 .bg-dark-pink{
     background-color: #E1289F;    

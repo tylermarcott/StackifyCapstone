@@ -4,7 +4,7 @@
             <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn bg-green"><i class="mdi mdi-arrow-left"></i></button>
         </div>
         <div class="col-8 bg-dark-subtle rounded">
-            <h2>{{ timeblock.title }}</h2>
+            <h2 class="font">{{ timeblock.title }}</h2>
         </div>
         <div class="col-2">
             <button title="Next Time Block" @click="nextTimeblock()" :disabled="timeblock.position==timeblocksLength-1" class="btn bg-green"><i class="mdi mdi-arrow-right"></i></button>
@@ -92,6 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 
+
 .bg-dark-pink{
     background-color: #E1289F;    
 }
@@ -105,6 +106,10 @@ export default {
 
 .bg-dark-gray{
     background: #4F4F4F;
+}
+
+.font{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 </style>

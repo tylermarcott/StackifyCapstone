@@ -47,6 +47,14 @@ async getActiveTrackDetails(id){
   logger.log(AppState.activeTrackDetails)
 }
 
+async getTimeblockTrackDetails(id, track){
+  AppState.timeblockTrack = track
+  const bearerToken = localStorage.getItem('access_token')
+  const url = (`https://api.spotify.com/v1/audio-features/${id}`)
+  const res = await spotifyApi.get(url, { headers: { Authorization: `Bearer ${bearerToken}` } })
+  AppState.timeblockTrackDetails = new ActiveTrackDetails(res.data)
+}
+
 }
 
 export const spotifyApiService = new SpotifyApiService

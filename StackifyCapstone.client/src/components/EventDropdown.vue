@@ -46,6 +46,7 @@ export default {
 
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Julius+Sans+One&family=Nixie+One&family=Rampart+One&display=swap');
 .event-title {
   background-color: #4f4f4f;
   font-size: 1.5rem;
@@ -55,6 +56,7 @@ export default {
   border-radius: 15px;
   height: 5vh;
   padding-top: 4px !important;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .add-button {
