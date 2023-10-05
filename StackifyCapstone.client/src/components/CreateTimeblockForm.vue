@@ -36,7 +36,6 @@ export default {
         timeblockData.value.eventId = AppState.activeEvent.id
         await timeBlocksService.createTimeblock(timeblockData.value)
         Pop.success('Playlist Created!', 'success')
-        this.closeModal()
         resetForm()
       } catch (error) {
         Pop.error(error)
