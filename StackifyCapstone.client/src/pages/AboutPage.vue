@@ -46,13 +46,13 @@
       </div>
 
       <div class="col-12 col-md-3">
-        <img class="profile-pic" src="https://media.licdn.com/dms/image/C5603AQEI57XOlFhY5Q/profile-displayphoto-shrink_800_800/0/1596575033704?e=1701302400&v=beta&t=aZQP3MWQ9g8CJyQfkKp4H1wpu1yEnKAxOSwWTFvvJxQ" alt="">
+        <img class="profile-pic" src="https://media.licdn.com/dms/image/D5603AQF1OQkw9eTbTQ/profile-displayphoto-shrink_800_800/0/1696514966160?e=1701907200&v=beta&t=FH5pUgCY5tjKdMYuxXrlnzA1wOGF5bhSCUxl8lzXJ5M" alt="">
         <h5 class="text-pink mt-2">Lance Fontanilla</h5>
         <h5><a class="links" href="https://github.com/LanceFontanilla"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/lancefontanilla/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
 
       <div class="col-12 col-md-3">
-        <img class="profile-pic" src="https://ca.slack-edge.com/T1GGQN1RU-U05LG8XL8NA-e5f49bb82361-512" alt="">
+        <img class="profile-pic" src="https://media.licdn.com/dms/image/D5635AQGp4kuQFZpeaw/profile-framedphoto-shrink_200_200/0/1696473547278?e=1697144400&v=beta&t=KGb_yDz49rlz3D01rVUwPeXoDdEVZLxR7GMLBpoTIfY" alt="">
         <h5 class="text-pink mt-2">Tyler Marcott</h5>
         <h5><a class="links" href="https://github.com/tylermarcott"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/tyler-marcott-225277204/"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
@@ -130,7 +130,7 @@ export default {
 
 .links{
   text-decoration: none;
-  color:#63FAF5 ;
+  color:#63B3FA ;
 }
 
 .body{
