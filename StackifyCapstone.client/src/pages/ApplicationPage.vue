@@ -27,10 +27,8 @@
         <!-- TODO: ok so we have songs populated on the page from our search result. Next, we need to add a button on each song card that allows you to add a song. This button will have an onclick that will fire a get track request so we can get the song itself and save it to our DB.
         -->
         <SongSearchBar/>
-
         <div class="main-content justify-content-center align-items-center background-img">
           <!-- NOTE use a row on the search songs component-->
-
           <div v-if="tracks[0]" class="row justify-content-center">
             <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 searched-song-card ms-2">
               <SearchedTrackCard :track="track"/>
@@ -49,16 +47,10 @@
               No active timeblock or searched song...
             </h1>
           </div>
-
-
-          
           <!-- <div v-else>
             active Timeblock
           </div>
-
-
           <h2>Main Content</h2> -->
-
         </div>
         <Player/>
       </div> 
@@ -68,7 +60,6 @@
     </section>
   </section>
 </template>
-
 
 <script>
 import { AppState } from '../AppState';

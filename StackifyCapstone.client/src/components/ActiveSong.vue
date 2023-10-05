@@ -40,23 +40,16 @@
             </div>
         </section>
     </template>
-    
     <template #body>
       <TrackDetailsModal/>
     </template>
   </ModalWrapper>
-
-
-
 </template>
-
-
 
 <script>
 import { computed, onMounted } from "vue";
 import { spotifyApiService } from "../services/SpotifyApiService";
 import Pop from "../utils/Pop";
-
 import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 import { useRoute } from "vue-router";
@@ -76,7 +69,6 @@ export default {
     }
         async function getActiveTrackDetails(id){
           try {
-              
               logger.log('getting active track audio features', id)
               await spotifyApiService.getActiveTrackDetails(id)
            
@@ -84,30 +76,22 @@ export default {
             Pop.error(error)
           }
         }
-
     onMounted(() => {
        getActiveTrack()
-
     })
     return {
       getActiveTrack,
       getActiveTrackDetails,
       activeTrack,
       activeTrackDetails: computed(() => AppState.activeTrackDetails),
-      
       computedMinutes: computed(() => Math.floor(AppState.activeTrack.duration / 1000 / 60)),
-
       computedSeconds: computed(() => Math.floor(AppState.activeTrack.duration / 1000 % 60).toString().padStart(2, '0')),
-
-
-
     };
       
     },
     
 };
 </script>
-
 
 <style lang="scss" scoped>
 .active-song-image {

@@ -12,8 +12,6 @@ class SpotifyPlayerService {
   player = ref(null)
   // call this onMounted
   async StartPlayer() {
-    //NOTE: we don't need to call requestToken bc it's already in local storage
-    // await spotifyLoginService.requestToken()
     const script = await document.createElement('script');
     script.src = "https://sdk.scdn.co/spotify-player.js";
     script.addEventListener('load', () => {
@@ -194,47 +192,6 @@ class SpotifyPlayerService {
     } else {
       Pop.toast('No tracks in your history')
     }
-    // let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
-    // logger.log(index)
-    // if (AppState.activeTimeBlock.trackList[index - 1]) {
-    //   let nextTrack = AppState.activeTimeBlock.trackList[index - 1]
-    //   AppState.nextTrack = nextTrack
-    //   logger.log('Added next song to Appstate', nextTrack)
-    //   await this.loadSong(AppState.nextTrack.id)
-    // }
-    // else {
-    //   Pop.toast('This Song is the First in the Playlist')
-    // }
-    // try {
-    //   logger.log('Skipping to previous track')
-    //   const bearerToken = localStorage.getItem('access_token')
-    //   const headers = new Headers({
-    //     Authorization: `Bearer ${bearerToken}`,
-    //     'Content-Type': 'application/json'
-    //   });
-    //   const url = 'https://api.spotify.com/v1/me/player/previous'
-    //   fetch(url, {
-    //     method: 'POST',
-    //     headers: headers,
-    //   }).then(response => {
-    //     if (response.ok) {
-    //       logger.log('Skipped Song previous');
-    //       logger.log(response)
-    //     } else {
-    //       logger.log('Could not skip back');
-    //       return response.json();
-    //     }
-    //   }).then(data => {
-    //     if (data) {
-    //       logger.log(data); // Log any error message returned by Spotify API
-    //     }
-    //   }).catch(error => {
-    //     logger.error('There was an error:', error);
-    //   });
-    // }
-    // catch (error) {
-    //   logger.log(error)
-    // }
   }
 
   async getDevices() {
@@ -307,10 +264,6 @@ class SpotifyPlayerService {
       const headers = new Headers({
         Authorization: `Bearer ${bearerToken}`,
       });
-      // const uri = [`spotify:track:${AppState.nextTrack.id}`]
-      // const body = JSON.stringify({
-      //   uri: uri
-      // })
       const url = `https://api.spotify.com/v1/me/player/queue?uri=spotify%3Atrack%3A${AppState.nextTrack.id}`
       fetch(url, {
         method: 'POST',
