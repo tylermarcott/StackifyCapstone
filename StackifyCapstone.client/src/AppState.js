@@ -44,6 +44,8 @@ export const AppState = reactive({
 
   activeTrack: null,
   timeblockTrack: null,
+  timeblockTrackDetails: null,
+  timeblockTrackYear: null,
   activeTrackDetails: null,
   nextTrack: null,
   trackHistory: []

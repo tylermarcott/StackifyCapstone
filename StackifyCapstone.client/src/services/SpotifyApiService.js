@@ -55,6 +55,15 @@ async getTimeblockTrackDetails(id, track){
   AppState.timeblockTrackDetails = new ActiveTrackDetails(res.data)
 }
 
+async getTimeblockTrack(id){
+  const bearerToken = localStorage.getItem('access_token')
+  const url = (`https://api.spotify.com/v1/tracks/${id}`)
+  const res = await spotifyApi.get(url, { headers: { Authorization: `Bearer ${bearerToken}` } })
+  AppState.timeblockTrackYear = new Date(res.data.album.release_date).toLocaleDateString()
+}
+
+
+
 }
 
 export const spotifyApiService = new SpotifyApiService

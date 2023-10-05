@@ -1,5 +1,5 @@
 <template>
-  <section class="song-card pointer" @dblclick="playTrack(track.id)">
+  <section class="song-card elevation-5 pointer" @dblclick="playTrack(track.id)">
     
     <div class="row">
       <div v-if="!locked" class="col-1">
@@ -102,6 +102,7 @@ export default {
       try {
         logger.log('opentrackdetail')
         await spotifyApiService.getTimeblockTrackDetails(trackId, track);
+        await spotifyApiService.getTimeblockTrack(trackId)
       } catch (error) {
         Pop.error(error)
       }

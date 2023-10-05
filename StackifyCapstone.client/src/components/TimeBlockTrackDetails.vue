@@ -8,7 +8,7 @@
             <div class="card-body text-light song-details-card row justify-content-evenly my-3">
                 <div class="col-12 col-md-6 my-5">
                     <p>Album: {{ timeblockTrack.album}}</p>
-                    <p>Release: {{ timeblockTrack.year }}</p>
+                    <p>Release: {{ timeblockTrackYear }}</p>
                     <p>Key: {{ key }}</p>
                     <p>Duration: {{ computedMinutes }}:{{ computedSeconds }} </p>
                 </div>
@@ -32,6 +32,7 @@ export default {
             
             timeblockTrack: computed(() => AppState.timeblockTrack),
             timeblockTrackDetails: computed(() => AppState.timeblockTrackDetails),
+            timeblockTrackYear: computed(()=> AppState.timeblockTrackYear),
             
             computedMinutes: computed(() => Math.floor(AppState.timeblockTrack.duration/1000/60)),
             computedSeconds: computed(() => Math.floor(AppState.timeblockTrack.duration/1000 % 60).toString().padStart(2, '0')),

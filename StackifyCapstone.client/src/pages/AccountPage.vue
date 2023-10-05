@@ -1,12 +1,4 @@
 <template>
-    <!-- <ModalWrapper id="edit-account">
-      <template #button> 
-        
-      </template>
-      <template #body>
-        <TrackDetailsModal/>
-      </template>
-      </ModalWrapper>  -->
       <section v-if="account.name" class="row account-wrapper p-2">
         <div class="col-12 landing-navigation landing-navigation d-flex justify-content-center align-items-center">
           <section class="row">
@@ -27,10 +19,6 @@
                   <label for="name" class="label-text"><b>Name</b></label>
                   <input name="name" class="w-100 rounded my-1" type="text" v-model="formData.name" id="name">
                 </div>
-                <!-- <div class="col-12 my-5">
-                  <label for="bio"><b>Bio</b></label>
-                  <textarea class="w-100 rounded my-2" type="text" v-model="bio" id="bio"></textarea>
-                </div> -->
                   <div class="col-12 my-5">
                     <label for="imgUrl" class="label-text"><b>Image Url</b></label>
                   <input name="picture" class="w-100 rounded my-1" type="url" v-model="formData.picture" id="imgUrl">
@@ -47,29 +35,24 @@
           <div v-for="event in myEvents" :key="event.id">
             <section class="row m-1">
               <div class="text-center event-card elevation-5" :event="event">
-                <h2 class="col-12 event-title selectable text-center">{{ event.title }}</h2>
+                <router-link :to="{ name: 'Application', params: { application: 'application' } }" class="">
+                <h2  class="col-12 event-title selectable text-center">{{ event.title }}</h2>
+                </router-link>
                 <p class="col-12">{{ event.eventType }}</p>
-                <button @click="deleteEvent(event.id)" class="btn btn-danger">
-                  <i class="mdi mdi-delete"></i>
-                </button>
+                <div class="col-12 no-play">
+                  <p>Do Not Play List?</p>
+                </div>
+                <div class="col-12 d-flex justify-content-center my-3">
+                  <button @click="deleteEvent(event.id)" class="btn btn-danger">
+                    <i class="mdi mdi-delete"></i>
+                  </button>
+                </div>
             </div>
-              
             </section>
           </div>
-          <!-- <div v-for="playlist in playlists" :key="playlist.id">
-            <section class="row m-1" >
-            <div class="text-center event-card elevation-5" :playlist="playlist">
-              <div class="col-12 event-title">
-                <b>{{ playlist.name }}</b>
-              </div>
-              <p>Songs: {{ playlist.trackCount }}</p>
-              <p>{{ playlist.description }}</p>
-            </div>
-            </section>
-          </div> -->
         </div>
         <div class="col-6 event-list">
-          <h2 class="text-center event-category-text">Spotify Playlists</h2>
+          <h2 class="text-center event-category-text">Your Spotify Playlists</h2>
           <div v-for="playlist in playlists" :key="playlist.id">
             <section class="row m-1" >
             <div class="text-center event-card elevation-5" :playlist="playlist">
@@ -85,7 +68,6 @@
           </div>
         </div>
       </section>
-    
 </template>
 
 <script>
@@ -168,8 +150,6 @@ export default {
 }
 .account-wrapper {
   background-color: #2f2f2f;
-}
-a {
 }
 
 .modal-wrapper {
