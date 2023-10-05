@@ -22,6 +22,7 @@ import { ref } from 'vue';
 import Pop from "../utils/Pop.js";
 import {timeBlocksService} from '../services/TimeBlocksService.js'
 import { AppState } from '../AppState';
+import { logger } from "../utils/Logger.js";
 export default {
   setup(){
     const timeblockData = ref({});
@@ -35,6 +36,7 @@ export default {
       try {
         timeblockData.value.eventId = AppState.activeEvent.id
         await timeBlocksService.createTimeblock(timeblockData.value)
+        logger.log('here is the active timeblock now:', AppState.activeTimeBlock)
         Pop.success('Playlist Created!', 'success')
         resetForm()
       } catch (error) {

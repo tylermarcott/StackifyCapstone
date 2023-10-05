@@ -16,8 +16,12 @@ class TimeBlocksService{
         timeBlockData.position = AppState.myTimeBlocks.length
         timeBlockData.duration = timeBlockData.duration*1000
         const res = await api.post('api/timeblocks', timeBlockData)
-        const activeTimeblock = AppState.myTimeBlocks.push(new Timeblock(res.data))
-        AppState.activeTimeBlock = activeTimeblock
+        logger.log('here is what my timeblocks looks like before create:', AppState.myTimeBlocks)
+        AppState.myTimeBlocks.push(new Timeblock(res.data))
+        const newTimeblockIndex = AppState.myTimeBlocks.length - 1
+        logger.log('length of myTimeblocks', newTimeblockIndex)
+        AppState.activeTimeBlock = AppState.myTimeBlocks[newTimeblockIndex]
+        logger.log('here is my active timeblock now:', AppState.activeTimeBlock)
       }
 
       async moveTimeblock(timeblock, upOrDown){
@@ -48,7 +52,9 @@ class TimeBlocksService{
 
       setActiveTimeblock(timeblockId){
         const activeTimeBlock = AppState.myTimeBlocks.find(timeblock => timeblock.id == timeblockId)
+        logger.log('here is the timeblock found in id search:', activeTimeBlock)
         AppState.activeTimeBlock = activeTimeBlock
+        logger.log('here is the active timeblock now in the appstate:', AppState.activeTimeBlock)
       }
 
       prevTimeblock(){
