@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { onMounted, watchEffect } from "vue"
+import { computed, onMounted, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { spotifyLoginService } from "../services/SpotifyLoginService"
 import { logger } from "../utils/Logger"
@@ -43,7 +43,9 @@ import { logger } from "../utils/Logger"
 export default {
   setup() {
     
-    let tokenOk = false
+  let tokenOk = computed(()=> AppState.tokenOk)
+
+
 
     async function accessTokenCheck() {
       if (localStorage.getItem('access_token')) {
@@ -54,8 +56,14 @@ export default {
         if (await checkExpired()) {
           logger.log('Token is expired.. Refreshing')
           await spotifyLoginService.refreshAccessToken()
-          tokenOk = false
+          AppState.tokenOk = true
+          
+        } else {
+          AppState.tokenOk = true
+          logger.log('token ok', tokenOk)
         }
+      } else {
+        logger.log('no token')
       }
     }
 

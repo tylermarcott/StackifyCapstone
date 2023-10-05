@@ -38,6 +38,7 @@ export const AppState = reactive({
 
   authCode: null,
   accessToken: null,
+  tokenOk: false,
   refreshToken: null,
   tokenExpire: null,
 
