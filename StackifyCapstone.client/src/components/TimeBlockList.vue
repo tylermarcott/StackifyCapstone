@@ -25,13 +25,11 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, watchEffect } from 'vue';
+import { computed, watchEffect } from 'vue';
 import TimeBlockCard from '../components/TimeBlockCard.vue'
 import Pop from '../utils/Pop';
 import {timeBlocksService} from '../services/TimeBlocksService'
-import { logger } from '../utils/Logger';
 import CreateTimeblockForm from './CreateTimeblockForm.vue';
-import {Modal} from "bootstrap";
 export default {
     setup(){
         watchEffect(()=> {
@@ -54,14 +52,7 @@ export default {
         }
     return { 
         myTimeblocks: computed(() => AppState.myTimeBlocks),
-
-        // FIXME: still not working for modal close. Work on this today.
-        closeModal(){
-            const modalElem = document.getElementById('create-timeblock')
-            const modalInstance = new Modal(modalElem);
-            modalInstance.hide();
-        }
-     }
+    }
     },
     
     components: {TimeBlockCard, CreateTimeblockForm}
@@ -71,11 +62,11 @@ export default {
 
 <style lang="scss" scoped>
 .timeblock-list {
-  height: 75vh;
-  background-color: #eeeeee;
-  border: solid 8px #242424;
-  border-radius: 15px;
-  position: relative;
+    height: 75vh;
+    background-color: #eeeeee;
+    border: solid 8px #242424;
+    border-radius: 15px;
+    position: relative;
 }
 
 .timeblocks-section{
