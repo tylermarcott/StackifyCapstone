@@ -1,12 +1,5 @@
 <template>
-    <ModalWrapper id="my-song" data-bs-toggle="my-song-modal">
-        <template #button>   
-        <i @click="openTrackDetails(track.id, track)" title="shows the song's details" class="mdi mdi-dots-horizontal"></i>
-      </template>
-      <template #body>
-        <TimeBlockTrackDetails/>
-      </template>
-    </ModalWrapper>
+    
 </template>
 
 
@@ -25,13 +18,7 @@ export default {
     props:{track: {type: Track, required:true}},
     setup(){
     return { 
-        async openTrackDetails(trackId, track){
-      try {
-        await spotifyApiService.getTimeblockTrackDetails(trackId, track);
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
+        
      }
     }
 };
