@@ -12,7 +12,7 @@
                 <button class="btn btn-outline-success w-100 my-2">+</button>
               </template>
                   <template #body>
-                  <CreateTimeblockForm @formSubmitted="closeModal"/>
+                  <CreateTimeblockForm/>
               </template>
             </ModalWrapper>
             
