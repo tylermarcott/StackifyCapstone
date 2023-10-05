@@ -58,6 +58,14 @@ class TimeBlocksService{
         AppState.activeTimeBlock.locked = !AppState.activeTimeBlock.locked
         logger.log('toggle lock', AppState.activeTimeBlock.locked)
       }
+
+      async deleteActiveTimeblock(timeblockId){
+        const res = await api.delete(`api/timeblocks/${timeblockId}`)
+        logger.log('delete timeblock', res.data)
+        // const timeblockToDelete = AppState.activeTimeBlock.findIndex(timeblock => timeblockId == timeblock.id)
+        // AppState.activeTimeblock.splice(timeblockToDelete, 1)      
+        return res.data
+      }
 }
 
 export const timeBlocksService = new TimeBlocksService()

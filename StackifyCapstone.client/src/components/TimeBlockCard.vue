@@ -1,7 +1,8 @@
 <template>
     <div @click="setActiveTimeblock()" class="timeblock-card row selectable justify-content-between align-items-center elevation-4">
-        <h3 class="timeblock-text col-7">{{ timeblock.title }}</h3>
-        <h3 class="timeblock-timer col-3">{{ timeblock.duration }}</h3>
+        <h3 class="timeblock-text col-5">{{ timeblock.title }}</h3>
+        <h3 class="timeblock-timer m-0 text-center col-2">{{ timeblock.duration }}</h3>
+        <button class="btn col-2" @click.stop="deleteActiveTimeblock(timeblock.id)"><i class='fs-5 mdi mdi-delete-forever text-light'></i></button>
         <div class="col-2">
           <i v-if="topTimeBlock != timeblock.id" @click.stop="moveTimeblock('up')" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
           <i v-if="bottomTimeBlock != timeblock.id" @click.stop="moveTimeblock('down')" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
@@ -43,7 +44,20 @@ setup(props) {
 
     setActiveTimeblock(){
       timeBlocksService.setActiveTimeblock(props.timeblock.id)
-    }
+    },
+
+    async deleteActiveTimeblock(timeblockId){
+      try {
+        if(await Pop.confirm('Are you sure you want to delete this timeblock?')){
+          logger.log('this is the timeblockId', timeblockId)
+          await timeBlocksService.deleteActiveTimeblock(timeblockId)
+          
+          Pop.toast('You have deleted this timeblock', 'success', 'center')
+        } 
+      } catch (error) {
+        Pop.error(error)
+      }
+    },
   };
 },
 };

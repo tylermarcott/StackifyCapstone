@@ -11,6 +11,7 @@ export class TimeblocksController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createTimeblock)
             .put('/:timeblockId', this.editTimeblock)
+            .delete('/:timeblockId', this.deleteTimeblock)
     }
     async createTimeblock(req, res, next) {
         try {
@@ -30,6 +31,14 @@ export class TimeblocksController extends BaseController {
             updates.ownerId = req.userInfo.id
             const editedTimeblock = await timeblocksService.editTimeblock(req.params.timeblockId, updates, updates.ownerId)
             res.send(editedTimeblock)
+        } catch (error) {
+            next(error)
+        }
+    }
+    async deleteTimeblock(req, res, next) {
+        try {
+            const message = await timeblocksService.deleteTimeblock(req.params.timeblockId, req.userInfo.id)
+            res.send(message)
         } catch (error) {
             next(error)
         }

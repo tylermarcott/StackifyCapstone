@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext.js"
+import { Forbidden } from "../utils/Errors.js"
 
 class TimeblocksService {
     async createTimeblock(timeblockBody) {
@@ -25,6 +26,13 @@ class TimeblocksService {
 
         await originalTimeblock.save()
         return originalTimeblock
+    }
+    async deleteTimeblock(timeblockId, ownerId) {
+        const foundTimeblock = await dbContext.Timeblock.findById(timeblockId)
+        if (foundTimeblock.ownerId != ownerId)
+            throw new Forbidden("This is not your Timeblock")
+        await foundTimeblock.delete()
+        return `Your timeblock has been deleted.`
     }
 }
 
