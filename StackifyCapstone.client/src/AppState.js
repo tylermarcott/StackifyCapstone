@@ -38,11 +38,14 @@ export const AppState = reactive({
 
   authCode: null,
   accessToken: null,
+  tokenOk: false,
   refreshToken: null,
   tokenExpire: null,
 
   activeTrack: null,
   timeblockTrack: null,
+  timeblockTrackDetails: null,
+  timeblockTrackYear: null,
   activeTrackDetails: null,
   nextTrack: null,
   trackHistory: []

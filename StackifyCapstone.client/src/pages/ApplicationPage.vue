@@ -59,6 +59,11 @@
       </div>
     </section>
   </section>
+  <ModalWrapper id="my-song">
+      <template #body>
+        <TimeBlockTrackDetails/>
+      </template>
+    </ModalWrapper>
 </template>
 
 <script>
