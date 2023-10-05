@@ -6,7 +6,7 @@ export const TimeBlocksSchema = new Schema({
     title: { type: String, required: true, maxLength: 250 },
     // NOTE this may be wrong
     trackList: { type: [{}] },
-    duration: { type: Number, max: 999999, default: 0 },
+    duration: { type: Number, max: 99999999999, default: 0 },
     completed: { type: Boolean, default: false },
     notes: { type: String, maxLength: 9999 },
     silent: { type: Boolean, default: false },

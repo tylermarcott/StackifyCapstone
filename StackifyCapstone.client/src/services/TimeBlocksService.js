@@ -37,8 +37,13 @@ class TimeBlocksService{
 
       async saveNotes(timeblockId, timeblockData){
         const res = await api.put(`api/timeblocks/${timeblockId}`, timeblockData)
-        logger.log('this is the put request', res.data)
         AppState.activeTimeBlock.notes = res.data.notes
+      }
+
+      async editTimer(timeblockId, timeblockData){
+        timeblockData.duration*=1000
+        const res = await api.put(`api/timeblocks/${timeblockId}`, timeblockData)
+        AppState.activeTimeBlock.duration = res.data.duration
       }
 
       setActiveTimeblock(timeblockId){

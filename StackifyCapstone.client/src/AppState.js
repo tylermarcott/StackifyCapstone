@@ -29,6 +29,8 @@ export const AppState = reactive({
  /**@type {Timeblock} */
   activeTimeBlock: null,
 
+  paused: true,
+
   /**@type {Track} */
   trackToAdd: null,
 
