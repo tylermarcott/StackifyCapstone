@@ -12,7 +12,7 @@
                 <button class="btn btn-outline-success w-100 my-2">+</button>
               </template>
                   <template #body>
-                  <CreateTimeblockForm/>
+                  <CreateTimeblockForm @formSubmitted="closeModal"/>
               </template>
             </ModalWrapper>
             
@@ -31,6 +31,7 @@ import Pop from '../utils/Pop';
 import {timeBlocksService} from '../services/TimeBlocksService'
 import { logger } from '../utils/Logger';
 import CreateTimeblockForm from './CreateTimeblockForm.vue';
+import {Modal} from "bootstrap";
 export default {
     setup(){
         watchEffect(()=> {
@@ -53,6 +54,13 @@ export default {
         }
     return { 
         myTimeblocks: computed(() => AppState.myTimeBlocks),
+
+        // FIXME: still not working for modal close. Work on this today.
+        closeModal(){
+            const modalElem = document.getElementById('create-timeblock')
+            const modalInstance = new Modal(modalElem);
+            modalInstance.hide();
+        }
      }
     },
     
