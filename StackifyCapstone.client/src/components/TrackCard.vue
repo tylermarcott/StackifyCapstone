@@ -18,7 +18,7 @@
       </div>
 
       <div class="col-1">
-        <SongDetailsButton :track="track"/>
+        <i @click="openTrackDetails(track.id, track)" title="shows the song's details" class="mdi mdi-dots-horizontal selectable" data-bs-toggle="modal" data-bs-target='#my-song'></i>
       </div>
       <div class="col-2">
         {{ computedMinutes }}:{{ computedSeconds }}
@@ -28,8 +28,6 @@
       </div>
     </div>
   </section>
-  
-  
 </template>
 
 
@@ -42,6 +40,7 @@ import Pop from "../utils/Pop.js";
 import { spotifyApiService } from "../services/SpotifyApiService.js";
 import {spotifyPlayerService} from "../services/SpotifyPlayerService.js"
 import SongDetailsButton from './SongDetailsButton.vue';
+import { logger } from '../utils/Logger';
 export default {
   props: { track: { type: Track || Object, required: true } },
   setup(props){
@@ -99,6 +98,14 @@ export default {
         Pop.error(error)
       }
     },
+    async openTrackDetails(trackId, track){
+      try {
+        logger.log('opentrackdetail')
+        await spotifyApiService.getTimeblockTrackDetails(trackId, track);
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
 
     // async openTrackDetails(trackId, track){
     //   try {
