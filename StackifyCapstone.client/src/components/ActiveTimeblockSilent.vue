@@ -11,8 +11,24 @@
         </div>
     </section>
     <section class="row text-center">
+        <ModalWrapper id="edit-Timer">
+              <template #button> 
+                <button class="btn btn-outline-success w-25 my-2">Edit Timer</button>
+              </template>
+                <template #body>
+                    <form @submit.prevent="editTime">
+                    <div class="mb-3">
+                        <label for="duration" class="form-label">Time</label>
+                        <input v-model="timerData.duration" type="number" class="form-control" id="duration">
+                    </div>
+                 <button class="btn btn-dark">update timer</button>
+                </form>
+              </template>
+          </ModalWrapper>
         <div class="col-12">
             <h1>{{msToTime(duration)}}</h1>
+            <button v-if="!paused" @click="togglePlay()" class="btn btn-danger"><i class="mdi mdi-pause"></i></button>
+            <button v-if="paused" @click="togglePlay()" class="btn btn-success"><i class="mdi mdi-play"></i></button>
         </div>
     </section>
     <section class="row text-center">
@@ -46,6 +62,7 @@ import { logger } from '../utils/Logger';
 export default {
     setup(){
         const notesData = ref({});
+        const timerData = ref({});
         const timeblock = computed(() => AppState.activeTimeBlock)
         const timeblocksLength = computed(()=> AppState.myTimeBlocks.length)
         function prevTimeblock(){
@@ -60,24 +77,30 @@ export default {
             let timerInterval = setInterval(minusTime, 1000)
             intervalId = timerInterval
         }
-        let paused = false
+        let paused = computed(()=> AppState.paused)
         let duration = computed(()=>AppState.activeTimeBlock.duration)
         function minusTime(){
-            if(!paused && duration.value > 0){
+            if(!paused.value && duration.value > 0){
                  AppState.activeTimeBlock.duration -= 1000
             } 
         }
         onUnmounted(()=> {
+            paused.value = true
             clearInterval(intervalId)
         })
     return { 
         notesData,
+        timerData,
         timeblocksLength,
         timeblock,
         prevTimeblock,
         nextTimeblock,
         paused,
         duration,
+
+        togglePlay(){
+            AppState.paused = !AppState.paused
+        },
         
         msToTime(ms) {
             const totalSeconds = Math.floor(ms / 1000)
@@ -96,6 +119,15 @@ export default {
             try {
                 await timeBlocksService.saveNotes(this.timeblock.id, notesData.value)
                 Pop.success('notes saved!')
+            } catch (error) {
+                Pop.error(error)
+            }
+        },
+
+        async editTime(){
+            try {
+                await timeBlocksService.editTimer(this.timeblock.id, timerData.value)
+                Pop.success('timer edited!')
             } catch (error) {
                 Pop.error(error)
             }
