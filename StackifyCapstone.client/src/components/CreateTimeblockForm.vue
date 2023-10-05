@@ -16,12 +16,15 @@
     </form>
 </template>
 
+//FIXME: have to add UI that makes it so the user can't create a playlist without an event selected, need to Pop.toast a message
 
 <script>
 import { ref } from 'vue';
 import Pop from "../utils/Pop.js";
 import {timeBlocksService} from '../services/TimeBlocksService.js'
 import { AppState } from '../AppState';
+import { logger } from "../utils/Logger.js";
+import { Modal } from "bootstrap";
 export default {
   setup(){
     const timeblockData = ref({});
@@ -35,8 +38,10 @@ export default {
       try {
         timeblockData.value.eventId = AppState.activeEvent.id
         await timeBlocksService.createTimeblock(timeblockData.value)
+        logger.log('here is the active timeblock now:', AppState.activeTimeBlock)
         Pop.success('Playlist Created!', 'success')
         resetForm()
+        Modal.getOrCreateInstance('#create-timeblock').hide()
       } catch (error) {
         Pop.error(error)
       }

@@ -163,8 +163,9 @@ class SpotifyPlayerService {
   }
 
   async playNext() {
+    
     let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
-    logger.log(index)
+    logger.log(index, this.currentHistoryPosition)
     if (AppState.activeTimeBlock.trackList[index + 1]) {
       let nextTrack = AppState.activeTimeBlock.trackList[index + 1]
       AppState.nextTrack = nextTrack
@@ -175,19 +176,35 @@ class SpotifyPlayerService {
       Pop.toast('No songs remaining in the playlist')
     }
   }
-
+  currentHistoryPosition = -1
   async playPrevious() {
-    let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
-    logger.log(index)
-    if (AppState.activeTimeBlock.trackList[index - 1]) {
-      let nextTrack = AppState.activeTimeBlock.trackList[index - 1]
-      AppState.nextTrack = nextTrack
-      logger.log('Added next song to Appstate', nextTrack)
-      await this.loadSong(AppState.nextTrack.id)
+    logger.log(this.currentHistoryPosition)
+    if(this.currentHistoryPosition > -1){
+      logger.log(AppState.trackHistory)
+      this.currentHistoryPosition--
+      // AppState.trackHistory = AppState.trackHistory.splice(AppState.trackHistory.length, 1)
+      AppState.trackHistory.pop()
+      logger.log('[Playing from History Position:]', this.currentHistoryPosition, AppState.trackHistory)
+      let historyPosition = AppState.trackHistory.length
+      try {
+        this.loadSong(AppState.trackHistory[historyPosition - 1])
+      } catch (error) {
+        Pop.toast('No previous Track to Play')
+      }
+    } else {
+      Pop.toast('No tracks in your history')
     }
-    else {
-      Pop.toast('This Song is the First in the Playlist')
-    }
+    // let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
+    // logger.log(index)
+    // if (AppState.activeTimeBlock.trackList[index - 1]) {
+    //   let nextTrack = AppState.activeTimeBlock.trackList[index - 1]
+    //   AppState.nextTrack = nextTrack
+    //   logger.log('Added next song to Appstate', nextTrack)
+    //   await this.loadSong(AppState.nextTrack.id)
+    // }
+    // else {
+    //   Pop.toast('This Song is the First in the Playlist')
+    // }
     // try {
     //   logger.log('Skipping to previous track')
     //   const bearerToken = localStorage.getItem('access_token')
@@ -228,6 +245,11 @@ class SpotifyPlayerService {
   }
 
   async loadSong(trackId) {
+    if(AppState.trackHistory.at(-1) != trackId){
+      AppState.trackHistory.push(trackId)
+      this.currentHistoryPosition++
+    }
+    logger.log('{This is the Track History}', AppState.trackHistory)
     const token = localStorage.getItem('access_token');
     const uris = [`spotify:track:${trackId}`];
     // logger.log('here is our context uri:', contextUri)
@@ -278,7 +300,7 @@ class SpotifyPlayerService {
       AppState.nextTrack = nextTrack
       logger.log('Added next song to Appstate', nextTrack)
     }
-
+    if(AppState.activeTrack){AppState.previousTrack = AppState.activeTrack}
     try {
       logger.log('Adding next song to queue..')
       const bearerToken = localStorage.getItem('access_token')
@@ -297,6 +319,8 @@ class SpotifyPlayerService {
       }).then(response => {
         if (response.ok) {
           logger.log('Added Song to Queue', AppState.nextTrack);
+          AppState.trackHistory.push(AppState.nextTrack.id)
+          this.currentHistoryPosition++
         } else {
           logger.log('Could not add song to queue');
           return response.json();
