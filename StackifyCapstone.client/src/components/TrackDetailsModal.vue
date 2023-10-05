@@ -1,12 +1,12 @@
 <template>
     
-    <section v-if="activeTrackDetails" class="bg-dark-grey modal-active-song ">
+    <section v-if="activeTrackDetails" class="modal-active-song background-img">
         <div class="p-5 pb-0 d-flex justify-content-center align-items-center ">
             <img class="album-cover img-fluid" :src="activeTrack.picture" alt="">
         </div>
-        <div class="bg-dark-grey text-white mt-5">
+        <div class="text-white mt-5">
             <p class="card-header bg-pink song-title text-center my-2 p-3"><b>{{ activeTrack.name }} - {{ activeTrack.artist }}</b></p>
-            <div class="card-body text-pink song-details-card row justify-content-evenly my-3">
+            <div class="card-body text-light song-details-card row justify-content-evenly my-3">
                 <div class="col-12 col-md-6 my-5">
                     <p>Album: {{ activeTrack.album}}</p>
                     <p>Release: {{ activeTrack.year }}</p>
@@ -85,6 +85,7 @@ export default {
     background-color: #EA94FF
 }
 
+
 .text-white {
     color: #eeeeee
 }
@@ -100,7 +101,7 @@ export default {
 
 .song-details-card {
     margin-left: 8vw;
-    margin-bottom: 5vh;
+    margin-bottom: 1vh;
     text-decoration: none;
     color: #EA94FF;
     font-size: 1.75rem;

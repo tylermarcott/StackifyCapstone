@@ -1,11 +1,11 @@
 <template>
-    <section v-if="timeblockTrackDetails" class="bg-dark-grey modal-active-song ">
+    <section v-if="timeblockTrackDetails" class="modal-active-song ">
         <div class="p-5 pb-0 d-flex justify-content-center align-items-center ">
             <img class="album-cover img-fluid" :src="timeblockTrack.albumImg" alt="">
         </div>
-        <div class="bg-dark-grey text-white mt-5">
+        <div class="text-white mt-5">
             <p class="card-header bg-pink song-title text-center my-2 p-3"><b>{{ timeblockTrack.name }} - {{ timeblockTrack.artist }}</b></p>
-            <div class="card-body text-pink song-details-card row justify-content-evenly my-3">
+            <div class="card-body text-light song-details-card row justify-content-evenly my-3">
                 <div class="col-12 col-md-6 my-5">
                     <p>Album: {{ timeblockTrack.album}}</p>
                     <p>Release: {{ timeblockTrack.year }}</p>

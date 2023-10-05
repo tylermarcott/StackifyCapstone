@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="createEvent">
+    <form class="text-light" @submit.prevent="createEvent">
       <div class="mb-3">
         <label for="eventTitle" class="form-label">Event Title</label>
         <input v-model="eventData.title" type="title" class="form-control" id="eventTitle" placeholder="event title" required="true">

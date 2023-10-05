@@ -5,6 +5,10 @@
         <img class="album-img img-fluid" :src="track.albumImg[0].url" alt="">
       </div>
       <!-- TODO: for artist or title, put a limit on the length and append ... so card don't stretch -->
+
+
+      <!-- FIXME -->
+      <!-- TODO: check out these cards and make some changes. Namely, put song name on top, below song, put album in row. -->
       <div class="col-7">
         <div class="row">
           <div class="col-5">

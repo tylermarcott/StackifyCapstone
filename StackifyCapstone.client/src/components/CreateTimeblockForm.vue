@@ -1,11 +1,11 @@
 <template>
-    <form @submit.prevent="createTimeblock">
+    <form class="text-light" @submit.prevent="createTimeblock">
       <div class="mb-3">
         <label for="timeblockTitle" class="form-label">Playlist Title</label>
         <input v-model="timeblockData.title" type="title" class="form-control" id="timeblockTitle" placeholder="playlist name" required="true">
       </div>
       <div class="mb-3">
-        <label for="timeblockSilent" class="form-label">Check if this is silent</label>
+        <label for="timeblockSilent" class="form-label me-2">Check if this is silent</label>
         <input v-model="timeblockData.silent" type="checkbox" id="timeblockSilent"/>
       </div>
       <div v-if="timeblockData.silent" class="mb-3">
