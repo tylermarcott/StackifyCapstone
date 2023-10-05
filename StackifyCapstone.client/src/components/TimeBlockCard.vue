@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { computed, watchEffect} from 'vue';
+import { computed} from 'vue';
 import { Timeblock } from '../models/Timeblock';
 import { AppState } from '../AppState';
 import { timeBlocksService } from '../services/TimeBlocksService';
