@@ -23,7 +23,7 @@ import Pop from "../utils/Pop.js";
 import {timeBlocksService} from '../services/TimeBlocksService.js'
 import { AppState } from '../AppState';
 export default {
-  setup(props, {emit}){
+  setup(){
     const timeblockData = ref({});
     function resetForm() {
       timeblockData.value = { type: '' }
@@ -36,7 +36,6 @@ export default {
         timeblockData.value.eventId = AppState.activeEvent.id
         await timeBlocksService.createTimeblock(timeblockData.value)
         Pop.success('Playlist Created!', 'success')
-        emit('formSubmitted');
         resetForm()
       } catch (error) {
         Pop.error(error)

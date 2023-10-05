@@ -3,7 +3,7 @@
         <div class="col-2">
             <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn bg-green"><i class="mdi mdi-arrow-left"></i></button>
         </div>
-        <div class="col-8 bg-dark-subtle">
+        <div class="col-8 bg-dark-subtle rounded">
             <h2>{{ timeblock.title }}</h2>
         </div>
         <div class="col-2">
@@ -12,8 +12,10 @@
     </section>
     <section class="row">
         <div class="col-10">
-            <h5>play playlist button</h5>
-            <h5 class="text-end">Total Duration: {{ msToTime(totalDuration) }}</h5>
+            <div v-if="timeblock.trackList[0]">
+                <h5 @click="loadSong(timeblock.trackList[0].id)" class="p-2 ms-2 btn bg-green">Start Playlist</h5>
+            </div>
+            <h5 class="text-end text-light">Total Duration: {{ msToTime(totalDuration) }}</h5>
             <div v-for="track in timeblock.trackList" :key="track.id" class="my-2 ms-2">
                 <TrackCard :track="track"/>
             </div>
@@ -28,9 +30,12 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed } from 'vue';
 import TrackCard from './TrackCard.vue';
 import {timeBlocksService} from '../services/TimeBlocksService'
+import Pop from "../utils/Pop.js";
+import { spotifyPlayerService } from "../services/SpotifyPlayerService.js";
+import { logger } from "../utils/Logger.js";
 export default {
     setup() {
         return {
@@ -54,6 +59,15 @@ export default {
                     computedSeconds = `0${computedSeconds}`
                 }
                 return computedMinutes + ':' + computedSeconds
+            },
+
+            async loadSong(trackId){
+                try {
+                    logger.log('starting song with the following track Id:', trackId)
+                    await spotifyPlayerService.loadSong(trackId)
+                } catch (error) {
+                    Pop.error(error)
+                }
             },
 
 
@@ -87,6 +101,10 @@ export default {
 
 .bg-green{
     background-color: #63FAAA;
+}
+
+.bg-dark-gray{
+    background: #4F4F4F;
 }
 
 </style>

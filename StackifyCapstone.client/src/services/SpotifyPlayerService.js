@@ -56,7 +56,6 @@ class SpotifyPlayerService {
       logger.error(error)
     }
   }
-
   async setActiveDevice(deviceId) {
     try {
       logger.log('Setting as active device..', deviceId)
@@ -146,8 +145,6 @@ class SpotifyPlayerService {
       
       this.player.value.togglePlay().then(() => {
         logger.log('Toggled playback!');
-        // NOTE: appstate holder for changing play and pause icons
-        
       });
 
       this.player.value.getCurrentState().then(state => {
@@ -155,10 +152,8 @@ class SpotifyPlayerService {
           logger.error('User is not playing music through the Web Playback SDK');
           return;
         }
-
         var current_track = state.track_window.current_track;
         var next_track = state.track_window.next_tracks[0];
-
         logger.log('Currently Playing', current_track);
         logger.log('Playing Next', next_track);
       });
@@ -168,70 +163,61 @@ class SpotifyPlayerService {
   }
 
   async playNext() {
-    try {
-      logger.log('Skipping to next track')
-      const bearerToken = localStorage.getItem('access_token')
-      const headers = new Headers({
-        Authorization: `Bearer ${bearerToken}`,
-        'Content-Type': 'application/json'
-      });
-      const url = 'https://api.spotify.com/v1/me/player/next'
-      fetch(url, {
-        method: 'POST',
-        headers: headers,
-      }).then(response => {
-        if (response.ok) {
-          logger.log('Skipped Song');
-        } else {
-          logger.log('Could not skip');
-          return response.json();
-        }
-      }).then(data => {
-        if (data) {
-          logger.log(data); // Log any error message returned by Spotify API
-        }
-      }).catch(error => {
-        logger.error('There was an error:', error);
-      });
+    let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
+    logger.log(index)
+    if (AppState.activeTimeBlock.trackList[index + 1]) {
+      let nextTrack = AppState.activeTimeBlock.trackList[index + 1]
+      AppState.nextTrack = nextTrack
+      logger.log('Added next song to Appstate', nextTrack)
+      await this.loadSong(AppState.nextTrack.id)
     }
-    catch (error) {
-      logger.log(error)
+    else {
+      Pop.toast('No songs remaining in the playlist')
     }
-    // setTimeout(spotifyApiService.getActiveTrack(), 2000)
   }
 
   async playPrevious() {
-    try {
-      logger.log('Skipping to previous track')
-      const bearerToken = localStorage.getItem('access_token')
-      const headers = new Headers({
-        Authorization: `Bearer ${bearerToken}`,
-        'Content-Type': 'application/json'
-      });
-      const url = 'https://api.spotify.com/v1/me/player/previous'
-      fetch(url, {
-        method: 'POST',
-        headers: headers,
-      }).then(response => {
-        if (response.ok) {
-          logger.log('Skipped Song previous');
-        } else {
-          logger.log('Could not skip back');
-          return response.json();
-        }
-      }).then(data => {
-        if (data) {
-          logger.log(data); // Log any error message returned by Spotify API
-        }
-      }).catch(error => {
-        logger.error('There was an error:', error);
-      });
+    let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
+    logger.log(index)
+    if (AppState.activeTimeBlock.trackList[index - 1]) {
+      let nextTrack = AppState.activeTimeBlock.trackList[index - 1]
+      AppState.nextTrack = nextTrack
+      logger.log('Added next song to Appstate', nextTrack)
+      await this.loadSong(AppState.nextTrack.id)
     }
-    catch (error) {
-      logger.log(error)
+    else {
+      Pop.toast('This Song is the First in the Playlist')
     }
-    // setTimeout(await spotifyApiService.getActiveTrack(), 2000)
-
+    // try {
+    //   logger.log('Skipping to previous track')
+    //   const bearerToken = localStorage.getItem('access_token')
+    //   const headers = new Headers({
+    //     Authorization: `Bearer ${bearerToken}`,
+    //     'Content-Type': 'application/json'
+    //   });
+    //   const url = 'https://api.spotify.com/v1/me/player/previous'
+    //   fetch(url, {
+    //     method: 'POST',
+    //     headers: headers,
+    //   }).then(response => {
+    //     if (response.ok) {
+    //       logger.log('Skipped Song previous');
+    //       logger.log(response)
+    //     } else {
+    //       logger.log('Could not skip back');
+    //       return response.json();
+    //     }
+    //   }).then(data => {
+    //     if (data) {
+    //       logger.log(data); // Log any error message returned by Spotify API
+    //     }
+    //   }).catch(error => {
+    //     logger.error('There was an error:', error);
+    //   });
+    // }
+    // catch (error) {
+    //   logger.log(error)
+    // }
   }
 
   async getDevices() {
@@ -241,7 +227,6 @@ class SpotifyPlayerService {
     // localStorage.setItem('device', res.data.devices[1].id)
   }
 
-  // NOTE: we need to be able to call play song with the right track. We need to pass in 'track' as a param to playSong and set const contextUri = track.
   async loadSong(trackId) {
     const token = localStorage.getItem('access_token');
     const uris = [`spotify:track:${trackId}`];
@@ -280,15 +265,8 @@ class SpotifyPlayerService {
     }).catch(error => {
       logger.error('There was an error:', error);
     });
-    // When we load a song, we want to store the next song in the Appstate so we can add it to queue as the song ends..
+    
     logger.log(AppState.activeTimeBlock)
-    // let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == trackId)
-    // logger.log(index)
-    // if(AppState.activeTimeBlock.trackList[index + 1]) {
-    //   let nextTrack = AppState.activeTimeBlock.trackList[index + 1]
-    //   AppState.nextTrack = nextTrack
-    //   logger.log('Added next song to Appstate', nextTrack)
-    // }
   }
 
   async addNextTrackToQueue() {
