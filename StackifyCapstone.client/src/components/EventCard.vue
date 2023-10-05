@@ -27,7 +27,7 @@
       <div class="col-12 d-flex justify-content-between">
         {{ event.eventDescription }}
         <div @click="deleteEvent(event.id)" class="text-danger fs-1">
-          <i class="mdi mdi-delete"></i>
+          <i class="mdi mdi-delete-forever" title="Delete Event"></i>
         </div>
       </div>
     </div>

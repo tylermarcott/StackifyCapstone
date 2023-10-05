@@ -1,7 +1,7 @@
 <template>
   <ModalWrapper id="active-song">
     <template #button>   
-      <section @click="getActiveTrack()" v-if="activeTrack" class="row">
+      <section title="Click For More Track Details" @click="getActiveTrack()" v-if="activeTrack" class="row">
           <div class="col-4 d-flex align-items-center mt-3">
               <img class="img-fluid active-song-image p-0 elevation-2" :src="activeTrack.picture">
           </div>
