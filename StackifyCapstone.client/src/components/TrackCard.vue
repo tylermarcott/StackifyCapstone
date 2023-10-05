@@ -2,8 +2,8 @@
   <section class="song-card pointer" @dblclick="playTrack(track.id)">
     <div class="row">
       <div v-if="!locked" class="col-1">
-        <button v-if="topTrack != track.id" @click="moveTrack('up')" class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
-        <button v-if="bottomTrack != track.id" @click="moveTrack('down')" class="btn btn-light"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
+        <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
+        <button title="Move Track Down" v-if="bottomTrack != track.id" @click="moveTrack('down')" class="btn btn-light"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
       </div>
       <div class="col-3">
         {{ track.name }}
@@ -22,7 +22,7 @@
       <div class="col-2">
         {{ computedMinutes }}:{{ computedSeconds }}
         <div v-if="!locked">
-          <button @click="deleteTrack()" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
+          <button title="Remove Track" @click="deleteTrack()" class="btn bg-dark-pink"><i class="mdi mdi-delete-forever"></i></button>
         </div>
       </div>
     </div>
@@ -132,4 +132,15 @@ export default {
   cursor: pointer;
   transform: scale(1.01);
 }
+.bg-dark-pink{
+    background-color: #E1289F;    
+}
+.bg-light-pink{
+    background-color: #E246AB ;
+}
+
+.bg-green{
+    background-color: #63FAAA;
+}
+
 </style>

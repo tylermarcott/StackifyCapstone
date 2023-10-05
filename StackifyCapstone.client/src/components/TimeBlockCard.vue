@@ -1,11 +1,11 @@
 <template>
-    <div @click="setActiveTimeblock()" class="timeblock-card row selectable justify-content-between align-items-center elevation-4">
+    <div title="Set Active Timeblock" @click="setActiveTimeblock()" class="timeblock-card row selectable justify-content-between align-items-center elevation-4">
         <h3 class="timeblock-text col-5">{{ timeblock.title }}</h3>
         <h3 class="timeblock-timer m-0 text-center col-2">{{ timeblock.duration }}</h3>
-        <button class="btn col-2" @click.stop="deleteActiveTimeblock(timeblock.id)"><i class='fs-5 mdi mdi-delete-forever text-light'></i></button>
+        <button title="Delete Timeblock" class="btn col-2" @click.stop="deleteActiveTimeblock(timeblock.id)"><i class='fs-5 mdi mdi-delete-forever text-light'></i></button>
         <div class="col-2">
-          <i v-if="topTimeBlock != timeblock.id" @click.stop="moveTimeblock('up')" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
-          <i v-if="bottomTimeBlock != timeblock.id" @click.stop="moveTimeblock('down')" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
+          <i v-if="topTimeBlock != timeblock.id" title="Move Timeblock Up" @click.stop="moveTimeblock('up')" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
+          <i v-if="bottomTimeBlock != timeblock.id" title="Move Timeblock Down" @click.stop="moveTimeblock('down')" class="mdi mdi-arrow-down-bold-outline change-spot-icon selectable"></i>
         </div>
     </div>
 </template>

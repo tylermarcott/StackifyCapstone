@@ -1,13 +1,13 @@
 <template>
     <section class="row justify-content-center text-center my-3">
         <div class="col-2">
-            <button @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn btn-dark"><i class="mdi mdi-arrow-left"></i></button>
+            <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn bg-green"><i class="mdi mdi-arrow-left"></i></button>
         </div>
         <div class="col-8 bg-dark-subtle">
             <h2>{{ timeblock.title }}</h2>
         </div>
         <div class="col-2">
-            <button @click="nextTimeblock()" :disabled="timeblock.position==timeblocksLength-1" class="btn btn-dark"><i class="mdi mdi-arrow-right"></i></button>
+            <button title="Next Time Block" @click="nextTimeblock()" :disabled="timeblock.position==timeblocksLength-1" class="btn bg-green"><i class="mdi mdi-arrow-right"></i></button>
         </div>
     </section>
     <section class="row">
@@ -19,8 +19,8 @@
             </div>
             </div>
         <div class="col-2 text-center">
-            <button v-if="timeblock.locked" @click="toggleLock()" class="btn btn-danger my-3"><i class="mdi mdi-lock"></i></button>
-            <button v-else @click="toggleLock()" class="btn btn-success my-3"><i class="mdi mdi-lock-open"></i></button>
+            <button title="Unlock Playlist" v-if="timeblock.locked" @click="toggleLock()" class="btn bg-light-pink my-3"><i class="mdi mdi-lock"></i></button>
+            <button title="Lock Playlist" v-else @click="toggleLock()" class="btn bg-green my-3"><i class="mdi mdi-lock-open"></i></button>
         </div>
     </section>
 </template>
@@ -77,5 +77,16 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.bg-dark-pink{
+    background-color: #E1289F;    
+}
+.bg-light-pink{
+    background-color: #E246AB ;
+}
+
+.bg-green{
+    background-color: #63FAAA;
+}
 
 </style>
