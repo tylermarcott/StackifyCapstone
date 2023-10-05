@@ -102,6 +102,7 @@ export default {
       try {
         logger.log('opentrackdetail')
         await spotifyApiService.getTimeblockTrackDetails(trackId, track);
+        await spotifyApiService.getTimeblockTrack(trackId)
       } catch (error) {
         Pop.error(error)
       }
