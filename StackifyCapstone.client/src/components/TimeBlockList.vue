@@ -7,7 +7,7 @@
         </section>
         <section class="timeblock-imports d-flex-column align-items-center">
             <!-- TODO add the timeblock create model here -->
-            <ModalWrapper id="create-timeblock" data-bs-toggle="create-timeblock-modal">
+            <ModalWrapper v-if="activeEvent" id="create-timeblock" data-bs-toggle="create-timeblock-modal">
               <template #button> 
                 <button class="btn btn-outline-success w-100 my-2">+</button>
               </template>
@@ -17,7 +17,7 @@
             </ModalWrapper>
             
             <!-- TODO add the all TimeblocksModel here -->
-            <button class="btn btn-outline-success w-100">import timeblock</button>
+            <button v-if="activeEvent" class="btn btn-outline-success w-100">import timeblock</button>
         </section>
     </div>
 </template>
@@ -52,6 +52,7 @@ export default {
         }
     return { 
         myTimeblocks: computed(() => AppState.myTimeBlocks),
+        activeEvent: computed(()=> AppState.activeEvent)
     }
     },
     

@@ -38,7 +38,6 @@ export default {
       try {
         timeblockData.value.eventId = AppState.activeEvent.id
         await timeBlocksService.createTimeblock(timeblockData.value)
-        logger.log('here is the active timeblock now:', AppState.activeTimeBlock)
         Pop.success('Playlist Created!', 'success')
         resetForm()
         Modal.getOrCreateInstance('#create-timeblock').hide()
