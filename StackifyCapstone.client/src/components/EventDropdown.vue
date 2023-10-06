@@ -70,7 +70,7 @@ export default {
 .event-title {
     margin-top: .35em;
     margin-left: .4em;
-    background-color: #4f4f4f;
+    background-color: #3f2777;
     font-size: 1.5rem;
     color: #EA94FF;
     // border: solid 8px #242424;

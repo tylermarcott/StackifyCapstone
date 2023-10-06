@@ -72,7 +72,7 @@ setup() {
 <style lang="scss" scoped>
 .search {
   margin-top: .5em ;
-  background-color: #4f4f4f;
+  background-color: #303030;
   // border: solid 8px #242424;
   border-left: none;
   border-right: none;
