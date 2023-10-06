@@ -4,7 +4,7 @@
     <div v-if="showButton" type="button" data-bs-toggle="modal"
         :data-bs-target="`#${id}`">
         <slot name="button">
-            open {{ id }} modal
+            
         </slot>
     </div>
     <div class="modal fade" :id="id" tabindex="-1" data-bs-keyboard="false" role="dialog"
