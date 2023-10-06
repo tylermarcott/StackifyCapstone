@@ -3,18 +3,23 @@
     <section class="row landing-footer d-flex">
     <div class="col-6 footer-links d-flex justify-content-between align-items-end">
       <!-- //TODO - change Learn More Link  -->
-        <router-link :to="{ name: 'About' }" class="" style="color: #EA94FF;"><p> Learn More</p></router-link>
-        <p> <a style="color: #EA94FF;" href="https://github.com/tylermarcott/StackifyCapstone">GitHub Repo</a> </p>
-        <p> <a style="color: #EA94FF;" href="https://developer.spotify.com/terms">Spotify Developer Terms</a> </p>
+        <router-link v-if="route.path != '/about'" :to="{ name: 'About' }" class="" style="color: #EA94FF;"><p> Learn More</p></router-link>
+        <p> <a style="color: #EA94FF;" href="https://github.com/tylermarcott/StackifyCapstone" target="_blank">GitHub Repo</a> </p>
+        <p> <a style="color: #EA94FF;" href="https://developer.spotify.com/terms" target="_blank">Spotify Developer Terms</a> </p>
     </div>
     </section>
 
 </template>
 
 <script>
+import { useRoute } from 'vue-router';
+
 export default {
 setup() {
-  return {};
+  const route = useRoute()
+  return {
+    route
+  };
 },
 };
 </script>
