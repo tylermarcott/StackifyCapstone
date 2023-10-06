@@ -64,6 +64,11 @@
         <TimeBlockTrackDetails/>
       </template>
     </ModalWrapper>
+    <ModalWrapper id="edit-timer">
+          <template #body>
+             <EditTimerForm/>
+        </template>
+    </ModalWrapper>
 </template>
 
 <script>
@@ -158,7 +163,7 @@ export default {
             
         };
     },
-    components: { SongSearchBar, Player, EventDropdown, TimeBlockList, ActiveTimeblockMusic, ActiveTimeblockSilent }
+    components: { SongSearchBar, Player, EventDropdown, TimeBlockList, ActiveTimeblockMusic, ActiveTimeblockSilent}
 };
 </script>
 
