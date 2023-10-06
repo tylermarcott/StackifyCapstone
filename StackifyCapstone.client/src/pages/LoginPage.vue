@@ -20,7 +20,7 @@
     </div>
     <div class="col-12 text-center p-3">
       <!-- <router-link v-if="token" :to="{name: 'Application' }"><button class="btn connect-button"><b>Connect</b></button></router-link> -->
-      <button @click="spotifyConnect()" class="btn connect-button"><b>Connect</b></button>
+      <button @click="spotifyConnect()" class="btn connect-button"><b>Connect Spotify</b></button>
       
     </div>
   </section>

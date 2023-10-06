@@ -149,25 +149,25 @@ export default {
 
 <style lang="scss" scoped>
 .full-app-view {
-  background-color: #242424;
+  background-color: #053b81;
 }
 
 .app-wrapper {
-  background-color: #242424;
+  background-color: #053b81;
 }
 
 // This is the Left Panel (EVENT, TIMEBLOCKS, ACTIVE SONG)
 
 .left-panel {
   height: 100vh;
-  background-color: #242424;
+  background-color: #053b81;
 }
 
 .active-song {
   height:20vh;
   // background-color: #eeeeee;
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
-  border: solid 8px #242424;
+  border: solid 8px #053b81;
   border-top: none;
   border-radius: 15px;
 }
@@ -204,7 +204,7 @@ export default {
   border-radius: 8px;
   margin-left: 5px;
   margin-right: 12px;
-  font-size: 27px;
+  font-size: 26px;
   transition: .1s;
   padding: 4px;
 }
@@ -217,7 +217,7 @@ export default {
 .main-content {
   height: 75vh;
   background-color: #eeeeee;
-  border: solid 8px #242424;
+  border: solid 8px #053b81;
   border-left: none;
   border-right: none;
   border-radius: 15px;
@@ -237,7 +237,7 @@ export default {
   // background-color: #4f4f4f;
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
   background-position: center;
-  border: solid 8px #242424;
+  border: solid 8px #053b81;
   border-radius: 15px;
   color: #eeeeee;
 }

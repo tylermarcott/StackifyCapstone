@@ -149,10 +149,10 @@ export default {
   cursor: pointer;
 }
 .bg-dark-pink{
-    background-color: #E1289F;    
+    background-color: #cd00ff;    
 }
 .bg-light-pink{
-    background-color: #E246AB ;
+    background-color: #cd00ff ;
 }
 
 .bg-green{

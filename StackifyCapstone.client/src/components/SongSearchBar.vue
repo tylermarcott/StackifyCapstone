@@ -71,14 +71,15 @@ setup() {
 
 <style lang="scss" scoped>
 .search {
+  margin-top: .5em ;
   background-color: #4f4f4f;
-  border: solid 8px #242424;
+  // border: solid 8px #242424;
   border-left: none;
   border-right: none;
-  border-bottom: 0px;
-  border-radius: 15px;
-  height: 5vh;
+  border-radius: 8px;
+  height: 4vh;
   padding-left: 0.4em;
+
 }
 
 .search-bar {
@@ -93,7 +94,7 @@ setup() {
 }
 
 .clear-button{
-  background-color: #E1289F ;
+  background-color: #cd00ff;
   border: none;
   border-radius: 8px;
   margin-left: 5px;
