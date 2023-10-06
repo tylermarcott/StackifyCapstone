@@ -3,7 +3,7 @@
         <div class="col-2">
             <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn bg-green"><i class="mdi mdi-arrow-left"></i></button>
         </div>
-        <div class="col-8 bg-dark-subtle rounded">
+        <div class="col-8 title-card rounded">
             <h2 class="font">{{ timeblock.title }}</h2>
         </div>
         <div class="col-2">
@@ -108,8 +108,15 @@ export default {
     background: #4F4F4F;
 }
 
+.title-card{
+    color: #eeeeee;
+    background-image: url("https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg");
+    padding: 0.3em;
+}
+
 .font{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
 }
 
 </style>

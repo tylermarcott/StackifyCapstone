@@ -165,7 +165,8 @@ export default {
 
 .active-song {
   height:20vh;
-  background-color: #eeeeee;
+  // background-color: #eeeeee;
+  background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
   border: solid 8px #242424;
   border-top: none;
   border-radius: 15px;
@@ -233,7 +234,9 @@ export default {
 // This is the Right Panel Section (ACCOUNT, SPACER)
 .right-panel {
   height: 100vh;
-  background-color: #4f4f4f;
+  // background-color: #4f4f4f;
+  background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
+  background-position: center;
   border: solid 8px #242424;
   border-radius: 15px;
   color: #eeeeee;

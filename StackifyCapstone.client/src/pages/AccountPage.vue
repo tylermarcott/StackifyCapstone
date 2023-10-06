@@ -149,7 +149,7 @@ export default {
  
 }
 .account-wrapper {
-  background-color: #2f2f2f;
+  background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
 }
 
 .modal-wrapper {

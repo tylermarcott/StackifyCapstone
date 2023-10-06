@@ -61,7 +61,7 @@ export default {
     topTrack : computed(()=> AppState.activeTimeBlock.trackList[0].id),
     bottomTrack : computed(()=> AppState.activeTimeBlock.trackList[AppState.activeTimeBlock.trackList.length-1].id),
     cardColor: computed(()=>{
-      let color = '#4f4f4f'
+      let color = '#4f4f4fe9'
       if(AppState.activeTrack){
         if(AppState.activeTrack.id == props.track.id){
           color = '#EA94FF'
@@ -126,7 +126,9 @@ export default {
 <style lang="scss" scoped>
 .song-card{
   padding: 0.5em;
+  // FIXME: have to figure out how to change opacity on v-bind to make the styling we want.
   background-color: v-bind(cardColor);
+  // background: #4f4f4fe9;
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;

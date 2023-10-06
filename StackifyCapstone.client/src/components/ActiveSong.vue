@@ -104,7 +104,7 @@ export default {
 }
 
 .song-title {
-  color:#4f4f4f;
+  color: #eeeeee;
   font-size: 1.2rem;
 }
 </style>
