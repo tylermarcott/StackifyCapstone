@@ -9,7 +9,9 @@ import { Event } from "../models/Event.js" //NOTE: AGAIN, NEED TO IMPORT EVENT O
 class EventsService {
   async createEvent(eventData){
     const res = await api.post('api/events', eventData)
-    AppState.events.push(new Event(res.data))
+    const newEvent = new Event(res.data)
+    AppState.events.push(newEvent)
+    AppState.activeEvent = newEvent
   }
 
   async getMyEvents() {

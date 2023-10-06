@@ -1,5 +1,5 @@
 <template>
-      <section v-if="account.name" class="row account-wrapper p-2">
+      <section v-if="account.name" class="row account-wrapper justify-content-center p-2">
         <div class="col-12 landing-navigation landing-navigation d-flex justify-content-center align-items-center">
           <section class="row">
           <h2 class="settings-title text-center">Account Settings</h2>
@@ -30,7 +30,7 @@
             </section>
             </div>
             <!-- Modal -->
-        <div class="col-6 event-list">
+        <div class="col-10  event-list">
           <h2 class="text-center event-category-text">Events</h2>
           <div v-for="event in myEvents" :key="event.id">
             <section class="row m-1">
@@ -51,7 +51,7 @@
             </section>
           </div>
         </div>
-        <div class="col-6 event-list">
+        <!-- <div class="col-6 event-list">
           <h2 class="text-center event-category-text">Your Spotify Playlists</h2>
           <div v-for="playlist in playlists" :key="playlist.id">
             <section class="row m-1" >
@@ -66,7 +66,7 @@
             </div>
             </section>
           </div>
-        </div>
+        </div> -->
       </section>
 </template>
 
@@ -81,14 +81,14 @@ import { eventsService } from "../services/EventsService";
 export default {
   setup() {
     const formData = ref({})
-    async function getUserPlaylists() {
-      try {
-        logger.log('Fetching User Playlists')
-        await spotifyPlaylistService.getUserPlaylists()
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
+    // async function getUserPlaylists() {
+    //   try {
+    //     logger.log('Fetching User Playlists')
+    //     await spotifyPlaylistService.getUserPlaylists()
+    //   } catch (error) {
+    //     Pop.error(error)
+    //   }
+    // }
     async function getMyEvents() {
       try {
         if (!AppState.account.id) {
@@ -100,7 +100,7 @@ export default {
       }
     }
     watchEffect(() => {
-      getUserPlaylists()
+      // getUserPlaylists()
       getMyEvents()
     })
     return {
@@ -120,6 +120,7 @@ export default {
       },
       async editAccount() {
         try {
+          this.toggleCollapseForm()
           await accountService.editAccount(formData.value)
         } catch (error) {
           Pop.error(error)

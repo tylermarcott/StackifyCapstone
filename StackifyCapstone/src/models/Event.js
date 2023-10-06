@@ -6,7 +6,7 @@ export const EventsSchema = new Schema(
         title: { type: String, required: true, maxLength: 200 },
         // NOTE add whatever enums you would like for the type of event to be
         eventType: { type: String, enum: ['wedding', 'birthday', 'club', 'party'] },
-        eventDescription: { type: String, required: true, maxLength: 1000 },
+        eventDescription: { type: String, maxLength: 1000 },
 
     }, { timestamps: true, toJSON: { virtuals: true } })
 
