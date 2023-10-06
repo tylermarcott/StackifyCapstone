@@ -91,6 +91,7 @@ export default {
 
     async playTrack(trackId){
       try {
+        AppState.playingTimeBlock = AppState.activeTimeBlock
         await spotifyPlayerService.loadSong(trackId);
         // await spotifyPlayerService.togglePlay();
         setTimeout(await spotifyApiService.getActiveTrack, 3000)
