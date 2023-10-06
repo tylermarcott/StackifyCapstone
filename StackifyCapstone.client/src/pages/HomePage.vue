@@ -28,7 +28,7 @@
         <h3 class="overview-title my-5">Concept</h3>
       </div>
       <div class="col-6">
-        <p class="overview-body">Our concept is elegantly straightforward.  Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists with timeblocks effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion.</p>
+        <p class="overview-body">Our concept is elegantly straightforward.  Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion.</p>
       </div>
     </section>
     <section class="row spacer">

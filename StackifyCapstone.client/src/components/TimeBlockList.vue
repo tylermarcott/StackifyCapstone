@@ -10,7 +10,7 @@
             <!-- TODO add the timeblock create model here -->
             <ModalWrapper v-if="activeEvent" id="create-timeblock" data-bs-toggle="create-timeblock-modal">
                 <template #button> 
-                    <button class="btn btn-outline-success w-100 my-2">+</button>
+                    <button class="btn add-timeblock-button button w-100 my-2" title="Create Timeblock">+</button>
                 </template>
                     <template #body>
                     <CreateTimeblockForm/>
@@ -18,7 +18,7 @@
             </ModalWrapper>
             
             <!-- TODO add the all TimeblocksModel here -->
-            <button v-if="activeEvent" class="btn btn-outline-success w-100">import timeblock</button>
+            <!-- <button v-if="activeEvent" class="btn btn-outline-success w-100">import timeblock</button> -->
         </section>
     </div>
 </template>
@@ -73,10 +73,19 @@ export default {
 }
 
 .timeblocks-section{
-    height: 63vh;
+    height: 57vh;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none; 
+}
+
+.add-timeblock-button{
+    border: solid 2px #63FAAA;
+    color: #63FAAA;
+}
+.button:hover{
+  background-color: #63FAAA;
+  color: #303030
 }
 
 .timeblock-imports { 
