@@ -15,7 +15,9 @@
       <div class="col-4">
       </div>
       <div class="col-8 text-center">
+        <a href="https://open.spotify.com/" target="_blank">
         <img class="img-fluid spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="spotify-logo">
+      </a>
         <div class="m-5 text-center splash-caption">
           <p><b>Extend the functionality of your Spotify Premium</b></p>
         </div>
@@ -57,8 +59,12 @@
 import NavBar from '../components/Navbar.vue'
 import Foot from '../components/Foot.vue'
 import Logo from '../components/Logo.vue'
+import { onMounted } from 'vue'
 export default {
   setup() {
+    onMounted(() => {
+  window.scrollTo(0, 0)
+})
     return {}
   },
   components : { NavBar, Foot, Logo, }

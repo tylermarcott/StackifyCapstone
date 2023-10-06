@@ -33,6 +33,8 @@ import Pop from "../utils/Pop.js";
 import { spotifyLoginService } from "../services/SpotifyLoginService.js";
 export default {
   setup(){
+    onMounted(()=>
+    localStorage.clear())
   return { 
     user: computed(() => AppState.user),
     account: computed(() => AppState.account),

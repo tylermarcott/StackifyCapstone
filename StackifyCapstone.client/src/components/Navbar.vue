@@ -1,16 +1,21 @@
 <template>
   <section class="row">
     <div class="col-4">
-      <router-link :to="{ name: 'About' }" class="">
+      <router-link v-if="route.path != '/about'" :to="{ name: 'About' }" class="">
       <h2 class="purple">About</h2>
       </router-link>
     </div>
-    <div class="col-4">
+    <div v-if="account.id == null && tokenOk == false" class="col-4">
       <router-link :to="{ name: 'Login' }" class="">
         <h2 class="purple"> Login </h2>
       </router-link>
     </div>
-    <div v-if="tokenOk == true" class="col-4">
+    <div v-if="account.id != null && tokenOk == true" class="col-4">
+      <router-link :to="{ name: 'Account' }" class="">
+        <h2 class="purple"> Account </h2>
+      </router-link>
+    </div>
+    <div v-if="tokenOk == true && account.id != null" class="col-4">
       <router-link :to="{ name: 'Application', params: { application: 'application' } }" class="">
       <h2 class="purple">Application</h2>
       </router-link>
@@ -38,13 +43,15 @@ import { computed, onMounted, watchEffect } from "vue"
 import { AppState } from "../AppState"
 import { spotifyLoginService } from "../services/SpotifyLoginService"
 import { logger } from "../utils/Logger"
+import { useRoute } from "vue-router"
 
 
 export default {
   setup() {
     
+  const route = useRoute()
   let tokenOk = computed(()=> AppState.tokenOk)
-
+  let account = computed(()=> AppState.account)
 
 
     async function accessTokenCheck() {
@@ -79,6 +86,8 @@ export default {
     onMounted(() => accessTokenCheck())
     return {
       tokenOk,
+      account,
+      route
       
     }
   }

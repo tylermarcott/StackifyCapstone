@@ -68,7 +68,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, onMounted} from 'vue';
+import { computed, onBeforeMount, onMounted} from 'vue';
 import { spotifyPlayerService } from "../services/SpotifyPlayerService.js";
 import { spotifyLoginService } from "../services/SpotifyLoginService.js";
 import Pop from "../utils/Pop.js";
@@ -80,6 +80,8 @@ import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
 import ActiveTimeblockMusic from '../components/ActiveTimeblockMusic.vue';
 import ActiveTimeblockSilent from '../components/ActiveTimeblockSilent.vue';
+import { useRoute } from 'vue-router';
+import { router } from '../router';
 
 export default {
     setup() {
@@ -89,6 +91,10 @@ export default {
             logger.log('Fetching User Playlists')
             await spotifyPlaylistService.getUserPlaylists()
           } catch (error) {
+            if(error.response.status == 403){
+              router.push('/loginpage')
+              Pop.toast('need premium to use stackify, sorry =(')
+            }
             Pop.error(error)
           }
         }
@@ -128,7 +134,17 @@ export default {
             }
             startPlayer();
         }
+        const urlParams = new URLSearchParams(window.location.search);
+        function bootOut(){
+          logger.log('ROUTE PARAMS', urlParams.get('error'))
+          if(urlParams.get('error')){
+            router.push('/loginpage')
+            Pop.error('Need To Accept Terms')
+          }
+        }
+        
         onMounted(() => {
+            bootOut();
             initializePlayer();
             getUserPlaylists();
             setInterval(refreshToken, 600000);
