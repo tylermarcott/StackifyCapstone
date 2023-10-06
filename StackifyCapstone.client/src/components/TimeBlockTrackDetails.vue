@@ -4,7 +4,7 @@
             <img class="album-cover img-fluid" :src="timeblockTrack.albumImg" alt="">
         </div>
         <div class="text-white mt-5">
-            <p class="card-header bg-pink song-title text-center my-2 p-3"><b>{{ timeblockTrack.name }} - {{ timeblockTrack.artist }}</b></p>
+            <p class="card-header song-title text-center my-2 p-3"><b>{{ timeblockTrack.name }} - {{ timeblockTrack.artist }}</b></p>
             <div class="card-body text-light song-details-card row justify-content-evenly my-3">
                 <div class="col-12 col-md-6 my-5">
                     <p>Album: {{ timeblockTrack.album}}</p>
@@ -78,7 +78,7 @@ export default {
 }
 
 .bg-pink {
-    background-color: #EA94FF
+    background-color: #EA94FF;
 }
 
 .text-white {
@@ -90,7 +90,7 @@ export default {
 }
 
 .song-title {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 700;
 }
 
@@ -99,11 +99,13 @@ export default {
     margin-bottom: 5vh;
     text-decoration: none;
     color: #EA94FF;
-    font-size: 1.75rem;
+    font-size: 1.3rem;
+    
 }
 
 .modal-active-song{
     cursor: default;
+    overflow: hidden;
 }
 
 </style>

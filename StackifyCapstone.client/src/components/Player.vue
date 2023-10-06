@@ -190,7 +190,7 @@ setup() {
   padding: 1rem;
   // background-color: #4f4f4fca;
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
-  border: solid 8px #053b81;
+  border: solid 8px #303030;
   border-top: none;
   border-left: none;
   border-right: none;

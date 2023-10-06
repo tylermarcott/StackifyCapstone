@@ -5,7 +5,7 @@
             <img class="album-cover img-fluid" :src="activeTrack.picture" alt="">
         </div>
         <div class="text-white mt-5">
-            <p class="card-header bg-pink song-title text-center my-2 p-3"><b>{{ activeTrack.name }} - {{ activeTrack.artist }}</b></p>
+            <p class="card-header song-title text-center my-2 p-3"><b>{{ activeTrack.name }} - {{ activeTrack.artist }}</b></p>
             <div class="card-body text-light song-details-card row justify-content-evenly my-3">
                 <div class="col-12 col-md-6 my-5">
                     <p>Album: {{ activeTrack.album}}</p>
@@ -95,7 +95,7 @@ export default {
 }
 
 .song-title {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 700;
 }
 
@@ -104,7 +104,7 @@ export default {
     margin-bottom: 1vh;
     text-decoration: none;
     color: #EA94FF;
-    font-size: 1.75rem;
+    font-size: 1.3rem;
 }
 
 .modal-active-song{

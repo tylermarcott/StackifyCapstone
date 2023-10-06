@@ -8,8 +8,7 @@
           <div class="col-8 p-2 d-flex flex-column align-items-between justify-content-center">
             <section class="row">
               <div class="col-12 d-flex flex-column justify-content-center">
-                  <p class="song-title m-0"><b>{{ activeTrack.name }}</b></p>
-
+                  <p class="song-title m-0"><b>{{ activeTrack.name.substring(0, 20) + '...' }}</b></p>
                 </div>
                 <div class="col-6 mt-1">
                   <p class="song-title my-0">{{ activeTrack.artist }}</p>                    

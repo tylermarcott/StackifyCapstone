@@ -11,44 +11,48 @@
       <!-- TODO: check out these cards and make some changes. Namely, put song name on top, below song, put album in row. -->
       <div class="col-7">
         <div class="row">
-          <div class="col-5">
-            <div v-if="track.name.length > 18">
-              <h1>{{ track.name.substring(0, 18) + '...' }}</h1>
+          <div class="col-12">
+            <div>
+              <div class="mb-0 song-title">{{ track.name }}</div>
             </div>
-            <div v-else>
-              <h1>{{ track.name }}</h1>
-            </div>
+
           </div>
-          <div class="col-7 d-flex justify-content-center">
+          <div class="col-12 d-flex justify-content-start">
             <div class="row">
-              by <h1>{{ track.artist[0].name }}</h1>
+              <div>
+                <p class="ms-3 mt-1">by</p>
+              </div>
+               <p class="mb-0 fs-3">{{ track.artist[0].name }}</p>
             </div>
           </div>
         </div>
 
-
-        <div class="row justify-content-between">
-          <div class="col-5 ms-2">
-
-          </div>
+        <div class="row justify-content-start pt-2">
           <div class="col-5 text-end">
-            <div v-if="track.album.length > 20">
-              <p>{{ track.album.substring(0, 20) + '...' }}</p>
-            </div>
-            <div v-else>
               <p>{{ track.album }}</p>
-            </div>
           </div>
         </div>
 
-
-        <div class="row justify-content-between">
-          <div class="col-5 ms-2">
-          </div>
-          <div class="col-5 text-end me-3">
+        <div class="row justify-content-start">
+          <div class="col-5 ms-3">
             <h5>{{ track.year.substring(0, 4) }}</h5>
           </div>
         </div> 
+      </div>
+
+      <div class="col-2 text-center">
+        <div @click="addTrackToActiveTimeblock(track.id)" class="row add-button mb-2">
+          <div class="col-6">
+            <i class="mdi mdi-plus">
+            </i>
+          </div>
+          <div class="col-6">
+            <h3 class="mt-1">add</h3>
+          </div>     
+        </div>
+        <h3>
+          <i class="mdi mdi-dots-horizontal"></i>
+        </h3>
 
         <div class="row mt-4">
           <div class="col-6">
@@ -62,21 +66,6 @@
             </h5>
           </div>
         </div>
-      </div>
-
-      <div class="col-2 text-center">
-        <div @click="addTrackToActiveTimeblock(track.id)" class="row add-button">
-          <div class="col-6">
-            <i class="mdi mdi-plus">
-            </i>
-          </div>
-          <div class="col-6">
-            <h3 class="mt-1">add</h3>
-          </div>     
-        </div>
-        <h3>
-          <i class="mdi mdi-dots-horizontal"></i>
-        </h3>
       </div>
     </div>
   </section>
@@ -163,7 +152,7 @@ export default {
   margin-left: 5px;
   margin-right: 12px;
   margin-top: 50px;
-  font-size: 30px;
+  font-size: 20px;
   transition: .1s;
   padding: 4px;
   padding-right: 40px;
@@ -178,5 +167,10 @@ export default {
   min-height: 24vh;
 }
 
+.song-title{
+  font-size: 2.25rem;
+  font-weight: bold;
+
+}
 
 </style>
