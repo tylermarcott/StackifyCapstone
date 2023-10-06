@@ -22,32 +22,28 @@
               <div>
                 <p class="ms-3 mt-1">by</p>
               </div>
-               <p class="mb-0 fs-3">{{ track.artist[0].name }}</p>
+                <p class="mb-0 fs-3">{{ track.artist[0].name }}</p>
             </div>
           </div>
         </div>
 
-        <div class="row justify-content-start pt-2">
-          <div class="col-5 text-end">
+        <div class="row justify-content-between pt-2">
+          <div class="col-9 text-end">
               <p>{{ track.album }}</p>
           </div>
-        </div>
-
-        <div class="row justify-content-start">
-          <div class="col-5 ms-3">
-            <h5>{{ track.year.substring(0, 4) }}</h5>
+          <div class="col-2 ms-3">
+              <h5>{{ track.year.substring(0, 4) }}</h5>
           </div>
-        </div> 
+        </div>
       </div>
 
       <div class="col-2 text-center">
-        <div @click="addTrackToActiveTimeblock(track.id)" class="row add-button mb-2">
-          <div class="col-6">
-            <i class="mdi mdi-plus">
-            </i>
+        <div @click="addTrackToActiveTimeblock(track.id)" class="row add-button mb-2 p-0">
+          <div class="col-3">
+            <i class="mdi mdi-plus fs-3"></i>
           </div>
           <div class="col-6">
-            <h3 class="mt-1">add</h3>
+              <p class="fs-3">add</p>
           </div>     
         </div>
         <h3>
@@ -55,14 +51,14 @@
         </h3>
 
         <div class="row mt-4">
-          <div class="col-6">
-            <h5>
-              bpm: 302
-            </h5>
-          </div>
-          <div class="col-6">
+          <div class="col-12">
             <h5>
               {{ computedMinutes }}:{{ computedSeconds }}
+            </h5>
+          </div>
+          <div class="col-12">
+            <h5>
+              bpm: 302
             </h5>
           </div>
         </div>
@@ -150,12 +146,9 @@ export default {
   border: none;
   border-radius: 8px;
   margin-left: 5px;
-  margin-right: 12px;
   margin-top: 50px;
   font-size: 20px;
   transition: .1s;
-  padding: 4px;
-  padding-right: 40px;
   cursor: pointer;
 }
 
