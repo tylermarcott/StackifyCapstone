@@ -1,5 +1,6 @@
 <template>
     <div class="timeblock-list"> 
+        <h2 class="text-light text-center pt-3">Playlists:</h2>
         <section class="timeblocks-section">
             <div v-for="timeblock in myTimeblocks" :key="timeblock.id">
                 <TimeBlockCard :timeblock="timeblock"/>
@@ -8,12 +9,12 @@
         <section class="timeblock-imports d-flex-column align-items-center">
             <!-- TODO add the timeblock create model here -->
             <ModalWrapper v-if="activeEvent" id="create-timeblock" data-bs-toggle="create-timeblock-modal">
-              <template #button> 
-                <button class="btn btn-outline-success w-100 my-2">+</button>
-              </template>
-                  <template #body>
-                  <CreateTimeblockForm/>
-              </template>
+                <template #button> 
+                    <button class="btn btn-outline-success w-100 my-2">+</button>
+                </template>
+                    <template #body>
+                    <CreateTimeblockForm/>
+                </template>
             </ModalWrapper>
             
             <!-- TODO add the all TimeblocksModel here -->
@@ -68,6 +69,7 @@ export default {
     border: solid 8px #242424;
     border-radius: 15px;
     position: relative;
+    background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
 }
 
 .timeblocks-section{

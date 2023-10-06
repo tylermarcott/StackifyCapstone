@@ -188,7 +188,8 @@ setup() {
 .player {
   height: 20vh;
   padding: 1rem;
-  background-color: #4f4f4f;
+  // background-color: #4f4f4fca;
+  background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
   border: solid 8px #242424;
   border-top: none;
   border-left: none;
