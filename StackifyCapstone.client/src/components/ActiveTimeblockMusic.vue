@@ -63,6 +63,7 @@ export default {
 
             async loadSong(trackId){
                 try {
+                    AppState.playingTimeBlock = AppState.activeTimeBlock
                     logger.log('starting song with the following track Id:', trackId)
                     await spotifyPlayerService.loadSong(trackId)
                 } catch (error) {

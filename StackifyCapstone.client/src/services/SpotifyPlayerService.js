@@ -162,17 +162,16 @@ class SpotifyPlayerService {
 
   async playNext() {
     
-    let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
-    logger.log(index, this.currentHistoryPosition)
-    if (AppState.activeTimeBlock.trackList[index + 1]) {
-      let nextTrack = AppState.activeTimeBlock.trackList[index + 1]
-      AppState.nextTrack = nextTrack
-      logger.log('Added next song to Appstate', nextTrack)
-      await this.loadSong(AppState.nextTrack.id)
-    }
-    else {
-      Pop.toast('No songs remaining in the playlist')
-    }
+      let index = AppState.playingTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
+      if (AppState.playingTimeBlock.trackList[index + 1]) {
+        let nextTrack = AppState.playingTimeBlock.trackList[index + 1]
+        AppState.nextTrack = nextTrack
+        logger.log('Added next song to Appstate', nextTrack)
+        await this.loadSong(AppState.nextTrack.id)
+      }
+      else {
+        Pop.toast('No songs remaining in the playlist')
+      }
   }
   currentHistoryPosition = -1
   async playPrevious() {
@@ -250,10 +249,10 @@ class SpotifyPlayerService {
 
   async addNextTrackToQueue() {
     // if() If there is a next song in the appstate, add it to queue.. else do nothing.
-    let index = AppState.activeTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
+    let index = AppState.playingTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
     logger.log(index)
-    if (AppState.activeTimeBlock.trackList[index + 1]) {
-      let nextTrack = AppState.activeTimeBlock.trackList[index + 1]
+    if (AppState.playingTimeBlock.trackList[index + 1]) {
+      let nextTrack = AppState.playingTimeBlock.trackList[index + 1]
       AppState.nextTrack = nextTrack
       logger.log('Added next song to Appstate', nextTrack)
     }
@@ -289,7 +288,6 @@ class SpotifyPlayerService {
     catch (error) {
       logger.log(error)
     }
-   
   }
 
   // Volume is controlled by a number between 0 and 1.0
