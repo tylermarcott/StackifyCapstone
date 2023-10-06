@@ -9,7 +9,7 @@
     </div>
     <div class="modal fade" :id="id" tabindex="-1" data-bs-keyboard="false" role="dialog"
         aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content background-img">
                 <div class="modal-header">
                     <slot name="header">
@@ -18,7 +18,6 @@
                 </div>
                 <div class="modal-body text-dark">
                     <slot name="body">
-
                     </slot>
                 </div>
             </div>
@@ -46,6 +45,7 @@ export default {
 
 .modal-header {
     cursor: default;
+    border: none;
 }
 
 .background-img{

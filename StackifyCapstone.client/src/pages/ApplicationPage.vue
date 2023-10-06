@@ -6,7 +6,6 @@
         <div class="col-12 d-flex justify-content-center align-items-end">
           <EventDropdown/> 
           <ModalWrapper id="create-event">
-              <!-- FIXME: formatting is off for this compared to the item to the left of it. -->
               <template #button> 
                       <i class="mdi mdi-plus add-button"></i>
               </template>
@@ -17,15 +16,11 @@
         </div>
         </section>
         <TimeBlockList/>
-        <div class="active-song d-flex align-items-center justify-content-center" type="button" data-toggle="modal" data-target="#activesongmodal">
+        <div class="active-song d-flex align-items-center justify-content-center invisible-scrollbar" type="button" data-toggle="modal" data-target="#activesongmodal">
           <ActiveSong/>
         </div>
       </div>
       <div class="col-7 center-panel p-0">
-        <!-- NOTE: this is the search for song form at the top of the page -->
-        <!-- FIXME: BUT FIRST, we need to create timeblocks and do a bunch of other prereq stuff before we can create an event, add a timeblock and add a song to a timeblock.  -->
-        <!-- TODO: ok so we have songs populated on the page from our search result. Next, we need to add a button on each song card that allows you to add a song. This button will have an onclick that will fire a get track request so we can get the song itself and save it to our DB.
-        -->
         <SongSearchBar/>
         <div class="main-content justify-content-center align-items-center background-img">
           <!-- NOTE use a row on the search songs component-->
@@ -68,7 +63,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, onBeforeMount, onMounted} from 'vue';
+import { computed, onMounted} from 'vue';
 import { spotifyPlayerService } from "../services/SpotifyPlayerService.js";
 import { spotifyLoginService } from "../services/SpotifyLoginService.js";
 import Pop from "../utils/Pop.js";
@@ -80,8 +75,6 @@ import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
 import ActiveTimeblockMusic from '../components/ActiveTimeblockMusic.vue';
 import ActiveTimeblockSilent from '../components/ActiveTimeblockSilent.vue';
-import { useRoute } from 'vue-router';
-import { router } from '../router';
 
 export default {
     setup() {
@@ -91,10 +84,6 @@ export default {
             logger.log('Fetching User Playlists')
             await spotifyPlaylistService.getUserPlaylists()
           } catch (error) {
-            if(error.response.status == 403){
-              router.push('/loginpage')
-              Pop.toast('need premium to use stackify, sorry =(')
-            }
             Pop.error(error)
           }
         }
@@ -134,17 +123,7 @@ export default {
             }
             startPlayer();
         }
-        const urlParams = new URLSearchParams(window.location.search);
-        function bootOut(){
-          logger.log('ROUTE PARAMS', urlParams.get('error'))
-          if(urlParams.get('error')){
-            router.push('/loginpage')
-            Pop.error('Need To Accept Terms')
-          }
-        }
-        
         onMounted(() => {
-            bootOut();
             initializePlayer();
             getUserPlaylists();
             setInterval(refreshToken, 600000);
@@ -165,25 +144,25 @@ export default {
 
 <style lang="scss" scoped>
 .full-app-view {
-  background-color: #053b81;
+  background-color: #303030;
 }
 
 .app-wrapper {
-  background-color: #053b81;
+  background-color: #303030;
 }
 
 // This is the Left Panel (EVENT, TIMEBLOCKS, ACTIVE SONG)
 
 .left-panel {
   height: 100vh;
-  background-color: #053b81;
+  background-color: #303030;
 }
 
 .active-song {
   height:20vh;
   // background-color: #eeeeee;
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
-  border: solid 8px #053b81;
+  border: solid 8px #303030;
   border-top: none;
   border-radius: 15px;
 }
@@ -233,7 +212,7 @@ export default {
 .main-content {
   height: 75vh;
   background-color: #eeeeee;
-  border: solid 8px #053b81;
+  border: solid 8px #303030;
   border-left: none;
   border-right: none;
   border-radius: 15px;
@@ -253,7 +232,7 @@ export default {
   // background-color: #4f4f4f;
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
   background-position: center;
-  border: solid 8px #053b81;
+  border: solid 8px #303030;
   border-radius: 15px;
   color: #eeeeee;
 }

@@ -66,7 +66,7 @@ export default {
 .timeblock-list {
     height: 75vh;
     background-color: #eeeeee;
-    border: solid 8px #053b81;
+    border: solid 8px #303030;
     border-radius: 15px;
     position: relative;
     background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
