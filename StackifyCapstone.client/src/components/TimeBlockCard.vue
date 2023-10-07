@@ -4,8 +4,8 @@
 
 
 <!-- FIXME: if this isn't commented out, this is causing timeblocks not to display -->
-        <!-- <h3 v-if="timeblock.isSilent" class="timeblock-timer m-0 text-center col-2">{{msToTime(timeblock.duration)}}</h3>
-        <h3 v-else class="timeblock-timer m-0 text-center col-2">{{msToTime(totalDuration)}}</h3> -->
+        <h3 v-if="timeblock.isSilent" class="timeblock-timer m-0 text-center col-2">{{msToTime(timeblock.duration)}}</h3>
+        <h3 v-else class="timeblock-timer m-0 text-center col-2">{{msToTime(totalDuration)}}</h3>
 
 
 
