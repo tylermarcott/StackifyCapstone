@@ -1,15 +1,12 @@
 <template>
     <h2 class="event-title selectable text-center mb-0 w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent ? activeEvent.title : "Select An Event"}}</h2>
     
-    <ul class="dropdown-menu col-3 bg-dark ">
+    <ul class="dropdown-menu col-3">
         <li v-for="event in myEvents" :key="event.id">
             <h2 @click="setActiveEvent(event)" class="event-dropdown selectable text-center">{{ event.title }}</h2>
         </li>
     </ul>
 </template>
-
-//FIXME - event dropdown menu background too big
-
 
 <script>
 import { AppState } from '../AppState';
@@ -17,7 +14,6 @@ import { computed, watchEffect } from 'vue';
 import Pop from '../utils/Pop';
 import {eventsService} from '../services/EventsService'
 import { timeBlocksService } from "../services/TimeBlocksService.js";
-import { logger } from "../utils/Logger.js";
 export default {
     setup(){
         
@@ -70,9 +66,10 @@ export default {
 .event-title {
     margin-top: .35em;
     margin-left: .4em;
-    background-color: #3f2777;
+    background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
     font-size: 1.5rem;
-    color: #EA94FF;
+    color: #eeeeee;
+    min-height: 5vh;
     // border: solid 8px #242424;
     border-bottom: 0px;
     border-radius: 8px;
@@ -86,7 +83,8 @@ export default {
     margin-left: .4em;
     background-color: #4f4f4f;
     font-size: 1.5rem;
-    color: #EA94FF;
+    color: #eeeeee;
+    min-height: 5vh;
     // border: solid 8px #242424;
     border-bottom: 0px;
     border-radius: 8px;
@@ -109,6 +107,7 @@ export default {
 .dropdown-menu{
     max-width: 19em;
     padding-right: 0.7em;
+    background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
 }
 
 </style>
