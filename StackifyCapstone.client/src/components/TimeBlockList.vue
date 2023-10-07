@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .timeblock-list {
-    height: 75vh;
+    height: 74vh;
     background-color: #eeeeee;
     border: solid 8px #303030;
     border-radius: 15px;
