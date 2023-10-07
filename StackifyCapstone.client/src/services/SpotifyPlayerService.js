@@ -140,11 +140,9 @@ class SpotifyPlayerService {
 
   async togglePlay() {
     try {
-      
       this.player.value.togglePlay().then(() => {
         logger.log('Toggled playback!');
       });
-
       this.player.value.getCurrentState().then(state => {
         if (!state) {
           logger.error('User is not playing music through the Web Playback SDK');
@@ -253,41 +251,46 @@ class SpotifyPlayerService {
     logger.log(index)
     if (AppState.playingTimeBlock.trackList[index + 1]) {
       let nextTrack = AppState.playingTimeBlock.trackList[index + 1]
+      if(nextTrack != AppState.nextTrack){
       AppState.nextTrack = nextTrack
       logger.log('Added next song to Appstate', nextTrack)
+      try {
+        logger.log('Adding next song to queue..')
+        const bearerToken = localStorage.getItem('access_token')
+        const headers = new Headers({
+          Authorization: `Bearer ${bearerToken}`,
+        });
+        const url = `https://api.spotify.com/v1/me/player/queue?uri=spotify%3Atrack%3A${AppState.nextTrack.id}`
+        fetch(url, {
+          method: 'POST',
+          headers: headers,
+          // body: body
+        }).then(response => {
+          if (response.ok) {
+            logger.log('Added Song to Queue', AppState.nextTrack);
+            AppState.trackHistory.push(AppState.nextTrack.id)
+            this.currentHistoryPosition++
+          } else {
+            logger.log('Could not add song to queue');
+            return response.json();
+          }
+        }).then(data => {
+          if (data) {
+            logger.log(data); // Log any error message returned by Spotify API
+          }
+        }).catch(error => {
+          logger.error('There was an error:', error);
+        });
+      }
+      catch (error) {
+        logger.log(error)
+      }
+    } else {
+      logger.log('No song to add to queue')
     }
+  }
     if(AppState.activeTrack){AppState.previousTrack = AppState.activeTrack}
-    try {
-      logger.log('Adding next song to queue..')
-      const bearerToken = localStorage.getItem('access_token')
-      const headers = new Headers({
-        Authorization: `Bearer ${bearerToken}`,
-      });
-      const url = `https://api.spotify.com/v1/me/player/queue?uri=spotify%3Atrack%3A${AppState.nextTrack.id}`
-      fetch(url, {
-        method: 'POST',
-        headers: headers,
-        // body: body
-      }).then(response => {
-        if (response.ok) {
-          logger.log('Added Song to Queue', AppState.nextTrack);
-          AppState.trackHistory.push(AppState.nextTrack.id)
-          this.currentHistoryPosition++
-        } else {
-          logger.log('Could not add song to queue');
-          return response.json();
-        }
-      }).then(data => {
-        if (data) {
-          logger.log(data); // Log any error message returned by Spotify API
-        }
-      }).catch(error => {
-        logger.error('There was an error:', error);
-      });
-    }
-    catch (error) {
-      logger.log(error)
-    }
+    
   }
 
   // Volume is controlled by a number between 0 and 1.0
