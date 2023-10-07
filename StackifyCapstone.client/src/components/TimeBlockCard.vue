@@ -28,11 +28,21 @@ setup(props) {
       let color = '#4f4f4f9e'
       if(AppState.activeTimeBlock){
         if(AppState.activeTimeBlock.id == props.timeblock.id){
-          color = '#EA94FF'
+          color = '#ea94fff6'
+          
         } 
       }
       return color
     }),
+    textColor: computed(() => {
+        let color = '#eeeeee'
+        if (AppState.activeTimeBlock) {
+          if (AppState.activeTimeBlock.id == props.timeblock.id) {
+            color = '#000000'
+          }
+        }
+        return color
+      }),
 
     async moveTimeblock(upOrDown){
       try {
@@ -70,7 +80,7 @@ setup(props) {
   // background: #4f4f4f9e;
   border-radius: 8px;
   padding: .5rem;
-  color:#eeeeee;
+  color: v-bind(textColor);
 }
 
 .timeblock-card:hover {
@@ -89,7 +99,13 @@ setup(props) {
 .change-spot-icon{
   font-size: 1.75rem;
 }
+
+.test-pink{
+  background-color: #ea94ffc9;
+}
+
 .change-spot-icon:hover{
   color: #63FAAA;
+  color: #000000
 }
 </style>
