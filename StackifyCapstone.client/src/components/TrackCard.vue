@@ -64,7 +64,7 @@ export default {
       let color = '#4f4f4fe9'
       if(AppState.activeTrack){
         if(AppState.activeTrack.id == props.track.id){
-          color = '#EA94FF'
+          color = '#ea94fff6'
         } 
       }
       return color
@@ -153,6 +153,10 @@ export default {
 }
 .bg-light-pink{
     background-color: #cd00ff ;
+}
+
+.pink{
+  background-color: #ea94fff6;
 }
 
 .bg-green{

@@ -28,7 +28,7 @@
         </div>
 
         <div class="row justify-content-between pt-2">
-          <div class="col-9 text-end">
+          <div class="col-9 text-start">
               <p>{{ track.album }}</p>
           </div>
           <div class="col-2 ms-3">
