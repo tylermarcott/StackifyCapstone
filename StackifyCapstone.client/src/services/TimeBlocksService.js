@@ -45,8 +45,11 @@ class TimeBlocksService{
       }
 
       async editTimer(timeblockId, timeblockData){
-        timeblockData.duration*=1000
-        const res = await api.put(`api/timeblocks/${timeblockId}`, timeblockData)
+        let msduration = timeblockData.duration
+        let newTimeblock = {duration: msduration}
+        newTimeblock.duration*=1000*60
+
+        const res = await api.put(`api/timeblocks/${timeblockId}`, newTimeblock)
         AppState.activeTimeBlock.duration = res.data.duration
       }
 

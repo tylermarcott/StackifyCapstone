@@ -10,7 +10,7 @@
         </div>
         </form>
         <!-- TODO: add v-if so this is not visible when there aren't any searched tracks. -->
-        <button @click="clearSearchedTracks" class="clear-button">
+        <button v-if="searchData.query" @click="clearSearchedTracks" class="clear-button">
           <p class="search-icon">Clear</p>
         </button>
     </div>

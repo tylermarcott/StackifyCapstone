@@ -1,7 +1,8 @@
 <template>
     <div title="Set Active Timeblock" @click="setActiveTimeblock()" class="timeblock-card row selectable justify-content-between align-items-center elevation-4">
         <h3 class="timeblock-text col-5">{{ timeblock.title }}</h3>
-        <h3 class="timeblock-timer m-0 text-center col-2">{{ timeblock.duration }}</h3>
+        <h3 v-if="timeblock.isSilent" class="timeblock-timer m-0 text-center col-2">{{msToTime(timeblock.duration)}}</h3>
+        <h3 v-else class="timeblock-timer m-0 text-center col-2">{{msToTime(totalDuration)}}</h3>
         <button title="Delete Timeblock" class="btn col-2" @click.stop="deleteTimeblock(timeblock.id)"><i class='fs-5 mdi mdi-delete-forever text-light'></i></button>
         <div class="col-2">
           <i v-if="topTimeBlock != timeblock.id" title="Move Timeblock Up" @click.stop="moveTimeblock('up')" class="mdi mdi-arrow-up-bold-outline change-spot-icon selectable"></i>
@@ -19,7 +20,7 @@ import Pop from '../utils/Pop';
 import { logger } from '../utils/Logger';
 
 export default {
-  props: {timeblock: {type: Timeblock || Object, required: true}},
+  props: {timeblock: {type: Timeblock, required: true}},
 setup(props) {
   return {
     topTimeBlock : computed(()=> AppState.myTimeBlocks[0].id),
@@ -33,6 +34,23 @@ setup(props) {
       }
       return color
     }),
+    totalDuration: computed(()=> {
+        const tracks = props.timeblock.trackList
+        let duration = 0
+        tracks.forEach(track => {
+            duration += track.duration
+        });
+        return duration
+    }),
+    msToTime(ms) {
+        const totalSeconds = Math.floor(ms / 1000)
+        const computedMinutes =  Math.floor(totalSeconds / 60)
+        let computedSeconds = totalSeconds % 60;
+        if(computedSeconds < 10) {
+            computedSeconds = `0${computedSeconds}`
+        }
+        return computedMinutes + ':' + computedSeconds
+    },
 
     async moveTimeblock(upOrDown){
       try {

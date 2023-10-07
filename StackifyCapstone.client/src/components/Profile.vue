@@ -4,10 +4,11 @@
         <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
     </div>
   <div v-if="profile.name">
+    <router-link :to="{name: 'Account'}">
     <img class="img-fluid profile-picture" :src="profile.picture" alt="account-picture">
+  </router-link>
     <h2 class="account-text">{{ profile.name }}</h2>
-    <router-link :to="{name: 'Account'}"><h2 class="account-text">Account Settings</h2></router-link>
-    <h2 class="account-text">Invite Collaborator</h2>
+    <!-- <h2 class="account-text">Invite Collaborator</h2> -->
   </div>
 </template>
 
@@ -44,10 +45,6 @@ export default {
   font-size: 1.2rem;
   padding: .5rem;
   transition: .3s;
-}
-
-.account-text:hover {
-  color: #63FAAA;
 }
 
 .home-button {
