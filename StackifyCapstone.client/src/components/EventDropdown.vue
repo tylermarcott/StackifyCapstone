@@ -106,5 +106,9 @@ export default {
     padding: 4px;
 }
 
+.dropdown-menu{
+    max-width: 19em;
+    padding-right: 0.7em;
+}
 
 </style>
