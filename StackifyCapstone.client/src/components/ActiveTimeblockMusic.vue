@@ -21,8 +21,8 @@
             </div>
             </div>
         <div class="col-2 text-center">
-            <button title="Unlock Playlist" v-if="timeblock.locked" @click="toggleLock()" class="btn bg-light-pink my-3"><i class="mdi mdi-lock"></i></button>
-            <button title="Lock Playlist" v-else @click="toggleLock()" class="btn bg-green my-3"><i class="mdi mdi-lock-open"></i></button>
+            <button title="Unlock Playlist" v-if="timeblock.locked" @click="toggleLock()" class="btn bg-light-pink  my-3"><i class="mdi mdi-lock"></i></button>
+            <button title="Lock Playlist" v-else @click="toggleLock()" class="bg-green my-3"><i class="mdi mdi-lock-open"></i></button>
         </div>
     </section>
 </template>
