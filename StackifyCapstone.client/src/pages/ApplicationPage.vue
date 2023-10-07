@@ -183,7 +183,7 @@ export default {
 .searched-song-card{
   padding: 1em;
   background-color: #4f4f4fdc;
-  color: #FFFFFF;
+  color: #eeeeee;
   font-size: 18px;
   border-radius: 5px;
   max-height: 60vh;

@@ -95,7 +95,7 @@ setup(props) {
   // background: #4f4f4f9e;
   border-radius: 8px;
   padding: .5rem;
-  color: v-bind(textColor);
+  color: #eeeeee;
 }
 
 .timeblock-card:hover {

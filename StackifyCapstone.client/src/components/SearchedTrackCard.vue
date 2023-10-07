@@ -92,7 +92,6 @@ export default {
       // TODO: need to be able to save the song that's clicked on, it needs to be saved to the appstate in trackToAdd with all the data points that are stored on the page
       async addTrackToActiveTimeblock(trackId){
         try {
-          if(await Pop.confirm('Add this song to your playlist?')){
             if(AppState.activeTimeBlock){
               await tracksService.addTrackToActiveTimeblock(trackId)
               this.editTimeblockTracklist()
@@ -100,8 +99,6 @@ export default {
             } else{
               Pop.toast('Please choose a playlist before adding a song!', 'warning')
             }
-
-          }
         } catch (error) {
           Pop.error(error)
         }

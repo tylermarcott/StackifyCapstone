@@ -35,6 +35,8 @@ export default {
 .profile-picture {
   height: 100px;
   width: 100px;
+  object-fit: cover;
+  background-position: center;
   border-radius: 50%;
   border: 1px solid #EA94FF;
   margin: 5vh 0vh;

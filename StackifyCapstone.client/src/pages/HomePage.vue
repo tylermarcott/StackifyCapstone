@@ -35,7 +35,7 @@
     </section>
     <section class="row cta d-flex align-items-center">
       <div class="col-6">
-        <div class="cta-image"></div>
+        <div class="cta-image image-fluid"></div>
       </div>
       <div class="col-6">
         <div class="cta-text">
@@ -128,6 +128,8 @@ export default {
   aspect-ratio: 16/9;
   background-color: #eeeeee;
   margin-left: 10vw;
+  background-size: cover;
+  background-image: url('../assets/img/AppPageSnapshotImg.png');
 }
 
 .cta-title {
