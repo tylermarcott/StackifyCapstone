@@ -64,7 +64,14 @@
              <EditTimerForm/>
         </template>
     </ModalWrapper>
+
+  <ModalWrapper id="save-notes">
+      <template #body>
+      <NotesForm/>
+      </template>
+    </ModalWrapper>
 </template>
+
 
 <script>
 import { AppState } from '../AppState';
@@ -175,7 +182,7 @@ export default {
 
 .searched-song-card{
   padding: 1em;
-  background-color: #4F4F4F;
+  background-color: #4f4f4fdc;
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;

@@ -6,37 +6,20 @@
               <img class="img-fluid active-song-image p-0 elevation-2" :src="activeTrack.picture">
           </div>
           <div class="col-8 p-2 d-flex flex-column align-items-between justify-content-center">
-            <section class="row">
+            <section class="row ms-1">
               <div class="col-12 d-flex flex-column justify-content-center">
                   <p class="song-title m-0"><b>{{ activeTrack.name.substring(0, 20) + '...' }}</b></p>
                 </div>
-                <div class="col-6 mt-1">
+                <div class="col-8 mt-1">
                   <p class="song-title my-0">{{ activeTrack.artist }}</p>                    
                 </div>
-                <div class="col-6 mt-1">
+                <div class="col-4 mt-1">
                   <p class="song-title m-0">{{ computedMinutes }}:{{ computedSeconds }}</p>
                   </div>
               </section>
           </div>
       </section>
        <section v-else class="row h-100">
-            <div class="col-4 d-flex align-items-center mt-3">
-                <!-- <img class="img-fluid active-song-image p-0" :src="activeTrack.picture"> -->
-            </div>
-            <div class="col-8 p-2 d-flex flex-column align-items-between justify-content-center">
-              <section class="row">
-                <div class="col-12 d-flex flex-column justify-content-center">
-                    <!-- <p class="song-title m-0"><b>{{ activeTrack.name }}</b></p> -->
-
-                  </div>
-                  <div class="col-6 mt-1">
-                    <!-- <p class="song-title my-0">{{ activeTrack.artist }}</p>                     -->
-                  </div>
-                  <div class="col-6 mt-1">
-                    <!-- <p class="song-title m-0">{{ computedMinutes }}:{{ computedSeconds }}</p> -->
-                    </div>
-                </section>
-            </div>
         </section>
     </template>
     <template #body>

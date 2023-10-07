@@ -73,6 +73,10 @@ class TimeBlocksService{
       }
 
       async deleteTimeblock(timeblockId){
+
+        if(AppState.activeTimeBlock.id == timeblockId){
+          AppState.activeTimeBlock = null
+        }
         const timeblockToDelete = AppState.myTimeBlocks.findIndex(timeblock => timeblockId == timeblock.id)
         AppState.myTimeBlocks.splice(timeblockToDelete, 1)      
         await api.delete(`api/timeblocks/${timeblockId}`)

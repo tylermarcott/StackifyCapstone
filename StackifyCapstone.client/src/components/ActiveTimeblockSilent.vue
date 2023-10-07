@@ -13,15 +13,17 @@
     <section class="row text-center">
         <div class="col-12">
             <h1>{{msToTime(duration)}}</h1>
-            <button v-if="!paused" @click="togglePlay()" class="btn btn-danger"><i class="mdi mdi-pause"></i></button>
-            <button v-if="paused" @click="togglePlay()" class="btn btn-success"><i class="mdi mdi-play"></i></button>
+            <button v-if="!paused" @click="togglePlay()" class="btn bg-pink"><i class="mdi mdi-pause"></i></button>
+            <button v-if="paused" @click="togglePlay()" class="btn bg-light-green"><i class="mdi mdi-play"></i></button>
         </div>
     </section>
-    <button class="btn btn-outline-success w-25 my-2" data-bs-toggle="modal" data-bs-target='#edit-timer'>Edit Timer</button>
+    <button class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#edit-timer'>Edit Timer</button>
     <section class="row text-center">
-        <ModalWrapper id="save-notes">
+        <button v-if="!timeblock.notes" class="btn button button-border w-75 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Create Notes</button>
+        <button v-else class="btn btn-outline-success w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Edit Notes</button>
+        <!-- <ModalWrapper id="save-notes">
               <template #button> 
-                <button v-if="!timeblock.notes" class="btn btn-outline-success w-75 my-2">Create Notes</button>
+                <button v-if="!timeblock.notes" class="btn button button-border w-75 my-2">Create Notes</button>
                 <button v-else class="btn btn-outline-success w-25 my-2">Edit Notes</button>
               </template>
                 <template #body>
@@ -33,7 +35,7 @@
                  <button class="btn btn-dark">Save Notes</button>
                 </form>
               </template>
-          </ModalWrapper>
+          </ModalWrapper> -->
           <p>{{ timeblock.notes }}</p>
     </section>
 </template>
@@ -49,7 +51,7 @@ import EditTimerForm from './EditTimerForm.vue';
 
 export default {
     setup() {
-        const notesData = ref({});
+        // const notesData = ref({});
         const timeblock = computed(() => AppState.activeTimeBlock);
         const timeblocksLength = computed(() => AppState.myTimeBlocks.length);
         function prevTimeblock() {
@@ -76,7 +78,7 @@ export default {
             clearInterval(intervalId);
         });
         return {
-            notesData,
+            // notesData,
             timeblocksLength,
             timeblock,
             prevTimeblock,
@@ -95,15 +97,15 @@ export default {
                 }
                 return computedMinutes + ':' + computedSeconds;
             },
-            async saveNotes() {
-                try {
-                    await timeBlocksService.saveNotes(this.timeblock.id, notesData.value);
-                    Pop.success('notes saved!');
-                }
-                catch (error) {
-                    Pop.error(error);
-                }
-            },
+            // async saveNotes() {
+            //     try {
+            //         await timeBlocksService.saveNotes(this.timeblock.id, notesData.value);
+            //         Pop.success('notes saved!');
+            //     }
+            //     catch (error) {
+            //         Pop.error(error);
+            //     }
+            // },
         };
     },
 };
@@ -111,5 +113,22 @@ export default {
 
 
 <style lang="scss" scoped>
+.button-border{
+    border: solid 2px #63FAAA;
+    color: #63FAAA;
+}
+.button:hover{
+  background-color: #63FAAA;
+  color: #303030
+}
+
+.bg-light-green{
+    background-color: #63FAAA;
+}
+
+.bg-pink{
+    background-color: #cd00ff;
+}
+
 
 </style>

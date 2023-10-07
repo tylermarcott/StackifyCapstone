@@ -34,23 +34,6 @@ setup(props) {
       }
       return color
     }),
-    totalDuration: computed(()=> {
-        const tracks = props.timeblock.trackList
-        let duration = 0
-        tracks.forEach(track => {
-            duration += track.duration
-        });
-        return duration
-    }),
-    msToTime(ms) {
-        const totalSeconds = Math.floor(ms / 1000)
-        const computedMinutes =  Math.floor(totalSeconds / 60)
-        let computedSeconds = totalSeconds % 60;
-        if(computedSeconds < 10) {
-            computedSeconds = `0${computedSeconds}`
-        }
-        return computedMinutes + ':' + computedSeconds
-    },
 
     async moveTimeblock(upOrDown){
       try {
@@ -88,7 +71,7 @@ setup(props) {
   // background: #4f4f4f9e;
   border-radius: 8px;
   padding: .5rem;
-  color:#eeeeee;
+  color: v-bind(textColor);
 }
 
 .timeblock-card:hover {
@@ -107,7 +90,13 @@ setup(props) {
 .change-spot-icon{
   font-size: 1.75rem;
 }
+
+.test-pink{
+  background-color: #ea94ffc9;
+}
+
 .change-spot-icon:hover{
   color: #63FAAA;
+  color: #000000
 }
 </style>
