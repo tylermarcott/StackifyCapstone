@@ -1,6 +1,6 @@
 <template>
       <section v-if="account.name" class="row account-wrapper justify-content-center p-2">
-        <div class="col-12 landing-navigation landing-navigation d-flex justify-content-center align-items-center">
+        <div class="col-12 landing-navigation d-flex justify-content-center align-items-center">
           <section class="row">
           <h2 class="settings-title text-center">Account Settings</h2>
             <router-link class="text-center" :to="{ name: 'Application', params: {application: 'application'} }"><i class="home-button mdi mdi-application text-center"></i></router-link>
@@ -145,8 +145,10 @@ export default {
 
 .landing-navigation {
   height: 15vh;
-  background-color: #4f4f4f;
+  /* background-color: #4f4f4f; */
+  background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
   border-radius: 15px;
+  border: solid 8px #2f2f2f;
  
 }
 .account-wrapper {
@@ -201,8 +203,10 @@ img {
 }
 
 .about {
-  background-color: #4f4f4f;
-  border-top: solid 8px #2f2f2f;
+  border: solid 8px #2f2f2f;
+  background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+  background-size: cover;
+  background-position: top;
   border-radius: 15px;
   margin: 0px;
 }
@@ -217,6 +221,7 @@ img {
   border-radius: 8px;
   margin: .5rem 0px;
   padding: 0px;
+  border: solid 8px #2f2f2f;
 }
 
 .event-title {
@@ -242,7 +247,8 @@ img {
 
   .event-list {
     border: solid 8px #2f2f2f;
-    background-color: #4f4f4f;
+    /* background-color: #4f4f4f; */
+    background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
     border-radius: 15px;
   }
 

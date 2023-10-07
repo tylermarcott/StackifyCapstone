@@ -1,6 +1,6 @@
 <template>
   <section class="row">
-    <div class="col-4">
+    <div class="col-4 d-flex justify-content-center">
       <router-link v-if="route.path != '/about'" :to="{ name: 'About' }" class="">
       <h2 class="purple">About</h2>
       </router-link>
