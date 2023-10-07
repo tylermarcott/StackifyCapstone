@@ -19,7 +19,9 @@
     </section>
     <button class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#edit-timer'>Edit Timer</button>
     <section class="row text-center">
-        <ModalWrapper id="save-notes">
+        <button v-if="!timeblock.notes" class="btn button button-border w-75 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Create Notes</button>
+        <button v-else class="btn btn-outline-success w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Edit Notes</button>
+        <!-- <ModalWrapper id="save-notes">
               <template #button> 
                 <button v-if="!timeblock.notes" class="btn button button-border w-75 my-2">Create Notes</button>
                 <button v-else class="btn btn-outline-success w-25 my-2">Edit Notes</button>
@@ -33,7 +35,7 @@
                  <button class="btn btn-dark">Save Notes</button>
                 </form>
               </template>
-          </ModalWrapper>
+          </ModalWrapper> -->
           <p>{{ timeblock.notes }}</p>
     </section>
 </template>
@@ -49,7 +51,7 @@ import EditTimerForm from './EditTimerForm.vue';
 
 export default {
     setup() {
-        const notesData = ref({});
+        // const notesData = ref({});
         const timeblock = computed(() => AppState.activeTimeBlock);
         const timeblocksLength = computed(() => AppState.myTimeBlocks.length);
         function prevTimeblock() {
@@ -76,7 +78,7 @@ export default {
             clearInterval(intervalId);
         });
         return {
-            notesData,
+            // notesData,
             timeblocksLength,
             timeblock,
             prevTimeblock,
@@ -95,15 +97,15 @@ export default {
                 }
                 return computedMinutes + ':' + computedSeconds;
             },
-            async saveNotes() {
-                try {
-                    await timeBlocksService.saveNotes(this.timeblock.id, notesData.value);
-                    Pop.success('notes saved!');
-                }
-                catch (error) {
-                    Pop.error(error);
-                }
-            },
+            // async saveNotes() {
+            //     try {
+            //         await timeBlocksService.saveNotes(this.timeblock.id, notesData.value);
+            //         Pop.success('notes saved!');
+            //     }
+            //     catch (error) {
+            //         Pop.error(error);
+            //     }
+            // },
         };
     },
 };

@@ -64,7 +64,14 @@
              <EditTimerForm/>
         </template>
     </ModalWrapper>
+
+  <ModalWrapper id="save-notes">
+      <template #body>
+      <NotesForm/>
+      </template>
+    </ModalWrapper>
 </template>
+
 
 <script>
 import { AppState } from '../AppState';
