@@ -35,6 +35,24 @@ setup(props) {
       return color
     }),
 
+    msToTime(ms) {
+          const totalSeconds = Math.floor(ms / 1000);
+          const computedMinutes = Math.floor(totalSeconds / 60);
+          let computedSeconds = totalSeconds % 60;
+          if (computedSeconds < 10) {
+              computedSeconds = `0${computedSeconds}`;
+          }
+          return computedMinutes + ':' + computedSeconds;
+      },
+      totalDuration: computed(()=> {
+                const tracks = props.timeblock.trackList
+                let duration = 0
+                tracks.forEach(track => {
+                    duration += track.duration
+                });
+                return duration
+            }),
+
     async moveTimeblock(upOrDown){
       try {
         await timeBlocksService.moveTimeblock(props.timeblock, upOrDown)
