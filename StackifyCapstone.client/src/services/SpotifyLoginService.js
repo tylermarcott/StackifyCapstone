@@ -124,6 +124,7 @@ class SpotifyLoginService{
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams(formData).toString()
+
     })
       .then(response => response.json()
         .then(data => {

@@ -100,43 +100,43 @@ export default {
           }
         }
         async function refreshToken() {
-                try {
-                    logger.log('Refreshing token..');
-                    await spotifyLoginService.refreshAccessToken();
-                }
-                catch (error) {
-                    Pop.error(error);
-                }
+          try {
+            logger.log('Refreshing token..');
+            await spotifyLoginService.refreshAccessToken();
+          }
+          catch (error) {
+            Pop.error(error);
+          }
         }
         async function startPlayer() {
-            try {
-                await spotifyPlayerService.StartPlayer();
-            }
-            catch (error) {
-                Pop.error(error);
-            }
+          try {
+            await spotifyPlayerService.StartPlayer();
+          }
+          catch (error) {
+            Pop.error(error);
+          }
         }
         async function initializePlayer() {
             if (localStorage.getItem('access_token')) {
-                AppState.accessToken = localStorage.getItem('access_token');
-                AppState.refreshToken = localStorage.getItem('refresh_token');
-                logger.log('Access Token', AppState.accessToken, AppState.refreshToken);
+              AppState.accessToken = localStorage.getItem('access_token');
+              AppState.refreshToken = localStorage.getItem('refresh_token');
+              logger.log('Access Token', AppState.accessToken, AppState.refreshToken);
             }
             else {
-                try {
-                    logger.log(AppState.accessToken);
-                    await spotifyLoginService.requestAuthCode();
-                }
-                catch (error) {
-                    logger.error(error);
-                }
+              try {
+                  logger.log(AppState.accessToken);
+                  await spotifyLoginService.requestAuthCode();
+              }
+              catch (error) {
+                  logger.error(error);
+              }
             }
             startPlayer();
         }
         onMounted(() => {
             initializePlayer();
             getUserPlaylists();
-            setInterval(refreshToken, 300000);
+            setInterval(refreshToken, 600000);
         });
         return {
             tracks: computed(() => AppState.tracks),

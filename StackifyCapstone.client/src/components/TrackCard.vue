@@ -1,9 +1,9 @@
 <template>
   <section class="song-card elevation-5 pointer mx-2" @dblclick="playTrack(track.id)">
     <div class="row justify-content-evenly">
-      <div v-if="!locked" class="col-1 d-flex flex-column">
-        <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="p-1 btn"><i class="mdi mdi-triangle-outline move-button"></i></button>
-        <button title="Move Track Down" v-if="bottomTrack != track.id" @click="moveTrack('down')" class="p-1 btn"><i class="mdi mdi-triangle-down-outline move-button"></i></button>
+      <div v-if="!locked" class="col-1 d-flex">
+        <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="p-0 btn"><i class="mdi mdi-triangle-outline move-button"></i></button>
+        <button title="Move Track Down" v-if="bottomTrack != track.id" @click="moveTrack('down')" class="p-0 btn"><i class="mdi mdi-triangle-down-outline move-button"></i></button>
       </div>
       <div class="col-3 no-overflow">
         {{ calculateStringLength(track.name) }}
@@ -17,10 +17,10 @@
       <div class="col-1 no-overflow">
         <i @click="openTrackDetails(track.id, track)" title="shows the song's details" class="mdi mdi-dots-horizontal selectable" data-bs-toggle="modal" data-bs-target='#my-song'></i>
       </div>
-      <div class="col-2 no-overflow d-flex">
+      <div class="col-2 no-overflow d-flex justify-content-evenly">
         {{ computedMinutes }}:{{ computedSeconds }}
         <div v-if="!locked">
-          <button title="Remove Track" @click="deleteTrack()" class="btn bg-dark-pink"><i class="mdi mdi-delete-forever"></i></button>
+          <button title="Remove Track" @click="deleteTrack()" class="btn bg-dark-pink m-0"><i class="mdi mdi-delete-forever"></i></button>
         </div>
       </div>
     </div>
