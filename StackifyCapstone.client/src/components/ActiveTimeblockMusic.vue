@@ -12,7 +12,7 @@
     </section>
     <section class="row">
         <div class="col-12">
-            <div v-if="timeblock.trackList[0]" class="d-flex justify-content-evenly">
+            <div v-if="timeblock.trackList[0]" class="d-flex justify-content-evenly align-items-center">
                 <h5 @click="loadSong(timeblock.trackList[0].id)" class="p-2 ms-2 btn bg-green">Start Playlist</h5>
                 <button title="Unlock Playlist" v-if="timeblock.locked" @click="toggleLock()" class="btn bg-light-pink  my-3"><i class="mdi mdi-lock"></i></button>
                 <button title="Lock Playlist" v-else @click="toggleLock()" class="btn bg-green my-3"><i class="mdi mdi-lock-open"></i></button>
