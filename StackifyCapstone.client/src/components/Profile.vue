@@ -1,17 +1,14 @@
 <template>
-  
-    <div class="right-panel-spacer">
-        <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
-    </div>
+  <div class="right-panel-spacer">
+      <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
+  </div>
   <div v-if="profile.name">
     <router-link :to="{name: 'Account'}">
     <img class="img-fluid profile-picture" :src="profile.picture" alt="account-picture">
   </router-link>
     <h2 class="account-text">{{ profile.name }}</h2>
-    <!-- <h2 class="account-text">Invite Collaborator</h2> -->
   </div>
 </template>
-
 
 <script>
 import { computed } from "vue";
@@ -25,7 +22,6 @@ export default {
     }
 };
 </script>
-
 
 <style lang="scss" scoped>
 .right-panel-spacer {

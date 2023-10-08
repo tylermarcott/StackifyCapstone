@@ -29,6 +29,14 @@ export const AppState = reactive({
  /**@type {Timeblock} */
   activeTimeBlock: null,
 
+  timeblockTrack: null,
+
+  timeblockTrackDetails: null,
+
+  timeblockTrackYear: null,
+
+  playingTimeBlock: null,
+
   paused: true,
 
   /**@type {Track} */
@@ -37,17 +45,21 @@ export const AppState = reactive({
   isPlaying: null,
 
   authCode: null,
+
   accessToken: null,
+
   tokenOk: false,
+
   refreshToken: null,
+
   tokenExpire: null,
 
   activeTrack: null,
-  timeblockTrack: null,
-  timeblockTrackDetails: null,
-  timeblockTrackYear: null,
+
   activeTrackDetails: null,
+
   nextTrack: null,
+
   trackHistory: [],
-  playingTimeBlock: null
+
 })

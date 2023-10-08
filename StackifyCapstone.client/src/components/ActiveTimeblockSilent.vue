@@ -121,11 +121,9 @@ export default {
   background-color: #63FAAA;
   color: #303030
 }
-
 .bg-light-green{
     background-color: #63FAAA;
 }
-
 .bg-pink{
     background-color: #cd00ff;
 }

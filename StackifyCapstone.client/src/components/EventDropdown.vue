@@ -1,11 +1,12 @@
 <template>
-    <h2 class="event-title selectable text-center mb-0 w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent ? activeEvent.title : "Select An Event"}}</h2>
-    
+    <div class="d-flex w-100">
+            <h2 class="event-title text-center selectable mb-0 w-100" type="button" data-bs-toggle="dropdown">{{ activeEvent ? activeEvent.title : "Select An Event" }}</h2>
     <ul class="dropdown-menu col-3">
         <li v-for="event in myEvents" :key="event.id">
             <h2 @click="setActiveEvent(event)" class="event-dropdown selectable text-center">{{ event.title }}</h2>
         </li>
     </ul>
+    </div>
 </template>
 
 <script>

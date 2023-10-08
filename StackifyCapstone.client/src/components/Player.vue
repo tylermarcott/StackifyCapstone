@@ -9,7 +9,7 @@
             <button @click="playPrevious()" class="previous elevation-5">
             <i class="mdi mdi-skip-previous"></i>
             </button>
-            <!-- NOTE play button -->
+            <!-- NOTE play/pause button -->
             <button @click="togglePlay()" class="play elevation-5">
               <i v-if="!isPlaying" class="mdi mdi-play"></i>
               <i v-if="isPlaying" class="mdi mdi-pause"></i>
@@ -19,7 +19,6 @@
             </button>
         </div>
         <div class="col-3 devices d-flex justify-content-center align-items-center">
-            <!-- <i class="devices-icon mdi mdi-devices"></i> -->
             <i @click="showVolume()" class="devices-icon mdi mdi-volume-high"></i>
             <input id="volume-slider" class="volume-bar mx-2" hidden type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
         </div>
@@ -58,12 +57,12 @@ setup() {
   }
 
   async function addNextTrackToQueue() {
-      try {
-          logger.log('Setting the next track in queue', AppState.activeTrack.progress)
-          await spotifyPlayerService.addNextTrackToQueue()
-        } catch (error) {
-          Pop.error(error)
-        }
+    try {
+        logger.log('Setting the next track in queue', AppState.activeTrack.progress)
+        await spotifyPlayerService.addNextTrackToQueue()
+      } catch (error) {
+        Pop.error(error)
+      }
   }
 
   function calculateBar() {
@@ -75,25 +74,30 @@ setup() {
         trackPosition.value = AppState.activeTrack.progress
       }
     }
+
   watchEffect(() => {
-  if (AppState.isPlaying && AppState.activeTrack.duration - AppState.activeTrack.progress < 1001 ) {
-    addNextTrackToQueue()
-  } else {
-    logger.log('Below 95%')
-  }
-  }
+    if (AppState.isPlaying && AppState.activeTrack && AppState.activeTrack.duration - AppState.activeTrack.progress < 1001 ) {
+      addNextTrackToQueue()
+    } else {
+      logger.log('Below 95%')
+    }
+    }
   )
+
   watchEffect(() => currentPosition(AppState.isPlaying))
+
   watchEffect(() => {
     if(AppState.activeTrack != null)
     calculateBar(AppState.activeTrack
     )})
+
   onMounted(() => {
     AppState.isPlaying = false
     }
   )
+
   async function changeState(){
-      await spotifyPlayerService.changeState()
+    await spotifyPlayerService.changeState()
   }
     
   return {
@@ -163,7 +167,7 @@ setup() {
       const computedMinutes =  Math.floor(totalSeconds / 60)
       let computedSeconds = totalSeconds % 60;
       if(computedSeconds < 10) {
-      computedSeconds = `0${computedSeconds}`
+        computedSeconds = `0${computedSeconds}`
       }
       return computedMinutes + ':' + computedSeconds
     },
@@ -176,9 +180,6 @@ setup() {
         }
       })
       }
-
-    
-
   };
 },
 };

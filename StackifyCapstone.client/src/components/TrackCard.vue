@@ -1,26 +1,23 @@
 <template>
-  <section class="song-card elevation-5 pointer" @dblclick="playTrack(track.id)">
-    
-    <div class="row">
-      <div v-if="!locked" class="col-1">
-        <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="btn btn-light"><i class="mdi mdi-arrow-up-bold-outline"></i></button>
-        <button title="Move Track Down" v-if="bottomTrack != track.id" @click="moveTrack('down')" class="btn btn-light mt-2"><i class="mdi mdi-arrow-down-bold-outline"></i></button>
+  <section class="song-card elevation-5 pointer mx-2" @dblclick="playTrack(track.id)">
+    <div class="row justify-content-evenly">
+      <div v-if="!locked" class="col-1 d-flex flex-column">
+        <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="p-1 btn"><i class="mdi mdi-triangle-outline move-button"></i></button>
+        <button title="Move Track Down" v-if="bottomTrack != track.id" @click="moveTrack('down')" class="p-1 btn"><i class="mdi mdi-triangle-down-outline move-button"></i></button>
       </div>
-      <div class="col-3">
-        {{ track.name }}
+      <div class="col-3 no-overflow">
+        {{ calculateStringLength(track.name) }}
       </div>
-      <div class="col-2">
-        {{ track.artist }}
+      <div class="col-2 no-overflow">
+        {{track.artist }}
       </div>
-
-      <div class="col-3">
-        {{ track.album }}
+      <div class="col-3 no-overflow album-column">
+        {{ calculateStringLength(track.album) }}
       </div>
-
-      <div class="col-1">
+      <div class="col-1 no-overflow">
         <i @click="openTrackDetails(track.id, track)" title="shows the song's details" class="mdi mdi-dots-horizontal selectable" data-bs-toggle="modal" data-bs-target='#my-song'></i>
       </div>
-      <div class="col-2">
+      <div class="col-2 no-overflow d-flex">
         {{ computedMinutes }}:{{ computedSeconds }}
         <div v-if="!locked">
           <button title="Remove Track" @click="deleteTrack()" class="btn bg-dark-pink"><i class="mdi mdi-delete-forever"></i></button>
@@ -78,7 +75,6 @@ export default {
       }
     },
 
-
     async deleteTrack(){
       try {
         if(await Pop.confirm('Are you sure you want to remove this song from your playlist?')){
@@ -107,22 +103,18 @@ export default {
       } catch (error) {
         Pop.error(error)
       }
-    }
-
-    // async openTrackDetails(trackId, track){
-    //   try {
-    //     await spotifyApiService.getTimeblockTrackDetails(trackId, track);
-    //   } catch (error) {
-    //     Pop.error(error)
-    //   }
-    // }
-    
-    
+    },
+    calculateStringLength(string) {
+        if (string.length > 20) {
+          return string.substring(0, 20) + '...'
+        } else {
+          return string
+        }
+      }
    }
   }
 };
 </script>
-
 
 <style lang="scss" scoped>
 .song-card{
@@ -133,7 +125,13 @@ export default {
   color: #FFFFFF;
   font-size: 18px;
   border-radius: 5px;
-  min-height: 8vh;
+  min-height: 4vh;
+  user-select: none;
+}
+
+.no-overflow{
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .play-button {
@@ -147,6 +145,15 @@ export default {
   padding: 4px;
   color: rgb(19, 18, 18);
   cursor: pointer;
+}
+
+.move-button {
+  font-size: 1rem;
+  color: #eeeeee !important;
+}
+
+.move-button:hover {
+  color:#4f4f4f;
 }
 .bg-dark-pink{
     background-color: #cd00ff;    

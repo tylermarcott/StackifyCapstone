@@ -1,16 +1,9 @@
 <template>
-  <!-- Here is the default App.vue -->
-  <!-- <header>
-    
-  </header> -->
   <main>
     <div class="container-fluid m-0">
     <router-view />
     </div>
   </main>
-   <!-- <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer> -->
 </template>
 
 <script>
@@ -26,7 +19,6 @@ export default {
     onMounted(() => {
       accessTokenCheck()
     })
-    // This checks for a token in local storage
     async function accessTokenCheck() {
       if (localStorage.getItem('access_token')) {
         AppState.accessToken = localStorage.getItem('access_token')
@@ -40,7 +32,6 @@ export default {
       }
     }
 
-    // This checks if the token is expired
     async function checkExpired() {
       try {
         await spotifyLoginService.checkExpired()
@@ -50,9 +41,9 @@ export default {
     }
     return {
       appState: computed(() => AppState)
+      
     }
   },
-  // components: { Navbar }
 }
 </script>
 
@@ -62,11 +53,6 @@ export default {
 :root{
   --main-height: calc(100vh - 32px - 64px);
 }
-
-main {
-  // background-color: #eeeeee;
-}
-
 
 footer {
   display: grid;

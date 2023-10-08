@@ -21,10 +21,10 @@
       </router-link>
     </div>
     <div v-else class="col-4">
-        <router-link :to="{ name: 'Login' }" class="">
-        <h2 class="purple">Connect Spotify</h2>
-        </router-link>
-      </div>
+      <router-link :to="{ name: 'Login' }" class="">
+      <h2 class="purple">Connect Spotify</h2>
+      </router-link>
+    </div>
     <div class="col-4">
 
     </div>
@@ -88,7 +88,6 @@ export default {
       tokenOk,
       account,
       route
-      
     }
   }
 

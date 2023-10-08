@@ -3,14 +3,14 @@
     <section class="row app-wrapper">
       <div class="col-3 left-panel p-0">
         <section class="row">
-        <div class="col-12 d-flex justify-content-center align-items-end">
+        <div class="col-12 d-flex justify-content-center align-items-center">
           <EventDropdown/> 
           <ModalWrapper id="create-event">
               <template #button> 
-                      <i class="mdi mdi-plus add-button"></i>
+                <i class="mdi mdi-plus add-button"></i>
               </template>
-                  <template #body>
-                  <CreateEventForm/>
+                <template #body>
+                <CreateEventForm/>
               </template>
           </ModalWrapper>
         </div>
@@ -38,14 +38,10 @@
             </div>
           </div>
           <div v-else>
-            <h1 class="text-light mt-5 ms-5">
+            <h1 class="text-light text-center mt-5 ms-5">
               No active timeblock or searched song...
             </h1>
           </div>
-          <!-- <div v-else>
-            active Timeblock
-          </div>
-          <h2>Main Content</h2> -->
         </div>
         <Player/>
       </div> 
