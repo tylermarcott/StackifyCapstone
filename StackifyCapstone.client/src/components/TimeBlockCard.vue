@@ -35,16 +35,22 @@ setup(props) {
       }
       return color
     }),
-
     msToTime(ms) {
-          const totalSeconds = Math.floor(ms / 1000);
-          const computedMinutes = Math.floor(totalSeconds / 60);
-          let computedSeconds = totalSeconds % 60;
-          if (computedSeconds < 10) {
-              computedSeconds = `0${computedSeconds}`;
-          }
-          return computedMinutes + ':' + computedSeconds;
-      },
+      let totalTime = Math.floor(ms / 1000)
+      let calculatedHours = Math.floor(totalTime / 3600);
+      totalTime -= Math.floor(calculatedHours * 3600)
+      let computedMinutes = Math.floor(totalTime / 60);
+      if (computedMinutes < 10) {
+        computedMinutes = `0${computedMinutes.toString()}`
+      }
+      totalTime -= Math.floor(computedMinutes * 60)
+      let totalSeconds = totalTime;
+      if (totalSeconds < 10) {
+        totalSeconds = `0${totalSeconds.toString()}`
+      }
+      logger.log('total seconds', totalSeconds)
+      return calculatedHours + ':' + computedMinutes + ':' + totalSeconds;
+    },
       totalDuration: computed(()=> {
                 const tracks = props.timeblock.trackList
                 let duration = 0

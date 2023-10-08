@@ -1,42 +1,34 @@
 <template>
     <section class="row justify-content-center text-center my-3">
-        <div class="col-2">
-            <button @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn btn-dark"><i class="mdi mdi-arrow-left"></i></button>
+        <div class="col-2 d-flex align-items-center justify-content-center">
+            <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position <= 0" class="btn bg-green"><i class="arrow mdi mdi-menu-left"></i></button>
         </div>
         <div class="col-8 bg-dark-subtle">
             <h2>{{ timeblock.title }}</h2>
         </div>
-        <div class="col-2">
-            <button @click="nextTimeblock()" :disabled="timeblock.position==timeblocksLength-1" class="btn btn-dark"><i class="mdi mdi-arrow-right"></i></button>
+        <div class="col-2 d-flex align-items-center justify-content-center">
+             <button title="Next Time Block" @click="nextTimeblock()" :disabled="timeblock.position == timeblocksLength - 1" class="btn bg-green"><i class="arrow mdi mdi-menu-right"></i></button>
         </div>
     </section>
     <section class="row text-center">
         <div class="col-12">
-            <h1>{{msToTime(duration)}}</h1>
+            <h2 class="timer-text">{{msToTime(duration)}}</h2>
             <button v-if="!paused" @click="togglePlay()" class="btn bg-pink"><i class="mdi mdi-pause"></i></button>
             <button v-if="paused" @click="togglePlay()" class="btn bg-light-green"><i class="mdi mdi-play"></i></button>
         </div>
     </section>
-    <button class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#edit-timer'>Edit Timer</button>
-    <section class="row text-center">
-        <button v-if="!timeblock.notes" class="btn button button-border w-75 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Create Notes</button>
-        <button v-else class="btn btn-outline-success w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Edit Notes</button>
-        <!-- <ModalWrapper id="save-notes">
-              <template #button> 
-                <button v-if="!timeblock.notes" class="btn button button-border w-75 my-2">Create Notes</button>
-                <button v-else class="btn btn-outline-success w-25 my-2">Edit Notes</button>
-              </template>
-                <template #body>
-                    <form @submit.prevent="saveNotes">
-                    <div class="mb-3">
-                        <label for="notes" class="form-label">Notes</label>
-                        <textarea v-model="notesData.notes" class="form-control" id="notes" rows="10"></textarea>
-                    </div>
-                 <button class="btn btn-dark">Save Notes</button>
-                </form>
-              </template>
-          </ModalWrapper> -->
-          <p>{{ timeblock.notes }}</p>
+    <section class="row justify-content-center">
+        <div class="col-12 d-flex justify-content-evenly my-3">
+            <button class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#edit-timer'>Edit Timer</button>
+            <button v-if="!timeblock.notes" class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Create Notes</button>
+            <button v-else class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Edit Notes</button>
+        </div>
+        <div class="col-10 notes-wrapper">
+            <h2 class="timer-text text-center m-3">
+                Notes
+            </h2>
+            <p class="notes mx-5">{{ timeblock.notes }}</p>
+        </div>
     </section>
 </template>
 
@@ -78,7 +70,6 @@ export default {
             clearInterval(intervalId);
         });
         return {
-            // notesData,
             timeblocksLength,
             timeblock,
             prevTimeblock,
@@ -89,23 +80,22 @@ export default {
                 AppState.paused = !AppState.paused;
             },
             msToTime(ms) {
-                const totalSeconds = Math.floor(ms / 1000);
-                const computedMinutes = Math.floor(totalSeconds / 60);
-                let computedSeconds = totalSeconds % 60;
-                if (computedSeconds < 10) {
-                    computedSeconds = `0${computedSeconds}`;
+                let totalTime = ms / 1000
+                let calculatedHours = Math.floor(totalTime / 3600);
+                totalTime -= Math.floor(calculatedHours * 3600)
+                let computedMinutes = Math.floor(totalTime / 60);
+                if (computedMinutes < 10) {
+                    computedMinutes = `0${computedMinutes.toString()}`
                 }
-                return computedMinutes + ':' + computedSeconds;
+                totalTime -= Math.floor(computedMinutes * 60)
+                let totalSeconds = totalTime;
+                if (totalSeconds < 10) {
+                    totalSeconds = `0${totalSeconds.toString()}`
+                }
+                logger.log('total seconds', totalSeconds)
+                return 'Hours: ' + calculatedHours + ':' + computedMinutes + ':' + totalSeconds;
             },
-            // async saveNotes() {
-            //     try {
-            //         await timeBlocksService.saveNotes(this.timeblock.id, notesData.value);
-            //         Pop.success('notes saved!');
-            //     }
-            //     catch (error) {
-            //         Pop.error(error);
-            //     }
-            // },
+            
         };
     },
 };
@@ -128,5 +118,27 @@ export default {
     background-color: #cd00ff;
 }
 
+.timer-text {
+    color: #eeeeee;
+}
+
+.notes {
+    color: #eeeeee;
+    margin: 0px;
+}
+
+.notes-wrapper {
+    min-height: 30vh;
+    margin-top: 10vh;
+    backdrop-filter: brightness(20%);
+    border-radius: 15px;
+}
+
+.arrow {
+    font-size: 1.5rem;
+}
+.bg-green{
+    background-color: #63FAAA;
+}
 
 </style>

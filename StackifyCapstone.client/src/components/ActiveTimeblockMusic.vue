@@ -1,13 +1,13 @@
 <template>
     <section class="row justify-content-center text-center my-3">
         <div class="col-2 d-flex align-items-center justify-content-center">
-            <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn bg-green"><i class="mdi mdi-arrow-left"></i></button>
+            <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position<=0" class="btn bg-green"><i class="arrow mdi mdi-menu-left"></i></button>
         </div>
         <div class="col-8 title-card rounded">
             <h2 class="font">{{ timeblock.title }}</h2>
         </div>
         <div class="col-2 d-flex align-items-center justify-content-center">
-            <button title="Next Time Block" @click="nextTimeblock()" :disabled="timeblock.position==timeblocksLength-1" class="btn bg-green"><i class="mdi mdi-arrow-right"></i></button>
+            <button title="Next Time Block" @click="nextTimeblock()" :disabled="timeblock.position==timeblocksLength-1" class="btn bg-green"><i class="arrow mdi mdi-menu-right"></i></button>
         </div>
     </section>
     <section class="row">
@@ -47,17 +47,22 @@ export default {
                 });
                 return duration
             }),
-
             msToTime(ms) {
-                const totalSeconds = Math.floor(ms / 1000)
-                const computedMinutes =  Math.floor(totalSeconds / 60)
-                let computedSeconds = totalSeconds % 60;
-                if(computedSeconds < 10) {
-                    computedSeconds = `0${computedSeconds}`
+                let totalTime = Math.floor(ms / 1000)
+                let calculatedHours = Math.floor(totalTime / 3600);
+                totalTime -= Math.floor(calculatedHours * 3600)
+                let computedMinutes = Math.floor(totalTime / 60);
+                if (computedMinutes < 10) {
+                    computedMinutes = `0${computedMinutes.toString()}`
                 }
-                return computedMinutes + ':' + computedSeconds
+                totalTime -= Math.floor(computedMinutes * 60)
+                let totalSeconds = totalTime;
+                if (totalSeconds < 10) {
+                    totalSeconds = `0${totalSeconds.toString()}`
+                }
+                logger.log('total seconds', totalSeconds)
+                return calculatedHours + ':' + computedMinutes + ':' + totalSeconds;
             },
-
             async loadSong(trackId){
                 try {
                     AppState.playingTimeBlock = AppState.activeTimeBlock
@@ -115,4 +120,7 @@ export default {
     font-size: 40px;
 }
 
+.arrow {
+    font-size: 1.5rem;
+}
 </style>

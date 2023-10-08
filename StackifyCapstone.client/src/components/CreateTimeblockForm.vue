@@ -9,8 +9,10 @@
         <input v-model="timeblockData.silent" type="checkbox" id="timeblockSilent"/>
       </div>
       <div v-if="timeblockData.silent" class="mb-3">
-        <label for="timeblockduration" class="form-label">How long?</label>
-        <input v-model="timeblockData.duration" type="number" id="timeblockduration" class="form-control"/>
+        <label for="timeblockduration" class="form-label">Hours</label>
+        <input v-model="timeblockData.hours" type="number" id="timeblockduration" class="form-control"/>
+        <label for="timeblockduration" class="form-label">Minutes</label>
+        <input v-model="timeblockData.minutes" type="number" id="timeblockduration" class="form-control"/>
       </div>
       <button class="btn btn-dark">Create Playlist</button>
     </form>
@@ -36,6 +38,8 @@ export default {
     resetForm,
     async createTimeblock(){
       try {
+        timeblockData.value.hours *= 60 
+        timeblockData.value.duration = (timeblockData.value.minutes + timeblockData.value.hours) * 60
         timeblockData.value.eventId = AppState.activeEvent.id
         await timeBlocksService.createTimeblock(timeblockData.value)
         Pop.success('Playlist Created!', 'success')
