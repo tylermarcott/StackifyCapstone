@@ -6,10 +6,9 @@
       <div class="col-4 d-flex align-items-center justify-content-center">
       <Logo class="text-dark-grey"/>
         <div class="backdrop-circle">
-
       </div>
     </div>
-    <div class="col-6 d-flex justify-content-end align-items-center">
+    <div class="col-8 d-flex justify-content-center align-items-center">
       <Navbar class="text-dark-grey"/>
     </div>
   </section>
