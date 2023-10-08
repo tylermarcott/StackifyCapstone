@@ -12,6 +12,7 @@ class EventsService {
     const newEvent = new Event(res.data)
     AppState.events.push(newEvent)
     AppState.activeEvent = newEvent
+    AppState.activeTimeBlock = null
   }
 
   async getMyEvents() {
