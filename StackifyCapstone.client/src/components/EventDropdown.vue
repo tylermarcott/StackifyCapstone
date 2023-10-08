@@ -45,6 +45,7 @@ export default {
         // FIXME: now when I create a timeblock on an event, it doesn't add the timeblock to the list reactively
         async setActiveTimeblock(){
             try {
+                AppState.gettingActiveTimeblock = true
                 await timeBlocksService.getMyTimeBlocks()
                 const firstTimeblock = AppState.myTimeBlocks[0]
                 if(firstTimeblock){
@@ -52,6 +53,7 @@ export default {
                 } else{
                     AppState.activeTimeBlock = null;
                 }
+                AppState.gettingActiveTimeblock = false;
             } catch (error) {
                 Pop.error(error)
             }

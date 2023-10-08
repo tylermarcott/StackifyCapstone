@@ -38,9 +38,12 @@
             </div>
           </div>
           <div v-else>
-            <h1 class="text-light text-center mt-5 ms-5">
-              No active timeblock or searched song...
-            </h1>
+            <div v-if="!activeEvent">
+              <EventSelect/>
+            </div>
+            <div v-if="!gettingActiveTimeblock && activeEvent">
+              <CreateTimeblock/>
+            </div>
           </div>
         </div>
         <Player/>
@@ -83,6 +86,8 @@ import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
 import ActiveTimeblockMusic from '../components/ActiveTimeblockMusic.vue';
 import ActiveTimeblockSilent from '../components/ActiveTimeblockSilent.vue';
+import EventSelect from '../components/EventSelect.vue';
+import CreateTimeblock from '../components/CreateTimeblock.vue';
 
 export default {
     setup() {
@@ -139,13 +144,12 @@ export default {
         return {
             tracks: computed(() => AppState.tracks),
             activeTrack: computed(() => AppState.activeTrack),
-            activeTimeblock: computed(()=> AppState.activeTimeBlock)
-            
-
-            
+            activeTimeblock: computed(()=> AppState.activeTimeBlock),
+            activeEvent: computed(()=> AppState.activeEvent),
+            gettingActiveTimeblock: computed(()=> AppState.gettingActiveTimeblock)
         };
     },
-    components: { SongSearchBar, Player, EventDropdown, TimeBlockList, ActiveTimeblockMusic, ActiveTimeblockSilent}
+    components: { SongSearchBar, Player, EventDropdown, TimeBlockList, ActiveTimeblockMusic, ActiveTimeblockSilent, EventSelect, CreateTimeblock }
 };
 </script>
 

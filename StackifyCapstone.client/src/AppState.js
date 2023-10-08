@@ -37,6 +37,8 @@ export const AppState = reactive({
 
   playingTimeBlock: null,
 
+  gettingActiveTimeblock: false,
+
   paused: true,
 
   /**@type {Track} */
