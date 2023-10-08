@@ -100,7 +100,6 @@ export default {
           }
         }
         async function refreshToken() {
-            if (AppState.tokenExpire == null || Date.now() > AppState.tokenExpire) {
                 try {
                     logger.log('Refreshing token..');
                     await spotifyLoginService.refreshAccessToken();
@@ -108,7 +107,6 @@ export default {
                 catch (error) {
                     Pop.error(error);
                 }
-            }
         }
         async function startPlayer() {
             try {
@@ -138,7 +136,7 @@ export default {
         onMounted(() => {
             initializePlayer();
             getUserPlaylists();
-            setInterval(refreshToken, 600000);
+            setInterval(refreshToken, 300000);
         });
         return {
             tracks: computed(() => AppState.tracks),

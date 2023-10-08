@@ -109,7 +109,7 @@ class SpotifyLoginService{
   }
 
   // NOTE CALL THIS ONE TO GET A NEW REFRESHED TOKEN
-  refreshAccessToken() {
+  async refreshAccessToken() {
     const refreshToken = localStorage.getItem('refresh_token');
     logger.log('here is our refresh token:', refreshToken)
     const spotifyTokenUrl = 'https://accounts.spotify.com/api/token'
