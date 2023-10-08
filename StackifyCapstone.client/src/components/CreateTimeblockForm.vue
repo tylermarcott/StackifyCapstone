@@ -10,9 +10,9 @@
       </div>
       <div v-if="timeblockData.silent" class="mb-3">
         <label for="timeblockduration" class="form-label">Hours</label>
-        <input v-model="timeblockData.hours" type="number" id="timeblockduration" class="form-control"/>
+        <input v-model="timeblockData.hours" type="number" id="timeblockduration" class="form-control" required/>
         <label for="timeblockduration" class="form-label">Minutes</label>
-        <input v-model="timeblockData.minutes" type="number" id="timeblockduration" class="form-control"/>
+        <input v-model="timeblockData.minutes" type="number" id="timeblockduration" class="form-control" required/>
       </div>
       <button class="btn btn-dark">Create Playlist</button>
     </form>

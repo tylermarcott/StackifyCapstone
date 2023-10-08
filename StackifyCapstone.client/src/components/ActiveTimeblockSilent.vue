@@ -93,7 +93,7 @@ export default {
                     totalSeconds = `0${totalSeconds.toString()}`
                 }
                 logger.log('total seconds', totalSeconds)
-                return 'Hours: ' + calculatedHours + ':' + computedMinutes + ':' + totalSeconds;
+                return calculatedHours + ':' + computedMinutes + ':' + totalSeconds;
             },
             
         };
