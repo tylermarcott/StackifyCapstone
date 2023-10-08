@@ -13,10 +13,10 @@
             <div class="modal-content background-img">
                 <div class="modal-header">
                     <slot name="header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
                     </slot>
                 </div>
-                <div class="modal-body text-dark">
+                <div class="modal-body text-light">
                     <slot name="body">
                     </slot>
                 </div>
