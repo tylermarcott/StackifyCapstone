@@ -14,6 +14,7 @@
           <p class="search-icon">Clear</p>
         </button>
     </div>
+    <div v-else class="empty"></div>
 </template>
 
 <script>
@@ -79,7 +80,11 @@ setup() {
   border-radius: 8px;
   height: 4vh;
   padding-left: 0.4em;
+}
 
+.empty{
+  margin-top: .5em ;
+  height: 4vh;
 }
 
 .search-bar {

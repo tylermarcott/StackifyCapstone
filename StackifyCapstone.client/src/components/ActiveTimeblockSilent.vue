@@ -3,8 +3,8 @@
         <div class="col-2 d-flex align-items-center justify-content-center">
             <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position <= 0" class="btn bg-green"><i class="arrow mdi mdi-menu-left"></i></button>
         </div>
-        <div class="col-8 bg-dark-subtle">
-            <h2>{{ timeblock.title }}</h2>
+        <div class="col-8 title-card rounded">
+            <h2 class="font">{{ timeblock.title }}</h2>
         </div>
         <div class="col-2 d-flex align-items-center justify-content-center">
              <button title="Next Time Block" @click="nextTimeblock()" :disabled="timeblock.position == timeblocksLength - 1" class="btn bg-green"><i class="arrow mdi mdi-menu-right"></i></button>
@@ -116,6 +116,17 @@ export default {
 }
 .bg-pink{
     background-color: #cd00ff;
+}
+
+.title-card{
+    color: #eeeeee;
+    background-image: url("https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg");
+    padding: 0.3em;
+}
+
+.font{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
 }
 
 .timer-text {

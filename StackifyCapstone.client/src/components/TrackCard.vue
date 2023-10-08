@@ -1,5 +1,5 @@
 <template>
-  <section class="song-card elevation-5 pointer mx-2" @dblclick="playTrack(track.id)">
+  <section class="song-card elevation-5 selectable mx-2" @dblclick="playTrack(track.id)">
     <div class="row justify-content-evenly">
       <div v-if="!locked" class="col-1 d-flex">
         <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="p-0 btn"><i class="mdi mdi-triangle-outline move-button"></i></button>
