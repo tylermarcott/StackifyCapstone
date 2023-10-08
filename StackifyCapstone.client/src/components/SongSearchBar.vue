@@ -58,7 +58,6 @@ setup() {
         } else{
           Pop.toast('Please enter a song name into the field.', 'warning')
         }
-        this.resetForm()
       } catch (error) {
         Pop.error(error)
       }
@@ -67,7 +66,6 @@ setup() {
 },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .search {

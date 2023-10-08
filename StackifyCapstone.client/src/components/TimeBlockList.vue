@@ -1,6 +1,6 @@
 <template>
     <div class="timeblock-list"> 
-        <h2 class="text-light text-center pt-3">Playlists:</h2>
+        <h2 class="text-light text-center pt-3">Playlists</h2>
         <section class="timeblocks-section">
             <div v-for="timeblock in myTimeblocks" :key="timeblock.id">
                 <TimeBlockCard :timeblock="timeblock"/>
@@ -16,7 +16,6 @@
                     <CreateTimeblockForm/>
                 </template>
             </ModalWrapper>
-            
             <!-- TODO add the all TimeblocksModel here -->
             <!-- <button v-if="activeEvent" class="btn btn-outline-success w-100">import timeblock</button> -->
         </section>
