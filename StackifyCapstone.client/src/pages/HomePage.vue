@@ -6,7 +6,7 @@
         <div class="backdrop-circle">
         </div>
       </div>
-      <div class="col-8 d-flex justify-content-center align-items-center">
+      <div class="col-8 d-flex justify-content-evenly align-items-center">
         <NavBar />
         </div>
     </section>
