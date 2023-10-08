@@ -60,6 +60,10 @@ footer {
   height: 32px;
 }
 
+main{
+  overflow: hidden;
+}
+
 // Color Classes
 .darkgrey {
   color: #4f4f4f;
