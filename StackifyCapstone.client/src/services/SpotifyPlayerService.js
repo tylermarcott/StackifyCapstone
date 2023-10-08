@@ -92,7 +92,6 @@ class SpotifyPlayerService {
   }
   async second() {
     await spotifyApiService.getActiveTrack()
-    logger.log('Grabbing Current Position of Active Track by the second', AppState.activeTrack.progress)
   }
 
   intervalId = 0
@@ -159,7 +158,6 @@ class SpotifyPlayerService {
   }
 
   async playNext() {
-    
       let index = AppState.playingTimeBlock.trackList.findIndex(track => track.id == AppState.activeTrack.id)
       if (AppState.playingTimeBlock.trackList[index + 1]) {
         let nextTrack = AppState.playingTimeBlock.trackList[index + 1]

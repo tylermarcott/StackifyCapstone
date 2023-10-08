@@ -67,20 +67,19 @@ setup() {
 
   function calculateBar() {
     if(AppState.activeTrack != null && document.getElementById('song-duration-bar')) {
-      logger.log('running calc bar')
-        let bar = document.getElementById('song-duration-bar')
-        bar.setAttribute('value', `${AppState.activeTrack.progress}`)
-        bar.setAttribute('max', `${AppState.activeTrack.duration}`)
-        trackPosition.value = AppState.activeTrack.progress
-      }
+      let bar = document.getElementById('song-duration-bar')
+      bar.setAttribute('value', `${AppState.activeTrack.progress}`)
+      bar.setAttribute('max', `${AppState.activeTrack.duration}`)
+      trackPosition.value = AppState.activeTrack.progress
     }
+  }
 
   watchEffect(() => {
-    if (AppState.isPlaying && AppState.activeTrack && AppState.activeTrack.duration - AppState.activeTrack.progress < 1001 ) {
+    if (AppState.isPlaying && AppState.activeTrack && AppState.activeTrack.duration - AppState.activeTrack.progress < 2001 ) {
       addNextTrackToQueue()
     } else {
-      logger.log('Below 95%')
-    }
+      if(AppState.isPlaying && AppState.activeTrack.progress != null) logger.log(AppState.activeTrack.progress)
+      }
     }
   )
 

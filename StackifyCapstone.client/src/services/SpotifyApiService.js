@@ -30,8 +30,8 @@ class SpotifyApiService{
     const bearerToken = localStorage.getItem('access_token')
     const url = 'https://api.spotify.com/v1/me/player/currently-playing'
     const res = await spotifyApi.get(url, { headers: { Authorization: `Bearer ${bearerToken}` } })
-    logger.log('Currently Playing Track', res.data)
     if(res.data) {
+      logger.log('Currently Playing Track', res.data.item.name)
       AppState.activeTrack = new ActiveTrack(res.data)
       return AppState.activeTrack.id
     }

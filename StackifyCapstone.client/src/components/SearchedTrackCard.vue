@@ -5,8 +5,6 @@
         <img class="album-img img-fluid" :src="track.albumImg[0].url" alt="">
       </div>
       <!-- TODO: for artist or title, put a limit on the length and append ... so card don't stretch -->
-
-
       <!-- FIXME -->
       <!-- TODO: check out these cards and make some changes. Namely, put song name on top, below song, put album in row. -->
       <div class="col-7">
@@ -15,7 +13,6 @@
             <div>
               <div class="mb-0 song-title">{{ track.name }}</div>
             </div>
-
           </div>
           <div class="col-12 d-flex justify-content-start">
             <div class="row">
@@ -26,7 +23,6 @@
             </div>
           </div>
         </div>
-
         <div class="row justify-content-between pt-2">
           <div class="col-9 text-start">
               <p>{{ track.album }}</p>
@@ -36,7 +32,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-2 text-center">
         <div @click="addTrackToActiveTimeblock(track.id)" class="row add-button mb-2 p-0">
           <div class="col-3">
@@ -49,7 +44,6 @@
         <h3>
           <i class="mdi mdi-dots-horizontal"></i>
         </h3>
-
         <div class="row mt-4">
           <div class="col-12">
             <h5>
@@ -94,6 +88,7 @@ export default {
         try {
             if(AppState.activeTimeBlock){
               await tracksService.addTrackToActiveTimeblock(trackId)
+              Pop.success('Added song to Active Playlist')
               this.editTimeblockTracklist()
               this.clearSearchedTracks()
             } else{
