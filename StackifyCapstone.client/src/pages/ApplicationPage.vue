@@ -63,7 +63,6 @@
              <EditTimerForm/>
         </template>
     </ModalWrapper>
-
   <ModalWrapper id="save-notes">
       <template #body>
       <NotesForm/>
@@ -179,7 +178,6 @@ export default {
   border-radius: 15px;
 }
 
-
 .searched-song-card{
   padding: 1em;
   background-color: #4f4f4fdc;
@@ -196,14 +194,12 @@ export default {
   backdrop-filter: blur(10px);
 }
 
-
 // This is the Center Panel Section (SEARCH, MAIN, PLAYER)
 
 .center-panel {
   height: 100vh;
   
 }
-
 
 .add-button {
   background-color: #63FAAA ;
@@ -223,7 +219,7 @@ export default {
 
 .main-content {
   height: 75vh;
-  background-color: #eeeeee;
+  background-color: #0f0f0f;
   border: solid 8px #303030;
   border-left: none;
   border-right: none;

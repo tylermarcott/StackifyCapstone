@@ -68,7 +68,7 @@ setup(props) {
 
     async deleteTimeblock(timeblockId){
       try {
-        if(await Pop.confirm('Are you sure you want to delete this timeblock?')){
+        if(await Pop.confirm('Are you sure you want to delete this playlist?')){
           logger.log('this is the timeblockId', timeblockId)
           await timeBlocksService.deleteTimeblock(timeblockId)
           Pop.toast('You have deleted this timeblock', 'success', 'center')
