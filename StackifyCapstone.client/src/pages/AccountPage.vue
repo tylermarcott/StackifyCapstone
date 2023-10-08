@@ -148,7 +148,7 @@ export default {
   /* background-color: #4f4f4f; */
   background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
   border-radius: 15px;
-  border: solid 8px #2f2f2f;
+  border: solid 5px #2f2f2f;
  
 }
 .account-wrapper {
@@ -175,7 +175,7 @@ img {
 .email-text {
   font-size: 2rem;
   margin: 2rem 1rem;
-  color: #EA94FF;
+  color: #eeeeee;
 }
 
 .connect-button {
@@ -203,7 +203,7 @@ img {
 }
 
 .about {
-  border: solid 8px #2f2f2f;
+  border: solid 5px #2f2f2f;
   background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
   background-size: cover;
   background-position: top;
@@ -213,40 +213,44 @@ img {
 
 .settings-title {
   font-size: 3rem;
-  color:#63FAAA;
+  color:#eeeeee;
 }
 
 .event-card {
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
+  background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+  background-size: cover;
+  background-position: top;
   border-radius: 8px;
   margin: .5rem 0px;
   padding: 0px;
-  border: solid 8px #2f2f2f;
+  border: solid 5px #2f2f2f;
+  color: #eeeeee;
 }
 
 .event-title {
-  background-color: #4f4f4f;
-  color: #EA94FF;
+  background-color: #EA94FF;
+  color: #2f2f2f;
   font-size: 1.5rem;
   padding: .5rem;
-  border: solid 1px #EA94FF;
+  border-radius: 3px;
 }
 
 .welcome-text {
   font-size: 4rem;
-  color: #EA94FF;
+  color: #eeeeee;
   margin-top: 2rem;
   margin-bottom: 2rem;
   }
 
   .event-category-text {
-    color: #63FAAA;
+    color: #eeeeee;
     margin: 2rem 0rem;
     font-size: 3rem;
   }
 
   .event-list {
-    border: solid 8px #2f2f2f;
+    border: solid 5px #2f2f2f;
     /* background-color: #4f4f4f; */
     background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
     border-radius: 15px;
