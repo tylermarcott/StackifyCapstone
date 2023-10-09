@@ -1,11 +1,11 @@
 <template>
   <section class="row m-0 p-0">
     <div class="col-12 player d-flex justify-content-center align-items-center">
-        <section class="row w-100 m-0 p-0">
-        <div class="col-3 devices d-flex justify-content-center align-items-center">
+        <section class="row w-100 m-0 p-0 d-flex">
+        <div class="col-6 col-md-3 devices d-flex justify-content-center align-items-center order-first">
             <i class="devices-icon mdi mdi-shuffle-variant"></i>
         </div>
-        <div class="col-6 player-controls d-flex justify-content-center p-0">
+        <div class="col-12 col-md-6 player-controls d-flex justify-content-center p-0 order-1 order-md-0">
             <button @click="playPrevious()" class="previous elevation-5">
             <i class="mdi mdi-skip-previous"></i>
             </button>
@@ -18,11 +18,11 @@
             <i class="mdi mdi-skip-next"></i>
             </button>
         </div>
-        <div class="col-3 devices d-flex justify-content-center align-items-center">
+        <div class="col-6 col-md-3 devices d-flex justify-content-start align-items-center order-0 order-md-1">
             <i @click="showVolume()" class="devices-icon mdi mdi-volume-high"></i>
             <input id="volume-slider" class="volume-bar mx-2" hidden type="range" v-model="volume" max="100" min="0" step="10" @input="setVolume()"/>
         </div>
-        <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center align-items-center order-last">
             <p v-if="activeTrack" class="duration-text m-0">{{ msToTime(activeTrack.progress) }}</p>
             <input v-if="activeTrack" class="song-duration-bar" v-model="trackPosition" type="range" min="0" step="100" id="song-duration-bar" @click.prevent="() => {if(isPlaying){togglePlay()}}" @mouseup="changeTrackPosition()">
             <div v-else class="song-duration-bar song-duration-placeholder"></div>
@@ -277,5 +277,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
   color: #eeeeee;
   padding: .5rem;
   font-size: .75rem;
+}
+
+@media screen and (max-width: 768px){
+    .player{
+      height: fit-content;
+    }
 }
 </style>

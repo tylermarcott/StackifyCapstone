@@ -29,8 +29,8 @@ export default {
 }
 
 .profile-picture {
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 15vh;
   object-fit: cover;
   background-position: center;
   border-radius: 50%;
@@ -58,5 +58,11 @@ export default {
 .home-button:hover{
   font-size: 2.1rem;
   color: #63FAAA;
+}
+
+@media screen and (max-width: 768px){
+    .right-panel-spacer{
+      height: fit-content;
+    }
 }
 </style>

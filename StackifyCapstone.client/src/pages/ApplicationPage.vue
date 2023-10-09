@@ -1,7 +1,7 @@
 <template>
   <section class="full-app-view p-0">
     <section class="row app-wrapper">
-      <div class="col-3 left-panel p-0">
+      <div class="col-12 col-md-3 left-panel p-0">
         <section class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
           <EventDropdown/> 
@@ -20,7 +20,7 @@
           <ActiveSong/>
         </div>
       </div>
-      <div class="col-7 center-panel p-0">
+      <div class="col-12 col-md-7 center-panel p-0">
         <SongSearchBar/>
         <div class="main-content justify-content-center align-items-center background-img">
           <!-- NOTE use a row on the search songs component-->
@@ -48,7 +48,7 @@
         </div>
         <Player/>
       </div> 
-      <div class="col-2 right-panel p-0 text-center">
+      <div class="col-12 col-md-2 right-panel p-0 text-center">
         <Profile/>
       </div>
     </section>
@@ -241,5 +241,21 @@ export default {
   border: solid 8px #303030;
   border-radius: 15px;
   color: #eeeeee;
+}
+
+@media screen and (max-width: 768px){
+    .left-panel{
+      height: min-content;
+    }
+    .right-panel{
+      height: min-content;
+    }
+    .center-panel{
+      height: fit-content;
+    }
+
+    .searched-song-card{
+      height: fit-content;
+    }
 }
 </style>

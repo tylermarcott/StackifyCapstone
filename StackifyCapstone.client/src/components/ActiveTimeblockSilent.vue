@@ -18,7 +18,7 @@
         </div>
     </section>
     <section class="row justify-content-center">
-        <div class="col-12 d-flex justify-content-evenly my-3">
+        <div class="col-12 d-flex justify-content-evenly mt-2">
             <button class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#edit-timer'>Edit Timer</button>
             <button v-if="!timeblock.notes" class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Create Notes</button>
             <button v-else class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Edit Notes</button>
@@ -140,7 +140,7 @@ export default {
 
 .notes-wrapper {
     min-height: 30vh;
-    margin-top: 10vh;
+    margin-top: 1vh;
     backdrop-filter: brightness(20%);
     border-radius: 15px;
 }
@@ -150,6 +150,9 @@ export default {
 }
 .bg-green{
     background-color: #63FAAA;
+}
+@media screen and (max-width: 768px){
+    
 }
 
 </style>
