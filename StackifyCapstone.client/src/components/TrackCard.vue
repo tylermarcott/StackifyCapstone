@@ -11,6 +11,7 @@
       <div class="col-2 no-overflow">
         {{track.artist }}
       </div>
+
       <div class="col-3 no-overflow album-column">
         {{ calculateStringLength(track.album) }}
       </div>
@@ -54,6 +55,8 @@ export default {
     totalSeconds,
     computedMinutes,
     computedSeconds,
+    timeblockTrackDetails: computed(() => AppState.timeblockTrackDetails),
+    bpm: computed(() => (AppState.timeblockTrackDetails.bpm).toFixed(0)),
     locked: computed(()=> AppState.activeTimeBlock.locked),
     topTrack : computed(()=> AppState.activeTimeBlock.trackList[0].id),
     bottomTrack : computed(()=> AppState.activeTimeBlock.trackList[AppState.activeTimeBlock.trackList.length-1].id),
