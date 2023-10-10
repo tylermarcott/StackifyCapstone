@@ -21,7 +21,7 @@ setup() {
   font-weight: 800;
   margin-bottom: 2rem;
   margin-right: 7rem;
-  margin-left: 3rem;
+  margin-left: 7rem;
   color: #EA94FF;
 }
 </style>

@@ -1,27 +1,27 @@
 <template>
   <section class="row">
 
-      <div class="col-4">
+      <div class="col-6 col-md-4">
         <router-link v-if="route.path != '/about'" :to="{ name: 'About' }" class="">
           <h2 class="purple">About</h2>
         </router-link>
       </div>
-      <div v-if="account.id == null && tokenOk == false" class="col-4">
+      <div v-if="account.id == null && tokenOk == false" class="col-6 col-md-4">
         <router-link :to="{ name: 'Login' }" class="">
           <h2 class="purple"> Login </h2>
         </router-link>
     </div>
-    <div v-if="account.id != null && tokenOk == true" class="col-4">
+    <div v-if="account.id != null && tokenOk == true" class="col-6 col-md-4">
       <router-link :to="{ name: 'Account' }" class="">
         <h2 class="purple"> Account </h2>
       </router-link>
     </div>
-    <div v-if="tokenOk == true && account.id != null" class="col-4">
+    <div v-if="tokenOk == true && account.id != null" class="col-6 col-md-4">
       <router-link :to="{ name: 'Application', params: { application: 'application' } }" class="">
       <h2 class="purple">Application</h2>
       </router-link>
     </div>
-    <div v-else class="col-4">
+    <div v-else class="col-6 col-md-4">
       <router-link :to="{ name: 'Login' }" class="">
       <h2 class="purple">Connect Spotify</h2>
       </router-link>

@@ -1,14 +1,11 @@
 <template>
-
-
-  
   <section class="row landing-navigation">
-      <div class="col-4 d-flex align-items-center justify-content-center">
+      <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
       <Logo class="text-dark-grey"/>
         <div class="backdrop-circle">
       </div>
     </div>
-    <div class="col-8 d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-8 d-flex justify-content-center align-items-center">
       <Navbar class="text-dark-grey"/>
     </div>
   </section>
@@ -149,6 +146,18 @@ export default {
   top: -40vh;
   left: -10vh;
   z-index: -1;
+}
+
+@media screen and (max-width: 768px){
+
+
+  .backdrop-circle{
+      height: 27.5vh;
+      width: 100vw;
+      top: -10vh;
+      left: 0vh;
+      border-radius: 40%;
+    }
 }
 
 </style>

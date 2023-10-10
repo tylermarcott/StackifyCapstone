@@ -1,20 +1,20 @@
 <template>
   <header>
     <section class="row d-flex landing-navigation">
-      <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-4 d-flex justify-content-center align-items-center ">
         <Logo/>
         <div class="backdrop-circle">
         </div>
       </div>
-      <div class="col-8 d-flex justify-content-evenly align-items-center">
+      <div class="col-12 col-md-8 d-flex justify-content-evenly align-items-center">
         <NavBar />
         </div>
     </section>
 
     <section class="row landing-splash">
-      <div class="col-4">
+      <div class="col-12 col-md-4">
       </div>
-      <div class="col-8 text-center">
+      <div class="col-12 col-md-8 text-center">
         <a href="https://open.spotify.com/" target="_blank">
         <img class="img-fluid spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="spotify-logo">
       </a>
@@ -27,17 +27,17 @@
       <div class="col-12 d-flex justify-content-center align-items-end">
         <h3 class="overview-title my-5">Concept</h3>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <p class="overview-body">Our concept is elegantly straightforward.  Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion.</p>
       </div>
     </section>
     <section class="row spacer">
     </section>
     <section class="row cta d-flex align-items-center">
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <div class="cta-image image-fluid"></div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <div class="cta-text">
           <h3 class="cta-title">Don't Wait Any Longer</h3>
           <p>Are you ready to elevate your music game and take your events to the next level? Discover Stackify, the ultimate music application for event planners and amateur DJs. Say goodbye to the hassle of managing music and hello to effortless music curation and playback. Don't miss out on this invaluable tool that's meticulously crafted to cater to your precise requirements. Join the ranks of those who are already using Stackify to seamlessly identify tracks that harmonize beautifully and elevate event ambiance and entertainment quality. </p>
@@ -180,6 +180,23 @@ export default {
   left: -10vh;
   z-index: -1;
 }
+@media screen and (max-width: 768px){
+    .spotify-logo{
+      width: 75vw;
+    }
+    .backdrop-circle{
+      height: 27.5vh;
+      width: 100vw;
+      top: -10vh;
+      left: 0vh;
+      border-radius: 40%;
+    }
 
+    .cta-image{
+      height: 30vh;
+      max-width: max-content;
+      margin-left: 0;
+    }
+  }
 
 </style>
