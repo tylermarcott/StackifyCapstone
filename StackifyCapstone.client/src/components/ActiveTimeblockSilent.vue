@@ -3,8 +3,8 @@
         <div class="col-2 d-flex align-items-center justify-content-center">
             <button title="Previous Time Block" @click="prevTimeblock()" :disabled="timeblock.position <= 0" class="btn bg-green"><i class="arrow mdi mdi-menu-left"></i></button>
         </div>
-        <div class="col-8 bg-dark-subtle">
-            <h2>{{ timeblock.title }}</h2>
+        <div class="col-8 title-card rounded">
+            <h2 class="font">{{ timeblock.title }}</h2>
         </div>
         <div class="col-2 d-flex align-items-center justify-content-center">
              <button title="Next Time Block" @click="nextTimeblock()" :disabled="timeblock.position == timeblocksLength - 1" class="btn bg-green"><i class="arrow mdi mdi-menu-right"></i></button>
@@ -18,7 +18,7 @@
         </div>
     </section>
     <section class="row justify-content-center">
-        <div class="col-12 d-flex justify-content-evenly my-3">
+        <div class="col-12 d-flex justify-content-evenly mt-2">
             <button class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#edit-timer'>Edit Timer</button>
             <button v-if="!timeblock.notes" class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Create Notes</button>
             <button v-else class="btn button button-border w-25 my-2" data-bs-toggle="modal" data-bs-target='#save-notes'>Edit Notes</button>
@@ -118,6 +118,17 @@ export default {
     background-color: #cd00ff;
 }
 
+.title-card{
+    color: #eeeeee;
+    background-image: url("https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg");
+    padding: 0.3em;
+}
+
+.font{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+}
+
 .timer-text {
     color: #eeeeee;
 }
@@ -129,7 +140,7 @@ export default {
 
 .notes-wrapper {
     min-height: 30vh;
-    margin-top: 10vh;
+    margin-top: 1vh;
     backdrop-filter: brightness(20%);
     border-radius: 15px;
 }
@@ -139,6 +150,9 @@ export default {
 }
 .bg-green{
     background-color: #63FAAA;
+}
+@media screen and (max-width: 768px){
+    
 }
 
 </style>

@@ -1,10 +1,10 @@
 <!-- <template>
   <div class="right-panel-spacer">
-      <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button"></i></router-link>
+      <router-link :to="{name: 'Home'}"><i class="mdi mdi-home home-button" title="Go to Home Page"></i></router-link>
   </div>
   <div v-if="profile.name">
     <router-link :to="{name: 'Account'}">
-    <img class="img-fluid profile-picture" :src="profile.picture" alt="account-picture">
+    <img class="img-fluid profile-picture" :src="profile.picture" alt="account-picture" title="Go to Account Page">
   </router-link>
     <h2 class="account-text">{{ profile.name }}</h2>
   </div>
@@ -29,13 +29,18 @@ export default {
 }
 
 .profile-picture {
-  height: 100px;
-  width: 100px;
+  height: 15vh;
+  width: 15vh;
   object-fit: cover;
   background-position: center;
   border-radius: 50%;
   border: 1px solid #EA94FF;
   margin: 5vh 0vh;
+  overflow: hidden;
+}
+
+.profile-picture:hover{
+  transform: scale(1.05);
 }
 
 .account-text {

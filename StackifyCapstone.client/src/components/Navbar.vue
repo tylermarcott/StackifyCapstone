@@ -1,14 +1,15 @@
 <template>
   <section class="row">
-    <div class="col-4 d-flex justify-content-center">
-      <router-link v-if="route.path != '/about'" :to="{ name: 'About' }" class="">
-      <h2 class="purple">About</h2>
-      </router-link>
-    </div>
-    <div v-if="account.id == null && tokenOk == false" class="col-4">
-      <router-link :to="{ name: 'Login' }" class="">
-        <h2 class="purple"> Login </h2>
-      </router-link>
+
+      <div class="col-4">
+        <router-link v-if="route.path != '/about'" :to="{ name: 'About' }" class="">
+          <h2 class="purple">About</h2>
+        </router-link>
+      </div>
+      <div v-if="account.id == null && tokenOk == false" class="col-4">
+        <router-link :to="{ name: 'Login' }" class="">
+          <h2 class="purple"> Login </h2>
+        </router-link>
     </div>
     <div v-if="account.id != null && tokenOk == true" class="col-4">
       <router-link :to="{ name: 'Account' }" class="">
@@ -25,18 +26,21 @@
       <h2 class="purple">Connect Spotify</h2>
       </router-link>
     </div>
-    <div class="col-4">
+    <!-- //NOTE - Div classes for spacing -->
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
 
-    </div>
     <!-- TODO: -->
     <!-- NOTE: if user IS logged in, display this -->
     <!-- <div class="col-4">
         <router-link :to="{ name: 'Account' }" class="">
-        <h2 class="purple">Account</h2>
+          <h2 class="purple">Account</h2>
         </router-link>
       </div> -->
-  </section>
-</template>
+    </section>
+  </template>
 
 <script>
 import { computed, onMounted, watchEffect } from "vue"

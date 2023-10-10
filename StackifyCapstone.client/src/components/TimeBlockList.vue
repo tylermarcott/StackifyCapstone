@@ -71,8 +71,9 @@ export default {
     background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
 }
 
+
 .timeblocks-section{
-    height: 57vh;
+    height: 53vh;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none; 
@@ -83,8 +84,8 @@ export default {
     color: #63FAAA;
 }
 .button:hover{
-  background-color: #63FAAA;
-  color: #303030
+    background-color: #63FAAA;
+    color: #303030
 }
 
 .timeblock-imports { 
@@ -95,5 +96,13 @@ export default {
 
 .timeblocks-section::-webkit-scrollbar {
     display: none;
+}
+@media screen and (max-width: 768px){
+    .timeblock-list{
+        height: 60vh;
+    }
+    .timeblocks-section{
+        height: 40vh;
+    }
 }
 </style>

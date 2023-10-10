@@ -1,5 +1,5 @@
 <template>
-    <div class="search d-flex justify-content-center align-items-center">
+    <div v-if="activeTimeBlock" class="search d-flex justify-content-center align-items-center">
         <form @submit.prevent="searchSong" class="w-100 row">
         <div class="col-12 d-flex justify-content-center align-items-center">
             <input v-model="searchData.query" class="search-bar"><div class="text-center">
@@ -14,10 +14,11 @@
           <p class="search-icon">Clear</p>
         </button>
     </div>
+    <div v-else class="empty"></div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { spotifyApiService } from '../services/SpotifyApiService';
 import Pop from '../utils/Pop';
 import { logger } from '../utils/Logger';
@@ -28,12 +29,14 @@ setup() {
     const searchData = ref({});
   return {
     searchData,
+    activeTimeBlock: computed(()=>AppState.activeTimeBlock),
     resetForm(){
       searchData.value = { type: '' }
     },
 
     async clearSearchedTracks(){
       try {
+        this.resetForm()
         await tracksService.clearSearchedTracks()
       } catch (error) {
         Pop.error(error)
@@ -77,7 +80,11 @@ setup() {
   border-radius: 8px;
   height: 4vh;
   padding-left: 0.4em;
+}
 
+.empty{
+  margin-top: .5em ;
+  height: 4vh;
 }
 
 .search-bar {

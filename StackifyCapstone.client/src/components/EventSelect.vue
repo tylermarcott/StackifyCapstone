@@ -66,6 +66,10 @@ export default {
   border: solid 8px #2f2f2f;
 }
 
+.event-card:hover {
+    transform: scale(1.05);
+}
+
 .event-title {
   background-color: #4f4f4f;
   color: #EA94FF;

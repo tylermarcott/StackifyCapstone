@@ -1,5 +1,5 @@
 <template>
-  <section class="song-card elevation-5 pointer mx-2" @dblclick="playTrack(track.id)">
+  <section class="song-card elevation-5 selectable mx-2" @dblclick="playTrack(track.id)">
     <div class="row justify-content-evenly">
       <div v-if="!locked" class="col-1 d-flex">
         <button title="Move Track Up" v-if="topTrack != track.id" @click="moveTrack('up')" class="p-0 btn"><i class="mdi mdi-triangle-outline move-button"></i></button>
@@ -11,6 +11,7 @@
       <div class="col-2 no-overflow">
         {{track.artist }}
       </div>
+
       <div class="col-3 no-overflow album-column">
         {{ calculateStringLength(track.album) }}
       </div>
@@ -54,6 +55,8 @@ export default {
     totalSeconds,
     computedMinutes,
     computedSeconds,
+    timeblockTrackDetails: computed(() => AppState.timeblockTrackDetails),
+    bpm: computed(() => (AppState.timeblockTrackDetails.bpm).toFixed(0)),
     locked: computed(()=> AppState.activeTimeBlock.locked),
     topTrack : computed(()=> AppState.activeTimeBlock.trackList[0].id),
     bottomTrack : computed(()=> AppState.activeTimeBlock.trackList[AppState.activeTimeBlock.trackList.length-1].id),

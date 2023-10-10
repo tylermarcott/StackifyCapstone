@@ -1,13 +1,13 @@
 <template>
   <section class="mb-2 pb-3">
     <div class="row row-height pt-3">
-      <div class="col-3 max-height">
+      <div class="col-6 col-md-3 max-height">
         <img class="album-img img-fluid" :src="track.albumImg[0].url" alt="">
       </div>
       <!-- TODO: for artist or title, put a limit on the length and append ... so card don't stretch -->
       <!-- FIXME -->
       <!-- TODO: check out these cards and make some changes. Namely, put song name on top, below song, put album in row. -->
-      <div class="col-7">
+      <div class="col-12 col-md-7">
         <div class="row">
           <div class="col-12">
             <div>
