@@ -48,7 +48,7 @@
         </div>
         <Player/>
       </div> 
-      <div class="col-2 right-panel p-0 text-center">
+      <div class="col-2 right-panel text-center">
         <Profile/>
       </div>
     </section>
@@ -234,7 +234,7 @@ export default {
 
 // This is the Right Panel Section (ACCOUNT, SPACER)
 .right-panel {
-  height: 100vh;
+  max-height: 100vh;
   // background-color: #4f4f4f;
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
   background-position: center;
