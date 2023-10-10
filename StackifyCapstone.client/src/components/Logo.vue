@@ -17,9 +17,11 @@ setup() {
 
 .site-logo {
   z-index: 5;
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: 800;
-  margin: 3rem;
+  margin-bottom: 2rem;
+  margin-right: 7rem;
+  margin-left: 3rem;
   color: #EA94FF;
 }
 </style>
