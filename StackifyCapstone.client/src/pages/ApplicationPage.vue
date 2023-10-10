@@ -234,7 +234,7 @@ export default {
 
 // This is the Right Panel Section (ACCOUNT, SPACER)
 .right-panel {
-  height: 100vh;
+  max-height: 100vh;
   // background-color: #4f4f4f;
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
   background-position: center;
