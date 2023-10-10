@@ -48,7 +48,7 @@
         </div>
         <Player/>
       </div> 
-      <div class="col-12 col-md-2 right-panel p-0 text-center">
+      <div class="col-12 col-md-2 right-panel text-center">
         <Profile/>
       </div>
     </section>

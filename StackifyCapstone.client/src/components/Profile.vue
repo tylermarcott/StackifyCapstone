@@ -87,7 +87,7 @@ export default {
       </section>
     </div>
     <!-- Modal -->
-    <div class="col-10  event-list">
+    <div class="col-10 event-list">
       <h2 class="text-center event-category-text">Events</h2>
       <div v-for="event in myEvents" :key="event.id">
         <section class="row m-1">
@@ -211,7 +211,15 @@ export default {
 .account-wrapper {
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
   overflow-y: auto;
-  max-height: 97vh;
+  max-height: 98vh;
+    /* ... other styles ... */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none; /* For Firefox */
+}
+
+.account-wrapper::-webkit-scrollbar {
+  width: 0; /* Hide vertical scrollbar */
+  height: 0; /* Hide horizontal scrollbar */
 }
 
 .modal-wrapper {
@@ -264,7 +272,7 @@ img {
 }
 
 .about {
-  border: solid 5px #2f2f2f;
+  border: solid 2px #2f2f2f;
   background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
   background-size: cover;
   background-position: top;
@@ -285,7 +293,7 @@ img {
   border-radius: 8px;
   margin: .5rem 0px;
   padding: 0px;
-  border: solid 5px #2f2f2f;
+  border: solid 2px #2f2f2f;
   color: #eeeeee;
 }
 
@@ -307,11 +315,11 @@ img {
 .event-category-text {
   color: #eeeeee;
   margin: 2rem 0rem;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .event-list {
-  border: solid 5px #2f2f2f;
+  border: solid 2px #2f2f2f;
   /* background-color: #4f4f4f; */
   background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
   border-radius: 15px;
