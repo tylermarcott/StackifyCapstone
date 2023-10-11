@@ -41,8 +41,4 @@ setup() {
   color:#E1289F;
   font-size: 1.5rem;
 }
-
-.footer-link-style{
-
-}
 </style>

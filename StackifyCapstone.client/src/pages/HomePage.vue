@@ -172,7 +172,7 @@ export default {
 
 .backdrop-circle {
   height: 70vh;
-  width: 70vh;
+  width: 37.5vw;
   background-color: #4f4f4f;
   border-radius: 50%;
   position: absolute;
