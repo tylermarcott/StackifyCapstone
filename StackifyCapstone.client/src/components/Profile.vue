@@ -132,7 +132,6 @@ import { computed, onMounted, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
-import { spotifyPlaylistService } from "../services/SpotifyPlaylistService";
 import { accountService } from "../services/AccountService";
 import { eventsService } from "../services/EventsService";
 export default {

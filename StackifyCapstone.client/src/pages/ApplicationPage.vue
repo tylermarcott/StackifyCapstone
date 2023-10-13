@@ -80,7 +80,6 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import SongSearchBar from '../components/SongSearchBar.vue';
 import Player from '../components/Player.vue';
-import { spotifyPlaylistService } from "../services/SpotifyPlaylistService.js";
 import EventDropdown from '../components/EventDropdown.vue';
 import TimeBlockList from '../components/TimeBlockList.vue';
 import ActiveTimeblockMusic from '../components/ActiveTimeblockMusic.vue';
@@ -91,14 +90,7 @@ import CreateTimeblock from '../components/CreateTimeblock.vue';
 export default {
     setup() {
         // NOTE: this is the data submitted from the upper search bar to search for a song, album or artist
-        async function getUserPlaylists() {
-          try {
-            logger.log('Fetching User Playlists')
-            await spotifyPlaylistService.getUserPlaylists()
-          } catch (error) {
-            Pop.error(error)
-          }
-        }
+        
         async function refreshToken() {
           try {
             logger.log('Refreshing token..');
@@ -135,7 +127,6 @@ export default {
         }
         onMounted(() => {
             initializePlayer();
-            getUserPlaylists();
             setInterval(refreshToken, 600000);
         });
         return {

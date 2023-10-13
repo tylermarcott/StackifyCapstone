@@ -58,7 +58,9 @@ export default {
         }
       }
     onMounted(() => {
-       getActiveTrack()
+      if(AppState.isPlaying == true){
+        getActiveTrack()
+      }
     })
 
     return {

@@ -153,6 +153,7 @@ export default {
 }
 .account-wrapper {
   background-image: url('https://wallpapers.com/images/hd/plain-black-background-02fh7564l8qq4m6d.jpg');
+  min-height: 100vh;
 }
 
 .modal-wrapper {
