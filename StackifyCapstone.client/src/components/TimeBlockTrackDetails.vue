@@ -1,23 +1,25 @@
 <template>
     <section v-if="timeblockTrackDetails" class="modal-active-song ">
-        <div class="p-5 pb-0 d-flex justify-content-center align-items-center ">
-            <img class="album-cover img-fluid" :src="timeblockTrack.albumImg" alt="">
-        </div>
-        <div class="text-white mt-5">
-            <p class="card-header song-title text-center my-2 p-3"><b>{{ timeblockTrack.name }} - {{ timeblockTrack.artist }}</b></p>
-            <div class="card-body text-light song-details-card row justify-content-evenly my-3">
-                <div class="col-12 col-md-6 my-5">
-                    <p>Album: {{ timeblockTrack.album}}</p>
+        <div class="row">
+            <div class="col-12 col-md-6 mb-4">
+                <img class="album-cover img-fluid" :src="timeblockTrack.albumImg" alt="">
+            </div>
+            <div class="col-12 col-md-6 text-white">
+                <p class="card-header song-title me-1"><b>{{ timeblockTrack.name }} - {{ timeblockTrack.artist }}</b></p>
+            <div class="card-body text-light song-details-card row justify-content-evenly my-5">
+                <div class="col-12 col-md-6">
+                    <p :title="timeblockTrack.album" class="text-truncate max-vs-10">Album: {{ timeblockTrack.album}}</p>
                     <p>Release: {{ timeblockTrackYear }}</p>
                     <p>Key: {{ key }}</p>
                     <p>Duration: {{ computedMinutes }}:{{ computedSeconds }} </p>
                 </div>
-                <div class="col-12 col-md-6 my-5">
+                <div class="col-12 col-md-6">
                     <p>Valence: {{ valence }}%</p>
                     <p>Dance-ability: {{ danceability }}%</p>
                     <p>BPM: {{ bpm }}</p>
                     <p>Popularity: {{ timeblockTrack.popularity }}</p>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -66,11 +68,11 @@ export default {
 
 <style lang="scss" scoped>
 .album-cover {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 100%;
     object-fit: contain;
     object-position: center;
-    border: solid 1px #EA94FF;
+    // border: solid 1px #EA94FF;
 }
 
 .bg-dark-grey {
@@ -95,7 +97,7 @@ export default {
 }
 
 .song-details-card {
-    margin-left: 8vw;
+    // margin-left: 8vw;
     margin-bottom: 5vh;
     text-decoration: none;
     color: #EA94FF;

@@ -92,6 +92,7 @@ export default {
       <div v-for="event in myEvents" :key="event.id">
         <section class="row m-1">
           <div class="text-center event-card elevation-5" :event="event">
+            <!-- //FIXME - change to function, remove router link should be set-active copy from dropdown on left side  -->
             <router-link :to="{ name: 'Application', params: { application: 'application' } }" class="">
               <h2 class="col-12 event-title selectable text-center">{{ event.title }}</h2>
             </router-link>

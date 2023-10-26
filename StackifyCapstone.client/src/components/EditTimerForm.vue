@@ -1,5 +1,6 @@
 <template>           
 <form @submit.prevent="editTime">
+    <!-- //FIXME - change modal size to smaller size -->
     <div class="mb-3">
         <label for="duration" class="form-label">Minutes</label>
         <input v-model="timerData.duration" type="number" class="form-control" id="duration">
