@@ -48,7 +48,7 @@
       </div>
 
       <div class="col-12 col-md-3">
-        <img class="profile-pic" src="https://media.licdn.com/dms/image/D5635AQGp4kuQFZpeaw/profile-framedphoto-shrink_200_200/0/1696473547278?e=1697144400&v=beta&t=KGb_yDz49rlz3D01rVUwPeXoDdEVZLxR7GMLBpoTIfY" alt="">
+        <img class="profile-pic" src="https://media.licdn.com/dms/image/D5635AQGp4kuQFZpeaw/profile-framedphoto-shrink_800_800/0/1696473547278?e=1698879600&v=beta&t=Z0E7rApC7fNGK3917aTNLOaQrJN89a6PjQyeKH0W_zc" alt="">
         <h5 class="text-pink mt-2">Tyler Marcott</h5>
         <h5><a class="links" href="https://github.com/tylermarcott" target="_blank"><span class="mdi mdi-github fs-1"></span></a> <a class="links" href="https://www.linkedin.com/in/tyler-marcott-225277204/" target="_blank"><span class="mdi mdi-linkedin fs-1"></span></a> </h5>
       </div>
@@ -139,7 +139,7 @@ export default {
 
 .backdrop-circle {
   height: 70vh;
-  width: 70vh;
+  width: 37.5vw;
   background-color: #e1289f;
   border-radius: 50%;
   position: absolute;

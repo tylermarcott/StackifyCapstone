@@ -96,7 +96,7 @@ class SpotifyPlayerService {
 
   intervalId = 0
    async currentPosition() {
-    if(AppState.isPlaying == true) {
+    if(AppState.isPlaying === true) {
       let interval = setInterval(this.second, 1000)
       this.intervalId = interval
     }

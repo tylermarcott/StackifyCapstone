@@ -19,7 +19,7 @@
             </section>
           </div>
       </section>
-       <section v-else class="row h-100">
+        <section v-else class="row h-100">
         </section>
     </template>
     <template #body>
@@ -58,7 +58,9 @@ export default {
         }
       }
     onMounted(() => {
-       getActiveTrack()
+      if(AppState.isPlaying == true){
+        getActiveTrack()
+      }
     })
 
     return {
