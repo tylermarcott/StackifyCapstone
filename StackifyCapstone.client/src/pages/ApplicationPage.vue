@@ -24,7 +24,7 @@
       </div>
       <div class="col-12 col-md-7 center-panel p-0">
         <SongSearchBar/>
-        <div class="main-content row justify-content-center mx-1 background-img">
+        <div class="main-content row justify-content-center mx-1 background-img mt-3 mb-2">
           <!-- NOTE use a row on the search songs component-->
           <div v-if="tracks[0]" class="row justify-content-center">
             <div v-for="track in tracks" :key="track.id" class="col-12 col-md-10 elevation-2 m-2 searched-song-card ms-2">
@@ -211,12 +211,12 @@ export default {
 
 
 .main-content {
-  height: 75vh;
+  height: 71.5vh;
   background-color: #0f0f0f;
-  border: solid 8px #303030;
+  // border: solid 8px #303030;
   border-left: none;
   border-right: none;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none; 
