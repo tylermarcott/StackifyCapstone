@@ -13,6 +13,11 @@
               <img class="rounded" :src="account.picture" alt="" />
               <p class="email-text">{{ account.email }}</p>
               <button type="button" @click="toggleCollapseForm()" class="connect-button elevation-3"><b>Edit Account</b></button>
+              <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
+                <i class="mdi mdi-logout"></i>
+                logout
+              </div>
+              
               <section class="row" id="edit-form" hidden>
                 <form @submit.prevent="editAccount()">
                 <div class="col-12 my-5">
@@ -78,6 +83,7 @@ import { logger } from "../utils/Logger";
 import { spotifyPlaylistService } from "../services/SpotifyPlaylistService";
 import { accountService } from "../services/AccountService";
 import { eventsService } from "../services/EventsService";
+import {AuthService } from "../services/AuthService";
 export default {
   setup() {
     const formData = ref({})
@@ -135,6 +141,10 @@ export default {
         } catch (error) {
           Pop.error(error)
         }
+      },
+
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin })
       }
     }
   }
