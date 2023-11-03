@@ -7,7 +7,9 @@
           <EventDropdown/> 
           <ModalWrapper id="create-event">
               <template #button> 
+                <div class="add-wrapper">
                 <i class="mdi mdi-plus add-button"></i>
+                </div>
               </template>
                 <template #body>
                 <CreateEventForm/>
@@ -199,15 +201,17 @@ export default {
   
 }
 
+.add-wrapper {
+  height: 3vh;
+}
+
 .add-button {
   background-color: #63FAAA ;
   border: none;
   border-radius: 8px;
   margin-left: 5px;
-  margin-right: 12px;
-  font-size: 26px;
+  font-size: 20px;
   transition: .1s;
-  padding: 4px;
 }
 
 .add-button:hover {

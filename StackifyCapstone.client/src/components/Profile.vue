@@ -67,7 +67,7 @@ export default {
         <div class="col-10  about">
           <h2 class="welcome-text">{{ account.name }}</h2>
           <img class="rounded" :src="account.picture" alt="" />
-          <p class="email-text">{{ account.email }}</p>
+          <p class="email-text">{{ account.email.substring(0, 10 ) + "..." }}</p>
           <button type="button" @click="toggleCollapseForm()" class="connect-button elevation-3"><b>Edit
               Account</b></button>
           <section class="row" id="edit-form" hidden>
@@ -97,7 +97,6 @@ export default {
             </router-link>
             <p class="col-12">{{ event.eventType }}</p>
             <div class="col-12 no-play">
-              <p>Do Not Play List?</p>
             </div>
             <div class="col-12 d-flex justify-content-center my-3">
               <button @click="deleteEvent(event.id)" class="btn btn-danger">

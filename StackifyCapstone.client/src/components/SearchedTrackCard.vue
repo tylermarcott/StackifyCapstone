@@ -34,16 +34,9 @@
       </div>
       <div class="col-2 text-center">
         <div @click="addTrackToActiveTimeblock(track.id)" class="row add-button mb-2 p-0">
-          <div class="col-3">
             <i class="mdi mdi-plus fs-3"></i>
-          </div>
-          <div class="col-6">
               <p class="fs-3">add</p>
-          </div>     
         </div>
-        <h3>
-          <i class="mdi mdi-dots-horizontal"></i>
-        </h3>
         <div class="row mt-4">
           <div class="col-12">
             <h5>
@@ -52,7 +45,7 @@
           </div>
           <div class="col-12">
             <h5>
-              bpm: 302
+              <!-- bpm: 302 -->
             </h5>
           </div>
         </div>

@@ -28,7 +28,7 @@
         <h3 class="overview-title my-5">Concept</h3>
       </div>
       <div class="col-12 col-md-6">
-        <p class="overview-body">Our concept is elegantly straightforward.  Harnessing the power of Spotify's API, we seamlessly retrieve music information tailored to the user's preferences. Our user-friendly platform empowers individuals to curate playlists effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. These playlists are custom-crafted to suit any niche, mood, or musical style, ensuring a perfect harmony for every occasion.</p>
+        <p class="overview-body">Harnessing the power of Spotify's API our user-friendly platform empowers individuals to curate playlists effortlessly, utilizing criteria such as Genre, BPM, Key, or dance-ability. Your playlists can be custom crafted towards the event type that you are hosting.</p>
       </div>
     </section>
     <section class="row spacer">
@@ -39,8 +39,8 @@
       </div>
       <div class="col-12 col-md-6">
         <div class="cta-text">
-          <h3 class="cta-title">Don't Wait Any Longer</h3>
-          <p>Are you ready to elevate your music game and take your events to the next level? Discover Stackify, the ultimate music application for event planners and amateur DJs. Say goodbye to the hassle of managing music and hello to effortless music curation and playback. Don't miss out on this invaluable tool that's meticulously crafted to cater to your precise requirements. Join the ranks of those who are already using Stackify to seamlessly identify tracks that harmonize beautifully and elevate event ambiance and entertainment quality. </p>
+          <h3 class="cta-title">Our Application</h3>
+          <p>Discover Stackify, a helpful spotify premium extension for event planners and amateur DJs. </p>
           <router-link :to="{ name: 'Login' }">
             <button class="btn cta-button" >Launch App</button>
           </router-link>

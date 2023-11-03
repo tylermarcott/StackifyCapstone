@@ -3,7 +3,7 @@
     <div class="col-12 player d-flex justify-content-center align-items-center">
         <section class="row w-100 m-0 p-0 d-flex">
         <div class="col-6 col-md-3 devices d-flex justify-content-center align-items-center order-first">
-            <i class="devices-icon mdi mdi-shuffle-variant"></i>
+            <!-- <i class="devices-icon mdi mdi-shuffle-variant"></i> -->
         </div>
         <div class="col-12 col-md-6 player-controls d-flex justify-content-center p-0 order-1 order-md-0">
             <button @click="playPrevious()" class="previous elevation-5">
