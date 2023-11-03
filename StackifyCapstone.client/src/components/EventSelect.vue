@@ -72,9 +72,8 @@ export default {
 
 .event-title {
   background-color: #4f4f4f;
-  color: #EA94FF;
+  color: #eeeeee;
   font-size: 1.5rem;
   padding: .5rem;
-  border: solid 1px #EA94FF;
 }
 </style>

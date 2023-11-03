@@ -51,7 +51,7 @@
         <Player/>
       </div> 
       <div class="col-12 col-md-2 right-panel text-center">
-        <Profile/>
+        <Profile/>x
       </div>
     </section>
   </section>
