@@ -65,6 +65,9 @@ export default {
     <div class="col-12">
       <section class="row py-2 text-center justify-content-center">
         <div class="col-10  about">
+          <div class="right-panel-spacer">
+              <router-link :to="{ name: 'Home' }"><i class="mdi mdi-home home-button" title="Go to Home Page"></i></router-link>
+          </div>
           <h2 class="welcome-text">{{ account.name }}</h2>
           <img class="rounded" :src="account.picture" alt="" />
           <p class="email-text">{{ account.email.substring(0, 10 ) + "..." }}</p>
