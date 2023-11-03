@@ -51,31 +51,13 @@
             </section>
           </div>
         </div>
-        <!-- <div class="col-6 event-list">
-          <h2 class="text-center event-category-text">Your Spotify Playlists</h2>
-          <div v-for="playlist in playlists" :key="playlist.id">
-            <section class="row m-1" >
-            <div class="text-center event-card elevation-5" :playlist="playlist">
-              <div class="col-12 event-title">
-                <b>{{ playlist.name }}</b>
-              </div>
-              <div class="col-12">
-                <p>Songs: {{ playlist.trackCount }}</p>
-                <p>{{ playlist.description }}</p>
-              </div>
-            </div>
-            </section>
-          </div>
-        </div> -->
       </section>
 </template>
 
 <script>
-import { computed, onMounted, ref, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import Pop from "../utils/Pop";
-import { logger } from "../utils/Logger";
-import { spotifyPlaylistService } from "../services/SpotifyPlaylistService";
 import { accountService } from "../services/AccountService";
 import { eventsService } from "../services/EventsService";
 export default {
