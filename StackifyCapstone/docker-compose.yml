@@ -3,4 +3,4 @@ services:
   app:
     image: zarathrian/stackify_repo:latest
     ports:
-      - "3001:3000”
+      - "3001:3000"
