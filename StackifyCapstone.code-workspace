@@ -1,12 +1,16 @@
 {
   "folders": [
     {
-      "path": "StackifyCapstone.client",
+      "path": "client",
       "name": "client"
     },
     {
-      "path": "StackifyCapstone",
+      "path": "server",
       "name": "server"
+    },
+    {
+      "path": ".github/workflows",
+      "workflows": "server"
     }
   ],
   "settings": {
@@ -32,7 +36,7 @@
     "eslint.lintTask.enable": true,
     "eslint.codeActionsOnSave.mode": "all",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll": "explicit"
     },
     "cSpell.words": [
       "activesongmodal",
