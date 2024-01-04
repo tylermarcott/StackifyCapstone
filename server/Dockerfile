@@ -1,35 +1,35 @@
 # Use an official Node.js runtime as the base image for the client build
-FROM node:20 AS client-builder
+FROM node:20-slim AS client-builder
 
 # Set the working directory in the client builder container
 WORKDIR /app/client
 
 # Copy the client-side package.json and package-lock.json to the client builder container
-COPY StackifyCapstone.client/package*.json ./
+COPY client/package*.json ./
 
 # Install client application dependencies
 RUN npm install
 
 # Copy the client application source code to the client builder container
-COPY StackifyCapstone.client ./
+COPY client ./
 
 # Build the client-side code
 RUN npm run build
 
 # Use a smaller base image for the final server image
-FROM node:20
+FROM node:20-slim
 
 # Set the working directory in the server container
 WORKDIR /app/server
 
 # Copy the server-side package.json and package-lock.json to the server container
-COPY StackifyCapstone/package*.json ./
+COPY server/package*.json ./
 
 # Install server application dependencies
 RUN npm install
 
 # Copy the server application source code to the server container
-COPY StackifyCapstone ./
+COPY server ./
 
 # Copy the built client files from the client builder container to the server's www directory
 COPY --from=client-builder /app/client/docs /app/server/www
