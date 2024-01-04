@@ -1,12 +1,16 @@
 {
   "folders": [
     {
-      "path": "StackifyCapstone.client",
+      "path": "client",
       "name": "client"
     },
     {
-      "path": "StackifyCapstone",
+      "path": "server",
       "name": "server"
+    },
+    {
+      "path": ".github/workflows",
+      "workflows": "server"
     }
   ],
   "settings": {
