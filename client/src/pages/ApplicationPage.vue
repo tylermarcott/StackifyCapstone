@@ -51,7 +51,7 @@
         <Player/>
       </div> 
       <div class="col-12 col-md-2 right-panel text-center">
-        <Profile/>x
+        <Profile/>
       </div>
     </section>
   </section>
@@ -62,7 +62,7 @@
     </ModalWrapper>
     <ModalWrapper id="edit-timer">
           <template #body>
-             <EditTimerForm/>
+            <EditTimerForm/>
         </template>
     </ModalWrapper>
   <ModalWrapper id="save-notes">
